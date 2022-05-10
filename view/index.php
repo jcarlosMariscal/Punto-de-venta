@@ -16,7 +16,7 @@
     <?php require_once "../template/header.php"; ?>
 
     <main class="main">
-        <h2>Hola</h2>
+        <?php require_once "system_start.php"; ?>
     </main>
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.js" integrity="sha512-TsDUjQW16/G8fz4gmgTOBW2s2Oi6TPUtQ6/hm+TxZZdkQtQrK5xEFIE0rgDuz5Cl1xQU1u3Yer7K5IuuBeiCqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

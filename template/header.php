@@ -2,16 +2,16 @@
         <div class="system">
             <div class="system__info">
                 <div class="info__logo">
-                    <span><i class="fa-solid fa-computer"></i></i></span>
+                    <span><i class="header-logo fa-solid fa-computer"></i></span>
                 </div>
                 <div class="info__text">
                     <h3 class="info__name">Punto de Venta</h3>
                     <h5 class="info__welcome">Bienvenido(a) al sistema</h5>
                 </div>
             </div>
-            <hr>
+            <hr class="separate">
             <div class="system__logout">
-                <a href="../" class="logout"><i class=" nav-icon fa-solid fa-arrow-left"></i></span> Salir del Sistema</a>
+                <a href="../" class="logout"><i class="nav-icon fa-solid fa-arrow-left"></i></span> Salir del Sistema</a>
             </div>
         </div>
         <nav class="navbar">

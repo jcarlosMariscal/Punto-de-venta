@@ -2,7 +2,8 @@
         <div class="system">
             <div class="system__info">
                 <div class="info__logo">
-                    <span><i class="header-logo fa-solid fa-computer"></i></span>
+                    <a href="" class="ul__link"><i class="logo-main fa-solid fa-computer"></i></a>
+                    <!-- <span><i class="header-logo fa-solid fa-computer"></i></span> -->
                 </div>
                 <div class="info__text">
                     <h3 class="info__name">Punto de Venta</h3>

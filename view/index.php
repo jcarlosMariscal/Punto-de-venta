@@ -14,12 +14,31 @@
     <title>Sistema Punto de ventas</title>
 </head>
 <body>
-    <?php require_once "../template/header.php"; ?>
+    <?php 
+        require_once "../template/header.php"; 
+        $p = (isset($_GET['p']) ? $_GET['p'] : "0")
+    ?>
 
     <main class="main">
-        <?php //require_once "system_start.php"; ?>
-        <?php //require_once "user_main.php"; ?>
-        <?php require_once "configuration.php"; ?>
+        <?php
+            switch ($p) {
+                case 'main':
+                    require_once "user_main.php";
+                    break;
+                case 'configuration':
+                    require_once "configuration.php";
+                    break;
+                case '0':
+                    require_once "system_start.php";
+                    break;
+                case 'information':
+                    require_once "system_start.php";
+                    break;
+                default:
+                    # code...
+                    break;
+            }
+        ?>
     </main>
     <script src="../assets/js/chart.js"></script>
 

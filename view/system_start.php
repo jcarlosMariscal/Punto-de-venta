@@ -1,5 +1,8 @@
 <section class="above">
-    <div class="above__info">En desarrollo</div>
+    <div class="above__info">
+        En desarrollo:
+        <a href="index.php?p=main">Ir a interfaz principal</a>
+    </div>
     <div class="above__user">
         <div class="user__info">
             <p class="user__name">Carlos Mariscal</p>

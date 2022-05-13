@@ -314,7 +314,7 @@ body{
     text-align: center;
 }
 .btn-cfg{
-    background-color: var(--color-two);
+    background-color: var(--color-one);
     color: var(--secondary-color);
     border: none;
     padding: 5px;
@@ -322,13 +322,13 @@ body{
 }
 .btn-cfg:hover{
     transition: all 0.5s ease-in-out;
-    background-color: var(--color-two-secondary);
+    background-color: var(--color-one-secondary);
     color: var(--color-primary);
 }
 
 /* Personaliza input file */
 .custom-input-file {
-    background-color: var(--color-two);
+    background-color: var(--color-one);
     color: var(--secondary-color);
     cursor: pointer;
     font-size: 16px;
@@ -355,7 +355,7 @@ body{
 }
 .custom-input-file:hover{
     transition: all 0.5s ease-in-out;
-    background-color: var(--color-two-secondary);
+    background-color: var(--color-one-secondary);
     color: var(--color-primary);
 }
 
@@ -367,13 +367,13 @@ body{
 }
 .btn-prm{
     width: 10px;
-    background-color: var(--color-two);
+    background-color: var(--color-one);
     color: var(--secondary-color);
     text-decoration: none;
     padding: 10px;
 }
 .btn-prm:hover{
     transition: all 0.5s ease-in-out;
-    background-color: var(--color-two-secondary);
+    background-color: var(--color-one-secondary);
     color: var(--color-primary);
 }

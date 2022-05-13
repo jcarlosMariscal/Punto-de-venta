@@ -2,7 +2,7 @@
         <div class="system">
             <div class="system__info">
                 <div class="info__logo">
-                    <a href="" class="ul__link"><i class="logo-main fa-solid fa-computer"></i></a>
+                    <a href="index.php?p=main" class="ul__link"><i class="logo-main fa-solid fa-computer"></i></a>
                     <!-- <span><i class="header-logo fa-solid fa-computer"></i></span> -->
                 </div>
                 <div class="info__text">
@@ -22,8 +22,8 @@
                 <li class="navbar__li"><a href="" class="ul__link"><i class="nav-icon fa-solid fa-handshake"></i> Compras</a></li>
                 <li class="navbar__li"><a href="" class="ul__link"><i class="nav-icon fa-solid fa-file-invoice-dollar"></i> Ventas</a></li>
                 <li class="navbar__li"><a href="" class="ul__link"><i class="nav-icon fa-solid fa-user-group"></i> Mi personal</a></li>
-                <li class="navbar__li"><a href="" class="ul__link"><i class="nav-icon fa-solid fa-gears"></i> Configuración</a></li>
-                <li class="navbar__li"><a href="" class="ul__link"><i class="nav-icon fa-solid fa-circle-info"></i> Información del Sistema</a></li>
+                <li class="navbar__li"><a href="index.php?p=configuration" class="ul__link"><i class="nav-icon fa-solid fa-gears"></i> Configuración</a></li>
+                <li class="navbar__li"><a href="index.php?p=information" class="ul__link"><i class="nav-icon fa-solid fa-circle-info"></i> Información del Sistema</a></li>
             </ul>
         </nav>
     </header>

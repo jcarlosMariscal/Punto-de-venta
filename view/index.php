@@ -18,7 +18,8 @@
 
     <main class="main">
         <?php //require_once "system_start.php"; ?>
-        <?php require_once "user_main.php"; ?>
+        <?php //require_once "user_main.php"; ?>
+        <?php require_once "configuration.php"; ?>
     </main>
     <script src="../assets/js/chart.js"></script>
 

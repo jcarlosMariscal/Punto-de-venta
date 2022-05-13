@@ -276,3 +276,104 @@ body{
     background-color: var(--color-one-secondary);
     color: var(--color-menu-primary);
 }
+
+/* CONFIGURACIÓN DEL SISTEMA */
+.form{
+    display: grid;
+    grid-template-columns: 60% 40%;
+    column-gap: 15px;
+
+}
+.currently{
+    width: 95%;
+    height: 200px;
+}
+.input-cfg{
+    /* background-color: #36AE7C; */
+    margin-bottom: 15px;
+}
+.label{
+    width: 20%;
+    font-size: 16px;
+}
+.input{
+    transition: all 0.5s ease-in;
+    width: 78%;
+    border: none;
+    outline: none;
+    border: 1px solid var(--color-primary);
+    padding: 2px;
+}
+.input:focus{
+    transition: all 0.5s ease-in;
+    border: none;
+    border-bottom: 1px solid var(--color-primary);
+    background-color: rgba(129, 204, 173, 0.3);
+}
+.input-submit{
+    text-align: center;
+}
+.btn-cfg{
+    background-color: var(--color-two);
+    color: var(--secondary-color);
+    border: none;
+    padding: 5px;
+    width: 50%;
+}
+.btn-cfg:hover{
+    transition: all 0.5s ease-in-out;
+    background-color: var(--color-two-secondary);
+    color: var(--color-primary);
+}
+
+/* Personaliza input file */
+.custom-input-file {
+    background-color: var(--color-two);
+    color: var(--secondary-color);
+    cursor: pointer;
+    font-size: 16px;
+    margin: 0 auto 0;
+    min-height: 15px;
+    overflow: hidden;
+    padding: 5px;
+    position: relative;
+    text-align: center;
+    width: 400px;
+    margin-top: 10px;
+}
+.custom-input-file .input-file {
+    border: 10000px solid transparent;
+    cursor: pointer;
+    font-size: 10000px;
+    margin: 0;
+    opacity: 0;
+    outline: 0 none;
+    padding: 0;
+    position: absolute;
+    right: -1000px;
+    top: -1000px;
+}
+.custom-input-file:hover{
+    transition: all 0.5s ease-in-out;
+    background-color: var(--color-two-secondary);
+    color: var(--color-primary);
+}
+
+.config__permissions{
+    display: flex;
+    gap: 20px;
+    justify-items: center;
+    margin-top: 50px;
+}
+.btn-prm{
+    width: 10px;
+    background-color: var(--color-two);
+    color: var(--secondary-color);
+    text-decoration: none;
+    padding: 10px;
+}
+.btn-prm:hover{
+    transition: all 0.5s ease-in-out;
+    background-color: var(--color-two-secondary);
+    color: var(--color-primary);
+}

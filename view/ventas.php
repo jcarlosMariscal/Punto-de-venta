@@ -17,7 +17,7 @@
     </div>
 </section>
 <hr>
-<body>
+
 <h3><div class="above__info">Informacion de ventas  </div></h3>
 
 <div class="card-group">
@@ -125,4 +125,3 @@
     
   </div>
 </div>
-</body>

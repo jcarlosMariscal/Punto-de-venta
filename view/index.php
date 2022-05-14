@@ -43,6 +43,9 @@
                 case 'ventas':
                     require_once "ventas.php";
                     break;
+                case 'compras':
+                    require_once "compras.php";
+                    break;
                 default:
                     # code...
                     break;

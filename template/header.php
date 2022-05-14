@@ -19,7 +19,7 @@
             <ul class="navbar__ul">
                 <li class="navbar__li"><a href="" class="ul__link"><i class="nav-icon fa-solid fa-boxes-stacked"></i> Productos/almacen</a></li>
                 <li class="navbar__li"><a href="" class="ul__link"><i class="nav-icon fa-solid fa-hands-holding-circle"></i> Proveedor</a></li>
-                <li class="navbar__li"><a href="" class="ul__link"><i class="nav-icon fa-solid fa-handshake"></i> Compras</a></li>
+                <li class="navbar__li"><a href="index.php?p=compras" class="ul__link"><i class="nav-icon fa-solid fa-handshake"></i> Compras</a></li>
                 <li class="navbar__li"><a href="index.php?p=ventas" class="ul__link"><i class="nav-icon fa-solid fa-file-invoice-dollar"></i> Ventas</a></li>
                 <li class="navbar__li"><a href="index.php?p=personal" class="ul__link"><i class="nav-icon fa-solid fa-user-group"></i> Mi personal</a></li>
                 <li class="navbar__li"><a href="index.php?p=configuration" class="ul__link"><i class="nav-icon fa-solid fa-gears"></i> Configuración</a></li>

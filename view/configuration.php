@@ -55,10 +55,78 @@
         <hr>
         <div class="config__permissions">
             <div class="permissions-admin">
-                <a href="#" class="btn-prm">Permisos de Administrador</a>
+                <a href="#" class="btn-prm" data-toggle="modal" data-target=".bd-example-modal-lg">Permisos de Administrador</a>
             </div>
             <div class="permissions-seller">
                 <a href="" class="btn-prm">Permisos del Personal de Ventas</a>
+            </div>
+            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Permisos de Administrador</h5>
+                            <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+                        </div>
+                        <div class="modal-body">
+                            <div class="permisos">
+                                <form action="" class="form-permisos">
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Ventas</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Compras</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Productos</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Proveedores</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Mi Personal</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Configuración</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Agregar registros</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Modificar registros</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Eliminar Registros</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Configuración</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Notificaciones de inventario</label>
+                                    </div>
+                                    <div class="check">                                       
+                                        <input type="checkbox" name="" id="">
+                                        <label for="">Crear Respaldos</label>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn-save-modal">Guardar Cambios</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

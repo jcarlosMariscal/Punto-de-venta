@@ -144,7 +144,6 @@ body{
 }
 
 .separate{
-    height: 50px;
     margin-right: 20px;
     margin-left: 20px;
     width: 90%;
@@ -303,12 +302,16 @@ body{
     outline: none;
     border: 1px solid var(--color-primary);
     padding: 2px;
+    padding-left: 10px;
+    border: 1px solid var(--color-primary);
+    background-color: var(--secondary-color);
 }
 .input:focus{
     transition: all 0.5s ease-in;
     border: none;
-    border-bottom: 1px solid var(--color-primary);
+    border-bottom: 2px solid var(--color-one);
     background-color: rgba(129, 204, 173, 0.3);
+    color: var(--color-primary);
 }
 .input-submit{
     text-align: center;
@@ -376,4 +379,53 @@ body{
     transition: all 0.5s ease-in-out;
     background-color: var(--color-one-secondary);
     color: var(--color-primary);
+}
+
+.modal-title{
+    color: var(--color-primary);
+}
+.form-permisos{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin-left: 70px;
+}
+.check{
+    color: var(--color-primary);
+    padding: 10px;
+    font-size: 16px;
+}
+.check input[type='checkbox']{
+    -webkit-transform: scale(2);
+    margin-right: 10px;
+}
+.btn-close-modal{
+    background-color: var(--color-two);
+    color: var(--secondary-color);
+    padding: 5px 15px 5px 15px;
+    border: none;
+}
+.btn-close-modal:hover{
+    transition: all 0.5s ease-in;
+    background-color: var(--color-two-secondary);
+    color: var(--color-primary);
+}
+.btn-save-modal{
+    background-color: var(--color-one);
+    color: var(--secondary-color);
+    padding: 5px 15px 5px 15px;
+    border: none;
+}
+.btn-save-modal:hover{
+    transition: all 0.5s ease-in;
+    background-color: var(--color-one-secondary);
+    color: var(--color-primary);
+}
+.close{
+    border: none;
+    cursor: pointer;
+    font-size: 30px;
+}
+.close:hover{
+    transition: all 0.5s ease-in;
+    color: var(--color-two);
 }

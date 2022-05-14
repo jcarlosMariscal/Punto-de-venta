@@ -37,6 +37,12 @@
                 case 'test':
                     require_once "test.php";
                     break;
+                case 'personal':
+                    require_once "personal.php";
+                    break;
+                case 'ventas':
+                    require_once "ventas.php";
+                    break;
                 default:
                     # code...
                     break;

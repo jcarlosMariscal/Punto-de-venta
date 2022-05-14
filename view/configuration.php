@@ -20,10 +20,12 @@
                     <div class="input-nombre input-cfg">
                         <label for="" class="label">Razón Social:</label>
                         <input type="text" class="input" placeholder="Introduce la razón social de la empresa" name="" required >
+                        <p class="input-error">*Rellena el este campo correctamente por favor</p>
                     </div>
                     <div class="input-rfc input-cfg">
                         <label for="" class="label">R. F. C.: </label>
                         <input type="text" class="input" placeholder="Introduce la rfc" name="" required >
+                        <p class="input-error">*Rellena el este campo correctamente por favor</p>
                     </div>
                     <div class="input-domicilio input-cfg">
                         <label for="" class="label">Domicilio: </label>

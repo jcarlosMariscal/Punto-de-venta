@@ -19,25 +19,25 @@
                 <div class="form-inputs">
                     <div class="input-nombre input-cfg">
                         <label for="" class="label">Razón Social:</label>
-                        <input type="text" class="input" placeholder="Introduce la razón social de la empresa" name="" required >
+                        <input type="text" class="input input-config" placeholder="Introduce la razón social de la empresa" name="" required >
                         <p class="input-error">*Rellena el este campo correctamente por favor</p>
                     </div>
                     <div class="input-rfc input-cfg">
                         <label for="" class="label">R. F. C.: </label>
-                        <input type="text" class="input" placeholder="Introduce la rfc" name="" required >
+                        <input type="text" class="input input-config" placeholder="Introduce la rfc" name="" required >
                         <p class="input-error">*Rellena el este campo correctamente por favor</p>
                     </div>
                     <div class="input-domicilio input-cfg">
                         <label for="" class="label">Domicilio: </label>
-                        <input type="text" class="input" placeholder="Introduce el domicilio" name="" required >
+                        <input type="text" class="input input-config" placeholder="Introduce el domicilio" name="" required >
                     </div>
                     <div class="input-cPostal input-cfg">
                         <label for="" class="label">C. Postal: </label>
-                        <input type="text" class="input" placeholder="Introduce el código postal" name="" required >
+                        <input type="text" class="input input-config" placeholder="Introduce el código postal" name="" required >
                     </div>
                     <div class="input-telefono input-cfg">
                         <label for="" class="label">Teléfono: </label>
-                        <input type="text" class="input" placeholder="Introduce el teléfono" name="" required >
+                        <input type="text" class="input input-config" placeholder="Introduce el teléfono" name="" required >
                     </div>
                 </div>
                 <div class="form-logo">

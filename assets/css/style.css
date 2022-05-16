@@ -298,7 +298,6 @@ body{
 }
 .input{
     transition: all 0.5s ease-in;
-    width: 79.2%;
     border: none;
     outline: none;
     border: 1px solid var(--color-primary);
@@ -306,9 +305,13 @@ body{
     padding-left: 10px;
     background-color: var(--secondary-color);
 }
+.input-config{
+    width: 79.2%;
+}
+
 .input:focus{
     transition: all 0.5s ease-in;
-    border: none;
+    border: 0px;
     border-bottom: 2px solid var(--color-one);
     background-color: rgba(129, 204, 173, 0.1);
     color: var(--color-primary);
@@ -323,7 +326,7 @@ body{
     color: var(--secondary-color);
 }
 .input:valid{
-    border: 2px solid var(--color-one);
+    border: 1px solid var(--color-one);
 }
 .input-submit{
     text-align: center;
@@ -381,7 +384,6 @@ body{
     margin-top: 50px;
 }
 .btn-prm{
-    width: 10px;
     background-color: var(--color-one);
     color: var(--secondary-color);
     text-decoration: none;
@@ -474,4 +476,99 @@ body{
 .input-compra-submit{
     grid-column: 6/7;
     grid-row: 3/4;
+
+}
+
+.input-cpr{
+    width: 60%;
+    margin-right: 10px;
+}
+.seleccionar{
+    color: var(--color-one-secondary);
+    font-size: 25px;
+}
+.seleccionar:hover{
+    color: var(--color-one);
+}
+.btn-compra{
+    border: none;
+    background-color: var(--color-one-secondary);
+}
+.btn-compra:hover{
+    background-color: var(--color-one);
+    color: var(--secondary-color);
+}
+.table-product{
+    margin-top: 10px;
+    /* background-color: #36AE7C; */
+    height: 250px;
+    overflow-x: auto;
+}
+.table > :not(caption) > * > * {
+    padding-left: 10px;
+    color: var(--color-primary);
+}
+
+.info-compra{
+    display: flex;
+    margin-top: 10px;
+}
+.compra__total{
+    /* background-color: red;
+    height: 30px; */
+}
+.total{
+    background-color: #FFF;
+    padding: 15px 10px 15px 10px;
+}
+.btns-compra{
+    /* background-color: aqua; */
+    padding: 15px;
+}
+.btn-cancelar{
+    margin-right: 20px;
+    background-color: var(--color-two-secondary);
+}
+.btn-cancelar:hover{
+    background-color: var(--color-two);
+    color: var(--secondary-color);
+}
+
+/* VER COMPRAS */
+.ver-compras{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+.table-ver-product{
+    grid-column: span 3;
+}
+.table-ver{
+    height: 420px;
+    overflow-x: auto;
+
+}
+.table-above{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.ultima-compra{
+    background-color: #FFF;
+}
+.ultima-titulo{
+    margin-top: 10px;
+    color: var(--color-primary);
+}
+.ultima-detalles{
+    padding-left: 20px;
+}
+.ultima__data{
+    /* background-color: aqua; */
+    margin: 0;
+}
+.btn-ultimos-productos{
+    display: flex;
+    justify-content: space-around;
 }

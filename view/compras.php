@@ -16,27 +16,27 @@
 <section class="add-product">
     <h5><div class="above__info">Realizar una compra</div></h5>
     <form action="" class="form-add-product" id="formulario">
-        <div class="input-nom-proveedor input-compra" id="group-nombre-prov">
+        <div class="input-nom-proveedor input-compra" id="group-nombre_prov">
             <label for="">Nom. Proveedor: </label>
-            <input type="text" class="input input-cpr form-incorrecto" id="nombre-prov">
+            <input type="text" class="input input-cpr form-incorrecto" id="nombre_prov" name="nombre_prov">
             <a href="" class="seleccionar"><i class="fa-solid fa-check-to-slot"></i></a>
         </div>
-        <div class="input-nom-producto input-compra" id="group-producto-prov">
+        <div class="input-nom-producto input-compra" id="group-producto_prov">
             <label for="">Nom. Producto: </label>
-            <input type="text" class="input input-cpr" id="producto-prov">
+            <input type="text" class="input input-cpr" id="producto_prov" name="producto_prov">
             <a href="" class="seleccionar"><i class="fa-solid fa-check-to-slot"></i></a>
         </div>
-        <div class="input-cantidad input-compra" id="group-cantidad-prov">
+        <div class="input-cantidad input-compra" id="group-cantidad_prov">
             <label for="">Cantidad: </label>
-            <input type="text" class="input input-cpr" id="cantidad-prov">
+            <input type="text" class="input input-cpr" id="cantidad_prov" name="cantidad_prov">
         </div>
-        <div class="input-precio-compra input-compra" id="group-pcompra-prov">
+        <div class="input-precio-compra input-compra" id="group-pcompra_prov">
             <label for="">Precio Compra: </label>
-            <input type="text" class="input input-cpr" id="pcompra-prov">
+            <input type="text" class="input input-cpr" id="pcompra_prov" name="pcompra_prov">
         </div>
-        <div class="input-precio-venta input-compra" id="group-pventa-prov">
+        <div class="input-precio-venta input-compra" id="group-pventa_prov">
             <label for="">Precio Venta: </label>
-            <input type="text" class="input input-cpr" id="pventa-prov">
+            <input type="text" class="input input-cpr" id="pventa_prov" name="pventa_prov">
         </div>
         <div class="input-compra-submit">
             <input type="submit" class="btn-prm btn-compra" value="Agregar Producto" id="btn-send">
@@ -53,55 +53,13 @@
         <th scope="col">SUB TOTAL</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody id="table-body">
       <tr class="prod">
         <td>Galleta</td>
         <td>100</td>
         <td> 10.00</td>
         <td> 1000.00</td>
         <td> Eliminar</td>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td>2</td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-      </tr>
-      <tr>
-        <td>3</td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
-        <td> </td>
       </tr>
     </tbody>
   </table>

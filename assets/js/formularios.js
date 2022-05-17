@@ -3,18 +3,18 @@ const formulario = d.getElementById("formulario");
 let inputs = d.querySelectorAll("#formulario input");
 const btnsend = d.getElementById("btn-send");
 const expresiones = { // REGEX, SE MANDA A LLAMAR DE ACUERDO AL CAMPO A VALIDAR
-	nombre: /^[a-zA-ZÀ-ÿ\s]{3,60}$/, // password: /^.{1,}$/, 
+	nombre: /^[a-zA-ZÀ-ÿ\s\d]{1,60}$/, // password: /^.{1,}$/, 
 }
 
 const campos = { 
     nombre_prov: false,
-    producto: false,
+    producto_prov: false,
     cantidad_prov: false,
     pcompra_prov: false,
     pventa_prov: false,
 }
 const validarCampo = (expresion, input, campo) => {
-    console.log(btnsend);
+    // console.log(btnsend);
     if(expresion.test(input.value)){
         document.getElementById(`group-${campo}`).classList.remove("form-incorrecto");
         document.getElementById(`group-${campo}`).classList.add("form-correcto");
@@ -31,20 +31,20 @@ const validarCampo = (expresion, input, campo) => {
 }
 const validarFormulario = (e) => {
     switch (e.target.id) {
-        case "nombre-prov":
-            validarCampo(expresiones.nombre, e.target, 'nombre-prov')
+        case "nombre_prov":
+            validarCampo(expresiones.nombre, e.target, 'nombre_prov')
             break;
-        case "producto-prov":
-            validarCampo(expresiones.nombre, e.target, 'producto-prov')
+        case "producto_prov":
+            validarCampo(expresiones.nombre, e.target, 'producto_prov')
             break;
-        case "cantidad-prov":
-            validarCampo(expresiones.nombre, e.target, 'cantidad-prov')
+        case "cantidad_prov":
+            validarCampo(expresiones.nombre, e.target, 'cantidad_prov')
             break;
-        case "pcompra-prov":
-            validarCampo(expresiones.nombre, e.target, 'pcompra-prov')
+        case "pcompra_prov":
+            validarCampo(expresiones.nombre, e.target, 'pcompra_prov')
             break;
-        case "pventa-prov":
-            validarCampo(expresiones.nombre, e.target, 'pventa-prov')
+        case "pventa_prov":
+            validarCampo(expresiones.nombre, e.target, 'pventa_prov')
             break;
     
         default:
@@ -59,11 +59,35 @@ if(inputs){
     })
 }
 
-btnsend.addEventListener("submit", () => {
-    console.log("enviando");
+table_body = d.getElementById("table-body");
+formulario.addEventListener("submit", (e) => {
+    e.preventDefault();
+    console.log(formulario.nombre_prov.value);
+    if(campos.nombre_prov, campos.producto, campos.cantidad_prov,campos.pcompra_prov,campos.pventa_prov){
+        const product = `<tr>
+                            <td>${formulario.producto_prov.value}</td>
+                            <td>${formulario.cantidad_prov.value}</td>
+                            <td>${formulario.pcompra_prov.value}</td>
+                            <td>${formulario.cantidad_prov.value * formulario.pcompra_prov.value}</td>
+                            <td>Eliminar</td>
+                        </tr>`;
+        table_body.innerHTML += product;
+    }else{
+        alert("Rellena todos los campos correctamente");
+    }
 })
-// if(nombre_prov, producto, cantidad_prov,pcompra_prov,pventa_prov){
-//     console.log("listo");
-// }else{
-    
-// }
+// btnsend.addEventListener("click", (e) => {
+//     e.preventDefault();
+//     if(campos.nombre_prov, campos.producto, campos.cantidad_prov,campos.pcompra_prov,campos.pventa_prov){
+//         const product = `<tr>
+//                             <td>2</td>
+//                             <td>Ho</td>
+//                             <td>sdf</td>
+//                             <td>fsf</td>
+//                             <td>sfs</td>
+//                         </tr>`;
+//         table_body.innerHTML += product;
+//     }else{
+//         alert("Rellena todos los campos correctamente");
+//     }
+// })

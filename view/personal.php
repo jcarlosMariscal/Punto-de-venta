@@ -20,7 +20,7 @@
 
 
   <div class="row" class="card-body">
-  <span class="float-right"><button type="button" class=" btn btn-danger ">Agregar</button></span>
+  <span class="float-right"><button type="button" class=" btn btn-danger " data-toggle="modal" data-target=".bd-example-modal-lg">Agregar</button></span>
   
   </div>
 </div>
@@ -79,3 +79,62 @@
   </tbody>
 </table>
 
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Agregar nuevo usuario</h5>
+            <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="modal-body">
+            <div class="permisos">
+                <form action="" class="">
+                    <div class="inputs">                                       
+                      <label for="">Nombre</label>
+                        <input type="text" name="" id="">
+                    </div>
+                    <div class="inputs">                                       
+                      <label for="">R.F.C.</label>
+                        <input type="text" name="" id="">
+                    </div>
+                    <div class="inputs">                                       
+                      <label for="">Fecha de Nacimiento</label>
+                        <input type="text" name="" id="">
+                    </div>
+                    <div class="inputs">                                       
+                      <label for="">Teléfono</label>
+                        <input type="text" name="" id="">
+                    </div>
+                    <div class="inputs">                                       
+                      <label for="">Correo</label>
+                        <input type="text" name="" id="">
+                    </div>
+                    <div class="inputs">                                       
+                      <label for="">Rol</label>
+                      <select name="" id="">
+                        <option value="">Administrador</option>
+                        <option value="">Ventas</option>
+                      </select>
+                    </div>
+                    <div class="inputs">                                       
+                      <label for="">Caja</label>
+                        <input type="text" name="" id="">
+                    </div>
+                    <div class="inputs">                                       
+                      <label for="">Contraseña</label>
+                        <input type="text" name="" id="">
+                    </div>
+                    <div class="inputs">                                       
+                      <label for="">Repetir contraseña</label>
+                        <input type="text" name="" id="">
+                    </div>
+                  </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn-save-modal">Guardar Cambios</button>
+            </div>
+        </div>
+    </div>
+  </div>
+</div>

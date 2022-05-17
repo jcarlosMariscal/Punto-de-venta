@@ -26,6 +26,7 @@ body{
     display: flex;
     flex-direction: row;
     /* overflow: hidden; */
+    /* overflow-x: auto; */
 }
 /* Menú del punto de venta */
 .header{
@@ -257,23 +258,29 @@ body{
 
     /* text-align: center; */
     padding-left: 150px;
+    /* padding-top: 20px; */
+    height: 100%;
 }
-.btn-charts{
-    /* background-color: #345054; */
+.btn-charts, .btn-reports, .btn-code{
+    background-color: var(--color-one);
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+}
+.btn-charts:hover, .btn-reports:hover, .btn-code:hover{
+    transition: all 0.3s ease-in-out;
+    background-color: var(--color-one-secondary);
+    color: var(--color-primary);
 }
 .btn-chart{
-    background-color: var(--color-one);
+    padding: 10px 25px 10px 13px;
     color: var(--secondary-color);
-    padding: 10px;
-    margin-top: 10px;
-    height: 500px;
     text-decoration: none;
     font-size: 16px;
 }
+
 .btn-chart:hover{
-    transition: all 0.3s ease-in-out;
-    background-color: var(--color-one-secondary);
-    color: var(--color-menu-primary);
+    color: var(--color-primary);
 }
 
 /* CONFIGURACIÓN DEL SISTEMA */
@@ -300,10 +307,10 @@ body{
     transition: all 0.5s ease-in;
     border: none;
     outline: none;
-    border: 1px solid var(--color-primary);
+    border: 1px solid var(--color-menu-primary);
     padding: 2px;
     padding-left: 10px;
-    background-color: var(--secondary-color);
+    /* background-color: var(--secondary-color); */
 }
 .input-config{
     width: 79.2%;
@@ -326,7 +333,7 @@ body{
     color: var(--secondary-color);
 }
 .input:valid{
-    border: 1px solid var(--color-one);
+    /* border: 1px solid var(--color-one); */
 }
 .input-submit{
     text-align: center;
@@ -334,7 +341,7 @@ body{
 .btn-cfg{
     background-color: var(--color-one);
     color: var(--secondary-color);
-    border: none;
+    /* border: none; */
     padding: 5px;
     width: 50%;
 }
@@ -342,6 +349,23 @@ body{
     transition: all 0.5s ease-in-out;
     background-color: var(--color-one-secondary);
     color: var(--color-primary);
+}
+.form-incorrecto input{
+    border: 1px solid var(--color-two);
+    border-bottom: 2px solid var(--color-two);
+}
+.form-correcto input{
+    /* border: none; */
+    border: 1px solid var(--color-one);
+    border-bottom: 2px solid var(--color-one);
+    /* font-size: 50px; */
+}
+.deshabilitar{
+    transition: all 0.3s ease-in;
+    cursor: not-allowed;
+    background-color: rgb(229, 229, 229) !important;
+    color: var(--secondary-color) !important;
+    pointer-events: none;
 }
 
 /* Personaliza input file */
@@ -491,10 +515,12 @@ body{
     color: var(--color-one);
 }
 .btn-compra{
+    transition: all 0.5s ease-in;
     border: none;
     background-color: var(--color-one-secondary);
 }
 .btn-compra:hover{
+    transition: all 0.5s ease-in;
     background-color: var(--color-one);
     color: var(--secondary-color);
 }
@@ -572,3 +598,4 @@ body{
     display: flex;
     justify-content: space-around;
 }
+

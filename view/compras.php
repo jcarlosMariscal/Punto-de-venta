@@ -66,7 +66,7 @@
 </section>
 <section class="info-compra">
   <div class="compra__total">
-    <p class="total">Total a pagar: <b>$1000.00</b></p>
+    <p class="total">Total a pagar: <b>$</b><b id="total-pagar">1000.00</b></p>
   </div>
   <div class="btns-compra">
     <a href="" class="btn-prm btn-cancelar">Cancelar</a>

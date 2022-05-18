@@ -599,6 +599,46 @@ body{
     justify-content: space-around;
 }
 
+/* FORMULARIO AGREGAR USUARIO */
+.form-user{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+.input-user{
+    /* background-color: aqua; */
+    /* width: 100%; */
+    /* margin-bottom: ; */
+}
+.input-user label{
+    /* background-color: red; */
+}
+.input-user-name label, .input-user-rfc label, .input-user-tel label, .input-user-email label, .input-user-caja label{
+    width: 25%;
+}
+.input-user-name input, .input-user-rfc .input, .input-user-tel .input, .input-user-email .input, .input-user-caja .input{
+    width: 73%;
+}
+.input-user-fnac label{
+    width: 55%;
+}
+.input-user-fnac .input{
+    width: 43%;
+}
+.input-user-password label{
+    width: 35%;
+}
+.input-user-password .input{
+    width: 63%;
+}
+.input-user-rol label{
+    width: 45%;
+}
+.input-user-rol .select-user-rol{
+    width: 53%;
+}
+
+
 
 /* --------------------- VICTOR ---------------- */
 /* Codigo login*/
@@ -720,4 +760,13 @@ select{
 .quitar{
     text-decoration: none;
     color: #F29494;
+}
+
+
+/* RESETEAR SELECT FORM AGREGAR USUARIO */
+.select-user-rol{
+    background-color: #FFF;
+    border: 1px solid var(--color-primary) !important;
+    /* border-radius: 0 !important; */
+    color: var(--color-primary);
 }

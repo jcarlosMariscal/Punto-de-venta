@@ -24,7 +24,7 @@ const validarCampo = (expresion, input, campo) => {
     if(expresion.test(input.value)){
         document.getElementById(`group-${campo}`).classList.remove("form-incorrecto");
         document.getElementById(`group-${campo}`).classList.add("form-correcto");
-        err.classList.remove("active");
+        if(err) err.classList.remove("active");
         btnsend.disabled=false;
         btnsend.classList.remove("deshabilitar");
         campos[campo] = true;

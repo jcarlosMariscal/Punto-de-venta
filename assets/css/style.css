@@ -212,9 +212,13 @@ body{
 .start__details{
     display: flex;
     /* padding: 10px; */
+    height: 230px;
+    /* background-color: aqua; */
 }
 .details{
     width: 60%;
+    margin: 0;
+    /* background-color: red; */
 }
 .details__img{
     width: 40%;

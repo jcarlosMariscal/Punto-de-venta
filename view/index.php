@@ -50,6 +50,18 @@
                 case 'ver-compras':
                     require_once "verCompras.php";
                     break;
+                case 'proveedor':
+                    require_once "supplier.php";
+                    break;
+                case 'reporte':
+                    require_once "reporte.php";
+                    break;
+                case 'add_supplier':
+                    require_once "add_supplier.php";
+                    break;               
+                case 'ver-compras':
+                    require_once "verCompras.php";
+                    break;
                 default:
                     # code...
                     break;

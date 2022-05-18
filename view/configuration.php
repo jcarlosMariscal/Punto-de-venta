@@ -15,29 +15,32 @@
     <div class="config">
         <div class="config__form">
             <h4>Datos del negocio</h4>
-            <form action="" class="form">
+            <form action="" class="form" id="formulario">
                 <div class="form-inputs">
-                    <div class="input-nombre input-cfg">
+                    <div class="input-nombre input-cfg" id="group-razon_social">
                         <label for="" class="label">Razón Social:</label>
-                        <input type="text" class="input input-config" placeholder="Introduce la razón social de la empresa" name="" required >
+                        <input type="text" class="input input-config" placeholder="Introduce la razón social de la empresa" name="razon_social" id="razon_social" >
                         <p class="input-error">*Rellena el este campo correctamente por favor</p>
                     </div>
-                    <div class="input-rfc input-cfg">
+                    <div class="input-rfc input-cfg" id="group-rfc">
                         <label for="" class="label">R. F. C.: </label>
-                        <input type="text" class="input input-config" placeholder="Introduce la rfc" name="" required >
+                        <input type="text" class="input input-config" placeholder="Introduce la rfc" name="rfc" id="rfc" >
                         <p class="input-error">*Rellena el este campo correctamente por favor</p>
                     </div>
-                    <div class="input-domicilio input-cfg">
+                    <div class="input-domicilio input-cfg" id="group-domicilio">
                         <label for="" class="label">Domicilio: </label>
-                        <input type="text" class="input input-config" placeholder="Introduce el domicilio" name="" required >
+                        <input type="text" class="input input-config" placeholder="Introduce el domicilio" name="domicilio" id="domicilio" >
+                        <p class="input-error">*Rellena el este campo correctamente por favor</p>
                     </div>
-                    <div class="input-cPostal input-cfg">
+                    <div class="input-cPostal input-cfg" id="group-cpostal">
                         <label for="" class="label">C. Postal: </label>
-                        <input type="text" class="input input-config" placeholder="Introduce el código postal" name="" required >
+                        <input type="text" class="input input-config" placeholder="Introduce el código postal" name="cpostal" id="cpostal" >
+                        <p class="input-error">*Rellena el este campo correctamente por favor</p>
                     </div>
-                    <div class="input-telefono input-cfg">
+                    <div class="input-telefono input-cfg" id="group-telefono">
                         <label for="" class="label">Teléfono: </label>
-                        <input type="text" class="input input-config" placeholder="Introduce el teléfono" name="" required >
+                        <input type="text" class="input input-config" placeholder="Introduce el teléfono" name="telefono" id="telefono" >
+                        <p class="input-error">*Rellena el este campo correctamente por favor</p>
                     </div>
                 </div>
                 <div class="form-logo">
@@ -50,7 +53,7 @@
                     </div>
                 </div>
                 <div class="input-submit">
-                    <input type="submit" class="btn-cfg" value="Guardar Cambios">
+                    <input type="submit" class="btn-cfg" value="Guardar Cambios" id="btn-send">
                 </div>
             </form>
         </div>

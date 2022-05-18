@@ -81,15 +81,15 @@
         <div class="modal-body">
             <div class="permisos">
                 <form action="" class="form-user">
-                    <div class="input-user-name input-user">                                       
+                    <div class="input-user-name input-user" id="group-razon_social">                                       
                         <label for="">Nombre: </label>
-                        <input type="text" name="" id="" class="input" placeholder="Introduce un nombre">
+                        <input type="text" name="" id="" class="input" name="razon_social" id="razon_social" placeholder="Introduce un nombre">
                     </div>
-                    <div class="input-user-rfc input-user">                                       
+                    <div class="input-user-rfc input-user" id="group-rfc">                                       
                       <label for="">R.F.C.: </label>
-                        <input type="text" name="" id="" class="input" placeholder="Introduce">
+                        <input type="text" name="" id="" class="input" name="rfc" id="rfc" placeholder="Introduce">
                     </div>
-                    <div class="input-user-fnac input-user">                                       
+                    <div class="input-user-fnac input-user" id="group-">                                       
                       <label for="">Fecha de Nacimiento</label>
                         <input type="date" name="" id="" class="input">
                     </div>

@@ -331,6 +331,11 @@ body{
     width: 100%;
     background-color: var(--color-two-secondary);
     color: var(--secondary-color);
+    display: none;
+}
+.input-error.active{
+    transition: all 0.5s ease-in-out;
+    display: block;
 }
 .input:valid{
     /* border: 1px solid var(--color-one); */

@@ -12,18 +12,26 @@ const campos = {
     cantidad_prov: false,
     pcompra_prov: false,
     pventa_prov: false,
+    razon_social: false,
+    rfc: false,
+    domicilio: false,
+    cpostal: false,
+    telefono: false,
 }
 const validarCampo = (expresion, input, campo) => {
-    // console.log(btnsend);
+    let err = document.querySelector(`#group-${campo} .input-error`);
+    console.log(err);
     if(expresion.test(input.value)){
         document.getElementById(`group-${campo}`).classList.remove("form-incorrecto");
         document.getElementById(`group-${campo}`).classList.add("form-correcto");
+        err.classList.remove("active");
         btnsend.disabled=false;
         btnsend.classList.remove("deshabilitar");
         campos[campo] = true;
     }else{
         document.getElementById(`group-${campo}`).classList.add("form-incorrecto");
         document.getElementById(`group-${campo}`).classList.remove("form-correcto");
+        if(err) err.classList.add("active");
         btnsend.classList.add("deshabilitar");
         btnsend.disabled = true;
         campos[campo] = false;
@@ -46,7 +54,22 @@ const validarFormulario = (e) => {
         case "pventa_prov":
             validarCampo(expresiones.nombre, e.target, 'pventa_prov')
             break;
-    
+            // DATOS DEL NEGOCIO
+        case "razon_social":
+            validarCampo(expresiones.nombre, e.target, 'razon_social')
+            break;
+        case "rfc":
+            validarCampo(expresiones.nombre, e.target, 'rfc')
+            break;
+        case "domicilio":
+            validarCampo(expresiones.nombre, e.target, 'domicilio')
+            break;
+        case "cpostal":
+            validarCampo(expresiones.nombre, e.target, 'cpostal')
+            break;
+        case "telefono":
+            validarCampo(expresiones.nombre, e.target, 'telefono')
+            break;
         default:
             break;
     }

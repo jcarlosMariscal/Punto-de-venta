@@ -35,9 +35,6 @@
                 case 'information':
                     require_once "system_start.php";
                     break;
-                case 'test':
-                    require_once "test.php";
-                    break;
                 case 'personal':
                     require_once "personal.php";
                     break;

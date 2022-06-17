@@ -42,9 +42,9 @@
                       <td>prueba@gmail.com</td>
                       <td>123456789</td>
                       <td>Administrador</td>
-                      <td>Eliminar</td>
-                      <td>Editar</td>
-                      <td>Ver</td>
+                      <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
                   </tr>
                   <tr class="prod">
                       <td>1</td>
@@ -52,9 +52,9 @@
                       <td>prueba@gmail.com</td>
                       <td>123456789</td>
                       <td>Administrador</td>
-                      <td>Eliminar</td>
-                      <td>Editar</td>
-                      <td>Ver</td>
+                      <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
                   </tr>
                   <tr class="prod">
                       <td>1</td>
@@ -62,9 +62,9 @@
                       <td>prueba@gmail.com</td>
                       <td>123456789</td>
                       <td>Administrador</td>
-                      <td>Eliminar</td>
-                      <td>Editar</td>
-                      <td>Ver</td>
+                      <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
                   </tr>
                 </tbody>
             </table>

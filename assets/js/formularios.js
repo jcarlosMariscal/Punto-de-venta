@@ -93,7 +93,7 @@ formulario.addEventListener("submit", (e) => {
                             <td>${formulario.cantidad_prov.value}</td>
                             <td>${formulario.pcompra_prov.value}</td>
                             <td><span>$<span><span class="precio">${formulario.cantidad_prov.value * formulario.pcompra_prov.value}</span></td>
-                            <td><i class="fa-solid fa-trash-can"></i></td>
+                            <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>`;
         table_body.innerHTML += product;
         let todo = d.querySelectorAll(".precio");

@@ -59,7 +59,7 @@
         <td>100</td>
         <td> 10.00</td>
         <td> 1000.00</td>
-        <td> Eliminar</td>
+        <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
       </tr>
     </tbody>
   </table>

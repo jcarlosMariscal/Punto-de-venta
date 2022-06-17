@@ -47,8 +47,8 @@
                       <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
                   </tr>
                   <tr class="prod">
-                      <td>1</td>
-                      <td>Carlos Mariscal</td>
+                      <td>2</td>
+                      <td>Pedro</td>
                       <td>prueba@gmail.com</td>
                       <td>123456789</td>
                       <td>Administrador</td>
@@ -57,7 +57,7 @@
                       <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
                   </tr>
                   <tr class="prod">
-                      <td>1</td>
+                      <td>3</td>
                       <td>Carlos Mariscal</td>
                       <td>prueba@gmail.com</td>
                       <td>123456789</td>

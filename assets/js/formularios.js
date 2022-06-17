@@ -86,7 +86,7 @@ table_body = d.getElementById("table-body");
 total_pagar = d.getElementById("total-pagar");
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(formulario.nombre_prov.value);
+    // console.log(formulario.nombre_prov.value);
     if(campos.nombre_prov, campos.producto, campos.cantidad_prov,campos.pcompra_prov,campos.pventa_prov){
         const product = `<tr>
                             <td>${formulario.producto_prov.value}</td>

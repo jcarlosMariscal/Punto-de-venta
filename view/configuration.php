@@ -49,7 +49,7 @@
                     </div>
                     <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
                         <input type="file" id="fichero-tarifas" class="input-file" value="">
-                        Subir Logo
+                        Sube tu Logo
                     </div>
                 </div>
                 <div class="input-submit">

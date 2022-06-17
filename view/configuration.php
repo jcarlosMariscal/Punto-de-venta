@@ -1,5 +1,5 @@
 <section class="above">
-    <div class="above__info">En desarrollo</div>
+    <div class="above__info"></div>
     <div class="above__user">
         <div class="user__info">
             <p class="user__name">Carlos Mariscal</p>

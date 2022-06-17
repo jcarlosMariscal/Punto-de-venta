@@ -647,7 +647,24 @@ body{
     width: 53%;
 }
 
-
+/* ICONOS - eliminar, modificar y informacion de tablas */
+.btn-tb-delete{
+    font-size: 20px;
+    color: red;
+}
+.btn-tb-delete:hover{
+    color: #EB5353;
+}
+.btn-tb-update{
+    font-size: 20px;
+    color: green;
+}
+.btn-tb-update:hover{
+    color: #345054;
+}
+.btn-tb-info{
+    font-size: 20px;
+}
 
 /* --------------------- VICTOR ---------------- */
 /* Codigo login*/

@@ -17,7 +17,7 @@
 <body>
     <?php 
         require_once "../template/header.php"; 
-        $p = (isset($_GET['p']) ? $_GET['p'] : "0")
+        $p = (isset($_GET['p']) ? $_GET['p'] : "main")
     ?>
 
     <main class="main">

@@ -1,6 +1,7 @@
 <section class="above">
-    <div class="above__info">Ver Compras
-      <a href="index.php?p=compras" class="btn-prm btn-cancelar">Atrás</a>
+    <div class="above__info">
+        <span class="info__seccion">Ver Compras</span>
+        <a href="index.php?p=compras" class="btn-regresar"><i class="fa-solid fa-circle-left"></i></a>
     </div>
     <div class="above__user">
         <div class="user__info">
@@ -56,112 +57,90 @@
                     <td>Pepsi</td>
                     <td>10</td>
                     <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
+                    <td>5.00</td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
-                    <td>2</td>
+                    <td>1</td>
                     <td>Pepsi</td>
                     <td>10</td>
                     <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
+                    <td>5.00</td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
-                    <td>2</td>
+                    <td>1</td>
                     <td>Pepsi</td>
                     <td>10</td>
                     <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
+                    <td>5.00</td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
-                    <td>2</td>
+                    <td>1</td>
                     <td>Pepsi</td>
                     <td>10</td>
                     <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
+                    <td>5.00</td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
-                    <td>2</td>
+                    <td>1</td>
                     <td>Pepsi</td>
                     <td>10</td>
                     <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
+                    <td>5.00</td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
-                    <td>2</td>
+                    <td>1</td>
                     <td>Pepsi</td>
                     <td>10</td>
                     <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
+                    <td>5.00</td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
-                    <td>2</td>
+                    <td>1</td>
                     <td>Pepsi</td>
                     <td>10</td>
                     <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
+                    <td>5.00</td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
-                    <td>2</td>
+                    <td>1</td>
                     <td>Pepsi</td>
                     <td>10</td>
                     <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
+                    <td>5.00</td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
-                    <td>2</td>
+                    <td>1</td>
                     <td>Pepsi</td>
                     <td>10</td>
                     <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
+                    <td>5.00</td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
-                    <td>2</td>
+                    <td>1</td>
                     <td>Pepsi</td>
                     <td>10</td>
                     <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
-                </tr>
-                <tr class="prod">
-                    <td>2</td>
-                    <td>Pepsi</td>
-                    <td>10</td>
-                    <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
-                </tr>
-                <tr class="prod">
-                    <td>2</td>
-                    <td>Pepsi</td>
-                    <td>10</td>
-                    <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
-                </tr>
-                <tr class="prod">
-                    <td>2</td>
-                    <td>Pepsi</td>
-                    <td>10</td>
-                    <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
-                </tr>
-                <tr class="prod">
-                    <td>2</td>
-                    <td>Pepsi</td>
-                    <td>10</td>
-                    <td>16/05/2022</td>
-                    <td>Info</td>
-                    <td>Reporte</td>
+                    <td>5.00</td>
+                    <td class="text-center"><a href="#" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                    <td class="text-center"><a href="#" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 </tbody>
             </table>
@@ -180,11 +159,10 @@
             <p class="product">15 refrescos - $100.00</p>
             <p class="product">50 Sabritas - $100.00</p>
             <p class="product">30 Aceites - $100.00</p>
-            <p class="product">100 chicles - $100.00</p>
         </div>
         <div class="btn-ultimos-productos">
-            <a href="index.php?p=compras" class="btn-prm btn-cancelar">Info</a>
-            <a href="index.php?p=compras" class="btn-prm btn-cancelar">Reporte</a>
+            <a href="index.php?p=compras" class="btn-prm"><i class="fa-solid fa-circle-info"></i></a>
+            <a href="index.php?p=compras" class="btn-prm"><i class="fa-solid fa-file-invoice"></i></a>
         </div>
     </section>
 </section>

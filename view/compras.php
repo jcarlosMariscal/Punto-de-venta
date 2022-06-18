@@ -1,6 +1,8 @@
 <section class="above">
-    <div class="above__info">Compras
-      <a href="index.php?p=ver-compras" class="btn-prm btn-cancelar">Ver Compras</a>
+    <div class="above__info">
+      <span class="info__seccion">Compras</span>
+      <a href="index.php?p=ver-compras" class="btn-prm"><i class="fa-solid fa-eye"></i> Ver</a>
+      <!-- <a href="index.php?p=compras" class="btn-regresar"><i class="fa-solid fa-eye"></i></a> -->
     </div>
     <div class="above__user">
     <div class="user__info">
@@ -48,6 +50,9 @@
         </div>
         <div class="input-compra-submit">
             <input type="submit" class="btn-prm btn-compra" value="Agregar Producto" id="btn-send">
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" class="input-icon" viewBox="0 0 20 20" fill="currentColor">
+              <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd" />
+            </svg> -->
         </div>
     </form>
 </section>

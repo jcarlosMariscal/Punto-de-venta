@@ -23,7 +23,9 @@
     <div class="config">
         <div class="config__form">
             <div class="permissions-admin">
-                <a href="index.php?p=add_supplier" class="btn-prm btn-compra">Agregar proveedor</a>
+                <?php
+                    echo ($_SESSION['rol'] == 1) ? '<a href="index.php?p=add_supplier" class="btn-prm btn-compra">Agregar proveedor</a>': '';
+                ?>
                 <br><br>
                 <div class="input-nombre input-bus">
                         <label for="" class="label">Número de documento:</label>

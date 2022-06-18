@@ -167,6 +167,11 @@ body{
 }
 .above__info{
     /* background-color: #F29494; */
+    display: flex;
+    align-items: center;
+}
+.info__seccion{
+    margin-right: 15px;
 }
 .above__user{
     display: flex;
@@ -420,7 +425,7 @@ body{
     background-color: var(--color-one);
     color: var(--secondary-color);
     text-decoration: none;
-    padding: 10px;
+    padding: 4px 10px 4px 10px;
 }
 .btn-prm:hover{
     transition: all 0.5s ease-in-out;
@@ -591,6 +596,8 @@ body{
 }
 .ultima-compra{
     background-color: #FFF;
+    border: 10px outset var(--color-one);
+    background-color: #FFF;
 }
 .ultima-titulo{
     margin-top: 10px;
@@ -664,6 +671,14 @@ body{
 }
 .btn-tb-info{
     font-size: 20px;
+}
+
+.btn-regresar{
+    font-size: 30px;
+    color: var(--color-one);
+}
+.btn-regresar:hover{
+    color: var(--color-one-secondary);
 }
 
 /* --------------------- VICTOR ---------------- */

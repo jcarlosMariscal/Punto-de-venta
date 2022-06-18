@@ -5,8 +5,16 @@
     </div>
     <div class="above__user">
         <div class="user__info">
-            <p class="user__name">Carlos Mariscal</p>
-            <p class="user__rol">Administrador</p>
+            <p class="user__name"><?php echo $_SESSION['user']?></p>
+            <p class="user__rol">
+                <?php 
+                    if($_SESSION['rol'] == 1){
+                        echo "Administrador";
+                    }elseif ($_SESSION['rol'] == 2) {
+                        echo "Vendedor";
+                    }
+                ?>
+            </p>
         </div>
         <div class="user__icon">
             <span class="icon-user"><i class="icon-font fa-solid fa-user"></i></span>

@@ -1,3 +1,10 @@
+<?php
+session_start();//iniciamos una sesión
+if(empty($_SESSION['active'])){
+    header('location: ../index.php');
+}
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -27,22 +34,19 @@
                     require_once "user_main.php";
                     break;
                 case 'configuration':
-                    require_once "configuration.php";
-                    break;
-                case '0':
-                    require_once "system_start.php";
+                    ($_SESSION['rol'] == 1 ) ? require_once "configuration.php" : header('Location: index.php');
                     break;
                 case 'information':
                     require_once "system_start.php";
                     break;
                 case 'personal':
-                    require_once "personal.php";
+                    ($_SESSION['rol'] == 1 ) ? require_once "personal.php" : header('Location: index.php');
                     break;
                 case 'ventas':
                     require_once "ventas.php";
                     break;
                 case 'compras':
-                    require_once "compras.php";
+                    ($_SESSION['rol'] == 1 ) ? require_once "compras.php" : header('Location: index.php');
                     break;
                 case 'ver-compras':
                     require_once "verCompras.php";

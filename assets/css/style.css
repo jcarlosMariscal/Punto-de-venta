@@ -776,12 +776,14 @@ select{
 .select:hover::after{
     color: #17373B;
 }
-.btn-sesión{
-    width: 10px;
+.btn-sesion{
+    /* width: 10px; */
     text-decoration: none;
     padding: 10px;
+    border: none;
     color: #000;
     background-color: var(--secondary-color);
+    cursor: pointer;
 }
 .quitar{
     text-decoration: none;

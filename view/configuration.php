@@ -1,9 +1,17 @@
 <section class="above">
-    <div class="above__info">En desarrollo</div>
+    <div class="above__info"></div>
     <div class="above__user">
-        <div class="user__info">
-            <p class="user__name">Carlos Mariscal</p>
-            <p class="user__rol">Administrador</p>
+    <div class="user__info">
+            <p class="user__name"><?php echo $_SESSION['user']?></p>
+            <p class="user__rol">
+                <?php 
+                    if($_SESSION['rol'] == 1){
+                        echo "Administrador";
+                    }elseif ($_SESSION['rol'] == 2) {
+                        echo "Vendedor";
+                    }
+                ?>
+            </p>
         </div>
         <div class="user__icon">
             <span class="icon-user"><i class="icon-font fa-solid fa-user"></i></span>
@@ -49,7 +57,7 @@
                     </div>
                     <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
                         <input type="file" id="fichero-tarifas" class="input-file" value="">
-                        Subir Logo
+                        Sube tu Logo
                     </div>
                 </div>
                 <div class="input-submit">

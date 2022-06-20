@@ -4,8 +4,16 @@
     </div>
     <div class="above__user">
         <div class="user__info">
-            <p class="user__name">Carlos Mariscal</p>
-            <p class="user__rol">Administrador</p>
+            <p class="user__name"><?php echo $_SESSION['user']?></p>
+            <p class="user__rol">
+                <?php 
+                    if($_SESSION['rol'] == 1){
+                        echo "Administrador";
+                    }elseif ($_SESSION['rol'] == 2) {
+                        echo "Vendedor";
+                    }
+                ?>
+            </p>
         </div>
         <div class="user__icon">
             <span class="icon-user"><i class="icon-font fa-solid fa-user"></i></span>
@@ -42,29 +50,29 @@
                       <td>prueba@gmail.com</td>
                       <td>123456789</td>
                       <td>Administrador</td>
-                      <td>Eliminar</td>
-                      <td>Editar</td>
-                      <td>Ver</td>
+                      <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
                   </tr>
                   <tr class="prod">
-                      <td>1</td>
+                      <td>2</td>
+                      <td>Pedro</td>
+                      <td>prueba@gmail.com</td>
+                      <td>123456789</td>
+                      <td>Administrador</td>
+                      <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                  </tr>
+                  <tr class="prod">
+                      <td>3</td>
                       <td>Carlos Mariscal</td>
                       <td>prueba@gmail.com</td>
                       <td>123456789</td>
                       <td>Administrador</td>
-                      <td>Eliminar</td>
-                      <td>Editar</td>
-                      <td>Ver</td>
-                  </tr>
-                  <tr class="prod">
-                      <td>1</td>
-                      <td>Carlos Mariscal</td>
-                      <td>prueba@gmail.com</td>
-                      <td>123456789</td>
-                      <td>Administrador</td>
-                      <td>Eliminar</td>
-                      <td>Editar</td>
-                      <td>Ver</td>
+                      <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
                   </tr>
                 </tbody>
             </table>

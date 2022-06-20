@@ -86,14 +86,14 @@ table_body = d.getElementById("table-body");
 total_pagar = d.getElementById("total-pagar");
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
-    console.log(formulario.nombre_prov.value);
+    // console.log(formulario.nombre_prov.value);
     if(campos.nombre_prov, campos.producto, campos.cantidad_prov,campos.pcompra_prov,campos.pventa_prov){
         const product = `<tr>
                             <td>${formulario.producto_prov.value}</td>
                             <td>${formulario.cantidad_prov.value}</td>
                             <td>${formulario.pcompra_prov.value}</td>
                             <td><span>$<span><span class="precio">${formulario.cantidad_prov.value * formulario.pcompra_prov.value}</span></td>
-                            <td><i class="fa-solid fa-trash-can"></i></td>
+                            <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>`;
         table_body.innerHTML += product;
         let todo = d.querySelectorAll(".precio");

@@ -2,8 +2,16 @@
     <div class="above__info">En desarrollo</div>
     <div class="above__user">
         <div class="user__info">
-            <p class="user__name">Víctor Manuel</p>
-            <p class="user__rol">Administrador</p>
+            <p class="user__name"><?php echo $_SESSION['user']?></p>
+            <p class="user__rol">
+                <?php 
+                    if($_SESSION['rol'] == 1){
+                        echo "Administrador";
+                    }elseif ($_SESSION['rol'] == 2) {
+                        echo "Vendedor";
+                    }
+                ?>
+            </p>
         </div>
         <div class="user__icon">
             <span class="icon-user"><i class="icon-font fa-solid fa-user"></i></span>
@@ -15,7 +23,9 @@
     <div class="config">
         <div class="config__form">
             <div class="permissions-admin">
-                <a href="index.php?p=add_supplier" class="btn-prm btn-compra">Agregar proveedor</a>
+                <?php
+                    echo ($_SESSION['rol'] == 1) ? '<a href="index.php?p=add_supplier" class="btn-prm btn-compra">Agregar proveedor</a>': '';
+                ?>
                 <br><br>
                 <div class="input-nombre input-bus">
                         <label for="" class="label">Número de documento:</label>

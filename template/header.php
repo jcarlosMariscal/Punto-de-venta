@@ -12,17 +12,24 @@
             </div>
             <hr class="separate">
             <div class="system__logout">
-                <a href="../" class="logout"><i class="nav-icon fa-solid fa-arrow-left"></i></span> Salir del Sistema</a>
+                <a href="../cerrar_session/cerrar_session.php" class="logout"><i class="nav-icon fa-solid fa-arrow-left"></i></span> Salir del Sistema</a>
             </div>
         </div>
         <nav class="navbar">
             <ul class="navbar__ul">
-                <li class="navbar__li"><a href="" class="ul__link"><i class="nav-icon fa-solid fa-boxes-stacked"></i> Productos/almacen</a></li>
+                <li class="navbar__li"><a href="#" class="ul__link"><i class="nav-icon fa-solid fa-boxes-stacked"></i> Productos/almacen</a></li>
                 <li class="navbar__li"><a href="index.php?p=proveedor" class="ul__link"><i class="nav-icon fa-solid fa-hands-holding-circle"></i> Proveedor</a></li>
-                <li class="navbar__li"><a href="index.php?p=compras" class="ul__link"><i class="nav-icon fa-solid fa-handshake"></i> Compras</a></li>
                 <li class="navbar__li"><a href="index.php?p=ventas" class="ul__link"><i class="nav-icon fa-solid fa-file-invoice-dollar"></i> Ventas</a></li>
+                <!-- PERMITIR EL ACCESO A ESTAS SECCIONES A SOLO EL ADMINISTRADOR -->
+                <?php
+                if($_SESSION['rol'] == 1){
+                ?>
+                <li class="navbar__li"><a href="index.php?p=compras" class="ul__link"><i class="nav-icon fa-solid fa-handshake"></i> Compras</a></li>
                 <li class="navbar__li"><a href="index.php?p=personal" class="ul__link"><i class="nav-icon fa-solid fa-user-group"></i> Mi personal</a></li>
                 <li class="navbar__li"><a href="index.php?p=configuration" class="ul__link"><i class="nav-icon fa-solid fa-gears"></i> Configuración</a></li>
+                <?php
+                }
+                ?>
                 <li class="navbar__li"><a href="index.php?p=information" class="ul__link"><i class="nav-icon fa-solid fa-circle-info"></i> Información del Sistema</a></li>
             </ul>
         </nav>

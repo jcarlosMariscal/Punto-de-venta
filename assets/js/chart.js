@@ -8,10 +8,9 @@ if(chart1 || chart2 || chart3){
     const myChart = new Chart(chart1, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+            // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
             datasets: [{
                 label: '# Productos más vendidos',
-                data: [12, 19, 3, 5, 2, 3],
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(54, 162, 235, 0.2)',
@@ -39,12 +38,10 @@ if(chart1 || chart2 || chart3){
             }
         }
     });
-    const labels = ["January", "February", "March", "April", "May", "June", "July"];
+
     const data2 = {
-      labels: labels,
       datasets: [{
         label: 'Ventas de anteriores meses',
-        data: [65, 59, 80, 81, 56, 55, 40],
         fill: false,
         borderColor: 'rgb(75, 192, 192)',
         tension: 0.1
@@ -57,10 +54,9 @@ if(chart1 || chart2 || chart3){
     const myChart3 = new Chart(chart3, {
         type: 'bar',
         data: {
-            labels: ['Red', 'Green', 'Yellow', 'Pink', 'Purple', 'Orange'],
             datasets: [{
-                label: '# Personal de ventas',
-                data: [5, 16, 10, 5, 19, 9],
+                label: '#Personal de ventas',
+
                 backgroundColor: [
                     'rgba(255, 99, 132, 0.2)',
                     'rgba(28, 116, 85, 0.2)',
@@ -88,4 +84,28 @@ if(chart1 || chart2 || chart3){
             }
         }
     });
+
+
+    let url = "https://web-api-2022.000webhostapp.com/"
+    fetch(url)
+        .then(response => response.json())
+        .then(datos => mostrar(datos))
+        .catch(error => console.log(error))
+    
+    const mostrar = (productos) => {
+        productos.forEach(element=>{
+            myChart.data['labels'].push(element.nombre)
+            myChart.data['datasets'][0].data.push(element.stok)
+            myChart.update()
+            myChart2.data['labels'].push(element.mes)
+            myChart2.data['datasets'][0].data.push(element.stok)
+            myChart2.update()
+            myChart3.data['labels'].push(element.ventareali)
+            myChart3.data['datasets'][0].data.push(element.totalcaja)
+            myChart3.update()
+        });
+        console.log(myChart.data);
+    }
+
 }
+

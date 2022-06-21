@@ -63,6 +63,9 @@ if(empty($_SESSION['active'])){
                 case 'ver-compras':
                     require_once "verCompras.php";
                     break;
+                case 'productos':
+                    require_once "productos.php";
+                    break;
                 default:
                     # code...
                     break;

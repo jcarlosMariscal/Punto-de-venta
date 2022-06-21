@@ -84,5 +84,6 @@
   <div class="btns-compra">
     <a href="" class="btn-prm btn-cancelar">Cancelar</a>
     <a href=""class="btn-prm btn-compra">Comprar</a>
+    <a href="index.php?p=pago" class="btn-prm btn-compra">Compra Online</a>
   </div>
 </section>

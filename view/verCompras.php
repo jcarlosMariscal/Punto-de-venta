@@ -59,7 +59,7 @@
                     <td>16/05/2022</td>
                     <td>5.00</td>
                     <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-report"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
                     <td>1</td>
@@ -68,7 +68,7 @@
                     <td>16/05/2022</td>
                     <td>5.00</td>
                     <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-report"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
                     <td>1</td>
@@ -77,7 +77,7 @@
                     <td>16/05/2022</td>
                     <td>5.00</td>
                     <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-report"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
                     <td>1</td>
@@ -86,7 +86,7 @@
                     <td>16/05/2022</td>
                     <td>5.00</td>
                     <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-report"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
                     <td>1</td>
@@ -95,7 +95,7 @@
                     <td>16/05/2022</td>
                     <td>5.00</td>
                     <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-report"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
                     <td>1</td>
@@ -104,7 +104,7 @@
                     <td>16/05/2022</td>
                     <td>5.00</td>
                     <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-report"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
                     <td>1</td>
@@ -113,7 +113,7 @@
                     <td>16/05/2022</td>
                     <td>5.00</td>
                     <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-report"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
                     <td>1</td>
@@ -122,7 +122,7 @@
                     <td>16/05/2022</td>
                     <td>5.00</td>
                     <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-report"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
                     <td>1</td>
@@ -131,7 +131,7 @@
                     <td>16/05/2022</td>
                     <td>5.00</td>
                     <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
+                    <td class="text-center"><a href="" class="btn-tb-report"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 <tr class="prod">
                     <td>1</td>
@@ -140,7 +140,7 @@
                     <td>16/05/2022</td>
                     <td>5.00</td>
                     <td class="text-center"><a href="#" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                    <td class="text-center"><a href="#" class="btn-tb-info"><i class="fa-solid fa-file-invoice"></i></a></td>
+                    <td class="text-center"><a href="#" class="btn-tb-report"><i class="fa-solid fa-file-invoice"></i></a></td>
                 </tr>
                 </tbody>
             </table>
@@ -161,8 +161,8 @@
             <p class="product">30 Aceites - $100.00</p>
         </div>
         <div class="btn-ultimos-productos">
-            <a href="index.php?p=compras" class="btn-prm"><i class="fa-solid fa-circle-info"></i></a>
-            <a href="index.php?p=compras" class="btn-prm"><i class="fa-solid fa-file-invoice"></i></a>
+            <a href="index.php?p=compras" class="btn-prm prm-info"><i class="fa-solid fa-circle-info"></i></a>
+            <a href="index.php?p=compras" class="btn-prm prm-report"><i class="fa-solid fa-file-invoice"></i></a>
         </div>
     </section>
 </section>

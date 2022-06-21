@@ -126,6 +126,7 @@
                     </div>
                   </form>
             </div>
+            <br>
             <div class="modal-footer">
                 <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn-save-modal">Agregar</button>

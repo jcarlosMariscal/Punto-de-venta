@@ -1,7 +1,7 @@
 <section class="above">
     <div class="above__info">
       <span class="info__seccion">Compras</span>
-      <a href="index.php?p=ver-compras" class="btn-prm"><i class="fa-solid fa-eye"></i> Ver</a>
+      <a href="index.php?p=ver-compras" class="btn-prm btn-above"><i class="fa-solid fa-eye"></i> Ver</a>
       <!-- <a href="index.php?p=compras" class="btn-regresar"><i class="fa-solid fa-eye"></i></a> -->
     </div>
     <div class="above__user">
@@ -84,5 +84,6 @@
   <div class="btns-compra">
     <a href="" class="btn-prm btn-cancelar">Cancelar</a>
     <a href=""class="btn-prm btn-compra">Comprar</a>
+    <a href="index.php?p=pago" class="btn-prm btn-compra">Compra Online</a>
   </div>
 </section>

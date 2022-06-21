@@ -17,7 +17,7 @@
         </div>
         <nav class="navbar">
             <ul class="navbar__ul">
-                <li class="navbar__li"><a href="#" class="ul__link"><i class="nav-icon fa-solid fa-boxes-stacked"></i> Productos/almacen</a></li>
+                <li class="navbar__li"><a href="index.php?p=productos" class="ul__link"><i class="nav-icon fa-solid fa-boxes-stacked"></i> Productos/almacen</a></li>
                 <li class="navbar__li"><a href="index.php?p=proveedor" class="ul__link"><i class="nav-icon fa-solid fa-hands-holding-circle"></i> Proveedor</a></li>
                 <li class="navbar__li"><a href="index.php?p=ventas" class="ul__link"><i class="nav-icon fa-solid fa-file-invoice-dollar"></i> Ventas</a></li>
                 <!-- PERMITIR EL ACCESO A ESTAS SECCIONES A SOLO EL ADMINISTRADOR -->

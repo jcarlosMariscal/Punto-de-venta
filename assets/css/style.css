@@ -3,9 +3,9 @@
     --color-menu-primary: #345054;
     --secondary-color: #F8F8F8;
     --color-one: #36AE7C;
-    --color-one-secondary: #81CCAD;
+    --color-one-secondary: rgb(72, 149, 117);
     --color-two: #EB5353;
-    --color-two-secondary: #F29494;
+    --color-two-secondary: rgb(175, 70, 70);
     --font-family:   'Barlow', 'Montserrat', 'Roboto', sans-serif
 }
 html {
@@ -302,6 +302,7 @@ body{
 .currently{
     width: 95%;
     height: 200px;
+    border: px outset var(--color-one);
 }
 .input-cfg{
     /* background-color: #36AE7C; */
@@ -346,9 +347,6 @@ body{
     transition: all 0.5s ease-in-out;
     display: block;
 }
-.input:valid{
-    /* border: 1px solid var(--color-one); */
-}
 .input-submit{
     text-align: center;
 }
@@ -362,7 +360,7 @@ body{
 .btn-cfg:hover{
     transition: all 0.5s ease-in-out;
     background-color: var(--color-one-secondary);
-    color: var(--color-primary);
+    color: var(--secondary-color);
 }
 .form-incorrecto input{
     border: 1px solid var(--color-two);
@@ -412,7 +410,7 @@ body{
 .custom-input-file:hover{
     transition: all 0.5s ease-in-out;
     background-color: var(--color-one-secondary);
-    color: var(--color-primary);
+    color: var(--secondary-color);
 }
 
 .config__permissions{
@@ -421,16 +419,34 @@ body{
     justify-items: center;
     margin-top: 50px;
 }
+
 .btn-prm{
     background-color: var(--color-one);
     color: var(--secondary-color);
     text-decoration: none;
+    padding: 8px 10px 8px 10px;
+}
+.btn-above{
     padding: 4px 10px 4px 10px;
 }
 .btn-prm:hover{
     transition: all 0.5s ease-in-out;
     background-color: var(--color-one-secondary);
-    color: var(--color-primary);
+    color: var(--secondary-color);
+}
+.prm-info{
+    background-color: #1a7c8b;
+    font-size: 22px;
+}
+.prm-info:hover{
+    background-color: #17373B;
+}
+.prm-report{
+    background-color: #3a8b25;
+    font-size: 22px;
+}
+.prm-report:hover{
+    background-color: #277713;
 }
 
 .modal-title{
@@ -447,7 +463,7 @@ body{
     font-size: 16px;
 }
 .check input[type='checkbox']{
-    -webkit-transform: scale(2);
+    /* -webkit-transform: scale(2); */
     margin-right: 10px;
 }
 .btn-close-modal{
@@ -459,7 +475,7 @@ body{
 .btn-close-modal:hover{
     transition: all 0.5s ease-in;
     background-color: var(--color-two-secondary);
-    color: var(--color-primary);
+    color: var(--secondary-color);
 }
 .btn-save-modal{
     background-color: var(--color-one);
@@ -470,7 +486,7 @@ body{
 .btn-save-modal:hover{
     transition: all 0.5s ease-in;
     background-color: var(--color-one-secondary);
-    color: var(--color-primary);
+    color: var(--secondary-color);
 }
 .close{
     border: none;
@@ -522,20 +538,20 @@ body{
     margin-right: 10px;
 }
 .seleccionar{
-    color: var(--color-one-secondary);
+    color: var(--color-one);
     font-size: 25px;
 }
 .seleccionar:hover{
-    color: var(--color-one);
+    color: var(--color-one-secondary);
 }
 .btn-compra{
     transition: all 0.5s ease-in;
     border: none;
-    background-color: var(--color-one-secondary);
+    background-color: var(--color-one);
 }
 .btn-compra:hover{
     transition: all 0.5s ease-in;
-    background-color: var(--color-one);
+    background-color: var(--color-one-secondary);
     color: var(--secondary-color);
 }
 .table-product{
@@ -553,10 +569,7 @@ body{
     display: flex;
     margin-top: 10px;
 }
-.compra__total{
-    /* background-color: red;
-    height: 30px; */
-}
+
 .total{
     background-color: #FFF;
     padding: 15px 10px 15px 10px;
@@ -567,10 +580,10 @@ body{
 }
 .btn-cancelar{
     margin-right: 20px;
-    background-color: var(--color-two-secondary);
+    background-color: var(--color-two);
 }
 .btn-cancelar:hover{
-    background-color: var(--color-two);
+    background-color: var(--color-two-secondary);
     color: var(--secondary-color);
 }
 
@@ -595,8 +608,8 @@ body{
     margin-bottom: 20px;
 }
 .ultima-compra{
-    background-color: #FFF;
-    border: 10px outset var(--color-one);
+    /* background-color: #FFF; */
+    border: 5px outset var(--color-one);
     background-color: #FFF;
 }
 .ultima-titulo{
@@ -621,14 +634,7 @@ body{
     grid-template-columns: repeat(2, 1fr);
     gap: 15px;
 }
-.input-user{
-    /* background-color: aqua; */
-    /* width: 100%; */
-    /* margin-bottom: ; */
-}
-.input-user label{
-    /* background-color: red; */
-}
+
 .input-user-name label, .input-user-rfc label, .input-user-tel label, .input-user-email label, .input-user-caja label{
     width: 25%;
 }
@@ -669,8 +675,20 @@ body{
 .btn-tb-update:hover{
     color: #345054;
 }
+
 .btn-tb-info{
-    font-size: 20px;
+    font-size: 22px;
+    color: #2b94a4;
+}
+.btn-tb-info:hover{
+    color: #1a7c8b;
+}
+.btn-tb-report{
+    font-size: 22px;
+    color: #3a8b25;
+}
+.btn-tb-report:hover{
+    color: #277713;
 }
 
 .btn-regresar{

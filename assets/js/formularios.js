@@ -88,12 +88,12 @@ formulario.addEventListener("submit", (e) => {
     e.preventDefault();
     // console.log(formulario.nombre_prov.value);
     if(campos.nombre_prov, campos.producto, campos.cantidad_prov,campos.pcompra_prov,campos.pventa_prov){
-        const product = `<tr>
+        const product = `<tr id="nombre_${nombre_prov}">
                             <td>${formulario.producto_prov.value}</td>
                             <td>${formulario.cantidad_prov.value}</td>
                             <td>${formulario.pcompra_prov.value}</td>
                             <td><span>$<span><span class="precio">${formulario.cantidad_prov.value * formulario.pcompra_prov.value}</span></td>
-                            <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                            <td class="text-center"><a href="#" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>`;
         table_body.innerHTML += product;
         let todo = d.querySelectorAll(".precio");
@@ -107,6 +107,6 @@ formulario.addEventListener("submit", (e) => {
         }
         total_pagar.innerHTML = suma_total;
     }else{
-        alert("Rellena todos los campos correctamente");
+        alert("Rellena todos los campos correctamente.");
     }
 })

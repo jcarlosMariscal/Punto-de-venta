@@ -38,15 +38,15 @@
         </div>
         <div class="input-cantidad input-compra" id="group-cantidad_prov">
             <label for="">Cantidad: </label>
-            <input type="text" class="input input-cpr" id="cantidad_prov" name="cantidad_prov">
+            <input type="number" class="input input-cpr" id="cantidad_prov" name="cantidad_prov">
         </div>
         <div class="input-precio-compra input-compra" id="group-pcompra_prov">
             <label for="">Precio Compra: </label>
-            <input type="text" class="input input-cpr" id="pcompra_prov" name="pcompra_prov">
+            <input type="number" class="input input-cpr" id="pcompra_prov" name="pcompra_prov">
         </div>
         <div class="input-precio-venta input-compra" id="group-pventa_prov">
             <label for="">Precio Venta: </label>
-            <input type="text" class="input input-cpr" id="pventa_prov" name="pventa_prov">
+            <input type="number" class="input input-cpr" id="pventa_prov" name="pventa_prov">
         </div>
         <div class="input-compra-submit">
             <input type="submit" class="btn-prm btn-compra" value="Agregar Producto" id="btn-send">
@@ -67,19 +67,13 @@
       </tr>
     </thead>
     <tbody id="table-body">
-      <tr class="prod">
-        <td>Galleta</td>
-        <td>100</td>
-        <td> 10.00</td>
-        <td> 1000.00</td>
-        <td class="text-center"><a href="#" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
-      </tr>
+      <!-- Agregar productos dinámicamente -->
     </tbody>
   </table>
 </section>
 <section class="info-compra">
   <div class="compra__total">
-    <p class="total">Total a pagar: <b>$</b><b id="total-pagar">1000.00</b></p>
+    <p class="total">Total a pagar: <b>$</b><b id="total-pagar"></b></p>
   </div>
   <div class="btns-compra">
     <a href="" class="btn-prm btn-cancelar">Cancelar</a>

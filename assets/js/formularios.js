@@ -84,20 +84,22 @@ if(inputs){
 
 table_body = d.getElementById("table-body");
 total_pagar = d.getElementById("total-pagar");
+add = 0;
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
     // console.log(formulario.nombre_prov.value);
     if(campos.nombre_prov, campos.producto, campos.cantidad_prov,campos.pcompra_prov,campos.pventa_prov){
-        const product = `<tr id="nombre_${nombre_prov}">
+        const product = `<tr id="producto_${add}">
                             <td>${formulario.producto_prov.value}</td>
                             <td>${formulario.cantidad_prov.value}</td>
                             <td>${formulario.pcompra_prov.value}</td>
                             <td><span>$<span><span class="precio">${formulario.cantidad_prov.value * formulario.pcompra_prov.value}</span></td>
-                            <td class="text-center"><a href="#" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                            <td class="text-center"><a href="#" onclick="deleteR(${add})" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>`;
         table_body.innerHTML += product;
         let todo = d.querySelectorAll(".precio");
         let total = [];
+        add++
         todo.forEach(el => {
             total.push(parseInt(el.innerText));
         });
@@ -110,3 +112,19 @@ formulario.addEventListener("submit", (e) => {
         alert("Rellena todos los campos correctamente.");
     }
 })
+
+function deleteR(id){
+    eliminar = d.getElementById(`producto_${id}`);
+    eliminar.remove();
+    let todo = d.querySelectorAll(".precio");
+    let total = [];
+    todo.forEach(el => {
+        total.push(parseInt(el.innerText));
+    });
+    let suma_total = 0;
+    for (let i = 0; i < total.length; i++) {
+        suma_total += total[i];
+    }
+        total_pagar.innerHTML = suma_total;
+}
+

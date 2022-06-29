@@ -135,12 +135,14 @@ comprar.addEventListener("click", (e) => {
     e.preventDefault();
     console.log(table_body);
     const aComprar = [];
+
     for (var i = 0, row; row = table_body.rows[i]; i++) {
-        console.log(row);
-        console.log(row.tr);
-        // aComprar.push({})
-        for (var j = 0, col; col = row.cells[j]; j++) { //iterate through columns //columns would be accessed using the "col" variable assigned in the for loop }
-            console.log(col);
+        const obj = {
+            producto: row.cells[0].innerText,
+            cantidad: row.cells[1].innerText,
+            p_compra: row.cells[2].innerText,
+            subtotal: row.cells[3].innerText,
         }
+        aComprar.push(obj)
     }
 })

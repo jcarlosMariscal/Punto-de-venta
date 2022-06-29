@@ -145,4 +145,32 @@ comprar.addEventListener("click", (e) => {
         }
         aComprar.push(obj)
     }
+    const info_compra = d.querySelector(".info-compra");
+    const section_modal = d.createElement("section")
+    html = `<div class="modal fade bd-example-modal-lg" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Confirme los productos</h5>
+              <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+          </div>
+          <div class="modal-body">
+              <div class="">
+                Nombre producto: ${aComprar[0].producto}
+                Cantidad: ${aComprar[0].cantidad}
+                Precio de compra: ${aComprar[0].p_compra}
+                Subtotal: ${aComprar[0].subtotal}
+              </div>
+              <br>
+              <div class="modal-footer">
+                  <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+                  <button type="button" class="btn-save-modal">Agregar</button>
+              </div>
+          </div>
+      </div>
+    </div>
+  </div>`;
+    info_compra.insertAdjacentElement('afterend', section_modal)
+    section_modal.innerHTML += html;
+    $('#mymodal').modal('show')
 })

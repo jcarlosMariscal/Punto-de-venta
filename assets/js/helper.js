@@ -1,4 +1,7 @@
+const d = document;
 const calcularTotal = () => {
+
+    let total_pagar = d.getElementById("total-pagar");
     let todo = d.querySelectorAll(".precio");
     let total = [];
     todo.forEach(el => {

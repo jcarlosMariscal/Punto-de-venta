@@ -81,3 +81,5 @@
     <a href="index.php?p=pago" class="btn-prm btn-compra">Compra Online</a>
   </div>
 </section>
+
+<!-- <script src="../assets/js/formularios.js" type="module"></script> -->

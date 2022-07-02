@@ -17,8 +17,9 @@ let add = 1;
 formulario.addEventListener("submit", (e) => {
     e.preventDefault();
     if(campos.nombre_prov, campos.producto, campos.cantidad_prov,campos.pcompra_prov,campos.pventa_prov){
+        
         const product = `<tr id="producto_${add}">
-                            <td>${formulario.producto_prov.value}</td>
+                            <td class="prd_name">${formulario.producto_prov.value}</td>
                             <td>${formulario.cantidad_prov.value}</td>
                             <td>${formulario.pcompra_prov.value}</td>
                             <td><span>$<span><span class="precio">${formulario.cantidad_prov.value * formulario.pcompra_prov.value}</span></td>

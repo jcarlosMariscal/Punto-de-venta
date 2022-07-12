@@ -43,11 +43,8 @@ const nota_venta = () => {
                                 <th scope="col">Subtotal</th>
                             </tr>
                             </thead>
-                            <tbody id="table-body">
-                                <th>${aComprar[0].cantidad}</th>
-                                <th>${aComprar[0].producto}</th>
-                                <th>${aComprar[0].p_compra}</th>
-                                <th>${aComprar[0].subtotal}</th>
+                            <tbody id="table-ticket">
+                                
                             </tbody>
                         </table>
                         <p>Total Neto: $582</p>
@@ -63,6 +60,16 @@ const nota_venta = () => {
         </div>`;
         info_compra.insertAdjacentElement('afterend', section_modal)
         section_modal.innerHTML += html;
+
+        let table_ticket = d.getElementById("table-ticket");
+        for(let i = 0; i < aComprar.length; i++){
+            table_ticket.innerHTML += `
+                    <th>${aComprar[i].cantidad}</th>
+                    <th>${aComprar[i].producto}</th>
+                    <th>${aComprar[i].p_compra}</th>
+                    <th>${aComprar[i].subtotal}</th>
+                `
+        }
         $('#mymodal').modal('show')
         const save_ticket = d.getElementById("save_ticket");
         save_ticket.addEventListener("click", (e) => {

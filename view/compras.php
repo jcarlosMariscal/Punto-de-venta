@@ -76,9 +76,9 @@
     <p class="total">Total a pagar: <b>$</b><b id="total-pagar"></b></p>
   </div>
   <div class="btns-compra">
-    <a href="" class="btn-prm btn-cancelar">Cancelar</a>
+    <a href="" id="cancelar" class="btn-prm btn-cancelar">Cancelar</a>
     <a href="" id="comprar"class="btn-prm btn-compra">Comprar</a>
-    <a href="index.php?p=pago" class="btn-prm btn-compra">Compra Online</a>
+    <a href="index.php?p=pago" id="compra_online" class="btn-prm btn-compra">Compra Online</a>
   </div>
 </section>
 

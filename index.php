@@ -7,41 +7,34 @@ if(!empty($_SESSION['active'])){
     header('location: view/index.php');
 
 }else {
-    
-   if(!empty($_POST)){//Verificamos si el usuario le ha dado click en el boton del formulario
-       
-        if(empty($_POST['username']) || empty($_POST['pass'])){// Verificamos si el campo username y la contraseña estan vacias
-            $alert='<p class="msg_error">ingrese su usuario y contraseña</p>';
+  if(!empty($_POST)){//Verificamos si el usuario le ha dado click en el boton del formulario
+    if(empty($_POST['username']) || empty($_POST['pass'])){// Verificamos si el campo username y la contraseña estan vacias
+      $alert='<p class="msg_error">ingrese su usuario y contraseña</p>';  
+    }else{
+      $username = mysqli_real_escape_string($con,$_POST['username']);//Obtenemos el valor de username con el metodo POST, la funcion mysqli_real_escape_string se utliza para crear una cadena sql legal 
+      $pass = md5(mysqli_real_escape_string($con,$_POST['pass']));// md5 se utliza para incriptar la contraseña
 
-        
-        }else{
+      $sql = "SELECT * FROM usuarios  where username='$username' and pass='$pass'";//Creamos una variable y dentro guardamos la consulta sql
+      // mysqli_close($conn);
+      $query = mysqli_query($con,$sql); //resive dos parametros la conexion y la consulta realizada
 
-            $username = mysqli_real_escape_string($con,$_POST['username']);//Obtenemos el valor de username con el metodo POST, la funcion mysqli_real_escape_string se utliza para crear una cadena sql legal 
-            $pass = md5(mysqli_real_escape_string($con,$_POST['pass']));// md5 se utliza para incriptar la contraseña
+      $resultado = mysqli_num_rows($query);//guardamos el resultado de la consulta
 
-            $sql = "SELECT * FROM usuarios  where username='$username' and pass='$pass'";//Creamos una variable y dentro guardamos la consulta sql
-            // mysqli_close($conn);
-            $query = mysqli_query($con,$sql); //resive dos parametros la conexion y la consulta realizada
+      if($resultado > 0){// validamos si e resultado es mayor a 0, mostramos el resultado
+        $data = mysqli_fetch_array($query);
 
-            $resultado = mysqli_num_rows($query);//guardamos el resultado de la consulta
+        $_SESSION['active'] = true;
+        $_SESSION['id'] = $data['id_user'];
+        $_SESSION['user'] = $data['username'];
+        $_SESSION['rol'] = $data['id_rol'];
 
-            if($resultado > 0){// validamos si e resultado es mayor a 0, mostramos el resultado
-                $data = mysqli_fetch_array($query);
-
-                $_SESSION['active'] = true;
-                $_SESSION['id'] = $data['id_user'];
-                $_SESSION['user'] = $data['username'];
-                $_SESSION['rol'] = $data['id_rol'];
-
-                header('location: view/index.php');
-               
-            }else {
-                $alert='<p class="msg_error">El usuario y la contraseña son incorrectos.</p>';
-                session_destroy();
-            }
-        }
-   }
-
+        header('location: view/index.php');     
+      }else {
+        $alert='<p class="msg_error">El usuario y la contraseña son incorrectos.</p>';
+        session_destroy();
+      }
+    }
+  }
 }
 ?>
 <!DOCTYPE html>

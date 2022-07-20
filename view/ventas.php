@@ -1,13 +1,13 @@
 <section class="above">
-
-    <div class="above__info">En desarrollo Ventas
-
-<button type="button" class="btn btn-danger">Mis Ventas</button>
-<button type="button" class="btn btn-danger">Mi reporte</button>
+    <div class="above__info">
+      <span class="info__seccion">Compras</span>
+      <a href="index.php?p=ver-compras" class="btn-prm btn-above">Mis Ventas</a>
+      &nbsp; &nbsp;
+      <a href="index.php?p=ver-compras" class="btn-prm btn-above">Mi Reporte</a>
+      <!-- <a href="index.php?p=compras" class="btn-regresar"><i class="fa-solid fa-eye"></i></a> -->
     </div>
-
     <div class="above__user">
-        <div class="user__info">
+    <div class="user__info">
             <p class="user__name"><?php echo $_SESSION['user']?></p>
             <p class="user__rol">
                 <?php 
@@ -25,111 +25,59 @@
     </div>
 </section>
 <hr>
-
-<h3><div class="above__info">Informacion de ventas  </div></h3>
-
-<div class="card-group">
+<section class="add-product">
+  <h5><div class="above__info">Información de venta</div></h5>
+  <div class="card-group">
     <div class="card-body">
-    <div class="above__info">Venta realizada por:  </div>
-    <div class="above__info">No. de transaccion:   </div>
+      <div class="above__info">Venta realizada por: &nbsp;<b>Carlos Mariscal</b> </div>
+      <div class="above__info">No. de transaccion: &nbsp;<b>1252</b>  </div>
     </div>
-  
-  
     <div class="card-body">
-    <div class="above__info">No. de caja:   </div>
-    <div class="above__info">Fecha Venta: </div>
+      <div class="above__info">No. de caja: &nbsp;<b>10</b> </div>
+      <div class="above__info">Fecha Venta:&nbsp;<b>20-07-2022</b> </div>
     </div>
- 
-  
     <div class="card-body">
-    <div class="above__info">Total en caja:  </div>
+      <div class="above__info">Total en caja: &nbsp;<b>6300.20</b></div>
     </div>
-  
 </div>
-
+</section>
 <br>
-<table table bgcolor= "#FFFFFF"  class="table table-bordered">
-  <thead>
-    <tr>
-      <th scope="col">Id. Producto</th>
-      <th scope="col">Nombre</th>
-      <th scope="col">Categoria</th>
-      <th scope="col">Precio Unidad</th>
-      <th scope="col">Stok</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">255685336363</th>
-      <td>Arroz</td>
-      <td> Alimentos</td>
-      <td> $850.00</td>
-      <td> 50</td>
-    </tr>
-    <tr>
-      <th scope="row">1</th>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <th scope="row">2</th>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <th scope="row">3</th>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <th scope="row">3</th>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-    <th scope="row">3</th>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-      <td> </td>
-    </tr>
-  </tbody>
-</table>
-
-<div class="card-group">
-  
-        <div class="card-body">
-    <div class="above__info">Total de venta  </div>
-    <div class="above__info">$  </div>
-    </div>
-  
- 
-    <div class="card-body">
-    <div class="above__info">Efectivo cliente:   </div>
-    <input class="form-control"  placeholder="$" readonly>
- 
+<section class="table-product">
+  <table table bgcolor= "#FFFFFF"  class="table table-bordered">
+    <thead>
+      <tr>
+        <th scope="col">ID. PRODUCTO</th>
+        <th scope="col">NOMBRE</th>
+        <th scope="col">CATEGORIA</th>
+        <th scope="col">PRECIO</th>
+        <th scope="col">STOCK</th>
+      </tr>
+    </thead>
+    <tbody id="table-body">
+      <tr>
+        <th scope="row">255685336363</th>
+        <td>Arroz</td>
+        <td> Alimentos</td>
+        <td> $850.00</td>
+        <td> 50</td>
+      </tr>
+      <!-- Agregar productos dinámicamente -->
+    </tbody>
+  </table>
+</section>
+<section class="info-compra">
+  <div class="compra__total">
+    <p class="total">Total de venta: <b>$</b><b id="total-pagar"></b></p>
   </div>
-  
-    <div class="card-body">
-    <div class="above__info">Cambio de cliente:  </div>
-    <div class="above__info">$:  </div>
-    
+  <div class="compra__total">
+    <p class="total">Efectivo cliente: <input type="text"></p>
   </div>
-  
-    <div class="card-body">
-    <button type="button" class="btn btn-danger">Imprimir tiket</button>
-    <button type="button" class="btn btn-danger">Realizar venta</button>
-    
+  <div class="compra__total">
+    <p class="total">Cambio de cliente: <b>$</b><b id="total-pagar"></b></p>
   </div>
-</div>
+  <div class="btns-compra">
+    <!-- <a href="" id="cancelar" class="btn-prm btn-cancelar">Cancelar</a> -->
+    <a href="" id="comprar"class="btn-prm btn-compra">Imprimir Ticket</a>
+    <a href="index.php?p=pago" id="compra_online" class="btn-prm btn-compra">Realizar venta</a>
+  </div>
+</section>

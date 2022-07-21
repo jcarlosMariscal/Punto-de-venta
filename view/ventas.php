@@ -53,13 +53,13 @@
         <th scope="col">STOCK</th>
       </tr>
     </thead>
-    <tbody id="table-body">
-      <tr>
-        <th scope="row">255685336363</th>
-        <td>Arroz</td>
-        <td> Alimentos</td>
-        <td> $850.00</td>
-        <td> 50</td>
+    <tbody id="table-body-ventas">
+      <tr id = "product-1">
+        <th scope="row"><input type="text" placeholder="Introduce..." id="code-product-1"></th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
       </tr>
       <!-- Agregar productos dinámicamente -->
     </tbody>
@@ -81,3 +81,5 @@
     <a href="index.php?p=pago" id="compra_online" class="btn-prm btn-compra">Realizar venta</a>
   </div>
 </section>
+
+<script src="../assets/js/ventas.js" type="module"></script>

@@ -46,3 +46,5 @@
         </div>
     </div>
 </section>
+
+<script src="../assets/js/chart.js" type="module"></script>

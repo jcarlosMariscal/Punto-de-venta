@@ -74,8 +74,8 @@ if(empty($_SESSION['active'])){
             }
         ?>
     </main>
-    <script src="../assets/js/chart.js"></script>
-    <script src="../assets/js/formularios.js" type="module"></script>
+    <!-- <script src="../assets/js/chart.js"></script> -->
+    <!-- <script src="../assets/js/formularios.js" type="module"></script> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.js" integrity="sha512-TsDUjQW16/G8fz4gmgTOBW2s2Oi6TPUtQ6/hm+TxZZdkQtQrK5xEFIE0rgDuz5Cl1xQU1u3Yer7K5IuuBeiCqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

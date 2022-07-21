@@ -82,4 +82,4 @@
   </div>
 </section>
 
-<!-- <script src="../assets/js/formularios.js" type="module"></script> -->
+<script src="../assets/js/compras.js" type="module"></script>

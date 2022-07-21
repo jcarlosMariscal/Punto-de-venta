@@ -26,8 +26,11 @@
     <div class="content__start">
         <article class="start__details">
             <div class="details">                        
-                <h3 class="details__title">Este punto de venta fue creado por: </h3>
-                <p class="details__text">Un sistema de punto de venta no solo es una parte esencial del funcionamiento de cualquier tienda exitosa en el mundo de hoy, sino que es casi el único sistema que necesitan los propietarios de negocios.Aquí tiene todo lo que necesita saber sobre qué esperar de un punto de venta, por qué su tienda minorista lo necesita y cuáles son los mejores vendedores minoristas de punto de venta en el competitivo mercado actual, en los que puede confiar para entregar las funciones que necesita a un precio que funciona. </p>
+                <h3 class="details__title">Mi punto de venta </h3>
+                <p class="details__text">Enfocarse en la sección de configuración, en donde se va a agregar la información del negocio, por defecto en la base de datos estarán cierta información genérica, cuándo el usuario decida cargar su propia información esta reemplazará a los datos genéricos. Por el momento ignorar los permisos para enfocarse en las funcionalidades.
+                <br>
+                También debería de quedar este fin de semana, tanto la configuración y el registro de personal.
+                </p>
             </div>
             <div class="details__img">
                 <img src="https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2018/02/14141857/s3-blog-pos-03-min.jpg" alt="">
@@ -35,8 +38,16 @@
         </article>
         <article class="start__details row-reverse">
             <div class="details">                        
-                <h3 class="details__title">Este punto de venta fue creado por: </h3>
-                <p class="details__text">Un sistema de punto de venta no solo es una parte esencial del funcionamiento de cualquier tienda exitosa en el mundo de hoy, sino que es casi el único sistema que necesitan los propietarios de negocios.Aquí tiene todo lo que necesita saber sobre qué esperar de un punto de venta, por qué su tienda minorista lo necesita y cuáles son los mejores vendedores minoristas de punto de venta en el competitivo mercado actual, en los que puede confiar para entregar las funciones que necesita a un precio que funciona. </p>
+                <h3 class="details__title">Detalles de uso: </h3>
+                <p class="details__text">
+                  <ol>
+                    <li>Registrarse (Información básica)</li>
+                    <li>Dirigirse a su perfil para añadir más información relevante [EN DESARROLLO]</li>
+                    <li>Agregar la información del negocio en <b>CONFIGURACIÓN</b>. [Los permisos quedan pendiente]</li>
+                    <li>Agregar personal de ventas en <b>Mi Personal</b>. Agregar funcionalidad de eliminar y editar</li>
+                    <li>Las otras secciones están en DESARROLLO</li>
+                  </ol>
+                </p>
             </div>
             <div class="details__img">
                 <img src="https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2018/02/14141857/s3-blog-pos-03-min.jpg" alt="">

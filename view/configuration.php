@@ -53,10 +53,10 @@
                 </div>
                 <div class="form-logo">
                     <div class="logo-current">
-                        <img class="currently" src="https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg" alt="">
+                        <img class="currently" id="img-logo" src="https://i.pinimg.com/originals/33/b8/69/33b869f90619e81763dbf1fccc896d8d.jpg" alt="">
                     </div>
                     <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
-                        <input type="file" id="fichero-tarifas" class="input-file" value="">
+                        <input type="file" id="myFile" class="input-file" value="">
                         Sube tu Logo
                     </div>
                 </div>
@@ -144,3 +144,5 @@
         </div>
     </div>
 </section>
+
+<!-- <script src="../assets/js/configuration.js" type="module"></script> -->

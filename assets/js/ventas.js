@@ -45,9 +45,6 @@ const evento = () => {
       `;
 
         table_ventas.innerHTML += next;
-        // rows = table_ventas.getElementsByTagName("tr");
-        // console.log(rows);
-        // console.log(rows.length);
       }
     }
   });

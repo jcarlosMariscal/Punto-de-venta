@@ -1,24 +1,24 @@
 const d = document;
 const nota_venta = () => {
-    let table_body = d.getElementById("table-body");
-    let comprar = d.getElementById("comprar");
-    comprar.addEventListener("click", (e) => {
-        e.preventDefault();
-        const aComprar = [];
+  let table_body = d.getElementById("table-body");
+  let comprar = d.getElementById("comprar");
+  comprar.addEventListener("click", (e) => {
+    e.preventDefault();
+    const aComprar = [];
 
-        for (var i = 0, row; row = table_body.rows[i]; i++) {
-            const obj = {
-                producto: row.cells[0].innerText,
-                cantidad: row.cells[1].innerText,
-                p_compra: row.cells[2].innerText,
-                subtotal: row.cells[3].innerText,
-            }
-            aComprar.push(obj)
-        }
-        const info_compra = d.querySelector(".info-compra");
-        const section_modal = d.createElement("section");
-        
-        let html = `
+    for (var i = 0, row; (row = table_body.rows[i]); i++) {
+      const obj = {
+        producto: row.cells[0].innerText,
+        cantidad: row.cells[1].innerText,
+        p_compra: row.cells[2].innerText,
+        subtotal: row.cells[3].innerText,
+      };
+      aComprar.push(obj);
+    }
+    const info_compra = d.querySelector(".info-compra");
+    const section_modal = d.createElement("section");
+
+    let html = `
         <div class="modal fade bd-example-modal-lg" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -47,7 +47,7 @@ const nota_venta = () => {
                                 
                             </tbody>
                         </table>
-                        <p>Total Neto: $582</p>
+                        <p>Total Neto: $<span id="total_neto"></span></p>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-close-modal" data-dismiss="modal">Cancelar</button>
@@ -58,43 +58,52 @@ const nota_venta = () => {
             </div>
         </div>
         </div>`;
-        info_compra.insertAdjacentElement('afterend', section_modal)
-        section_modal.innerHTML += html;
+    info_compra.insertAdjacentElement("afterend", section_modal);
+    section_modal.innerHTML += html;
 
-        let table_ticket = d.getElementById("table-ticket");
-        for(let i = 0; i < aComprar.length; i++){
-            table_ticket.innerHTML += `
+    let table_ticket = d.getElementById("table-ticket");
+    let regex = /(\d+)/g;
+    let total = 0;
+    for (let i = 0; i < aComprar.length; i++) {
+      table_ticket.innerHTML += `
                     <th>${aComprar[i].cantidad}</th>
                     <th>${aComprar[i].producto}</th>
                     <th>${aComprar[i].p_compra}</th>
                     <th>${aComprar[i].subtotal}</th>
-                `
-        }
-        $('#mymodal').modal('show')
-        const save_ticket = d.getElementById("save_ticket");
-        save_ticket.addEventListener("click", (e) => {
-            const element = d.getElementById("ticket");
-            html2pdf().set({
-                margin: 1,
-                filename: 'prueba.pdf',
-                image: {
-                    type: 'jpeg',
-                    quality: 0.98
-                },
-                html2canvas: {
-                    scale: 3,
-                    letterRendering: true,
-                },
-                jsPDF: {
-                    unit: 'in',
-                    format: 'a3',
-                }
-            }).from(element).save().catch(err => console)
-        })
-    })
-    // https://github.com/eKoopmans/html2pdf.js/blob/master/README.md
-}
+                `;
+      let getSubTotal = aComprar[i].subtotal.match(regex);
+      total += parseFloat(getSubTotal);
+    }
 
-export {
-    nota_venta
-}
+    const total_neto = d.getElementById("total_neto");
+    total_neto.innerHTML = total;
+    $("#mymodal").modal("show");
+    const save_ticket = d.getElementById("save_ticket");
+    save_ticket.addEventListener("click", (e) => {
+      const element = d.getElementById("ticket");
+      html2pdf()
+        .set({
+          margin: 1,
+          filename: "prueba.pdf",
+          image: {
+            type: "jpeg",
+            quality: 0.98,
+          },
+          html2canvas: {
+            scale: 3,
+            letterRendering: true,
+          },
+          jsPDF: {
+            unit: "in",
+            format: "a3",
+          },
+        })
+        .from(element)
+        .save()
+        .catch((err) => console);
+    });
+  });
+  // https://github.com/eKoopmans/html2pdf.js/blob/master/README.md
+};
+
+export { nota_venta };

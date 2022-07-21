@@ -43,7 +43,7 @@
 </section>
 <br>
 <section class="table-product">
-  <table table bgcolor= "#FFFFFF"  class="table table-bordered">
+  <table table bgcolor= "#FFFFFF"  class="table table-bordered" id="table-ventas">
     <thead>
       <tr>
         <th scope="col">ID. PRODUCTO</th>
@@ -61,7 +61,6 @@
         <td></td>
         <td></td>
       </tr>
-      <!-- Agregar productos dinámicamente -->
     </tbody>
   </table>
 </section>

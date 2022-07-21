@@ -84,4 +84,4 @@ if (formulario) {
   });
 }
 
-// nota_venta()
+nota_venta();

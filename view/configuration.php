@@ -145,4 +145,4 @@
     </div>
 </section>
 
-<!-- <script src="../assets/js/configuration.js" type="module"></script> -->
+<script src="../assets/js/configuration.js" type="module"></script>

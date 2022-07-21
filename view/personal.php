@@ -88,26 +88,26 @@
         </div>
         <div class="modal-body">
             <div class="permisos">
-                <form action="" class="form-user">
-                    <div class="input-user-name input-user" id="group-razon_social">                                       
+                <form action="" class="form-user" id="formulario">
+                    <div class="input-user-name input-user" id="group-nombre">                                       
                         <label for="">Nombre: </label>
-                        <input type="text" name="" id="" class="input" name="razon_social" id="razon_social" placeholder="Introduce un nombre">
+                        <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce un nombre">
                     </div>
                     <div class="input-user-rfc input-user" id="group-rfc">                                       
                       <label for="">R.F.C.: </label>
-                        <input type="text" name="" id="" class="input" name="rfc" id="rfc" placeholder="Introduce">
+                        <input type="text" class="input" name="rfc" id="rfc" placeholder="Introduce">
                     </div>
-                    <div class="input-user-fnac input-user" id="group-">                                       
+                    <div class="input-user-fnac input-user" id="group-fecha_nac">                                       
                       <label for="">Fecha de Nacimiento</label>
-                        <input type="date" name="" id="" class="input">
+                        <input type="date" name="fecha_nac" id="fecha_nac" class="input">
                     </div>
-                    <div class="input-user-tel input-user">                                       
+                    <div class="input-user-tel input-user" id="group-telefono">                                       
                       <label for="">Teléfono</label>
-                        <input type="number_format" name="" id="" class="input">
+                        <input type="number_format" name="telefono" id="telefono" class="input">
                     </div>
-                    <div class="input-user-email input-user">                                       
+                    <div class="input-user-email input-user" id="group-correo">                                       
                       <label for="">Correo</label>
-                        <input type="text" name="" id="" class="input">
+                        <input type="text" name="correo" id="correo" class="input">
                     </div>
                     <div class="input-user-rol input-user">                                       
                       <label for="">Seleccione el Rol:</label>
@@ -116,22 +116,30 @@
                         <option value="">Ventas</option>
                       </select>
                     </div>
-                    <div class="input-user-caja input-user">                                       
+                    <div class="input-user-caja input-user" id="group-caja">                                       
                       <label for="">Caja</label>
-                        <input type="text" name="" id="" class="input">
+                        <input type="text" name="caja" id="caja" class="input">
                     </div>
-                    <div class="input-user-password input-user">                                       
+                    <div class="input-user-password input-user" id="group-password">                                       
                       <label for="">Contraseña</label>
-                        <input type="text" name="" id="" class="input">
+                        <input type="password" name="password" id="password" class="input">
+                    </div>
+                    <!-- <hr> -->
+                    <br>
+                    <div class="input-submit modal-footer">
+                      <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+                      <input type="submit" class="btn-cfg" value="Agregar" id="btn-send">
                     </div>
                   </form>
             </div>
             <br>
-            <div class="modal-footer">
+            <!-- <div class="modal-footer">
                 <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
                 <button type="button" class="btn-save-modal">Agregar</button>
-            </div>
+            </div> -->
         </div>
     </div>
   </div>
 </div>
+
+<script src="../assets/js/personal.js" type="module"></script>

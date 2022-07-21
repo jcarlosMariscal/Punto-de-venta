@@ -14,11 +14,12 @@ if (formulario) {
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
     if (
-      (campos.razon_social,
+      (campos.nombre,
       campos.rfc,
-      campos.domicilio,
-      campos.cpostal,
-      campos.telefono)
+      campos.telefono,
+      campos.correo,
+      campos.caja,
+      campos.password)
     ) {
       alert("Información validada");
     } else {
@@ -26,11 +27,3 @@ if (formulario) {
     }
   });
 }
-
-// SECCIÓN TEMPORAL PARA SUBIR LOGO DE EMPRESA EN LA CONFIGURACIÓN
-let myFile = d.getElementById("myFile");
-myFile.addEventListener("change", (e) => {
-  let update = d.getElementById("img-logo");
-  const objectURL = URL.createObjectURL(myFile.files[0]);
-  update.src = objectURL;
-});

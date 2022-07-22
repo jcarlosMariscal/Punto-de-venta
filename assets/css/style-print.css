@@ -1,15 +1,21 @@
-
-.ticket-generado{
-    margin: auto;
-    background: rgb(239, 243, 244);
-    /* border: 3px solid #000; */
-    height: 300px;
-    width: 500px;
-    padding: 10px;
+.ticket-generado {
+  margin: auto;
+  background: rgb(239, 243, 244);
+  /* border: 3px solid #000; */
+  height: 300px;
+  width: 250px;
+  padding: 10px;
+  text-align: center;
 }
-.ticket-generado h3{
-    font-size: 12px;
+.ticket-generado h3 {
+  font-size: 12px;
 }
-.ticket-generado p{
-    font-size: 10px;
+.ticket-generado p {
+  font-size: 10px;
+}
+.mitabla {
+  background-color: aliceblue;
+}
+.ticket-logo {
+  width: 40px;
 }

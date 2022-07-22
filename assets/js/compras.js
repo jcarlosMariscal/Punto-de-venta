@@ -1,5 +1,5 @@
 import { calcularTotal } from "./helper.js";
-import { nota_venta } from "./nota_venta.js";
+import { nota_compra, nota_venta } from "./nota_gec.js";
 import { campos, validarFormulario } from "./validar.js";
 
 const d = document;
@@ -84,4 +84,4 @@ if (formulario) {
   });
 }
 
-nota_venta();
+nota_compra();

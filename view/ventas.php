@@ -74,7 +74,7 @@
   <div class="btns-compra">
     <!-- <a href="" id="cancelar" class="btn-prm btn-cancelar">Cancelar</a> -->
     <!-- <a href="" id="comprar"class="btn-prm btn-compra">Imprimir Ticket</a> -->
-    <a href="index.php?p=pago" id="compra_online" class="btn-prm btn-compra">Vender</a>
+    <a href="" id="vender" class="btn-prm btn-compra">Vender</a>
   </div>
 </section>
 

@@ -1,4 +1,5 @@
 import { calcularTotal } from "./helper.js";
+import { nota_venta } from "./nota_gec.js";
 
 const d = document;
 var table_ventas = d.getElementById("table-body-ventas");
@@ -46,3 +47,5 @@ efectivo_cliente.addEventListener("keyup", (e) => {
     }
   }
 });
+
+nota_venta();

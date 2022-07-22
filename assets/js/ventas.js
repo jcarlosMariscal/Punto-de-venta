@@ -1,52 +1,48 @@
+import { calcularTotal } from "./helper.js";
+
 const d = document;
+var table_ventas = d.getElementById("table-body-ventas");
+let code_product = d.getElementById("code-product");
+let efectivo_cliente = d.getElementById("efectivo_cliente");
 
-const evento = () => {
-  var table_ventas = d.getElementById("table-body-ventas");
-  let rows = table_ventas.getElementsByTagName("tr");
-
-  // console.log(table_ventas);
-  let code_product = d.getElementById(`code-product-${rows.length}`);
-  console.log(code_product);
-
-  code_product.addEventListener("keyup", (e) => {
-    console.log(code_product);
-    if (e.which === 13) {
-      if (code_product.value === "") {
-        alert("El código de producto no es correcto");
-      } else {
-        let regex = /(\d+)/g;
-        // let getId = code_product.id.match(regex);
-
-        let producto = {
-          idProd: 123368,
-          nombre: "Arroz",
-          categoria: "Alimento",
-          precioU: 850.0,
-          stock: 20,
-        };
-        let next = `
-      <tr id = "product-${rows.length + 1}">
-        <th scope="row"><input type="text" placeholder="Introduce..." id="code-product-${
-          rows.length + 1
-        }"></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
-      `;
-        let currentProduct = d.getElementById(`product-${rows.length}`);
-        currentProduct.innerHTML = `
-        <th scope="row"><input type="text" placeholder="Introduce..." value="${producto.idProd}" id="code-product-${rows.length}"></th>
+code_product.addEventListener("keyup", (e) => {
+  if (e.which === 13) {
+    if (code_product.value === "") {
+      alert("El código de producto no es correcto");
+    } else {
+      let producto = {
+        idProd: 123368,
+        nombre: "Arroz",
+        categoria: "Alimento",
+        precioU: 850.0,
+        stock: 20,
+      };
+      table_ventas.innerHTML += `
+        <th>${producto.idProd}</th>
         <td>${producto.nombre}</td>
         <td>${producto.categoria}</td>
-        <td>${producto.precioU}</td>
+        <td class="precio">${producto.precioU}</td>
         <td>${producto.stock}</td>
       `;
-
-        table_ventas.innerHTML += next;
-      }
+      code_product.value = "";
+      calcularTotal();
     }
-  });
-};
-evento();
+  }
+});
+
+efectivo_cliente.addEventListener("keyup", (e) => {
+  if (e.which === 13) {
+    if (
+      efectivo_cliente.value === "" ||
+      efectivo_cliente.value < calcularTotal()
+    ) {
+      alert(
+        "Introduce una cantidad correcta, debe ser mayor o igual a la suma total de la venta"
+      );
+    } else {
+      // alert(calcularTotal());
+      let cambio_cliente = d.getElementById("cambio_cliente");
+      cambio_cliente.innerText = efectivo_cliente.value - calcularTotal();
+    }
+  }
+});

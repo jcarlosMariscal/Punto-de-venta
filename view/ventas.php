@@ -42,7 +42,9 @@
 </div>
 </section>
 <br>
-<section class="table-product">
+<section class="table-ventas">
+  <input type="text" autofocus placeholder="Introduce o escanea el código del producto" id="code-product">
+  <br><br>
   <table table bgcolor= "#FFFFFF"  class="table table-bordered" id="table-ventas">
     <thead>
       <tr>
@@ -54,30 +56,25 @@
       </tr>
     </thead>
     <tbody id="table-body-ventas">
-      <tr id = "product-1">
-        <th scope="row"><input type="text" placeholder="Introduce..." id="code-product-1"></th>
-        <td></td>
-        <td></td>
-        <td></td>
-        <td></td>
-      </tr>
     </tbody>
   </table>
 </section>
-<section class="info-compra">
-  <div class="compra__total">
-    <p class="total">Total de venta: <b>$</b><b id="total-pagar"></b></p>
+<section class="info_venta">
+  <div class="venta__total">
+    <p class="total__p">Total de venta: <b>$</b><b id="total-pagar"></b></p>
+    <p></p>
   </div>
-  <div class="compra__total">
-    <p class="total">Efectivo cliente: <input type="text"></p>
+  <div class="venta__efectivo">
+    <label class="efectivo__p">Efectivo cliente: </label>
+    <input type="text" class="efectivo__input" id="efectivo_cliente" placeholder="Introduce la cantidad">
   </div>
-  <div class="compra__total">
-    <p class="total">Cambio de cliente: <b>$</b><b id="total-pagar"></b></p>
+  <div class="venta__cambio">
+    <p class="cambio__p">Cambio de cliente: <b>$</b><b id="cambio_cliente"></b></p>
   </div>
   <div class="btns-compra">
     <!-- <a href="" id="cancelar" class="btn-prm btn-cancelar">Cancelar</a> -->
-    <a href="" id="comprar"class="btn-prm btn-compra">Imprimir Ticket</a>
-    <a href="index.php?p=pago" id="compra_online" class="btn-prm btn-compra">Realizar venta</a>
+    <!-- <a href="" id="comprar"class="btn-prm btn-compra">Imprimir Ticket</a> -->
+    <a href="index.php?p=pago" id="compra_online" class="btn-prm btn-compra">Vender</a>
   </div>
 </section>
 

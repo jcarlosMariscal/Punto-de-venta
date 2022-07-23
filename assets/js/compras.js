@@ -35,6 +35,8 @@ if (formulario) {
     ) {
       let existe = false;
       for (var i = 0, row; (row = table_body.rows[i]); i++) {
+        console.log(table_body.rows[i].cells[0].innerText);
+        console.log(formulario.producto_prov.value);
         if (
           table_body.rows[i].cells[0].innerText ===
           formulario.producto_prov.value
@@ -47,16 +49,15 @@ if (formulario) {
       }
       if (!existe) {
         const product = `<tr id="producto_${add}">
-                          <td class="prd_name">${
-                            formulario.producto_prov.value
-                          }</td>
-                          <td>${formulario.cantidad_prov.value}</td>
-                          <td>${formulario.pcompra_prov.value}</td>
-                          <td><span>$<span><span class="precio">${
-                            formulario.cantidad_prov.value *
-                            formulario.pcompra_prov.value
-                          }</span></td>
-                          <td class="text-center"><a href="#" class="btn-tb-delete" data-prd_id='${add}'><i class="fa-solid fa-trash-can"></i></a></td>
+          <td class="prd_name">${formulario.producto_prov.value}</td>
+          <td>${formulario.cantidad_prov.value}</td>
+          <td>${formulario.pcompra_prov.value}</td>
+          <td><span>$<span><span class="precio">${
+            formulario.cantidad_prov.value * formulario.pcompra_prov.value
+          }</span></td>
+          <td class="" hidden>${formulario.nombre_prov.value}</td>
+          <td hidden>${formulario.pventa_prov.value}</td>
+          <td class="text-center"><a href="#" class="btn-tb-delete" data-prd_id='${add}'><i class="fa-solid fa-trash-can"></i></a></td>
                         </tr>`;
         table_body.innerHTML += product;
         add++;

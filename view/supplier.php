@@ -1,5 +1,7 @@
 <section class="above">
-    <div class="above__info">En desarrollo</div>
+    <div class="above__info">Mi Personal
+      <!-- <a href="index.php?p=compras" class="btn-prm btn-cancelar">Atrás</a> -->
+    </div>
     <div class="above__user">
         <div class="user__info">
             <p class="user__name"><?php echo $_SESSION['user']?></p>
@@ -19,70 +21,84 @@
     </div>
 </section>
 <hr>
-<section class="content">
-    <div class="config">
-        <div class="config__form">
-            <div class="permissions-admin">
-                <?php
-                    echo ($_SESSION['rol'] == 1) ? '<a href="index.php?p=add_supplier" class="btn-prm btn-compra">Agregar proveedor</a>': '';
-                ?>
-                <br><br>
-                <div class="input-nombre input-bus">
-                        <label for="" class="label">Número de documento:</label>
-                        <input type="text" class="inp" placeholder="Inserte número" name="" required >
-                    </div> 
-                    <br>
-                    <table table bgcolor= "#FFFFFF"  class="table table-bordered">
-                    <thead>
-                        <tr>
-                        <th scope="col">Número de documento</th>
-                        <th scope="col">Nombre del proveedor</th>
-                        <th scope="col">Tipo de factura</th>
-                        <th scope="col">Teléfono</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                        <th scope="row">0780048</th>
-                        <td>Marinela</td>
-                        <td>Electronica</td>
-                        <td>2361044444</td>
-                        </tr>
-                        <tr>
-                        <th scope="row">1211648</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        </tr>
-                        <tr>
-                        <th scope="row">7753694</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        </tr>
-                        <th scope="row">4528731</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        </tr>
-                        <th scope="row">7951349</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        </tr>
-                        <th scope="row">1597634</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        </tr>
-                        <th scope="row">9648731</th>
-                        <td> </td>
-                        <td> </td>
-                        <td> </td>
-                        </tr>
-                    </tbody>
-                    </table>
+
+<section class="">
+    <section class="table-ver-product">
+        <div class="table-above">
+            <div class="product-filter">
+                
+            </div>
+            <div class="product-chart">
+                <a href="" class="btn-prm btn-cancelar" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar</a>
             </div>
         </div>
+        <div class="table-ver">
+            <table table bgcolor= "#FFFFFF"  class="table table-bordered">
+                <thead>
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">NOMBRE</th>
+                    <th scope="col">TIPO  DE FACTURA</th>
+                    <th scope="col">TELÉFONO</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="prod">
+                      <td>0780048</td>
+                      <td>Marinela</td>
+                      <td>Electronica</td>
+                      <td>2361044444</td>
+                      <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+                      <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                  </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Agregar nuevo Proveedor</h5>
+            <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="modal-body">
+            <div class="permisos">
+                <form action="" class="form-user" id="formulario">
+                    <div class="input-prov-id input-prov" id="group-prov-id">                                       
+                        <label for="">Identificador: </label>
+                        <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce un nombre">
+                    </div>
+                    <div class="input-user-name input-user" id="group-nombre">                                       
+                        <label for="">Nombre: </label>
+                        <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce un nombre">
+                    </div>
+                    <div class="input-user-rfc input-user" id="group-rfc">                                       
+                      <label for="">Tipo factura: </label>
+                        <input type="text" class="input" name="rfc" id="rfc" placeholder="Introduce">
+                    </div>
+                    <div class="input-user-tel input-user" id="group-telefono">                                       
+                      <label for="">Teléfono</label>
+                        <input type="number_format" name="telefono" id="telefono" class="input">
+                    </div>
+                    <!-- <hr> -->
+                    <br>
+                    <div class="input-submit modal-footer">
+                      <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+                      <input type="submit" class="btn-cfg" value="Agregar" id="btn-send">
+                    </div>
+                  </form>
+            </div>
+            <br>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn-save-modal">Agregar</button>
+            </div> -->
+        </div>
     </div>
-</section>
+  </div>
+</div>
+
+<!-- <script src="../assets/js/personal.js" type="module"></script> -->

@@ -38,7 +38,7 @@
         if($resultado){
           ?>
             <script>
-              localStorage.setItem("insert", "true");
+              localStorage.setItem("confi", "true");
               window.location.href = "../index.php?p=configuration";
             </script>
           <?php

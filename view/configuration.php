@@ -169,7 +169,7 @@
 </section>
 
 <script>
-    let msj = localStorage.getItem("insert");
+    let msj = localStorage.getItem("confi");
     if(msj === "true"){
       if("<?php echo $razon_social; ?>" === "Tech"){
         Swal.fire({

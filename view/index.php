@@ -85,3 +85,22 @@ if(empty($_SESSION['active'])){
     
 </body>
 </html>
+
+<script>
+    let msj = localStorage.getItem("login");
+    if(msj === "true"){
+      Swal.fire({
+            title: "Bienvenido <?php echo $_SESSION['user']?>",
+            text: "Ha iniciado sesión en el sistema.",
+            icon: "success",//error, 
+            timer: 3000,
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            confirmButtonColor: '#47874a',
+        });
+    } 
+    setTimeout(function(){
+        localStorage.removeItem("register");
+    }, 1500);
+</script>

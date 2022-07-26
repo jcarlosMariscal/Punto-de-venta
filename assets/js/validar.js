@@ -13,6 +13,8 @@ const expresiones = {
 };
 
 const campos = {
+  username: false,
+  pass: false,
   nombre_prov: false,
   nombre: false,
   producto_prov: false,
@@ -49,6 +51,12 @@ const validarCampo = (expresion, input, campo) => {
 };
 const validarFormulario = (e) => {
   switch (e.target.id) {
+    case "username":
+      validarCampo(expresiones.nombre, e.target, "username");
+      break;
+    case "pass":
+      validarCampo(expresiones.nombre, e.target, "pass");
+      break;
     case "nombre_prov":
       validarCampo(expresiones.nombre, e.target, "nombre_prov");
       break;

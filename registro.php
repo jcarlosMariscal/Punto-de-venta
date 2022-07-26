@@ -27,7 +27,12 @@ $alert = "";
 
                 if($query_insert){//Verificamos si la variable $query_insert es igual a true, se registro correctamente el usuario
                     $alert='<p class="msg_save">Usuario registrado correctamente.</p>';
-                
+                    ?>
+                    <script>
+                      localStorage.setItem("register", "true");
+                      window.location.href = "index.php";
+                    </script>
+                    <?php
                 }else{
                     $alert='<p class="msg_error">Error al crear al usuario.</p>';
 
@@ -50,45 +55,53 @@ $alert = "";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200&family=Hind+Siliguri:wght@300&family=Montserrat:ital,wght@1,300&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Inicio de sesión</title>
 </head>
 <body>
-    <!-- Creación de Login -->
-    <div class="login-box">
-        <h1>Registrarse</h1>
-        <h1 class="text">Bienvenido al sistema</h1>
-        <div class="alert"><?php echo isset($alert) ? $alert : '';?></div><!-- if simplificado -->
+  <!-- Creación de Login -->
+  <div class="login-box">
+    <h1>Registrarse</h1>
+    <h1 class="text">Bienvenido al sistema</h1>
+    <div class="alert"><?php echo isset($alert) ? $alert : '';?></div><!-- if simplificado -->
 
-        <form action="" method="POST" > 
-            <input type="text" name="username" placeholder="Nombre de Usuario">
-            
-            <input type="password" name="pass" placeholder="Contraseña">
-            <?php 
-            $sql = "SELECT * FROM roles";//realizamos una cosulta
-            $query_rol = mysqli_query($con,$sql);
-            mysqli_close($con);
-
-            $result_rol = mysqli_num_rows($query_rol);//devuele las filas de la consulta
-
+    <form action="" method="POST" id="formulario"> 
+      <div class="input-adm" id="group-username">
+        <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">
+        <p class="input-error-log">*Rellena el campo correctamente por favor</p>
+      </div>
+      <div class="input-adm" id="group-pass">
+        <!-- <input type="text" class="input input-config"  name="rfc" id="rfc" > -->
+        <input type="password" name="pass" id="pass" placeholder="Contraseña">
+        <p class="input-error-log">*Rellena el campo correctamente por favor</p>
+      </div>      
+      <?php 
+        $sql = "SELECT * FROM roles";//realizamos una cosulta
+        $query_rol = mysqli_query($con,$sql);
+        mysqli_close($con);
+        $result_rol = mysqli_num_rows($query_rol);//devuele las filas de la consulta
+        ?>
+        <div class="select">
+          <select name="id_rol">
+          <?php
+            if($result_rol > 0){// Si el result_rol es mayor a cero
+              while($rol = mysqli_fetch_array($query_rol)){
+          ?>
+            <option value="<?php echo $rol["id_rol"]; ?>"><?php echo $rol["rol"]?></option>
+          <?php
+              }
+            }
             ?>
-            <div class="select">
-                <select name="id_rol">
-            <?php
-                if($result_rol > 0){// Si el result_rol es mayor a cero
-                    while($rol = mysqli_fetch_array($query_rol)){
-            ?>
-                <option value="<?php echo $rol["id_rol"]; ?>"><?php echo $rol["rol"]?></option>
-            <?php
-                    }
-                }
-
-            ?>
-                </select>
-            </div>
+          </select>
+        </div>
             <br><br>
-            <button type="submit" value="ingresar" class="btn-sesion">Registrarse</button>
+            <div class="input-btn-adm">
+              <button type="submit" id="btn-send" value="ingresar" class="btn-sesion">Registrarse</button>
+              <a href="index.php" class="back" value="ingresar">Atrás</a>
+            </div>
            <!-- <h1><a href="view/" class="btn-sesión">Iniciar Sesión</a></h1>  -->
         </form>
     </div>
 </body>
+<script src="./assets/js/index.js" type="module"></script>
 </html>

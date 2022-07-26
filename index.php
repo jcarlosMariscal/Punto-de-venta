@@ -27,8 +27,12 @@ if(!empty($_SESSION['active'])){
         $_SESSION['id'] = $data['id_user'];
         $_SESSION['user'] = $data['username'];
         $_SESSION['rol'] = $data['id_rol'];
-
-        header('location: view/index.php');     
+        ?>
+        <script>
+          localStorage.setItem("login", "true");
+          window.location.href = "view/index.php";
+        </script>    
+        <?php
       }else {
         $alert='<p class="msg_error">El usuario y la contraseña son incorrectos.</p>';
         session_destroy();
@@ -47,6 +51,7 @@ if(!empty($_SESSION['active'])){
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200&family=Hind+Siliguri:wght@300&family=Montserrat:ital,wght@1,300&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Inicio de sesión</title>
 </head>
 <body>
@@ -54,12 +59,21 @@ if(!empty($_SESSION['active'])){
     <div class="login-box">
         <h1 class="text">Login</h1>
         <h1 class="text">Bienvenido al sistema</h1>
-        <form method="post" action="">
-            <input type="text" name="username" placeholder="Nombre de Usuario">
-            <input type="password" name="pass" placeholder="Contraseña">
+        <form method="post" action="" id="formulario">
+          <div class="input-adm" id="group-username">
+            <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">
+            <p class="input-error-log">*Rellena el campo correctamente por favor</p>
+          </div>
+          <div class="input-adm" id="group-pass">
+            <!-- <input type="text" class="input input-config"  name="rfc" id="rfc" > -->
+            <input type="password" name="pass" id="pass" placeholder="Contraseña">
+            <p class="input-error-log">*Rellena el campo correctamente por favor</p>
+          </div>
             <br>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>    <!-- se mostrara la alerta cuando encuentre un error -->
-            <button type="submit"  class="btn-sesion" value="Ingresar">Iniciar Sesión</button>
+            <div class="input-btn-adm">
+              <button type="submit" id="btn-send"  class="btn-sesion" value="Ingresar">Iniciar Sesión</button>
+            </div>
            <br>
            <br>
             <!-- <h1><a href="view/" class="btn-sesión">Iniciar Sesión</a></h1>  -->
@@ -67,4 +81,24 @@ if(!empty($_SESSION['active'])){
         </form>
     </div>
 </body>
+<script src="./assets/js/index.js" type="module"></script>
 </html>
+
+<script>
+    let msj = localStorage.getItem("register");
+    if(msj === "true"){
+      Swal.fire({
+            title: "Registro correcto",
+            text: "Inicie sesión en el siguiente formulario",
+            icon: "success",//error, 
+            timer: 3000,
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            confirmButtonColor: '#47874a',
+        });
+    } 
+    setTimeout(function(){
+        localStorage.removeItem("register");
+    }, 1500);
+</script>

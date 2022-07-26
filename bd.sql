@@ -26,4 +26,17 @@ CREATE TABLE provedor(
     PRIMARY KEY (id)
 );
 
+CREATE TABLE configuracion(
+    id INT AUTO_INCREMENT,
+    razon_social VARCHAR(255) NOT NULL,
+    rfc VARCHAR(255) NOT NULL,
+    domicilio VARCHAR(255) NOT NULL,
+    cpostal VARCHAR(255) NOT NULL,
+    telefono VARCHAR(255) NOT NULL,
+    imagen VARCHAR(255),
+    PRIMARY KEY (id)
+);
+
+
 INSERT INTO roles(rol) VALUES ('Administrador'),('Vendedor');
+INSERT INTO configuracion(razon_social, rfc, domicilio, cpostal, telefono, imagen) VALUES ('Tech', 'VECJ88032685', 'Av. Lopez Mateos #587 Playa ensenada', '25758', '2582582582', 'icono.png');

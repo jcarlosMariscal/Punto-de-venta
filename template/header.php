@@ -1,9 +1,22 @@
+<?php
+
+include ("../conexion/conexion.php");
+
+$query = "select * from configuracion ORDER BY id DESC LIMIT 1";
+$resultado = mysqli_query($con, $query);
+
+
+?>
+
 <header class="header">
         <div class="system">
             <div class="system__info">
                 <div class="info__logo">
-                    <a href="index.php?p=main" class="ul__link"><i class="logo-main fa-solid fa-computer"></i></a>
-                    <!-- <span><i class="header-logo fa-solid fa-computer"></i></span> -->
+                  <?php foreach ($resultado as $row) { ?>
+                  <a href="index.php?p=main" class="ul__link"><img style="border-radius: 50px ;" src="../imagenes/<?php echo $row['imagen']; ?>" class="imag img-fluid" width="70px"  alt="..."></a>
+                 <?php 
+                  } 
+                  ?>
                 </div>
                 <div class="info__text">
                     <h3 class="info__name">Punto de Venta</h3>

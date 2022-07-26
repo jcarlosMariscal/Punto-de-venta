@@ -1,9 +1,15 @@
+const d = document;
 const btnsend = document.getElementById("btn-send");
 
 const expresiones = {
-  // REGEX, SE MANDA A LLAMAR DE ACUERDO AL CAMPO A VALIDAR
   nombre: /^[a-zA-ZÀ-ÿ\s\d]{1,60}$/, // password: /^.{1,}$/,
   correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+  // razon_social: /^[A-Za-z]+((\s)?((\'|\-|\.\&)?\&([A-Za-z])+))*$/,
+  razon_social: /^[a-zA-ZÀ-ÿ\s\d\&]{1,60}$/,
+  domicilio: /^[a-zA-ZÀ-ÿ\s\d\,\#.]{1,60}$/,
+  rfc: /^[A-Z\d\&]{12}$/,
+  cpostal: /^\d{5}$/,
+  telefono: /[\d\+]{10,15}$/,
 };
 
 const campos = {
@@ -23,19 +29,18 @@ const campos = {
   password: false,
 };
 const validarCampo = (expresion, input, campo) => {
-  let err = document.querySelector(`#group-${campo} .input-error`);
+  let err = d.querySelector(`#group-${campo} .input-error`);
+  console.log(campo + " - " + expresion.test(input.value));
   if (expresion.test(input.value)) {
-    document
-      .getElementById(`group-${campo}`)
-      .classList.remove("form-incorrecto");
-    document.getElementById(`group-${campo}`).classList.add("form-correcto");
+    d.getElementById(`group-${campo}`).classList.remove("form-incorrecto");
+    d.getElementById(`group-${campo}`).classList.add("form-correcto");
     if (err) err.classList.remove("active");
     btnsend.disabled = false;
     btnsend.classList.remove("deshabilitar");
     campos[campo] = true;
   } else {
-    document.getElementById(`group-${campo}`).classList.add("form-incorrecto");
-    document.getElementById(`group-${campo}`).classList.remove("form-correcto");
+    d.getElementById(`group-${campo}`).classList.add("form-incorrecto");
+    d.getElementById(`group-${campo}`).classList.remove("form-correcto");
     if (err) err.classList.add("active");
     btnsend.classList.add("deshabilitar");
     btnsend.disabled = true;
@@ -64,19 +69,19 @@ const validarFormulario = (e) => {
       break;
     // DATOS DEL NEGOCIO
     case "razon_social":
-      validarCampo(expresiones.nombre, e.target, "razon_social");
+      validarCampo(expresiones.razon_social, e.target, "razon_social");
       break;
     case "rfc":
-      validarCampo(expresiones.nombre, e.target, "rfc");
+      validarCampo(expresiones.rfc, e.target, "rfc");
       break;
     case "domicilio":
-      validarCampo(expresiones.nombre, e.target, "domicilio");
+      validarCampo(expresiones.domicilio, e.target, "domicilio");
       break;
     case "cpostal":
-      validarCampo(expresiones.nombre, e.target, "cpostal");
+      validarCampo(expresiones.cpostal, e.target, "cpostal");
       break;
     case "telefono":
-      validarCampo(expresiones.nombre, e.target, "telefono");
+      validarCampo(expresiones.telefono, e.target, "telefono");
       break;
     case "correo":
       validarCampo(expresiones.correo, e.target, "correo");

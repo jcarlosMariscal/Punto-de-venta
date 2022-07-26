@@ -101,6 +101,6 @@ if(empty($_SESSION['active'])){
         });
     } 
     setTimeout(function(){
-        localStorage.removeItem("register");
+        localStorage.removeItem("login");
     }, 1500);
 </script>

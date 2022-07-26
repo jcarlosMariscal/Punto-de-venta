@@ -1,3 +1,11 @@
+<?php
+include "../conexion/conexion.php";
+
+  $query = "select * from proveedor";
+  $resultado = mysqli_query($con, $query);
+
+?>
+
 <section class="above">
     <div class="above__info">Mi Personal
       <!-- <a href="index.php?p=compras" class="btn-prm btn-cancelar">Atrás</a> -->
@@ -21,6 +29,17 @@
     </div>
 </section>
 <hr>
+<script>
+  function confirmDelete(){
+    let res = confirm("Estas seguro que deseas eliminar el registro");
+
+    if(res === true){
+      return true;
+    }else{
+      return false;
+    }
+  }
+</script>
 
 <section class="">
     <section class="table-ver-product">
@@ -43,19 +62,58 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr class="prod">
-                      <td>0780048</td>
-                      <td>Marinela</td>
-                      <td>Electronica</td>
-                      <td>2361044444</td>
-                      <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
-                      <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
-                      <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-                  </tr>
+                  
+                  <?php
+                    foreach ($resultado as $row) {
+                      ?>
+                      <tr class="prod">
+                        <td><?php echo $row['identificador']; ?></td>
+                        <td><?php echo $row['nombre']; ?></td>
+                        <td><?php echo $row['factura']; ?></td>
+                        <td><?php echo $row['telefono']; ?></td>
+                        <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                        <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+                        <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                      </tr>
+                      <?php
+                    } 
+                  ?>
+                      
                 </tbody>
             </table>
         </div>
     </section>
+
+    <?php
+
+if(isset($_GET['id'])){
+    $id=$_GET['id'];
+    $query = "SELECT * FROM agregar_provedor WHERE id=$id";
+    $result =  mysqli_query($con,$query);
+    if(mysqli_num_rows($result) == 1){
+      $row = mysqli_fetch_array($result);
+      $identificador = $row['identificador'];
+      $nombre = $row['nombre'];
+      $rfc = $row['rfc'];
+      $telefono = $row['telefono'];
+    }
+  }
+  
+  if(isset($_POST['update'])){
+    $id = $_GET['id'];
+    $identificador = $_POST['identificador'];
+    $nombre = $_POST['nombre'];
+    $rfc = $_POST['rfc'];
+    $rfc = $_POST['telefono'];
+    
+    $query = "UPDATE agregar_provedor SET identificador='$identificador', nombre='$nombre', rfc='$rfc', telefono='$telefono' WHERE id=$id ";
+    mysqli_query($con,$query);
+  
+  }
+
+
+    ?>
+
 
 <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -66,10 +124,11 @@
         </div>
         <div class="modal-body">
             <div class="permisos">
-                <form action="" class="form-user" id="formulario">
+                <form class="form-user" id="formulario" method="POST" action="logic/proveedor.php">
+                  <input type="hidden" name="action_prov" id="action_prov" value="agregar_prov">
                     <div class="input-prov-id input-prov" id="group-prov-id">                                       
                         <label for="">Identificador: </label>
-                        <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce un nombre">
+                        <input type="text" class="input" name="identificador" id="identificador" placeholder="Introduce un nombre">
                     </div>
                     <div class="input-user-name input-user" id="group-nombre">                                       
                         <label for="">Nombre: </label>
@@ -77,7 +136,7 @@
                     </div>
                     <div class="input-user-rfc input-user" id="group-rfc">                                       
                       <label for="">Tipo factura: </label>
-                        <input type="text" class="input" name="rfc" id="rfc" placeholder="Introduce">
+                        <input type="text" class="input" name="factura" id="factura" placeholder="Introduce">
                     </div>
                     <div class="input-user-tel input-user" id="group-telefono">                                       
                       <label for="">Teléfono</label>
@@ -102,3 +161,22 @@
 </div>
 
 <!-- <script src="../assets/js/personal.js" type="module"></script> -->
+
+<script>
+    let addProv = localStorage.getItem("addProv");
+    if(addProv === "true"){
+      Swal.fire({
+            title: "Registro agregado",
+            text: "El proveedor se ha agregado correctamente",
+            icon: "success",//error, 
+            timer: 3000,
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            confirmButtonColor: '#47874a',
+        });
+    } 
+    setTimeout(function(){
+        localStorage.removeItem("addProv");
+    }, 1500);
+</script>

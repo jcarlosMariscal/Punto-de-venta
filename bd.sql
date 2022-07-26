@@ -17,14 +17,15 @@ CREATE TABLE usuarios(
 
 );
 
-CREATE TABLE provedor(
+CREATE TABLE proveedor(
     id INT AUTO_INCREMENT,
-    razon_social VARCHAR(255) NOT NULL,
-    tp_documento VARCHAR(255) NOT NULL,
-    num_documento VARCHAR(255) NOT NULL,
+    identificador VARCHAR(255) NOT NULL,
+    nombre VARCHAR(255) NOT NULL,
+    factura VARCHAR(255) NOT NULL,
     telefono VARCHAR(255) NOT NULL,
     PRIMARY KEY (id)
 );
+
 
 CREATE TABLE configuracion(
     id INT AUTO_INCREMENT,

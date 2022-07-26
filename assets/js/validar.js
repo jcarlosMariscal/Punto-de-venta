@@ -2,7 +2,7 @@ const d = document;
 const btnsend = document.getElementById("btn-send");
 
 const expresiones = {
-  nombre: /^[a-zA-ZÀ-ÿ\s\d]{1,60}$/, // password: /^.{1,}$/,
+  nombre: /^[a-zA-ZÀ-ÿ\s]{1,60}$/, // password: /^.{1,}$/,
   correo: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
   // razon_social: /^[A-Za-z]+((\s)?((\'|\-|\.\&)?\&([A-Za-z])+))*$/,
   razon_social: /^[a-zA-ZÀ-ÿ\s\d\&]{1,60}$/,
@@ -36,6 +36,7 @@ const validarCampo = (expresion, input, campo) => {
   if (expresion.test(input.value)) {
     d.getElementById(`group-${campo}`).classList.remove("form-incorrecto");
     d.getElementById(`group-${campo}`).classList.add("form-correcto");
+    console.log(d.getElementById(`group-${campo}`));
     if (err) err.classList.remove("active");
     btnsend.disabled = false;
     btnsend.classList.remove("deshabilitar");
@@ -96,6 +97,7 @@ const validarFormulario = (e) => {
       break;
     case "caja":
       validarCampo(expresiones.nombre, e.target, "caja");
+      break;
     case "password":
       validarCampo(expresiones.nombre, e.target, "password");
       break;
@@ -104,4 +106,4 @@ const validarFormulario = (e) => {
   }
 };
 
-export { campos, validarFormulario };
+export { campos, validarFormulario, expresiones };

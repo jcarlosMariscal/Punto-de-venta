@@ -104,3 +104,16 @@ if(empty($_SESSION['active'])){
         localStorage.removeItem("login");
     }, 1500);
 </script>
+
+
+<!-- MOSTRAR MODAL DE EDITAR PROVEEDOR -->
+<?php
+$eProv = (isset($_GET['eProv']) ? $_GET['eProv'] : NULL);
+  if($eProv): 
+?>
+  <script>
+    $(function(){
+      $('#modProv').modal('show');
+    })
+  </script>;
+<?php endif; ?>

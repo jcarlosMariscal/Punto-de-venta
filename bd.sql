@@ -1,3 +1,4 @@
+DROP DATABASE punto_venta;
 CREATE DATABASE punto_venta;
 USE punto_venta;
 
@@ -11,6 +12,8 @@ CREATE TABLE usuarios(
     id_user INT AUTO_INCREMENT,
     username VARCHAR(255) NOT NULL,
     pass VARCHAR(255) NOT NULL,
+    correo VARCHAR(255) NULL,
+    telefono VARCHAR(15) NULL,
     id_rol INT NULL,
     CONSTRAINT  FOREIGN KEY (id_rol) REFERENCES roles(id_rol),
     PRIMARY KEY (id_user)
@@ -37,6 +40,17 @@ CREATE TABLE configuracion(
     imagen VARCHAR(255),
     PRIMARY KEY (id)
 );
+CREATE TABLE compras(
+    id INT AUTO_INCREMENT,
+    nombre_prov VARCHAR(255) NOT NULL,
+    producto_prov VARCHAR(255) NOT NULL,
+    cantidad_prov VARCHAR(255) NOT NULL,
+    pcompra_prov VARCHAR(255) NOT NULL,
+    pventa_prov VARCHAR(255) NOT NULL,
+    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id)
+);
+
 
 
 INSERT INTO roles(rol) VALUES ('Administrador'),('Vendedor');

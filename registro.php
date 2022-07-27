@@ -1,5 +1,9 @@
 <?php
 include "conexion/conexion.php";
+$sql2 = "SELECT * FROM usuarios WHERE id_rol = 1";
+$query2 = mysqli_query($con,$sql2);
+$res = mysqli_fetch_array($query2); 
+if($res >0) header("Location: index.php");
 $alert = "";        
    if(!empty($_POST)){//Verificamos si el usuario le ha dado click en el boton del formulario
        

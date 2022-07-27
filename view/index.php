@@ -117,3 +117,14 @@ $eProv = (isset($_GET['eProv']) ? $_GET['eProv'] : NULL);
     })
   </script>;
 <?php endif; ?>
+<!-- MOSTRAR MODAL DE EDITAR PERSONAL -->
+<?php
+$ePer = (isset($_GET['ePer']) ? $_GET['ePer'] : NULL);
+  if($ePer): 
+?>
+  <script>
+    $(function(){
+      $('#modPer').modal('show');
+    })
+  </script>;
+<?php endif; ?>

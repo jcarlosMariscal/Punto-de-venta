@@ -10,6 +10,7 @@ const expresiones = {
   rfc: /^[A-Z\d\&]{12}$/,
   cpostal: /^\d{5}$/,
   telefono: /[\d\+]{10,15}$/,
+  pass: /^[a-zA-ZÀ-ÿ\d]{5,}$/,
 };
 
 const campos = {
@@ -56,7 +57,7 @@ const validarFormulario = (e) => {
       validarCampo(expresiones.nombre, e.target, "username");
       break;
     case "pass":
-      validarCampo(expresiones.nombre, e.target, "pass");
+      validarCampo(expresiones.pass, e.target, "pass");
       break;
     case "nombre_prov":
       validarCampo(expresiones.nombre, e.target, "nombre_prov");
@@ -97,9 +98,6 @@ const validarFormulario = (e) => {
       break;
     case "caja":
       validarCampo(expresiones.nombre, e.target, "caja");
-      break;
-    case "password":
-      validarCampo(expresiones.nombre, e.target, "password");
       break;
     default:
       break;

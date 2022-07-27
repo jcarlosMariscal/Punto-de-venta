@@ -1,3 +1,10 @@
+<?php
+  include('../conexion/conexion.php');
+  $sql = "SELECT * FROM productos";
+  $query = mysqli_query($con, $sql); 
+  
+
+?>
 <section class="above">
     <div class="above__info">
       <span class="info__seccion">Compras</span>
@@ -41,17 +48,18 @@
   <table table bgcolor="#FFFFFF" class="table table-bordered">
     <thead>
       <tr>
-        <th scope="col">Código</th>
+        <!-- <th scope="col">Código</th> -->
         <th scope="col">Producto</th>
-        <th scope="col">Categoria</th>
-        <th scope="col">Medida</th>
+        <!-- <th scope="col">Categoria</th> -->
+        <!-- <th scope="col">Medida</th> -->
         <th scope="col">Precio Compra</th>
         <th scope="col">Precio Venta</th>   
+        <th scope="col">Fecha</th>   
         <th scope="col">Stock</th> 
       </tr>
     </thead>
     <tbody id="table-bogy">
-      <tr class="products">
+      <!-- <tr class="products">
         <td>000001</td>
         <td>Gaseosa</td>
         <td>Bebidas</td>
@@ -62,31 +70,23 @@
         <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
         <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
         <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-      </tr>
-      <tr class="products">
-        <td>000002</td>
-        <td>Jabón</td>
-        <td>Higiene</td>
-        <td>Unidad</td>
-        <td>0000</td>
-        <td>0000</td>
-        <td>200</td>
-        <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
-        <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
-        <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-      </tr>
-      <tr class="products">
-        <td>000003</td>
-        <td>Pañales</td>
-        <td>Bebes</td>
-        <td>Paquete</td>
-        <td>0000</td>
-        <td>0000</td>
-        <td>150</td>
-        <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
-        <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
-        <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-      </tr>
+      </tr> -->
+      <?php
+        foreach ($query as $row) {
+          ?>
+          <tr class="products">
+            <td><?php echo $row['producto']; ?></td>
+            <td><?php echo $row['pcompra']; ?></td>
+            <td><?php echo $row['pventa']; ?></td>
+            <td><?php echo $row['fecha']; ?></td>
+            <td><?php echo $row['cantidad']; ?></td>
+            <td class="text-center"><a href="" class="btn-tb-delete deshabilitar"><i class="fa-solid fa-trash-can"></i></a></td>
+            <td class="text-center"><a href="" class="btn-tb-update deshabilitar"><i class="fa-solid fa-pen"></i></a></td>
+            <td class="text-center"><a href="" class="btn-tb-info deshabilitar"><i class="fa-solid fa-circle-info"></i></a></td>
+          </tr>
+          <?php
+        }
+      ?>
     </tbody> 
   </table>
 </section>

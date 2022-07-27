@@ -1,7 +1,23 @@
+<?php
+  include('../conexion/conexion.php');
+  $sql = "SELECT * FROM proveedor";
+  $query = mysqli_query($con, $sql);
+  $res = mysqli_fetch_array($query); 
+  
+
+?>
+
 <section class="above">
     <div class="above__info">
       <span class="info__seccion">Compras</span>
       <a href="index.php?p=ver-compras" class="btn-prm btn-above"><i class="fa-solid fa-eye"></i> Ver</a>
+      &nbsp;
+      &nbsp;
+      <?php
+        if($res == 0){
+          ?><h6 style="color:red;">Agregue proveedores para registrar la compra de productos</h6><?php
+        }
+      ?>
       <!-- <a href="index.php?p=compras" class="btn-regresar"><i class="fa-solid fa-eye"></i></a> -->
     </div>
     <div class="above__user">
@@ -28,13 +44,13 @@
     <form action="" class="form-add-product" id="formulario">
         <div class="input-nom-proveedor input-compra" id="group-nombre_prov">
             <label for="">Nom. Proveedor: </label>
-            <input type="text" class="input input-cpr form-incorrecto" id="nombre_prov" name="nombre_prov">
-            <a href="" class="seleccionar"><i class="fa-solid fa-check-to-slot"></i></a>
+            <input type="text" class="input input-cpr form-incorrecto" disabled id="nombre_prov" name="nombre_prov">
+            <a href="" class="seleccionar" data-toggle="modal" data-target=".seleccionar-prov"><i class="fa-solid fa-check-to-slot"></i></a>
         </div>
         <div class="input-nom-producto input-compra" id="group-producto_prov">
             <label for="">Nom. Producto: </label>
             <input type="text" class="input input-cpr" id="producto_prov" name="producto_prov">
-            <a href="" class="seleccionar"><i class="fa-solid fa-check-to-slot"></i></a>
+            <!-- <a href="" class="seleccionar"><i class="fa-solid fa-check-to-slot"></i></a> -->
         </div>
         <div class="input-cantidad input-compra" id="group-cantidad_prov">
             <label for="">Cantidad: </label>
@@ -56,6 +72,35 @@
         </div>
     </form>
 </section>
+<div class="modal fade seleccionar-prov" id="seleccionar-prov" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Seleccione un proveedor</h5>
+            <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="modal-body">
+            <div class="permisos">
+                <form class="form-user" id="form-select-prov">
+                    <?php
+                    foreach ($query as $row) {
+                      ?>
+                      <label><input type="radio" name="proveedor" id="cbox1" value="<?php echo $row['nombre']; ?>"> <?php echo $row['nombre']; ?></label><br>
+                      <?php
+                    }
+                    ?>
+                    <div class="input-submit modal-footer">
+                      <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+                      <input type="submit" class="btn-cfg" value="Seleccionar" id="">
+                    </div>
+                    <!-- </select> -->
+                  </form>
+            </div>
+            <br>
+        </div>
+    </div>
+  </div>
+</div>
 <section class="table-product">
   <table table bgcolor= "#FFFFFF"  class="table table-bordered">
     <thead>

@@ -21,7 +21,7 @@ CREATE TABLE usuarios(
 );
 
 CREATE TABLE proveedor(
-    id INT AUTO_INCREMENT,
+    id INT NOT NULL AUTO_INCREMENT,
     identificador VARCHAR(255) NOT NULL,
     nombre VARCHAR(255) NOT NULL,
     factura VARCHAR(255) NOT NULL,
@@ -40,14 +40,15 @@ CREATE TABLE configuracion(
     imagen VARCHAR(255),
     PRIMARY KEY (id)
 );
-CREATE TABLE compras(
+CREATE TABLE productos(
     id INT AUTO_INCREMENT,
-    nombre_prov VARCHAR(255) NOT NULL,
-    producto_prov VARCHAR(255) NOT NULL,
-    cantidad_prov VARCHAR(255) NOT NULL,
-    pcompra_prov VARCHAR(255) NOT NULL,
-    pventa_prov VARCHAR(255) NOT NULL,
+    producto VARCHAR(255) NOT NULL,
+    cantidad VARCHAR(255) NOT NULL,
+    pcompra VARCHAR(255) NOT NULL,
+    pventa VARCHAR(255) NOT NULL,
+    id_proveedor INT NULL,
     fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    CONSTRAINT  FOREIGN KEY (id_proveedor) REFERENCES proveedor(id),
     PRIMARY KEY (id)
 );
 

@@ -5,6 +5,13 @@ import { campos, validarFormulario } from "./validar.js";
 const d = document;
 const formulario = d.getElementById("formulario");
 let inputs = d.querySelectorAll("#formulario input");
+
+const nombre_prov = d.getElementById("nombre_prov"),
+  producto_prov = d.getElementById("producto_prov"),
+  cantidad_prov = d.getElementById("cantidad_prov"),
+  pcompra_prov = d.getElementById("pcompra_prov"),
+  pventa_prov = d.getElementById("pventa_prov");
+
 if (inputs) {
   inputs.forEach((input) => {
     input.addEventListener("keyup", validarFormulario);
@@ -23,16 +30,37 @@ comprar.classList.add("deshabilitar"),
   cancelar.classList.add("deshabilitar"),
   compra_online.classList.add("deshabilitar");
 
+const selecProv = d.getElementById("form-select-prov");
+if (selecProv) {
+  selecProv.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let boxs = d.querySelectorAll("#form-select-prov input");
+    boxs.forEach((box) => {
+      if (box.checked) {
+        // console.log(box.value);
+        nombre_prov.value = box.value;
+      }
+    });
+    $("#seleccionar-prov").modal("hide");
+  });
+}
+
 if (formulario) {
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
+    const regex = /^[a-zA-ZÀ-ÿ\s]{1,60}$/;
+    console.log(regex.test(formulario.nombre_prov.value));
     if (
-      (campos.nombre_prov,
-      campos.producto,
+      (campos.producto,
       campos.cantidad_prov,
       campos.pcompra_prov,
       campos.pventa_prov)
     ) {
+      if (!regex.test(formulario.nombre_prov.value)) {
+        // console.log("ho");
+        alert("Rellena todos los campos correctamente.");
+        return;
+      }
       let existe = false;
       for (var i = 0, row; (row = table_body.rows[i]); i++) {
         console.log(table_body.rows[i].cells[0].innerText);
@@ -62,6 +90,11 @@ if (formulario) {
         table_body.innerHTML += product;
         add++;
         calcularTotal();
+        // nombre_prov.value = "";
+        // producto_prov.value = "";
+        // cantidad_prov.value = "";
+        // pcompra_prov.value = "";
+        // pventa_prov.value = "";
       }
       (comprar.disabled = false),
         (cancelar.disabled = false),

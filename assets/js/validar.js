@@ -11,6 +11,8 @@ const expresiones = {
   cpostal: /^\d{5}$/,
   telefono: /[\d\+]{10,15}$/,
   pass: /^[a-zA-ZÀ-ÿ\d]{5,}$/,
+  cantidad: /[\d]$/,
+  precio: /^[0-9]+([.][0-9]+)?$/,
 };
 
 const campos = {
@@ -33,11 +35,11 @@ const campos = {
 };
 const validarCampo = (expresion, input, campo) => {
   let err = d.querySelector(`#group-${campo} .input-error`);
-  console.log(campo + " - " + expresion.test(input.value));
+  // console.log(campo + " - " + expresion.test(input.value));
   if (expresion.test(input.value)) {
     d.getElementById(`group-${campo}`).classList.remove("form-incorrecto");
     d.getElementById(`group-${campo}`).classList.add("form-correcto");
-    console.log(d.getElementById(`group-${campo}`));
+    // console.log(d.getElementById(`group-${campo}`));
     if (err) err.classList.remove("active");
     btnsend.disabled = false;
     btnsend.classList.remove("deshabilitar");
@@ -69,13 +71,13 @@ const validarFormulario = (e) => {
       validarCampo(expresiones.nombre, e.target, "producto_prov");
       break;
     case "cantidad_prov":
-      validarCampo(expresiones.nombre, e.target, "cantidad_prov");
+      validarCampo(expresiones.cantidad, e.target, "cantidad_prov");
       break;
     case "pcompra_prov":
-      validarCampo(expresiones.nombre, e.target, "pcompra_prov");
+      validarCampo(expresiones.precio, e.target, "pcompra_prov");
       break;
     case "pventa_prov":
-      validarCampo(expresiones.nombre, e.target, "pventa_prov");
+      validarCampo(expresiones.precio, e.target, "pventa_prov");
       break;
     // DATOS DEL NEGOCIO
     case "razon_social":

@@ -12,9 +12,12 @@ const nota_compra = () => {
         cantidad: row.cells[1].innerText,
         p_compra: row.cells[2].innerText,
         subtotal: row.cells[3].innerText,
+        proveedor: row.cells[4].innerText,
+        p_venta: row.cells[5].innerText,
       };
       aComprar.push(obj);
     }
+
     const info_compra = d.querySelector(".info-compra");
     const section_modal = d.createElement("section");
 
@@ -51,8 +54,8 @@ const nota_compra = () => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-close-modal" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn-save-modal">Comprar y imprimir ticket</button>
-                        <button type="button" class="btn-save-modal" id="save_ticket">Guardar ticket</button>
+                        <button type="button" class="btn-save-modal" id="comprarProductos">Comprar</button>
+                        <button type="button" class="btn-save-modal deshabilitar" id="save_ticket">Guardar ticket</button>
                     </div>
                 </div>
             </div>
@@ -79,6 +82,42 @@ const nota_compra = () => {
     total_neto.innerHTML = total;
     $("#mymodal").modal("show");
     const save_ticket = d.getElementById("save_ticket");
+    const comprarProductos = d.getElementById("comprarProductos");
+    comprarProductos.addEventListener("click", (e) => {
+      console.log(aComprar);
+
+      let form = new FormData();
+      let data = JSON.stringify(aComprar);
+      // console.log(data);
+      form.append("data", data);
+      // console.log(form.get("data"));
+      fetch("logic/compras.php", {
+        method: "POST",
+        body: form,
+      })
+        .then((res) => res.text())
+        .then((data) => {
+          if (data == "compraCorrecta") {
+            // let comprar = localStorage.getItem("comprar");
+            // if (comprar === "true") {
+            Swal.fire({
+              title: "Productos agregados",
+              text: "Los productos se han agregado correctamente.",
+              icon: "success", //error,
+              timer: 3000,
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              confirmButtonColor: "#47874a",
+            });
+            window.location.href = "index.php?p=compras";
+            // }
+            // setTimeout(function () {
+            //   localStorage.removeItem("comprar");
+            // }, 1500);
+          }
+        });
+    });
     save_ticket.addEventListener("click", (e) => {
       const element = d.getElementById("ticket");
       html2pdf()

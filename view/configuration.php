@@ -169,8 +169,8 @@
 </section>
 
 <script>
-    let msj = localStorage.getItem("confi");
-    if(msj === "true"){
+    let confi = localStorage.getItem("confi");
+    if(confi === "true"){
       if("<?php echo $razon_social; ?>" === "Tech"){
         Swal.fire({
             title: "<b>SISTEMA <?php echo $razon_social; ?></b>",

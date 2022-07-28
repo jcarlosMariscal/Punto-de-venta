@@ -20,8 +20,18 @@ const nota_compra = () => {
 
     const info_compra = d.querySelector(".info-compra");
     const section_modal = d.createElement("section");
-
-    let html = `
+    let myForm = new FormData();
+    myForm.append("getNegocio", "obtener");
+    let config;
+    fetch("logic/confi.php", {
+      method: "POST",
+      body: myForm,
+    })
+      .then((res) => res.text())
+      .then((data) => {
+        let get = JSON.parse(data);
+        console.log(get);
+        let html = `
         <div class="modal fade bd-example-modal-lg" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
@@ -31,11 +41,12 @@ const nota_compra = () => {
                 </div>
                 <div class="modal-body" id="ticket">
                     <div class="ticket-generado">
-                        <h3 class="text-center">Mi punto de venta<h3>
+                        <img src="../imagenes/${get.imagen}" class="ticket-logo">
+                        <h3 class="text-center">${get.razon_social}<h3>
                         <p class="text-center">Fecha: 30-06-2022</p>
-                        <p class="text-center">Ticket No. 85566</p>
-                        <p class="text-center">Av. Lopez Mateos #587 Playa ensenada</p>
-                        <p class="text-center">Vendedor: Pedro</p>
+                        <p class="text-center">Compra No. 85</p>
+                        <p class="text-center">${get.domicilio}, ${get.cpostal}</p>
+                        <p class="text-center">${get.telefono}</p>
 
                         <table table bgcolor= "#FFFFFF"  class="table table-bordered">
                             <thead>
@@ -55,92 +66,95 @@ const nota_compra = () => {
                     <div class="modal-footer">
                         <button type="button" class="btn-close-modal" data-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn-save-modal" id="comprarProductos">Comprar</button>
-                        <button type="button" class="btn-save-modal deshabilitar" id="save_ticket">Guardar ticket</button>
+                        <button type="button" class="btn-save-modal" id="save_ticket">Descargar</button>
                     </div>
                 </div>
             </div>
         </div>
         </div>`;
-    info_compra.insertAdjacentElement("afterend", section_modal);
-    section_modal.innerHTML += html;
+        info_compra.insertAdjacentElement("afterend", section_modal);
+        section_modal.innerHTML += html;
 
-    let table_ticket = d.getElementById("table-ticket");
-    let regex = /(\d+)/g;
-    let total = 0;
-    for (let i = 0; i < aComprar.length; i++) {
-      table_ticket.innerHTML += `
+        let table_ticket = d.getElementById("table-ticket");
+        let regex = /(\d+)/g;
+        let total = 0;
+        for (let i = 0; i < aComprar.length; i++) {
+          table_ticket.innerHTML += `
                     <th>${aComprar[i].cantidad}</th>
                     <th>${aComprar[i].producto}</th>
                     <th>${aComprar[i].p_compra}</th>
                     <th>${aComprar[i].subtotal}</th>
                 `;
-      let getSubTotal = aComprar[i].subtotal.match(regex);
-      total += parseFloat(getSubTotal);
-    }
+          let getSubTotal = aComprar[i].subtotal.match(regex);
+          total += parseFloat(getSubTotal);
+        }
 
-    const total_neto = d.getElementById("total_neto");
-    total_neto.innerHTML = total;
-    $("#mymodal").modal("show");
-    const save_ticket = d.getElementById("save_ticket");
-    const comprarProductos = d.getElementById("comprarProductos");
-    comprarProductos.addEventListener("click", (e) => {
-      console.log(aComprar);
+        const total_neto = d.getElementById("total_neto");
+        total_neto.innerHTML = total;
+        $("#mymodal").modal("show");
+        const save_ticket = d.getElementById("save_ticket");
+        const comprarProductos = d.getElementById("comprarProductos");
+        comprarProductos.addEventListener("click", (e) => {
+          console.log(aComprar);
 
-      let form = new FormData();
-      let data = JSON.stringify(aComprar);
-      // console.log(data);
-      form.append("data", data);
-      // console.log(form.get("data"));
-      fetch("logic/compras.php", {
-        method: "POST",
-        body: form,
-      })
-        .then((res) => res.text())
-        .then((data) => {
-          if (data == "compraCorrecta") {
-            // let comprar = localStorage.getItem("comprar");
-            // if (comprar === "true") {
-            Swal.fire({
-              title: "Productos agregados",
-              text: "Los productos se han agregado correctamente.",
-              icon: "success", //error,
-              timer: 3000,
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              confirmButtonColor: "#47874a",
+          let form = new FormData();
+          let data = JSON.stringify(aComprar);
+          // console.log(data);
+          form.append("data", data);
+          // console.log(form.get("data"));
+          fetch("logic/compras.php", {
+            method: "POST",
+            body: form,
+          })
+            .then((res) => res.text())
+            .then((data) => {
+              if (data == "compraCorrecta") {
+                console.log(data);
+                let comprar = localStorage.getItem("comprar");
+                if (comprar === "true") {
+                  Swal.fire({
+                    title: "Productos agregados",
+                    text: "Los productos se han agregado correctamente.",
+                    icon: "success", //error,
+                    timer: 3000,
+                    toast: true,
+                    position: "top-end",
+                    showConfirmButton: false,
+                    confirmButtonColor: "#47874a",
+                  });
+                  window.location.href = "index.php?p=compras";
+                }
+                setTimeout(function () {
+                  localStorage.removeItem("comprar");
+                }, 1500);
+              }
             });
-            window.location.href = "index.php?p=compras";
-            // }
-            // setTimeout(function () {
-            //   localStorage.removeItem("comprar");
-            // }, 1500);
-          }
         });
-    });
-    save_ticket.addEventListener("click", (e) => {
-      const element = d.getElementById("ticket");
-      html2pdf()
-        .set({
-          margin: 1,
-          filename: "prueba.pdf",
-          image: {
-            type: "jpeg",
-            quality: 0.98,
-          },
-          html2canvas: {
-            scale: 3,
-            letterRendering: true,
-          },
-          jsPDF: {
-            unit: "in",
-            format: "a3",
-          },
-        })
-        .from(element)
-        .save()
-        .catch((err) => console);
-    });
+        save_ticket.addEventListener("click", (e) => {
+          const element = d.getElementById("ticket");
+          html2pdf()
+            .set({
+              margin: 1,
+              filename: "prueba.pdf",
+              image: {
+                type: "jpeg",
+                quality: 0.98,
+              },
+              html2canvas: {
+                scale: 3,
+                letterRendering: true,
+              },
+              jsPDF: {
+                unit: "in",
+                format: "a3",
+              },
+            })
+            .from(element)
+            .save()
+            .catch((err) => console);
+        });
+      });
+    // console.log(config);
   });
   // https://github.com/eKoopmans/html2pdf.js/blob/master/README.md
 };

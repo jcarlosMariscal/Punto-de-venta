@@ -27,6 +27,12 @@
               move_uploaded_file($temp,'../../imagenes/'.$imagen);   
               $_SESSION['mensaje'] = 'se ha subido correctamente';
               $_SESSION['tipo'] = 'success';
+              ?>
+              <script>
+              localStorage.setItem("confi", "true");
+              window.location.href = "../index.php?p=configuration";
+            </script>
+              <?php
             }else{
               $_SESSION['mensaje'] = 'ocurrio un error en el servidor';
               $_SESSION['tipo'] = 'danger';
@@ -36,6 +42,7 @@
         $query = "UPDATE configuracion SET razon_social = '$razon_social' ,rfc = '$rfc' ,domicilio = '$domicilio' ,cpostal = '$cpostal' ,telefono = '$telefono'  WHERE id = 1";//Insertamos el registro                           
         $resultado = mysqli_query($con,$query);
         if($resultado){
+          // echo "bien";
           ?>
             <script>
               localStorage.setItem("confi", "true");
@@ -47,4 +54,22 @@
       }   
     }
   }
+
+  $getNegocio = (isset($_POST['getNegocio']) ? $_POST['getNegocio'] : NULL);
+  if($getNegocio){
+    $sql = "SELECT * FROM configuracion";
+    $res = mysqli_query($con, $sql);
+    foreach ($res as $row) {
+      $razon_social = $row['razon_social'];
+      // $rfc = $row['rfc'];
+      $domicilio = $row['domicilio'];
+      $cpostal = $row['cpostal'];
+      $telefono = $row['telefono'];
+      $imagen = $row['imagen'];
+    } 
+    // echo json_code($razon_social);
+    $json = '{"razon_social":"'.$razon_social.'","domicilio":"'.$domicilio.'","cpostal":"'.$cpostal.'","telefono":"'.$telefono.'", "imagen":"'.$imagen.'"}';
+    echo $json;
+  }
+  
 ?>

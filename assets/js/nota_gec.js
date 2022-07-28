@@ -95,7 +95,7 @@ const nota_compra = () => {
         const save_ticket = d.getElementById("save_ticket");
         const comprarProductos = d.getElementById("comprarProductos");
         comprarProductos.addEventListener("click", (e) => {
-          console.log(aComprar);
+          // console.log(aComprar);
 
           let form = new FormData();
           let data = JSON.stringify(aComprar);
@@ -108,25 +108,22 @@ const nota_compra = () => {
           })
             .then((res) => res.text())
             .then((data) => {
-              if (data == "compraCorrecta") {
-                console.log(data);
-                let comprar = localStorage.getItem("comprar");
-                if (comprar === "true") {
-                  Swal.fire({
-                    title: "Productos agregados",
-                    text: "Los productos se han agregado correctamente.",
-                    icon: "success", //error,
-                    timer: 3000,
-                    toast: true,
-                    position: "top-end",
-                    showConfirmButton: false,
-                    confirmButtonColor: "#47874a",
-                  });
-                  window.location.href = "index.php?p=compras";
-                }
-                setTimeout(function () {
-                  localStorage.removeItem("comprar");
-                }, 1500);
+              console.log(data);
+              if (data.includes("compraCorrecta")) {
+                // let comprar = localStorage.getItem("comprar");
+                // if (comprar === "true") {
+                Swal.fire({
+                  title: "Productos agregados",
+                  text: "Para los productos que han sido detectados en la base de datos, se les ha sumado la cantidad comprada. Consultelo en la sección de almacén.",
+                  icon: "success", //error,
+                  showConfirmButton: true,
+                  confirmButtonText: "Aceptar",
+                  confirmButtonColor: "#47874a",
+                }).then((button) => {
+                  if (button.isConfirmed === true) {
+                    window.location.href = "index.php?p=compras";
+                  }
+                });
               }
             });
         });

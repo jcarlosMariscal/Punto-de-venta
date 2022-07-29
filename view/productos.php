@@ -2,7 +2,8 @@
   include('../conexion/conexion.php');
   $sql = "SELECT * FROM productos";
   $query = mysqli_query($con, $sql); 
-  
+  $nombre = (isset($_GET['nombre']) ? $_GET['nombre'] : NULL);
+  $ver = (isset($_GET['ver']) ? $_GET['ver'] : NULL);
 
 ?>
 <section class="above">
@@ -49,7 +50,7 @@
     <table table bgcolor="#FFFFFF" class="table table-bordered">
       <thead>
         <tr>
-          <!-- <th scope="col">Código</th> -->
+          <th scope="col">Código</th>
           <th scope="col">Producto</th>
           <!-- <th scope="col">Categoria</th> -->
           <!-- <th scope="col">Medida</th> -->
@@ -60,22 +61,11 @@
         </tr>
       </thead>
       <tbody id="table-bogy">
-        <!-- <tr class="products">
-          <td>000001</td>
-          <td>Gaseosa</td>
-          <td>Bebidas</td>
-          <td>Unidad</td>
-          <td>0000</td>
-          <td>0000</td>
-          <td>20</td>
-          <td class="text-center"><a href="" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
-          <td class="text-center"><a href="" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
-          <td class="text-center"><a href="" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
-        </tr> -->
         <?php
           foreach ($query as $row) {
             ?>
             <tr class="products">
+              <td><?php echo ($row['codigo'] == NULL)? '<a href="index.php?p=productos&nombre='.$row['producto'].'">Añadir</a>' : '<a href="index.php?p=productos&ver='.$row['codigo'].'">'.$row['codigo'].'</a>' ?></td>
               <td><?php echo $row['producto']; ?></td>
               <td><?php echo $row['pcompra']; ?></td>
               <td><?php echo $row['pventa']; ?></td>
@@ -93,66 +83,60 @@
   </div>
 </section>
 
-
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="codigo-barras" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Agregar nuevo usuario</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Generar código de barras para <?php echo $nombre; ?></h5>
             <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
         </div>
         <div class="modal-body">
             <div class="permisos">
-                <form action="" class="form-user" id="formulario">
-                    <div class="input-user-name input-user" id="group-nombre">                                       
-                        <label for="">Nombre: </label>
-                        <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce un nombre">
-                    </div>
-                    <div class="input-user-rfc input-user" id="group-rfc">                                       
-                      <label for="">R.F.C.: </label>
-                        <input type="text" class="input" name="rfc" id="rfc" placeholder="Introduce">
-                    </div>
-                    <div class="input-user-fnac input-user" id="group-fecha_nac">                                       
-                      <label for="">Fecha de Nacimiento</label>
-                        <input type="date" name="fecha_nac" id="fecha_nac" class="input">
-                    </div>
-                    <div class="input-user-tel input-user" id="group-telefono">                                       
-                      <label for="">Teléfono</label>
-                        <input type="number_format" name="telefono" id="telefono" class="input">
-                    </div>
-                    <div class="input-user-email input-user" id="group-correo">                                       
-                      <label for="">Correo</label>
-                        <input type="text" name="correo" id="correo" class="input">
-                    </div>
-                    <div class="input-user-rol input-user">                                       
-                      <label for="">Seleccione el Rol:</label>
-                      <select name="" id="" class="select-user-rol">
-                        <option value="">Administrador</option>
-                        <option value="">Ventas</option>
-                      </select>
-                    </div>
-                    <div class="input-user-caja input-user" id="group-caja">                                       
-                      <label for="">Caja</label>
-                        <input type="text" name="caja" id="caja" class="input">
-                    </div>
-                    <div class="input-user-password input-user" id="group-password">                                       
-                      <label for="">Contraseña</label>
-                        <input type="password" name="password" id="password" class="input">
-                    </div>
-                    <!-- <hr> -->
-                    <br>
-                    <div class="input-submit modal-footer">
-                      <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
-                      <input type="submit" class="btn-cfg" value="Agregar" id="btn-send">
-                    </div>
-                  </form>
+              <div class="codigo-existente">
+                <a href="http://">Seleccionar existente:</a>
+              </div>
+              <hr>
+              <div class="generar-codigo">
+                <p>Generar un nuevo código de barras (CODE128):</p>
+                <form id="formCodigo">
+                  <input type="number" name="codigo" id="codigo" placeholder="Código del producto" pattern="[\d]" required>
+                  <input type="hidden" name="producto" id="producto" value="<?php echo $nombre; ?>">
+                  <!-- <input type="text" placeholder="Formato de código"> -->
+                  <input type="submit" value="Generar">
+                </form>
+                <svg id="barcode"></svg>
+              </div>
             </div>
             <br>
-            <!-- <div class="modal-footer">
-                <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
-                <button type="button" class="btn-save-modal">Agregar</button>
-            </div> -->
+        </div>
+        <div class="input-submit modal-footer">
+          <!-- <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button> -->
+          <input type="submit" class="btn-cfg" value="Agregar" id="btn-add">
         </div>
     </div>
   </div>
 </div>
+<div class="modal fade" id="mostrarCodigo" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Código de Barras <span id="verCodigo"><?php echo $ver; ?></span></h5>
+            <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+        </div>
+        <div class="modal-body">
+            <div class="permisos">
+              <div class="">
+                <svg id="ver-barcode"></svg>
+              </div>
+            </div>
+            <br>
+        </div>
+        <div class="input-submit modal-footer">
+          <!-- <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button> -->
+          <input type="submit" class="btn-cfg" value="Cerrar" id="btn-cerrar">
+        </div>
+    </div>
+  </div>
+</div>
+
+<script src="../assets/js/productos.js" type="module"></script>

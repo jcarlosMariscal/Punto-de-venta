@@ -13,6 +13,7 @@ const expresiones = {
   pass: /^[a-zA-ZÀ-ÿ\d]{5,}$/,
   cantidad: /[\d]$/,
   precio: /^[0-9]+([.][0-9]+)?$/,
+  caja: /\d$/,
 };
 
 const campos = {
@@ -99,7 +100,7 @@ const validarFormulario = (e) => {
       validarCampo(expresiones.correo, e.target, "correo");
       break;
     case "caja":
-      validarCampo(expresiones.nombre, e.target, "caja");
+      validarCampo(expresiones.caja, e.target, "caja");
       break;
     default:
       break;

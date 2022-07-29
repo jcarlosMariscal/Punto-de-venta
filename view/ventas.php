@@ -1,9 +1,33 @@
+<?php
+  include ("../conexion/conexion.php");
+
+  $query = "SELECT * FROM usuarios U JOIN caja C ON U.id_caja = C.id_caja WHERE id_rol = 2";
+  $resultado = mysqli_query($con, $query);
+  foreach ($resultado as $row) {
+    $caja = $row['caja'];
+    $total = $row['total'];
+  } 
+
+  $query2 = "SELECT MAX(id_venta) AS id FROM ventas";
+  $res = mysqli_query($con, $query2);
+  $rowcount = mysqli_num_rows($res);
+  if($rowcount == NULL) {
+    $actual = '1';
+  }else{
+    foreach ($res as $r) {
+      $actual = $r['id'] + 1;
+    } 
+  }
+  date_default_timezone_set('America/Mexico_City');
+?>
+
+
 <section class="above">
     <div class="above__info">
-      <span class="info__seccion">Compras</span>
-      <a href="index.php?p=ver-compras" class="btn-prm btn-above">Mis Ventas</a>
+      <span class="info__seccion">Ventas</span>
+      <a href="index.php?p=ver-compras" class="btn-prm btn-above deshabilitar">Mis Ventas</a>
       &nbsp; &nbsp;
-      <a href="index.php?p=ver-compras" class="btn-prm btn-above">Mi Reporte</a>
+      <a href="index.php?p=ver-compras" class="btn-prm btn-above deshabilitar">Mi Reporte</a>
       <!-- <a href="index.php?p=compras" class="btn-regresar"><i class="fa-solid fa-eye"></i></a> -->
     </div>
     <div class="above__user">
@@ -29,15 +53,17 @@
   <h5><div class="above__info">Información de venta</div></h5>
   <div class="card-group">
     <div class="card-body">
-      <div class="above__info">Venta realizada por: &nbsp;<b>Carlos Mariscal</b> </div>
-      <div class="above__info">No. de transaccion: &nbsp;<b>1252</b>  </div>
+      <div class="above__info">Venta realizada por: &nbsp;<b><?php echo $_SESSION['user']?></b> </div>
+      <div class="above__info">No. de transaccion: &nbsp;<b><?php echo $actual; ?></b>  </div>
     </div>
     <div class="card-body">
-      <div class="above__info">No. de caja: &nbsp;<b>10</b> </div>
-      <div class="above__info">Fecha Venta:&nbsp;<b>20-07-2022</b> </div>
+      <div class="above__info">No. de caja: &nbsp;<b><?php echo $caja; ?></b> </div>
+      <div class="above__info">Fecha Venta:&nbsp;<b><?php echo date('"Y-m-d"'); ?></b> </div>
+      <!-- <div class="above__info">Fecha Venta:&nbsp;<b><?php //echo date('"Y-m-d H:i:s"'); ?></b> </div> -->
+      <!-- <div class="above__info">Fecha Venta:&nbsp;<b><?php //echo date_default_timezone_get(); ?></b> </div> -->
     </div>
     <div class="card-body">
-      <div class="above__info">Total en caja: &nbsp;<b>6300.20</b></div>
+      <div class="above__info">Total en caja: &nbsp;<b><?php echo $total; ?></b></div>
     </div>
 </div>
 </section>

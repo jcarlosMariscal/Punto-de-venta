@@ -15,6 +15,7 @@ if(!empty($_POST)){
       $telefono = $_POST['telefono'];
       $correo = $_POST['correo'];
       $rol = $_POST['rol'];
+      $caja = $_POST['caja'];
       $pass = md5($_POST['pass']);
       $sql = "SELECT * FROM usuarios WHERE username = '$nombre'";
       $query = mysqli_query($con,$sql);
@@ -23,7 +24,7 @@ if(!empty($_POST)){
       if($resultado > 0){
         $alert='<p class="msg_error">Ya existe un usuario con ese nombre.</p>';
       }else{ 
-        $sql = "INSERT INTO usuarios(username,pass,correo,telefono, id_rol) VALUES('$nombre','$pass','$correo','$telefono','$rol')";//Insertamos el registro
+        $sql = "INSERT INTO usuarios(username,pass,correo,telefono, id_caja, id_rol) VALUES('$nombre','$pass','$correo','$telefono', '$caja','$rol')";//Insertamos el registro
         $query_insert = mysqli_query($con,$sql);//resivimos los parametros de la consulta SQL
 
         if($query_insert){

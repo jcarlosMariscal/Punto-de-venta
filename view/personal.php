@@ -71,6 +71,7 @@
                       <th scope="col">CORREO</th>
                       <th scope="col">TELÉFONO</th>
                       <th scope="col">ROL</th>
+                      <th scope="col">CAJA</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -82,7 +83,8 @@
                           <td><?php echo $row['username']; ?></td>
                           <td><?php echo ($row['correo'] == NULL) ? "<b>Sin Correo</b>" : $row['correo']; ?></td>
                           <td><?php echo ($row['telefono'] == NULL) ? "<b>Sin telefono</b>" : $row['telefono'];; ?></td>
-                          <td><?php echo $row['id_rol']; ?></td>
+                          <td><?php echo $row['id_rol'] == 1 ? "Administrador": "Vendedor"; ?></td>
+                          <td><?php echo ($row['id_caja'] == NULL) ? "<b>Sin Caja</b>" : $row['id_caja'];; ?></td>
                           <td class="text-center"><a href="index.php?p=personal&dPer=<?php echo $row['id_user']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
                           <td class="text-center"><a href="index.php?p=personal&ePer=<?php echo $row['id_user']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
                           <td class="text-center"><a href="" class="btn-tb-info deshabilitar"><i class="fa-solid fa-circle-info"></i></a></td>
@@ -109,7 +111,7 @@
                   <input type="hidden" name="action_per" id="action_per" value="agregar_per">
                     <div class="input-user-name input-user" id="group-nombre">                                       
                         <label for="">Nombre: </label>
-                        <input type="text" class="input" name="nombre" id="nombre" value="Introduce tu nombre">
+                        <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce tu nombre">
                         <p class="input-error">* Rellena</p>
                     </div>
                     <!-- <div class="input-user-rfc input-user" id="group-rfc">                                       
@@ -122,25 +124,26 @@
                     </div> -->
                     <div class="input-user-tel input-user" id="group-telefono">                                       
                       <label for="">Teléfono</label>
-                      <input type="number_format" name="telefono" id="telefono" class="input" value="Introduce tu telefono">
+                      <input type="number_format" name="telefono" id="telefono" class="input" placeholder="Introduce tu telefono">
                       <p class="input-error">* Rellena</p>
                     </div>
                     <div class="input-user-email input-user" id="group-correo">                                       
                       <label for="">Correo</label>
-                      <input type="text" name="correo" id="correo" class="input" value="Introduce tu correo">
+                      <input type="text" name="correo" id="correo" class="input" placeholder="Introduce tu correo">
                       <p class="input-error">* Rellena</p>
                     </div>
                     <div class="input-user-rol input-user">                                       
                       <label for="">Seleccione el Rol:</label>
                       <select name="rol" id="rol" class="select-user-rol">
-                        <option value="1">Administrador</option>
-                        <option value="2">Ventas</option>
+                        <!-- <option value="1">Administrador</option> -->
+                        <option value="2">Vendedor</option>
                       </select>
                     </div>
-                    <!-- <div class="input-user-caja input-user" id="group-caja">                                       
-                      <label for="">Caja</label>
-                        <input type="text" name="caja" id="caja" class="input">
-                    </div> -->
+                    <div class="input-user-caja input-user" id="group-caja">                                       
+                      <label for="">Caja: </label>
+                        <input type="text" name="caja" id="caja" class="input" placeholder="Introduce la caja del personal">
+                        <p class="input-error">* Rellena</p>
+                    </div>
                     <div class="input-user-pass input-user" id="group-pass">                                       
                       <label for="">Contraseña</label>
                       <input type="password" name="pass" id="pass" class="input" placeholder="Introduce tu contraseña">
@@ -168,7 +171,7 @@
       $nombre = $row['username'];
       $correo = $row['correo'];
       $telefono = $row['telefono'];
-      $telefono = $row['telefono'];
+      $caja = $row['id_caja'];
     }
   ?>
 <div class="modal fade bd-example-modal-lg" id="modPer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -213,10 +216,10 @@
                         <option value="2">Ventas</option>
                       </select>
                     </div>
-                    <!-- <div class="input-user-caja input-user" id="group-caja">                                       
+                    <div class="input-user-caja input-user" id="group-caja">                                       
                       <label for="">Caja</label>
-                        <input type="text" name="caja" id="caja" class="input">
-                    </div> -->
+                        <input type="text" name="caja" id="caja" class="input" value="<?php echo $caja; ?>">
+                    </div>
                     <div class="input-user-pass input-user" id="group-pass">                                       
                       <label for="">Contraseña</label>
                       <input type="password" name="pass" id="pass" class="input">

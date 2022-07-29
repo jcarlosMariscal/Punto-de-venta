@@ -23,6 +23,7 @@ if(empty($_SESSION['active'])){
     <title>Sistema Punto de ventas</title>
     <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 </head>
 <body>
     <?php 
@@ -125,6 +126,28 @@ $ePer = (isset($_GET['ePer']) ? $_GET['ePer'] : NULL);
   <script>
     $(function(){
       $('#modPer').modal('show');
+    })
+  </script>;
+<?php endif; ?>
+<!-- MOSTRAR MODAL PARA GENERAR CODIGO DE BARRAS -->
+<?php
+$nombre = (isset($_GET['nombre']) ? $_GET['nombre'] : NULL);
+  if($nombre): 
+?>
+  <script>
+    $(function(){
+      $('#codigo-barras').modal('show');
+    })
+  </script>;
+<?php endif; ?>
+<!-- MOSTRAR MODAL con vista previa del codigo -->
+<?php
+$ver = (isset($_GET['ver']) ? $_GET['ver'] : NULL);
+  if($ver): 
+?>
+  <script>
+    $(function(){
+      $('#mostrarCodigo').modal('show');
     })
   </script>;
 <?php endif; ?>

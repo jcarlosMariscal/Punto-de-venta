@@ -65,7 +65,7 @@
           foreach ($query as $row) {
             ?>
             <tr class="products">
-              <td><?php echo ($row['codigo'] == NULL)? '<a href="index.php?p=productos&nombre='.$row['producto'].'">Añadir</a>' : '<a href="index.php?p=productos&ver='.$row['codigo'].'">'.$row['codigo'].'</a>' ?></td>
+              <td class="text-center"><?php echo ($row['codigo'] == NULL)? '<a class="btn-tb-info" href="index.php?p=productos&nombre='.$row['producto'].'"><i class="fa-solid fa-circle-plus"></i></a>' : '<a href="index.php?p=productos&ver='.$row['codigo'].'">'.$row['codigo'].'</a>' ?></td>
               <td><?php echo $row['producto']; ?></td>
               <td><?php echo $row['pcompra']; ?></td>
               <td><?php echo $row['pventa']; ?></td>
@@ -93,9 +93,9 @@
         <div class="modal-body">
             <div class="permisos">
               <div class="codigo-existente">
-                <a href="http://">Seleccionar existente:</a>
+                <!-- <a href="http://">Seleccionar existente:</a> -->
               </div>
-              <hr>
+              <!-- <hr> -->
               <div class="generar-codigo">
                 <p>Generar un nuevo código de barras (CODE128):</p>
                 <form id="formCodigo">

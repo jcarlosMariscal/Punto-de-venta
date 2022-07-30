@@ -1,7 +1,7 @@
 <section class="above">
     <div class="above__info">En desarrollo</div>
     <div class="above__user">
-        <div class="user__info">
+        <div class="user__info" id="user-info">
             <p class="user__name"><?php echo $_SESSION['user']?></p>
             <p class="user__rol">
                 <?php 
@@ -13,10 +13,25 @@
                 ?>
             </p>
         </div>
-        <div class="user__icon">
-            <span class="icon-user"><i class="icon-font fa-solid fa-user"></i></span>
+        <div class="user__icon" id="user-icon">
+            <a href="" id="profile"><span class="icon-user"><i class="icon-font fa-solid fa-user"></i></span></a>
         </div>
-    </div>
+      </div>
+      <div class="user__profile" id="user-profile">
+        <div class="profile__name"><p class="user__name"><?php echo $_SESSION['user']?></p></div>
+        <div class="profile__rol"><p class="">
+                <?php 
+                    if($_SESSION['rol'] == 1){
+                        echo "Administrador";
+                    }elseif ($_SESSION['rol'] == 2) {
+                        echo "Vendedor";
+                    }
+                ?>
+            </p>
+        </div>
+        <div class="profile__correo"><?php echo $_SESSION['correo']?></div>
+        <div class="profile__telefono"><?php echo $_SESSION['telefono']?></div>
+      </div>
 </section>
 <hr>
 <section class="content">

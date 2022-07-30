@@ -181,6 +181,9 @@ body {
   flex-direction: row;
   justify-content: space-between;
   padding: 0px;
+  align-items: center;
+  /* background-color: aqua; */
+  overflow-x: hidden;
 }
 .user__info p {
   /* background-color: aqua; */
@@ -924,4 +927,27 @@ select {
 }
 .back:hover {
   color: var(--color-one);
+}
+
+/* PROFILE */
+.user__profile {
+  position: fixed;
+  background-color: #fff;
+  z-index: 999;
+  border-radius: 5px;
+  box-shadow: rgb(12, 42, 46, 0.15) 1.95px 1.95px 2.6px;
+  padding: 20px;
+  transform: translate(300%, 0);
+  transition: transform 0.5s ease;
+  top: 30px;
+  width: 400px;
+  height: 300px;
+}
+.user__profile.show {
+  /* display: block; */
+  transform: translate(130%, 0);
+}
+.user__info.close {
+  transition: all 0.5s ease-in-out;
+  display: none;
 }

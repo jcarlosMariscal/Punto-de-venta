@@ -26,6 +26,8 @@ if(!empty($_SESSION['active'])){
         $_SESSION['active'] = true;
         $_SESSION['id'] = $data['id_user'];
         $_SESSION['user'] = $data['username'];
+        $_SESSION['correo'] = $data['correo'];
+        $_SESSION['telefono'] = $data['telefono'];
         $_SESSION['rol'] = $data['id_rol'];
         ?>
         <script>

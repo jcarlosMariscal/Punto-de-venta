@@ -30,7 +30,7 @@
 ?>
 
 <section class="above">
-    <div class="above__info">Mi Personal
+    <div class="above__info">Proveedores
       <!-- <a href="index.php?p=compras" class="btn-prm btn-cancelar">Atrás</a> -->
     </div>
     <div class="above__user">

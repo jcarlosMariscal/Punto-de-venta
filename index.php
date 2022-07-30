@@ -57,9 +57,10 @@ if(!empty($_SESSION['active'])){
 <body>
     <!-- Creación de Login -->
     <div class="login-box">
+      <img class="user" src="assets/img/icono1.png" alt="logo">
         <h1 class="text">Login</h1>
         <h1 class="text">Bienvenido al sistema</h1>
-        <form method="post" action="" id="formulario">
+                <form method="post" action="" id="formulario">
           <div class="input-adm" id="group-username">
             <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">
             <p class="input-error-log">*Rellena el campo correctamente por favor</p>
@@ -72,7 +73,7 @@ if(!empty($_SESSION['active'])){
             <br>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>    <!-- se mostrara la alerta cuando encuentre un error -->
             <div class="input-btn-adm">
-              <button type="submit" id="btn-send"  class="btn-sesion" value="Ingresar">Iniciar Sesión</button>
+              <input type="submit" value="Iniciar Sesión">
             </div>
            <br>
            <br>

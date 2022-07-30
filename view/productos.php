@@ -40,7 +40,7 @@
       <select name="" id="">
         <option value="">Código</option>
         <option value="">Nombre del Producto</option>
-        <option value="">Categoria</option>
+        <!-- <option value="">Categoria</option> -->
       </select>
       <input type="text" name="" id="" class="input" name="buscar" id="buscar">
     </form>

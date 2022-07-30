@@ -203,7 +203,7 @@
       }
     } 
     setTimeout(function(){
-        localStorage.removeItem("insert");
+        localStorage.removeItem("confi");
     }, 1500);
 </script>
 

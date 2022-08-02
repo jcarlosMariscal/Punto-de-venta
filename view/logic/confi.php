@@ -2,7 +2,7 @@
   include('../../conexion/conexion.php');
 
   if(!empty($_POST)){//Verificamos si el usuario le ha dado click en el boton del formulario
-    if(empty($_POST['razon_social']) || empty($_POST['rfc'] || empty($_POST['domicilio']) || empty($_POST['cpostal']) || empty($_POST['telefono']))){// Verificamos si el campo username, contraseña y id_rol estan vacias
+    if(empty($_POST['razon_social']) || empty($_POST['rfc'] || empty($_POST['domicilio']) || empty($_POST['cpostal']) || empty($_POST['telefono']))){
       $alert='<p class="msg_error">Los datos son obligatorios</p>';
     }else{
       $razon_social = $_POST['razon_social'];// almacenamos los campos que vienen del metodo POST

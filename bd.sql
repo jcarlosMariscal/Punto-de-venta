@@ -66,6 +66,7 @@ CREATE TABLE ventas(
   id_venta INT AUTO_INCREMENT,
   id_producto INT NOT NULL,
   id_user INT NOT NULL,
+  cantidad INT NOT NULL,
   CONSTRAINT  FOREIGN KEY (id_producto) REFERENCES productos(id),
   CONSTRAINT  FOREIGN KEY (id_user) REFERENCES usuarios(id_user),
   PRIMARY KEY (id_venta)

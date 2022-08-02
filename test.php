@@ -8,4 +8,7 @@
 <script>
   
   JsBarcode(".barcode").init();
+var myArray = [{id:1, name:'Morty'},{id:2, name:'Rick'},{id:3, name:'Anna'}];
+var newArray = myArray.filter((item) => item.id !== 1);
+console.log(newArray);
 </script>

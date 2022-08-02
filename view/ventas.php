@@ -1,12 +1,19 @@
 <?php
   include ("../conexion/conexion.php");
 
-  $query = "SELECT * FROM usuarios U JOIN caja C ON U.id_caja = C.id_caja WHERE id_rol = 2";
-  $resultado = mysqli_query($con, $query);
-  foreach ($resultado as $row) {
-    $caja = $row['caja'];
-    $total = $row['total'];
-  } 
+  if($_SESSION['rol'] == 1){
+    echo "<h6 style='color: red;'>Esta funcionalidad por el momento solo está disponible para el rol de <b>Vendedor</b></h6>";
+    $caja = "Sin registro";
+    $total = "0.00";
+  }else if($_SESSION['rol'] == 2){
+    $query = "SELECT * FROM usuarios U JOIN caja C ON U.id_caja = C.id_caja WHERE id_rol = 2";
+    $resultado = mysqli_query($con, $query);
+    foreach ($resultado as $row) {
+      $caja = $row['caja'];
+      $total = $row['total'];
+    } 
+  }
+
 
   $query2 = "SELECT MAX(id_venta) AS id FROM ventas";
   $res = mysqli_query($con, $query2);
@@ -28,6 +35,7 @@
         <div class="user__info" id="user-info">
             <p class="user__name"><?php echo $_SESSION['user']?></p>
             <p class="user__rol">
+              <p hidden id="id_user"><?php echo $_SESSION['id']; ?></p>
                 <?php 
                     if($_SESSION['rol'] == 1){
                         echo "Administrador";
@@ -62,17 +70,17 @@
   <h5><div class="above__info">Información de venta</div></h5>
   <div class="card-group">
     <div class="card-body">
-      <div class="above__info">Venta realizada por: &nbsp;<b><?php echo $_SESSION['user']?></b> </div>
-      <div class="above__info">No. de transaccion: &nbsp;<b><?php echo $actual; ?></b>  </div>
+      <div class="above__info">Venta realizada por: &nbsp;<b id="nameVendedor"><?php echo $_SESSION['user']?></b> </div>
+      <div class="above__info">No. de transaccion: &nbsp;<b id="nTransaccion"><?php echo $actual; ?></b>  </div>
     </div>
     <div class="card-body">
-      <div class="above__info">No. de caja: &nbsp;<b><?php echo $caja; ?></b> </div>
-      <div class="above__info">Fecha Venta:&nbsp;<b><?php echo date('"Y-m-d"'); ?></b> </div>
+      <div class="above__info">No. de caja: &nbsp;<b id="nCaja"><?php echo $caja; ?></b> </div>
+      <div class="above__info">Fecha Venta:&nbsp;<b id="fVenta"><?php echo date('Y-m-d'); ?></b> </div>
       <!-- <div class="above__info">Fecha Venta:&nbsp;<b><?php //echo date('"Y-m-d H:i:s"'); ?></b> </div> -->
       <!-- <div class="above__info">Fecha Venta:&nbsp;<b><?php //echo date_default_timezone_get(); ?></b> </div> -->
     </div>
     <div class="card-body">
-      <div class="above__info">Total en caja: &nbsp;<b><?php echo $total; ?></b></div>
+      <div class="above__info">Total en caja: &nbsp;<b id="tCaja"><?php echo $total; ?></b></div>
     </div>
 </div>
 </section>
@@ -83,10 +91,10 @@
   <table table bgcolor= "#FFFFFF"  class="table table-bordered" id="table-ventas">
     <thead>
       <tr>
-        <th scope="col">ID. PRODUCTO</th>
-        <th scope="col">NOMBRE</th>
-        <th scope="col">CATEGORIA</th>
+        <th scope="col">CÓDIGO</th>
+        <th scope="col">PRODUCTO</th>
         <th scope="col">PRECIO</th>
+        <th scope="col">PROVEEDOR</th>
         <th scope="col">STOCK</th>
       </tr>
     </thead>

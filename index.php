@@ -65,19 +65,18 @@ if(!empty($_SESSION['active'])){
                 <form method="post" action="" id="formulario">
           <div class="input-adm" id="group-username">
             <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">
-            <p class="input-error-log">*Rellena el campo correctamente por favor</p>
+            <p class="input-error-log">*El nombre debe contener solo letras.</p>
           </div>
           <div class="input-adm" id="group-pass">
             <!-- <input type="text" class="input input-config"  name="rfc" id="rfc" > -->
             <input type="password" name="pass" id="pass" placeholder="Contraseña">
-            <p class="input-error-log">*Rellena el campo correctamente por favor</p>
+            <p class="input-error-log">*Debe contener solo números y letras, mínimo 5 caracteres.</p>
           </div>
             <br>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>    <!-- se mostrara la alerta cuando encuentre un error -->
             <div class="input-btn-adm">
-              <input type="submit" value="Iniciar Sesión">
+              <input type="submit" value="Iniciar Sesión" id="btn-send">
             </div>
-           <br>
            <br>
             <!-- <h1><a href="view/" class="btn-sesión">Iniciar Sesión</a></h1>  -->
            <p>Si usted no tiene una cuenta por favor entra a <a href="registro.php" class="quitar">Registrarse</a></p>

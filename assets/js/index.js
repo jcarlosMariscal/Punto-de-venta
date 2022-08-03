@@ -14,7 +14,7 @@ const campos = {
 };
 const validarCampo = (expresion, input, campo) => {
   let err = d.querySelector(`#group-${campo} .input-error-log`);
-  console.log(campo + " - " + expresion.test(input.value));
+  // console.log(campo + " - " + expresion.test(input.value));
   if (expresion.test(input.value)) {
     d.getElementById(`group-${campo}`).classList.remove("form-incorrecto");
     d.getElementById(`group-${campo}`).classList.add("form-correcto");
@@ -47,7 +47,7 @@ const validarFormulario = (e) => {
 
 if (inputs) {
   inputs.forEach((input) => {
-    console.log(input);
+    // console.log(input);
     input.addEventListener("keyup", validarFormulario);
     input.addEventListener("blur", validarFormulario);
     // input.addEventListener("mousemove", validarFormulario);

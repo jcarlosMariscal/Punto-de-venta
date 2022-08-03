@@ -77,7 +77,7 @@ $alert = "";
       <div class="input-adm" id="group-pass">
         <!-- <input type="text" class="input input-config"  name="rfc" id="rfc" > -->
         <input type="password" name="pass" id="pass" placeholder="Contraseña">
-        <p class="input-error-log">*Rellena el campo correctamente por favor</p>
+        <p class="input-error-log">*Debe contener solo números y letras, mínimo 5 caracteres</p>
       </div>      
       <?php 
         $sql = "SELECT * FROM roles";//realizamos una cosulta

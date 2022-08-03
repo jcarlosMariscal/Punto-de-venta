@@ -40,6 +40,9 @@ body {
   width: 50px;
   height: 50px;
 }
+.main {
+  overflow-x: auto;
+}
 .logo-main {
   background-color: var(--secondary-color);
   color: var(--color-menu-primary);
@@ -224,20 +227,22 @@ body {
 .start__details {
   display: flex;
   /* padding: 10px; */
-  height: 230px;
+  height: auto;
   /* background-color: aqua; */
 }
 .details {
   width: 60%;
   margin: 0;
+  margin-bottom: 5px;
   /* background-color: red; */
 }
 .details__img {
   width: 40%;
 }
 .details__img img {
-  width: 99%;
+  width: 85%;
   height: 80%;
+  object-fit: cover;
 }
 .details__text {
   padding-right: 20px;

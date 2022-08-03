@@ -1,7 +1,5 @@
 <section class="above">
-    <div class="above__info">
-        En desarrollo:
-        <a href="index.php?p=main">Ir a interfaz principal</a>
+    <div class="above__info"><a href="index.php?p=main">Inicio</a>
     </div>
     <div class="above__user">
         <div class="user__info">
@@ -33,7 +31,7 @@
                 </p>
             </div>
             <div class="details__img">
-                <img src="https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2018/02/14141857/s3-blog-pos-03-min.jpg" alt="">
+                <img src="../assets/img/imagen.jpg" alt="">
             </div>
         </article>
         <article class="start__details row-reverse">
@@ -50,9 +48,8 @@
                 </p>
             </div>
             <div class="details__img">
-                <img src="https://s3-us-west-2.amazonaws.com/wp-mpro-blog/wp-content/uploads/2018/02/14141857/s3-blog-pos-03-min.jpg" alt="">
+                <img src="../assets/img/imagen.jpg" alt="">
             </div>
         </article>
-        <p>Si desea obtener más información, por favor dirigase al menú y seleccione <b>Información del Sistema</b></p>
     </div>
 </section>

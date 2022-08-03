@@ -4,6 +4,10 @@
     width: 20px;
     font-size: 25px;
   }
+  /* CONTENIDO PRINCIPAL: Por defecto información del sistema */
+  .details__title {
+    font-size: 20px;
+  }
 }
 
 @media screen and (max-width: 1050px) {
@@ -21,6 +25,12 @@
   .header {
     width: 15vw;
     min-height: 100vh;
+  }
+  .main {
+    background-color: var(--secondary-color);
+    width: 85vw;
+    height: 100vh;
+    padding: 20px;
   }
   .system__info {
     display: flex;
@@ -53,5 +63,38 @@
   .separate {
     margin-left: 11px;
     width: 80%;
+  }
+
+  /* --------------- */
+  .details {
+    width: 100%;
+    margin: 0;
+    margin-bottom: 5px;
+    /* background-color: red; */
+  }
+  .details__img {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+  }
+  .details__img img {
+    width: 80%;
+    height: 200px;
+  }
+  .start__details {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .user__info {
+    display: none;
+  }
+  .img-fluid {
+    max-width: 50px;
+    height: auto;
+  }
+  .info__name {
+    font-size: 16px;
   }
 }

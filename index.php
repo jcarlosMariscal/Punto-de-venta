@@ -9,7 +9,7 @@ if(!empty($_SESSION['active'])){
 }else {
   if(!empty($_POST)){//Verificamos si el usuario le ha dado click en el boton del formulario
     if(empty($_POST['username']) || empty($_POST['pass'])){// Verificamos si el campo username y la contraseña estan vacias
-      $alert='<p class="msg_error">ingrese su usuario y contraseña</p>';  
+      $alert=' <p class="input-error-act">Ingrese su usuario y contraseña</p>';  
     }else{
       $username = mysqli_real_escape_string($con,$_POST['username']);//Obtenemos el valor de username con el metodo POST, la funcion mysqli_real_escape_string se utliza para crear una cadena sql legal 
       $pass = md5(mysqli_real_escape_string($con,$_POST['pass']));// md5 se utliza para incriptar la contraseña
@@ -36,7 +36,7 @@ if(!empty($_SESSION['active'])){
         </script>    
         <?php
       }else {
-        $alert='<p class="msg_error">El usuario y la contraseña son incorrectos.</p>';
+        $alert='<p class="input-error-act">El usuario y la contraseña son incorrectos.</p>';
         session_destroy();
       }
     }
@@ -65,12 +65,12 @@ if(!empty($_SESSION['active'])){
                 <form method="post" action="" id="formulario">
           <div class="input-adm" id="group-username">
             <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">
-            <p class="input-error-log">*El nombre debe contener solo letras.</p>
+            <p class="input-error-log">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>
           </div>
           <div class="input-adm" id="group-pass">
             <!-- <input type="text" class="input input-config"  name="rfc" id="rfc" > -->
             <input type="password" name="pass" id="pass" placeholder="Contraseña">
-            <p class="input-error-log">*Debe contener solo números y letras, mínimo 5 caracteres.</p>
+            <p class="input-error-log">*La contraseña debe tener mínimo 5 caracteres, ppueden ser letras, números y no se aceptan caracteres especiales.</p>
           </div>
             <br>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>    <!-- se mostrara la alerta cuando encuentre un error -->

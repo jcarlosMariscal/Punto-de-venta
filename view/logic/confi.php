@@ -3,7 +3,12 @@
 
   if(!empty($_POST)){//Verificamos si el usuario le ha dado click en el boton del formulario
     if(empty($_POST['razon_social']) || empty($_POST['rfc'] || empty($_POST['domicilio']) || empty($_POST['cpostal']) || empty($_POST['telefono']))){
-      $alert='<p class="msg_error">Los datos son obligatorios</p>';
+      ?>
+      <script>
+          localStorage.setItem("confiError", "true");
+          window.location.href = "../index.php?p=configuration";
+        </script>    
+        <?php
     }else{
       $razon_social = $_POST['razon_social'];// almacenamos los campos que vienen del metodo POST
       $rfc = ($_POST['rfc']);
@@ -36,6 +41,7 @@
             }else{
               $_SESSION['mensaje'] = 'ocurrio un error en el servidor';
               $_SESSION['tipo'] = 'danger';
+              echo "error";
             }
           }
       }else{
@@ -51,6 +57,7 @@
           <?php
             // header('location: ../index.php?p=configuration');  
         }
+        echo "error";
       }   
     }
   }

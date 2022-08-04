@@ -15,13 +15,7 @@
 
 <section class="above">
     <div class="above__info">
-      <?php
-        if($razon_social === "Tech"){
-          echo "<p>Agregue información de su negocio para personalizar el sistema.</p>";
-        }else{
-          echo "<p>Puede cambiar la información de su negocio en el momento que desee.</p>";
-        }
-      ?>
+      <p>Configuración</p>
     </div>
     <div class="above__user">
     <div class="user__info">
@@ -43,6 +37,13 @@
 </section>
 <hr>
 <section class="content">
+  <?php
+    if($razon_social === "Tech"){
+      echo "<p>Agregue información de su negocio para personalizar el sistema.</p>";
+    }else{
+      echo "<p>Puede cambiar la información de su negocio en el momento que desee.</p>";
+      }
+  ?>
     <div class="config">
         <div class="config__form">
             <h4>Datos del negocio</h4>
@@ -56,22 +57,22 @@
                     <div class="input-rfc input-cfg" id="group-rfc">
                         <label for="" class="label">R. F. C.: </label>
                         <input type="text" class="input input-config" value="<?php echo $rfc ?>" name="rfc" id="rfc" >
-                        <p class="input-error">*Rellena el este campo correctamente por favor</p>
+                        <p class="input-error">*Introduce un RFC con un formato correcto.</p>
                     </div>
                     <div class="input-domicilio input-cfg" id="group-domicilio">
                         <label for="" class="label">Domicilio: </label>
                         <input type="text" class="input input-config" value="<?php echo $domicilio ?>" name="domicilio" id="domicilio" >
-                        <p class="input-error">*Rellena el este campo correctamente por favor</p>
+                        <p class="input-error">*Introduce una dirección correcta</p>
                     </div>
                     <div class="input-cPostal input-cfg" id="group-cpostal">
                         <label for="" class="label">C. Postal: </label>
                         <input type="text" class="input input-config" value="<?php echo $cpostal ?>" name="cpostal" id="cpostal" >
-                        <p class="input-error">*Rellena el este campo correctamente por favor</p>
+                        <p class="input-error">*Este campo debe ser númerico y tener 5 caracteres.</p>
                     </div>
                     <div class="input-telefono input-cfg" id="group-telefono">
                         <label for="" class="label">Teléfono: </label>
                         <input type="text" class="input input-config" value="<?php echo $telefono ?>" name="telefono" id="telefono" >
-                        <p class="input-error">*Rellena el este campo correctamente por favor</p>
+                        <p class="input-error">*Este campo debe ser númerico y tener 10 caracteres.</p>
                     </div>
                 </div>
                 <div class="form-logo">
@@ -167,6 +168,7 @@
         </div>
     </div>
 </section>
+<script src="../assets/js/configuration.js" type="module"></script>
 
 <script>
     let confi = localStorage.getItem("confi");
@@ -206,5 +208,3 @@
         localStorage.removeItem("confi");
     }, 1500);
 </script>
-
-<script src="../assets/js/configuration.js" type="module"></script>

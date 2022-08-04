@@ -32,6 +32,7 @@ if (inputs) {
 let myFile = d.getElementById("myFile");
 myFile.addEventListener("change", (e) => {
   let update = d.getElementById("img-logo");
+  // console.log(myFile.files[0]);
   const objectURL = URL.createObjectURL(myFile.files[0]);
   update.src = objectURL;
 });

@@ -75,4 +75,4 @@ CREATE TABLE ventas(
 
 INSERT INTO caja(caja, total) VALUES (01,10000), (02,5000), (03,20000);
 INSERT INTO roles(rol) VALUES ('Administrador'),('Vendedor');
-INSERT INTO configuracion(razon_social, rfc, domicilio, cpostal, telefono, imagen) VALUES ('Tech', 'VECJ88032685', 'Av. Lopez Mateos #587 Playa ensenada', '25758', '2582582582', 'icono.png');
+INSERT INTO configuracion(razon_social, rfc, domicilio, cpostal, telefono, imagen) VALUES ('Tech', 'JUMM420313PA9', 'Av. Lopez Mateos #587 Playa ensenada', '25758', '2582582582', 'icono.png');

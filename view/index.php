@@ -91,6 +91,7 @@ if(empty($_SESSION['active'])){
 
 <script>
     let msj = localStorage.getItem("login");
+    let confiError = localStorage.getItem("confiError");
     if(msj === "true"){
       Swal.fire({
             title: "Bienvenido <?php echo $_SESSION['user']?>",
@@ -105,6 +106,21 @@ if(empty($_SESSION['active'])){
     } 
     setTimeout(function(){
         localStorage.removeItem("login");
+    }, 1500);
+    if(confiError === "true"){
+      Swal.fire({
+            title: "Error",
+            text: "Los datos son obligatorios.",
+            icon: "error",//error, 
+            timer: 3000,
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            confirmButtonColor: '#47874a',
+        });
+    } 
+    setTimeout(function(){
+        localStorage.removeItem("confiError");
     }, 1500);
 </script>
 

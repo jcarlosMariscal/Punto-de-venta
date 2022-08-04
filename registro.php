@@ -8,7 +8,7 @@ $alert = "";
    if(!empty($_POST)){//Verificamos si el usuario le ha dado click en el boton del formulario
        
         if(empty($_POST['username']) || empty($_POST['pass'] || empty($_POST['id_rol']))){// Verificamos si el campo username, contraseña y id_rol estan vacias
-          $alert='<p class="msg_error">Los datos son obligatorios</p>';
+          $alert='<p class="input-error-act">Los datos son obligatorios</p>';
         
         }else{
 
@@ -23,7 +23,7 @@ $alert = "";
             // echo "SELECT * FROM usuarios WHERE username = '$username' OR pass='$pass' AND id_rol = '$roll'";//Creamos una variable y dentro guardamos la consulta sql
 
             if($resultado > 0){//Comprobamos si el resultado es mayor a 0, entonces existe un usuario con el mismo nombre
-                $alert='<p class="msg_error">El usuario ya existe.</p>';
+                $alert='<p class="input-error-act">El usuario ya existe.</p>';
 
             }else{ 
                 $sql = "INSERT INTO usuarios(username,pass,id_rol) VALUES('$username','$pass','$rol')";//Insertamos el registro
@@ -38,7 +38,7 @@ $alert = "";
                     </script>
                     <?php
                 }else{
-                    $alert='<p class="msg_error">Error al crear al usuario.</p>';
+                    $alert='<p class="input-error-act">Error al crear al usuario.</p>';
 
                 }
             }             
@@ -59,12 +59,14 @@ $alert = "";
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200&family=Hind+Siliguri:wght@300&family=Montserrat:ital,wght@1,300&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Inicio de sesión</title>
 </head>
 <body>
   <!-- Creación de Login -->
   <div class="login-box">
+    <img class="user" src="assets/img/icono1.png" alt="logo">
     <h1>Registrarse</h1>
     <h1 class="text">Bienvenido al sistema</h1>
     <div class="alert"><?php echo isset($alert) ? $alert : '';?></div><!-- if simplificado -->
@@ -72,12 +74,12 @@ $alert = "";
     <form action="" method="POST" id="formulario"> 
       <div class="input-adm" id="group-username">
         <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">
-        <p class="input-error-log">*Rellena el campo correctamente por favor</p>
+        <p class="input-error-log">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>
       </div>
       <div class="input-adm" id="group-pass">
         <!-- <input type="text" class="input input-config"  name="rfc" id="rfc" > -->
         <input type="password" name="pass" id="pass" placeholder="Contraseña">
-        <p class="input-error-log">*Debe contener solo números y letras, mínimo 5 caracteres</p>
+        <p class="input-error-log">*La contraseña debe tener mínimo 5 caracteres, pueden ser letras, números y no se aceptan caracteres especiales.</p>
       </div>      
       <?php 
         $sql = "SELECT * FROM roles";//realizamos una cosulta

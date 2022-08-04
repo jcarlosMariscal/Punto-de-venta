@@ -1,5 +1,5 @@
 <section class="above">
-    <div class="above__info"><a href="index.php?p=main">Inicio</a>
+    <div class="above__info"><a href="index.php?p=main" class="btn-prm btn-above">Inicio</a>
     </div>
     <div class="above__user">
         <div class="user__info">

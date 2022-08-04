@@ -43,13 +43,13 @@
     <h5><div class="above__info">Realizar una compra</div></h5>
     <form action="" class="form-add-product" id="formulario">
         <div class="input-nom-proveedor input-compra" id="group-nombre_prov">
-            <label for="">Nom. Proveedor: </label>
-            <input type="text" class="input input-cpr form-incorrecto" disabled id="nombre_prov" name="nombre_prov">
+            <label for="">Proveedor: </label>
+            <input type="text" class="input input-cpr" disabled id="nombre_prov" name="nombre_prov" placeholder="Selecciona proveedor">
             <a href="" class="seleccionar" data-toggle="modal" data-target=".seleccionar-prov"><i class="fa-solid fa-check-to-slot"></i></a>
         </div>
         <div class="input-nom-producto input-compra" id="group-producto_prov">
-            <label for="">Nom. Producto: </label>
-            <input type="text" class="input input-cpr" id="producto_prov" name="producto_prov">
+            <label for="">Producto: </label>
+            <input type="text" class="input input-cpr" id="producto_prov" name="producto_prov" placeholder="Nombre de producto">
             <!-- <a href="" class="seleccionar"><i class="fa-solid fa-check-to-slot"></i></a> -->
         </div>
         <div class="input-cantidad input-compra" id="group-cantidad_prov">
@@ -57,11 +57,11 @@
             <input type="number" class="input input-cpr" id="cantidad_prov" name="cantidad_prov">
         </div>
         <div class="input-precio-compra input-compra" id="group-pcompra_prov">
-            <label for="">Precio Compra: </label>
+            <label for="">P. Compra: </label>
             <input type="number" class="input input-cpr" id="pcompra_prov" name="pcompra_prov">
         </div>
         <div class="input-precio-venta input-compra" id="group-pventa_prov">
-            <label for="">Precio Venta: </label>
+            <label for="">P. Venta: </label>
             <input type="number" class="input input-cpr" id="pventa_prov" name="pventa_prov">
         </div>
         <div class="input-compra-submit">
@@ -107,7 +107,7 @@
       <tr>
         <th scope="col">PRODUCTO</th>
         <th scope="col">CANTIDAD</th>
-        <th scope="col">PRECIO COMPRA</th>
+        <th scope="col">P. COMPRA</th>
         <th scope="col">SUB TOTAL</th>
       </tr>
     </thead>
@@ -116,7 +116,7 @@
     </tbody>
   </table>
 </section>
-<section class="info-compra">
+<div class="info-compra">
   <div class="compra__total">
     <p class="total">Total a pagar: <b>$</b><b id="total-pagar"></b></p>
   </div>
@@ -125,6 +125,6 @@
     <a href="" id="comprar"class="btn-prm btn-compra">Comprar</a>
     <a href="index.php?p=pago" id="compra_online" class="btn-prm btn-compra">Compra Online</a>
   </div>
-</section>
+</div>
 
 <script src="../assets/js/compras.js" type="module"></script>

@@ -1,8 +1,25 @@
 <?php
   include('../../conexion/conexion.php');
 
-  if(!empty($_POST)){//Verificamos si el usuario le ha dado click en el boton del formulario
+  $getNegocio = (isset($_POST['getNegocio']) ? $_POST['getNegocio'] : NULL);
+  if($getNegocio){
+    $sql = "SELECT * FROM configuracion";
+    $res = mysqli_query($con, $sql);
+    foreach ($res as $row) {
+      $razon_social = $row['razon_social'];
+      // $rfc = $row['rfc'];
+      $domicilio = $row['domicilio'];
+      $cpostal = $row['cpostal'];
+      $telefono = $row['telefono'];
+      $imagen = $row['imagen'];
+    } 
+    // echo json_code($razon_social);
+    $json = '{"razon_social":"'.$razon_social.'","domicilio":"'.$domicilio.'","cpostal":"'.$cpostal.'","telefono":"'.$telefono.'", "imagen":"'.$imagen.'"}';
+    echo $json;
+  }else{
+    if(!empty($_POST)){//Verificamos si el usuario le ha dado click en el boton del formulario
     if(empty($_POST['razon_social']) || empty($_POST['rfc'] || empty($_POST['domicilio']) || empty($_POST['cpostal']) || empty($_POST['telefono']))){
+      echo "confiError";
       ?>
       <script>
           localStorage.setItem("confiError", "true");
@@ -61,22 +78,6 @@
       }   
     }
   }
-
-  $getNegocio = (isset($_POST['getNegocio']) ? $_POST['getNegocio'] : NULL);
-  if($getNegocio){
-    $sql = "SELECT * FROM configuracion";
-    $res = mysqli_query($con, $sql);
-    foreach ($res as $row) {
-      $razon_social = $row['razon_social'];
-      // $rfc = $row['rfc'];
-      $domicilio = $row['domicilio'];
-      $cpostal = $row['cpostal'];
-      $telefono = $row['telefono'];
-      $imagen = $row['imagen'];
-    } 
-    // echo json_code($razon_social);
-    $json = '{"razon_social":"'.$razon_social.'","domicilio":"'.$domicilio.'","cpostal":"'.$cpostal.'","telefono":"'.$telefono.'", "imagen":"'.$imagen.'"}';
-    echo $json;
   }
   
 ?>

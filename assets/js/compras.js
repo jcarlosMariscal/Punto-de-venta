@@ -49,7 +49,7 @@ if (formulario) {
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
     const regex = /^[a-zA-ZÀ-ÿ\s]{1,60}$/;
-    console.log(regex.test(formulario.nombre_prov.value));
+    // console.log(regex.test(formulario.nombre_prov.value));
     if (
       (campos.producto,
       campos.cantidad_prov,

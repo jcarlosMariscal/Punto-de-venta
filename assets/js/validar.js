@@ -102,6 +102,12 @@ const validarFormulario = (e) => {
     case "caja":
       validarCampo(expresiones.caja, e.target, "caja");
       break;
+    case "factura":
+      validarCampo(expresiones.nombre, e.target, "factura");
+      break;
+    case "identificador":
+      validarCampo(expresiones.caja, e.target, "identificador");
+      break;
     default:
       break;
   }

@@ -101,7 +101,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Agregar nuevo Proveedor</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Agregar proveedor</h5>
             <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
         </div>
         <div class="modal-body">
@@ -110,23 +110,23 @@
                   <input type="hidden" name="action_prov" id="action_prov" value="agregar_prov">
                     <div class="input-identificador input-prov" id="group-identificador">                                       
                         <label for="">Identificador: </label>
-                        <input type="text" class="input" name="identificador" id="identificador" placeholder="Introduce un nombre">
-                        <p class="input-error">* Rellena este campo correctamente</p>
+                        <input type="text" class="input" name="identificador" id="identificador" placeholder="Introduce identificador">
+                        <p class="input-error">*Este campo solo acepta caracteres númericos.</p>
                     </div>
-                    <div class="input-nombre input-nombre" id="group-nombre">                                       
+                    <div class="input-nombre input-prov" id="group-nombre">                                       
                         <label for="">Nombre: </label>
                         <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce un nombre">
-                        <p class="input-error">* Rellena este campo correctamente</p>
+                        <p class="input-error">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>
                     </div>
-                    <div class="input-factura input-factura" id="group-factura">                                       
+                    <div class="input-factura input-prov" id="group-factura">                                       
                       <label for="">Tipo factura: </label>
-                        <input type="text" class="input" name="factura" id="factura" placeholder="Introduce">
-                        <p class="input-error">* Rellena este campo correctamente</p>
+                        <input type="text" class="input" name="factura" id="factura" placeholder="Introduce tipo de factura">
+                        <p class="input-error">* Este campo no debe quedar vacío y acepta solo texto.</p>
                     </div>
-                    <div class="input-telefono input-telefono" id="group-telefono">                                       
+                    <div class="input-telefono input-prov" id="group-telefono">                                       
                       <label for="">Teléfono</label>
-                        <input type="number_format" name="telefono" id="telefono" class="input">
-                        <p class="input-error">* Rellena este campo correctamente</p>
+                        <input type="number" name="telefono" id="telefono" class="input" placeholder="Introduce un teléfono">
+                        <p class="input-error">*Este campo debe ser númerico y tener 10 caracteres.</p>
                     </div>
                     <!-- <hr> -->
                     <br>
@@ -170,17 +170,17 @@
               <input type="text" class="input" name="identificador" id="identificador" value="<?php echo $identificador; ?>">
               <p class="input-error">* Rellena este campo correctamente</p>
             </div>
-            <div class="input-nombre input-user" id="group-nombre">                                       
+            <div class="input-nombre input-prov" id="group-nombre">                                       
               <label for="">Nombre: </label>
               <input type="text" class="input" name="nombre" id="nombre" value="<?php echo $nombre; ?>">
               <p class="input-error">* Rellena este campo correctamente</p>
             </div>
-            <div class="input-factura input-user" id="group-factura">                                       
+            <div class="input-factura input-prov" id="group-factura">                                       
               <label for="">Tipo factura: </label>
               <input type="text" class="input" name="factura" id="factura" value="<?php echo $factura; ?>">
               <p class="input-error">* Rellena este campo correctamente</p>
             </div>
-            <div class="input-telefono input-user" id="group-telefono">                                       
+            <div class="input-telefono input-prov" id="group-telefono">                                       
               <label for="">Telefono: </label>
               <input type="number" class="input" name="telefono" id="telefono" value="<?php echo $telefono; ?>">
               <p class="input-error">* Rellena este campo correctamente</p>

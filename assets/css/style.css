@@ -257,7 +257,7 @@ body {
 .box-main {
   /* background-color: #F29494; */
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, minmax(200px, 1fr));
   /* grid-template-rows: repeat(2, minmax(100px, 400px));  */
   gap: 10px;
 }
@@ -270,18 +270,10 @@ body {
   padding-top: 30px;
 }
 .main-btns {
-  /* background-color: #F29494; */
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
-  /* align-content: center; */
-  /* margin: 20px auto; */
-  gap: 30px;
-
-  /* text-align: center; */
-  padding-left: 150px;
-  /* padding-top: 20px; */
-  height: 100%;
+  align-items: center;
+  gap: 20px;
 }
 .btn-charts,
 .btn-reports,
@@ -993,7 +985,7 @@ select {
   border-radius: 5px;
   box-shadow: rgb(12, 42, 46, 0.15) 1.95px 1.95px 2.6px;
   padding: 20px;
-  transform: translate(300%, 0);
+  transform: translate(400%, 0);
   transition: transform 0.5s ease;
   top: 30px;
   width: 400px;

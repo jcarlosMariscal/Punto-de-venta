@@ -56,6 +56,20 @@
   .efectivo__input {
     width: 45%;
   }
+  .main-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .btn-charts,
+  .btn-reports,
+  .btn-code {
+    background-color: var(--color-one);
+    width: 200px;
+    padding: 10px;
+    text-align: center;
+  }
 }
 @media screen and (max-width: 995px) {
   .label {
@@ -223,6 +237,21 @@
   .venta__cambio {
     grid-column: span 2;
   }
+
+  .btn-charts,
+  .btn-reports,
+  .btn-code {
+    background-color: var(--color-one);
+    width: 180px;
+    padding: 5px;
+    text-align: center;
+  }
+  .btn-chart {
+    /* padding: 10px 25px 10px 13px; */
+    /* color: var(--secondary-color); */
+    /* text-decoration: none; */
+    font-size: 14px;
+  }
 }
 
 @media screen and (max-width: 725px) {
@@ -268,6 +297,12 @@
   .product-filter p {
     transition: all 0.5s ease-in-out;
     display: none;
+  }
+
+  /* CONTENIDO PRINCIPAL: Inicio con gráficas */
+  .box-main {
+    display: grid;
+    grid-template-columns: minmax(200px, 1fr);
   }
 }
 @media screen and (max-width: 605px) {

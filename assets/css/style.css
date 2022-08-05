@@ -653,6 +653,14 @@ body {
   justify-content: space-around;
 }
 
+/* ---------- VENTAS -  code-product */
+.code-product {
+  width: 50%;
+  padding: 3px;
+  outline: none;
+  border: 1px solid var(--color-menu-primary);
+}
+
 /* FORMULARIO AGREGAR USUARIO */
 .form-user {
   display: grid;
@@ -875,29 +883,56 @@ select {
 
 /* MODIFICAR INFO-VENTA DE ventas.php */
 .info_venta {
-  display: flex;
-  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  margin-top: 5px;
   /* background-color: #ffff; */
   height: 55px;
+  gap: 10px;
+}
+.venta__total {
+  width: 100%;
+}
+.venta__efectivo {
+  grid-column: span 2;
+  width: 100%;
+  background-color: #fff;
+  height: 54px;
+  row-gap: 0px;
+}
+.venta__cambio {
+  width: 100%;
+}
+.btns-venta {
+  padding: 15px;
+  width: 100%;
 }
 
-.venta__total,
-.venta__cambio {
-  margin-right: 20px;
+.btn-venta {
+  transition: all 0.5s ease-in;
+  border: none;
+  background-color: var(--color-one);
+  width: 100px;
 }
+.btn-venta:hover {
+  transition: all 0.5s ease-in;
+  background-color: var(--color-one-secondary);
+  color: var(--secondary-color);
+}
+
 .total__p,
 .efectivo__p,
 .cambio__p {
   background-color: #fff;
   padding: 15px 10px 15px 10px;
 }
-.venta__efectivo {
-  background-color: #fff;
-  width: 250px;
-  margin-right: 10px;
-}
+
 .efectivo__input {
-  width: 100px;
+  width: 55%;
+  outline: none;
+  border: 1px solid var(--color-menu-primary);
+  padding: 1px;
 }
 
 /* VALIDACIÓN DE FORMULARIOS DE REGISTRO E INICIO DE SESIÓN */

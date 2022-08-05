@@ -86,7 +86,7 @@
 </section>
 <br>
 <section class="table-ventas">
-  <input type="text" autofocus placeholder="Introduce o escanea el código del producto" id="code-product">
+  <input type="text" autofocus placeholder="Introduce el código del producto" id="code-product" class="code-product">
   <br><br>
   <table table bgcolor= "#FFFFFF"  class="table table-bordered" id="table-ventas">
     <thead>
@@ -104,20 +104,17 @@
 </section>
 <section class="info_venta">
   <div class="venta__total">
-    <p class="total__p">Total de venta: <b>$</b><b id="total-pagar"></b></p>
-    <p></p>
+    <p class="total__p">Total: <b>$</b><b id="total-pagar"></b></p>
   </div>
   <div class="venta__efectivo">
-    <label class="efectivo__p">Efectivo cliente: </label>
+    <label class="efectivo__p">Efectivo: </label>
     <input type="text" class="efectivo__input" id="efectivo_cliente" placeholder="Introduce la cantidad">
   </div>
   <div class="venta__cambio">
-    <p class="cambio__p">Cambio de cliente: <b>$</b><b id="cambio_cliente"></b></p>
+    <p class="cambio__p">Cambio: <b>$</b><b id="cambio_cliente"></b></p>
   </div>
-  <div class="btns-compra">
-    <!-- <a href="" id="cancelar" class="btn-prm btn-cancelar">Cancelar</a> -->
-    <!-- <a href="" id="comprar"class="btn-prm btn-compra">Imprimir Ticket</a> -->
-    <a href="" id="vender" class="btn-prm btn-compra">Vender</a>
+  <div class="btns-venta">
+    <a href="" id="vender" class="btn-prm btn-venta">Vender</a>
   </div>
 </section>
 

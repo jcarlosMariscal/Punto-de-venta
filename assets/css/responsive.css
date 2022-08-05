@@ -51,6 +51,11 @@
   .input-config {
     width: 64%;
   }
+
+  /* ----------------- VENTAS -------------- */
+  .efectivo__input {
+    width: 45%;
+  }
 }
 @media screen and (max-width: 995px) {
   .label {
@@ -204,6 +209,20 @@
   .input-nom-proveedor input {
     width: 70%;
   }
+
+  /* ----------------- VENTAS -------------- */
+  .efectivo__input {
+    width: 50%;
+  }
+  .venta__total {
+    grid-column: span 2;
+  }
+  .venta__efectivo {
+    grid-column: span 3;
+  }
+  .venta__cambio {
+    grid-column: span 2;
+  }
 }
 
 @media screen and (max-width: 725px) {
@@ -227,6 +246,13 @@
     /* max-height: 420px; */
     overflow-x: auto;
   }
+
+  /* -------------------- TABLE VENTAS ------------------- */
+  .table-ventas {
+    height: auto;
+    /* max-height: 420px; */
+    overflow-x: auto;
+  }
 }
 @media screen and (max-width: 630px) {
   .config__permissions {
@@ -236,9 +262,6 @@
     align-items: center;
     /* margin-top: 50px; */
     /* background-color: aqua; */
-  }
-  .btn-prm {
-    /* width: 100%; */
   }
 
   /* --------------- PERSONAL -------- */
@@ -330,6 +353,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+  }
+
+  .efectivo__input {
+    width: 50%;
   }
 }
 

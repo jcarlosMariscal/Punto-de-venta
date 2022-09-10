@@ -17,7 +17,7 @@
       <img class="user" src="assets/img/icono1.png" alt="logo">
         <h1 class="text">Login</h1>
         <h1 class="text">Bienvenido al sistema</h1>
-        <form method="post" action="view/logic/receivedUser.php" id="formulario">
+        <form method="post" action="view/logic/userData.php" id="formulario">
           <input type="hidden" name="table" value="loginAdmin">
           <div class="input-adm" id="group-username">
             <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">

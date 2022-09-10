@@ -29,7 +29,7 @@
     <h1>Registrarse</h1>
     <h1 class="text">Bienvenido al sistema</h1>
 
-    <form action="view/logic/receivedUser.php" method="POST" id="formulario">
+    <form action="view/logic/userData.php" method="POST" id="formulario">
       <input type="hidden" name="table" value="registerAdmin"> 
       <div class="input-adm" id="group-username">
         <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">

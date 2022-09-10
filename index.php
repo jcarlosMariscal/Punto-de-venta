@@ -29,6 +29,7 @@ if(!empty($_SESSION['active'])){
         $_SESSION['correo'] = $data['correo'];
         $_SESSION['telefono'] = $data['telefono'];
         $_SESSION['rol'] = $data['id_rol'];
+        $_SESSION['id_caja'] = $data['id_caja'];
         ?>
         <script>
           localStorage.setItem("login", "true");
@@ -70,7 +71,7 @@ if(!empty($_SESSION['active'])){
           <div class="input-adm" id="group-pass">
             <!-- <input type="text" class="input input-config"  name="rfc" id="rfc" > -->
             <input type="password" name="pass" id="pass" placeholder="Contraseña">
-            <p class="input-error-log">*La contraseña debe tener mínimo 5 caracteres, ppueden ser letras, números y no se aceptan caracteres especiales.</p>
+            <p class="input-error-log">*La contraseña debe tener mínimo 5 caracteres, pueden ser letras, números y no se aceptan caracteres especiales.</p>
           </div>
             <br>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>    <!-- se mostrara la alerta cuando encuentre un error -->

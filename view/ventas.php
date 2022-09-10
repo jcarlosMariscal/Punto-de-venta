@@ -6,12 +6,19 @@
     $caja = "Sin registro";
     $total = "0.00";
   }else if($_SESSION['rol'] == 2){
-    $query = "SELECT * FROM usuarios U JOIN caja C ON U.id_caja = C.id_caja WHERE id_rol = 2";
-    $resultado = mysqli_query($con, $query);
-    foreach ($resultado as $row) {
-      $caja = $row['caja'];
-      $total = $row['total'];
-    } 
+    // echo $_SESSION['id_caja'];
+    if(!$_SESSION['id_caja']){
+      echo "<h6 style='color: red;'>La información del vendedor está incompleto, no puede hacer uso de esta funcionalidad</h6>";
+      $caja = "Sin registro";
+      $total = "0.00";
+    }else{
+      $query = "SELECT * FROM usuarios U JOIN caja C ON U.id_caja = C.id_caja WHERE id_rol = 2";
+      $resultado = mysqli_query($con, $query);
+      foreach ($resultado as $row) {
+        $caja = $row['caja'];
+        $total = $row['total'];
+      } 
+    }
   }
 
 

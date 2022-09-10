@@ -10,7 +10,7 @@
 <section class="above">
     <div class="above__info">
       <span class="info__seccion">Compras</span>
-      <a href="index.php?p=ver-compras" class="btn-prm btn-above deshabilitar"><i class="fa-solid fa-eye"></i> Ver</a>
+      <a href="index.php?p=ver-compras" class="btn-prm btn-above"><i class="fa-solid fa-eye"></i> Ver</a>
       &nbsp;
       &nbsp;
       <?php

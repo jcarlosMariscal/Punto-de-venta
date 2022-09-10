@@ -1,5 +1,6 @@
 <?php
   include "view/config/Connection.php";
+  // VALIDAR SI YA EXISTE UN ADMINISTRADOR PARA YA NO MOSTRAR EL FORMULARIO
   $cnx = Connection::connectDB();
   $admin = 1;
   $sql = "SELECT * FROM usuarios WHERE id_rol = ?";
@@ -7,6 +8,7 @@
   $query->bindParam(1, $admin);
   $query->execute();
   if($query->rowCount() >= 1) header("Location: index.php");
+  // VALIDAR SI YA EXISTE UN ADMINISTRADOR PARA YA NO MOSTRAR EL FORMULARIO
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +32,7 @@
     <h1 class="text">Bienvenido al sistema</h1>
 
     <form action="view/logic/userData.php" method="POST" id="formulario">
-      <input type="hidden" name="table" value="registerAdmin"> 
+      <input type="hidden" name="table" value="registerAdmin"> <!-- CAMPO NECESARIO PARA userData.php -->
       <div class="input-adm" id="group-username">
         <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">
         <p class="input-error-log">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>

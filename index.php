@@ -18,7 +18,7 @@
         <h1 class="text">Login</h1>
         <h1 class="text">Bienvenido al sistema</h1>
         <form method="post" action="view/logic/userData.php" id="formulario">
-          <input type="hidden" name="table" value="loginAdmin">
+          <input type="hidden" name="table" value="loginAdmin"> <!-- CAMPO NECESARIO PARA userData.php  -->
           <div class="input-adm" id="group-username">
             <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">
             <p class="input-error-log">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>

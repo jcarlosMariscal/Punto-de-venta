@@ -1,5 +1,6 @@
 <?php
   require ("../config/Connection.php");
+  session_start();
   class User{
     public $cnx;
     function __construct(){
@@ -30,5 +31,30 @@
         echo "error";
       }
     }
-    
+    function loginAdmin($username, $pass){
+      try {
+        $sql = "SELECT * FROM usuarios WHERE username = ?";
+        $query = $this->cnx->prepare($sql);
+        $query -> bindParam(1,$username);
+        if($query->execute()){
+            foreach($query as $data){
+                if(password_verify($pass,$data['pass'])){
+                    // $_SESSION["admin"] = $data; // GUARDA LA SESIÓN PARA USARLO DESPUÉS
+                    $_SESSION['active'] = true;
+                    $_SESSION['id'] = $data['id_user'];
+                    $_SESSION['user'] = $data['username'];
+                    $_SESSION['correo'] = $data['correo'];
+                    $_SESSION['telefono'] = $data['telefono'];
+                    $_SESSION['rol'] = $data['id_rol'];
+                    $_SESSION['id_caja'] = $data['id_caja'];
+                    return true;
+                }else{
+                    return false;
+                }
+            }
+        }
+      } catch (PDOException $th) {
+        echo "error";
+      }
+    }
   }

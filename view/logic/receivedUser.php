@@ -23,6 +23,27 @@ if(!empty($_POST)){
         }
       }
       break;
+    case 'loginAdmin':
+      $username = (isset($_POST['username']) ? $_POST['username'] : NULL);
+      $pass = (isset($_POST['pass']) ? $_POST['pass'] : NULL);
+      $query -> loginAdmin($username, $pass);
+      if($query){
+        ?>
+          <script>
+            localStorage.setItem("login", "true");
+            window.location.href = "../index.php";
+          </script>    
+        <?php
+      }else{
+        ?>
+          <script>
+            alert("Verifique que sus datos sean correctos");
+            window.location.href = "../../index.php";
+          </script>    
+        <?php
+
+      }
+      break;
     
     default:
       # code...

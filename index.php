@@ -1,49 +1,3 @@
-<?php
-session_start();//iniciamos una sesión
-require_once "conexion/conexion.php";
-$alert = "";
-
-if(!empty($_SESSION['active'])){
-    header('location: view/index.php');
-
-}else {
-  if(!empty($_POST)){//Verificamos si el usuario le ha dado click en el boton del formulario
-    if(empty($_POST['username']) || empty($_POST['pass'])){// Verificamos si el campo username y la contraseña estan vacias
-      $alert=' <p class="input-error-act">Ingrese su usuario y contraseña</p>';  
-    }else{
-      $username = mysqli_real_escape_string($con,$_POST['username']);//Obtenemos el valor de username con el metodo POST, la funcion mysqli_real_escape_string se utliza para crear una cadena sql legal 
-      $pass = md5(mysqli_real_escape_string($con,$_POST['pass']));// md5 se utliza para incriptar la contraseña
-
-      $sql = "SELECT * FROM usuarios  where username='$username' and pass='$pass'";//Creamos una variable y dentro guardamos la consulta sql
-      // mysqli_close($conn);
-      $query = mysqli_query($con,$sql); //resive dos parametros la conexion y la consulta realizada
-
-      $resultado = mysqli_num_rows($query);//guardamos el resultado de la consulta
-
-      if($resultado > 0){// validamos si e resultado es mayor a 0, mostramos el resultado
-        $data = mysqli_fetch_array($query);
-
-        $_SESSION['active'] = true;
-        $_SESSION['id'] = $data['id_user'];
-        $_SESSION['user'] = $data['username'];
-        $_SESSION['correo'] = $data['correo'];
-        $_SESSION['telefono'] = $data['telefono'];
-        $_SESSION['rol'] = $data['id_rol'];
-        $_SESSION['id_caja'] = $data['id_caja'];
-        ?>
-        <script>
-          localStorage.setItem("login", "true");
-          window.location.href = "view/index.php";
-        </script>    
-        <?php
-      }else {
-        $alert='<p class="input-error-act">El usuario y la contraseña son incorrectos.</p>';
-        session_destroy();
-      }
-    }
-  }
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -63,7 +17,8 @@ if(!empty($_SESSION['active'])){
       <img class="user" src="assets/img/icono1.png" alt="logo">
         <h1 class="text">Login</h1>
         <h1 class="text">Bienvenido al sistema</h1>
-                <form method="post" action="" id="formulario">
+        <form method="post" action="view/logic/receivedUser.php" id="formulario">
+          <input type="hidden" name="table" value="loginAdmin">
           <div class="input-adm" id="group-username">
             <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">
             <p class="input-error-log">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>

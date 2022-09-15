@@ -1,9 +1,13 @@
 <?php
-  include ("../conexion/conexion.php");
+  include "config/Connection.php";
+  $cnx = Connection::connectDB();
 
-  $query = "select * from configuracion ORDER BY id DESC LIMIT 1";
-  $resultado = mysqli_query($con, $query);
-  foreach ($resultado as $row) {
+  $sql = "SELECT * from configuracion ORDER BY id DESC LIMIT 1";
+  $query = $cnx->prepare($sql);
+  $query->execute();
+
+
+  foreach ($query as $row) {
     $razon_social = $row['razon_social'];
     $rfc = $row['rfc'];
     $domicilio = $row['domicilio'];
@@ -11,6 +15,7 @@
     $telefono = $row['telefono'];
     $imagen = $row['imagen'];
   } 
+
 ?>
 
 <section class="above">
@@ -47,8 +52,9 @@
     <div class="config">
         <div class="config__form">
             <h4>Datos del negocio</h4>
-            <form action="./logic/confi.php" method="POST" class="form" enctype="multipart/form-data" id="formulario">
+            <form action="logic/updateData.php" method="POST" class="form" enctype="multipart/form-data" id="formulario">
                 <div class="form-inputs">
+                  <input type="hidden" name="table" value="updateConfi">
                     <div class="input-nombre input-cfg" id="group-razon_social">
                         <label for="" class="label">Razón Social:</label>
                         <input type="text" class="input input-config" value="<?php echo $razon_social; ?>" name="razon_social" id="razon_social" >

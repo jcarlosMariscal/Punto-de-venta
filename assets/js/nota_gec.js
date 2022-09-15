@@ -23,7 +23,7 @@ const nota_compra = () => {
     let myForm = new FormData();
     myForm.append("getNegocio", "obtener");
     let config;
-    fetch("logic/confi.php", {
+    fetch("logic/createData.php", {
       method: "POST",
       body: myForm,
     })

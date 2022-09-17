@@ -5,6 +5,7 @@ $table = (isset($_POST['table']) ? $_POST['table'] : NULL);
 if(!empty($_POST)){
   switch ($table) {
     case 'editarProveedor';
+      $id_prov = (isset($_POST['id_prov']) ? $_POST['id_prov'] : NULL); 
       $identificador = (isset($_POST['identificador']) ? $_POST['identificador'] : NULL);
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
       $factura = (isset($_POST['factura']) ? $_POST['factura'] : NULL);

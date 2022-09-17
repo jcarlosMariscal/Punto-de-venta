@@ -127,8 +127,8 @@ if(empty($_SESSION['active'])){
 
 <!-- MOSTRAR MODAL DE EDITAR PROVEEDOR -->
 <?php
-$eProv = (isset($_GET['eProv']) ? $_GET['eProv'] : NULL);
-  if($eProv): 
+$editProv = (isset($_GET['edit']) ? $_GET['edit'] : NULL);
+  if($editProv): 
 ?>
   <script>
     $(function(){

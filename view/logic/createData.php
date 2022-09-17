@@ -4,28 +4,26 @@ $query = new Create();
 $table = (isset($_POST['table']) ? $_POST['table'] : NULL);
 if(!empty($_POST)){
   switch ($table) {
-    case 'registrarProveedor': // REGISTRAR ADMINISTRADOR
-      // VALIDAMOS SI SE RECIBEN LOS DATOS, SI NO MANDALOS LOS VALORES COMO NULO.
+    case 'agregarProveedor': // REGISTRAR ADMINISTRADOR
       $identificador = (isset($_POST['identificador']) ? $_POST['identificador'] : NULL);
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
       $factura = (isset($_POST['factura']) ? $_POST['factura'] : NULL);
       $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL);
       //  LLAMAMOS A UN MÉTODO PARA VALIDAR SI YA EXISTE UN USUARIO CON EL MISMO NOMBRE
-      $validate = $query->validarProveedor($identificador,$nombre);
+      $validate = $query->validateNameUser($nombre, 'proveedor','nombre');
       if($validate >= 1){
-        echo "Usuario ya registrado";
+        echo "Proveedor ya registrado";
       }else{
-        // SI NO ESTÁ REPETIDO, LLAMAMOS A UN MÉTODO PARA REGISTRARSE Y MANDAMOS LOS PARAMETROS NECESARIOS
         $query -> registrarProveedor($identificador, $nombre, $factura,$telefono);
         if($query){
-           ?>
-             <script>
-                 localStorage.setItem("addProv", "true");
-                 window.location.href = "../index.php?p=proveedor";
-             </script>
-           <?php
+          ?>
+            <script>
+              localStorage.setItem("addProv", "true");
+              window.location.href = "../index.php?p=proveedor";
+            </script>
+          <?php
         }
-      }      
+      }    
       break;
     case 'agregarPersonal':
 

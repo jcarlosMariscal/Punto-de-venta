@@ -18,24 +18,18 @@
         echo "error";
       }
     }
-
-
     function registrarProveedor($identificador,$nombre,$factura,$telefono){
       try{
         $sql = "INSERT INTO proveedor(identificador,nombre,factura,telefono) VALUES(?,?,?,?)"; //Insertamos el registro
         $query = $this->cnx->prepare($sql); // Preparar la consulta
         $data = array($identificador,$nombre,$factura,$telefono); // Mandar los valores de manera segura en forma de arreglo (Varios)
         $insert = $query -> execute($data);//ejecutamos la consulta
-        if($insert) echo "success";
+        if($insert) return true;
       }catch (PDOException $th){
         echo "error";
       }
 
     }
-
-
-    
-
     //Validar personal
     function validarPersonal($nombre){
       try {
@@ -49,9 +43,7 @@
       } catch (PDOException $th) {
         echo "error";
       }
-
     }
-
     //Registrar personal
     function registrarPersonal($nombre,$pass,$correo,$telefono,$caja,$rol){
         try{

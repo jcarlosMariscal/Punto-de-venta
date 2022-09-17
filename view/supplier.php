@@ -1,16 +1,19 @@
 <?php
-  include "../conexion/conexion.php";
-  $dProv = (isset($_GET['dProv']) ? $_GET['dProv'] : NULL);
-  $eProv = (isset($_GET['eProv']) ? $_GET['eProv'] : NULL);
-  $query = "SELECT * FROM proveedor";
-  $resultado = mysqli_query($con, $query);
+  include "config/Connection.php";
+  $cnx = Connection::connectDB();
+  $sql = "SELECT * FROM proveedor";
+  $query = $cnx->prepare($sql);
+  $query->execute();
+  $resultado = $query;
+  $deleteProv = (isset($_GET['delete']) ? $_GET['delete'] : NULL);
+  $editProv = (isset($_GET['edit']) ? $_GET['edit'] : NULL);
 
 
-  if($dProv){
+  if($deleteProv){
   ?>
   <script>
     Swal.fire({
-        title: "¿Está seguro de eliminar el proveedor <b><?php echo $dProv; ?></b>?",
+        title: "¿Está seguro de eliminar el proveedor <b><?php echo $deleteProv; ?></b>?",
         text: "Esta acción eliminará el proveedor y los productos de la base de de datos",
         icon: "question",
         showCancelButton: true,
@@ -20,7 +23,7 @@
         allowOutsideClick: false
     }).then((button)=>{
         if(button.isConfirmed === true){
-          window.location.href="logic/proveedor.php?dProv=<?php echo $dProv; ?>"
+          window.location.href="logic/deleteData.php?proveedor=<?php echo $deleteProv; ?>"
         }     
         if(button.isDismissed === true) window.location.href="index.php?p=proveedor";
     });
@@ -83,8 +86,8 @@
                         <td><?php echo $row['nombre']; ?></td>
                         <td><?php echo $row['factura']; ?></td>
                         <td><?php echo $row['telefono']; ?></td>
-                        <td class="text-center"><a href="index.php?p=proveedor&dProv=<?php echo $row['identificador']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
-                        <td class="text-center"><a href="index.php?p=proveedor&eProv=<?php echo $row['identificador']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+                        <td class="text-center"><a href="index.php?p=proveedor&delete=<?php echo $row['identificador']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                        <td class="text-center"><a href="index.php?p=proveedor&edit=<?php echo $row['identificador']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
                         <td class="text-center"><a href="" class="btn-tb-info deshabilitar"><i class="fa-solid fa-circle-info"></i></a></td>
                       </tr>
                       <?php
@@ -106,8 +109,8 @@
         </div>
         <div class="modal-body">
             <div class="permisos">
-                <form class="form-user" id="formulario" method="POST" action="logic/proveedor.php">
-                  <input type="hidden" name="action_prov" id="action_prov" value="agregar_prov">
+                <form class="form-user" id="formulario" method="POST" action="logic/createData.php">
+                    <input type="hidden" name="table" id="action_per" value="agregarProveedor">
                     <div class="input-identificador input-prov" id="group-identificador">                                       
                         <label for="">Identificador: </label>
                         <input type="text" class="input" name="identificador" id="identificador" placeholder="Introduce identificador">
@@ -143,7 +146,7 @@
 </div>
     <!-- EDITAR -->
   <?php
-    $sql = "SELECT * FROM proveedor WHERE identificador = '$eProv'";
+    $sql = "SELECT * FROM proveedor WHERE identificador = '$editProv'";
     $res = mysqli_query($con, $sql);
     foreach($res as $row){
       $id_prov = $row['id'];
@@ -162,8 +165,8 @@
       </div>
       <div class="modal-body">
         <div class="permisos">
-          <form class="form-user" id="formularioEdit" method="POST" action="logic/proveedor.php">
-            <input type="hidden" name="action_prov" id="action_prov" value="editar_prov">
+          <form class="form-user" id="formularioEdit" method="POST" action="logic/updateData.php">
+            <input type="hidden" name="table" id="action_per" value="editarProveedor">
             <input type="hidden" name="id_prov" id="id_prov" value="<?php echo $id_prov; ?>">
             <div class="input-identificador input-prov" id="group-identificador">                                       
               <label for="">Identificador: </label>

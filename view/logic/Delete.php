@@ -15,4 +15,14 @@
         return false;
       }
     }
+    function deleteProveedor($id){
+      $sql = "DELETE FROM proveedor WHERE identificador = ?";
+      $query = $this->cnx->prepare($sql); // Preparamos la consulta
+      $query -> bindParam(1,$id); // Mandamos el valor de manera segura (Uno solo)
+      if($query->execute()){
+        return true;
+      }else{
+        return false;
+      }
+    }
   }

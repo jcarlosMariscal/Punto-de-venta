@@ -9,9 +9,9 @@
       try{
         $sql = "UPDATE proveedor SET identificador = ?, nombre = ?, factura = ? ,telefono = ? WHERE id = ? ";//Insertamos el registro
         $query = $this-> cnx->prepare($sql);
-        $data = array($id_prov,$identificador,$nombre,$factura,$telefono);
+        $data = array($identificador,$nombre,$factura,$telefono, $id_prov);
         $insert = $query->execute($data);
-        if($insert) echo "success";
+        if($insert) return true;
       }catch(PDOException $th){
         echo "error";
       }

@@ -21,7 +21,7 @@ const nota_compra = () => {
     const info_compra = d.querySelector(".info-compra");
     const section_modal = d.createElement("section");
     let myForm = new FormData();
-    myForm.append("getNegocio", "obtener");
+    myForm.append("table", "getNegocio");
     let config;
     fetch("logic/createData.php", {
       method: "POST",
@@ -104,9 +104,10 @@ const nota_compra = () => {
           let form = new FormData();
           let data = JSON.stringify(aComprar);
           // console.log(data);
+          form.append("table", "realizarCompra");
           form.append("data", data);
           // console.log(form.get("data"));
-          fetch("logic/compras.php", {
+          fetch("logic/createData.php", {
             method: "POST",
             body: form,
           })

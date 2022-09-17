@@ -146,8 +146,11 @@
 </div>
     <!-- EDITAR -->
   <?php
-    $sql = "SELECT * FROM proveedor WHERE identificador = '$editProv'";
-    $res = mysqli_query($con, $sql);
+    $sql = "SELECT * FROM proveedor WHERE identificador = ?";
+    $query = $cnx->prepare($sql);
+    $query->bindParam(1, $editProv);
+    $query->execute();
+    $res = $query;
     foreach($res as $row){
       $id_prov = $row['id'];
       $identificador = $row['identificador'];

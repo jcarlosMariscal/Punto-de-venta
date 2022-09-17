@@ -55,19 +55,35 @@ if(!empty($_POST)){
       // PARA CUANDO SE REALICE EL CAMBIO A LA LÓGICA DE INICIO DE SESIÓN
     break;
     case 'getNegocio':
-      $sql = "SELECT * FROM configuracion";
-    $res = mysqli_query($con, $sql);
-    foreach ($res as $row) {
-      $razon_social = $row['razon_social'];
-      // $rfc = $row['rfc'];
-      $domicilio = $row['domicilio'];
-      $cpostal = $row['cpostal'];
-      $telefono = $row['telefono'];
-      $imagen = $row['imagen'];
-    } 
-    // echo json_code($razon_social);
-    $json = '{"razon_social":"'.$razon_social.'","domicilio":"'.$domicilio.'","cpostal":"'.$cpostal.'","telefono":"'.$telefono.'", "imagen":"'.$imagen.'"}';
-    echo $json;
+      $getNegocio = $query->getNegocio();
+      if($getNegocio[0]){
+        echo $getNegocio[1];
+      }else{
+        echo "Ha ocurrido un error, no se ha podido obtener los datos del negocio.";
+      }
+    break;
+    case 'realizarCompra':
+      $data = json_decode($_POST['data'], true);
+      foreach ($data as $row) {
+        $producto = $row['producto'];
+        $cantidad = $row['cantidad'];
+        $p_compra = $row['p_compra'];
+        $subtotal = $row['subtotal'];
+        $proveedor = $row['proveedor'];
+        $p_venta = $row['p_venta'];
+
+        $id_proveedor = $query->buscarIdProv($proveedor);
+        $buscarProdExistente = $query->buscarProdExistente($producto);
+        if($buscarProdExistente[0] > 0){
+          $cantidad2 = $buscarProdExistente[1];
+          $cantidad = $cantidad + $cantidad2;
+          $actualizar = $query->actualizarCompra($cantidad, $p_compra, $p_venta, $producto);
+          if($actualizar) echo "compraCorrecta";
+        }else{
+          $comprar = $query->realizarCompra($producto, $cantidad, $p_compra, $p_venta, $id_proveedor);
+          if($comprar) echo "compraCorrecta";
+        }
+}
     break;
     
     

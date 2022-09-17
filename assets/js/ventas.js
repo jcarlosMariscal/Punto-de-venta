@@ -21,15 +21,15 @@ code_product.addEventListener("keyup", (e) => {
       });
     } else {
       let consulta = new FormData();
-      consulta.append("action", "buscar");
+      consulta.append("table", "buscarProducto");
       consulta.append("codProducto", code_product.value);
-      fetch("logic/ventas.php", {
+      fetch("logic/createData.php", {
         method: "POST",
         body: consulta,
       })
         .then((res) => res.text())
         .then((data) => {
-          // console.log(data);
+          console.log(data);
           if (data == "noEncontrado") {
             Swal.fire({
               title: "Producto no encontrado.",

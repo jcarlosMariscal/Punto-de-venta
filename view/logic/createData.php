@@ -62,6 +62,15 @@ if(!empty($_POST)){
         echo "Ha ocurrido un error, no se ha podido obtener los datos del negocio.";
       }
     break;
+    case 'buscarProducto':
+      $codProducto = (isset($_POST['codProducto']) ? $_POST['codProducto'] : NULL);
+      $buscarProducto = $query->buscarProducto($codProducto);
+      if($buscarProducto[0]){
+        echo $buscarProducto[1];
+      }else{
+        echo "noEncontrado";
+      }
+    break;
     case 'realizarCompra':
       $data = json_decode($_POST['data'], true);
       foreach ($data as $row) {
@@ -83,9 +92,24 @@ if(!empty($_POST)){
           $comprar = $query->realizarCompra($producto, $cantidad, $p_compra, $p_venta, $id_proveedor);
           if($comprar) echo "compraCorrecta";
         }
-}
+      }
     break;
-    
+    case 'venderProducto':
+      $usuario = (isset($_POST['usuario']) ? $_POST['usuario'] : NULL);
+      $producto = (isset($_POST['producto']) ? $_POST['producto'] : NULL);
+      $cantidad = (isset($_POST['cantidad']) ? $_POST['cantidad'] : NULL);
+
+      $id_producto = $query->buscarIdProd($producto);
+      $realizarVenta = $query->realizarVenta($id_producto, $usuario, $cantidad); // Vender producto
+      if($realizarVenta){
+        $cantidadBase = $query->obtenerCantidadBase($producto);
+        $actual = $cantidadBase - $cantidad;
+        $reducirCantidad = $query->reducirCantidad($actual, $producto);
+        if($reducirCantidad){
+          echo "ventaRealizada";
+        }
+      }
+    break;
     
     default:
       # code...

@@ -77,11 +77,47 @@
         echo "error";
       }
     }
+    function buscarProducto($codigo){
+      try {
+        $sql = "SELECT * FROM productos WHERE codigo = ?";
+        $query = $this->cnx->prepare($sql);
+        $query->bindParam(1, $codigo);
+        $query -> execute();
+        if($query->rowCount() > 0){
+          foreach ($query as $row) {
+            $codigo = $row['codigo'];
+            $producto = $row['producto'];
+            $pventa = $row['pventa'];
+            $id_proveedor = $row['id_proveedor'];
+            $cantidad = $row['cantidad'];
+          } 
+          $json = '{"codigo":"'.$codigo.'","producto":"'.$producto.'","pventa":"'.$pventa.'","id_proveedor":"'.$id_proveedor.'", "cantidad":"'.$cantidad.'"}';
+          return [true, $json];
+        }else{
+          return [false, 'noEncontrado'];
+        }
+      } catch (PDOException $th){
+        echo "error";
+      }
+    }
     function buscarIdProv($proveedor){
       try {
         $sql = "SELECT id FROM proveedor WHERE nombre = ?";
         $query = $this->cnx->prepare($sql);
         $query->bindParam(1, $proveedor);
+        $query->execute();
+        foreach($query as $row){
+          return $row['id'];
+        }
+      } catch (PDOException $th){
+        echo "error";
+      }
+    }
+    function buscarIdProd($producto){
+      try {
+        $sql = "SELECT id FROM productos WHERE codigo = ?";
+        $query = $this->cnx->prepare($sql);
+        $query->bindParam(1, $producto);
         $query->execute();
         foreach($query as $row){
           return $row['id'];
@@ -123,6 +159,45 @@
         $data = array($producto,$cantidad,$p_compra,$p_venta,$id_proveedor);
         $insert = $query -> execute($data);
         if($insert) return true;
+      } catch (PDOException $th){
+        echo "error";
+      }
+    }
+    function realizarVenta($id_producto, $usuario, $cantidad){
+      try {
+        $sql = "INSERT INTO ventas (id_producto, id_user, cantidad) VALUES(?,?,?)";
+        $query = $this->cnx->prepare($sql);
+        $data = array($id_producto,$usuario,$cantidad);
+        $insert = $query -> execute($data);
+        if($insert) return true;
+      } catch (PDOException $th){
+        echo "error";
+      }
+    }
+    function obtenerCantidadBase($producto){
+      try {
+        $sql = "SELECT cantidad FROM productos WHERE codigo = ?";
+        $query = $this->cnx->prepare($sql);
+        $query->bindParam(1,$producto);
+        $query->execute(); 
+        if($query->rowCount() > 0){
+          foreach($query as $row){
+            return $row['cantidad'];
+          }
+        }
+      } catch (PDOException $th){
+        echo "error";
+      }
+    }
+    function reducirCantidad($actual, $producto){
+      try {
+        $sql = "UPDATE productos SET cantidad = ? WHERE codigo = ?";
+        $query = $this->cnx->prepare($sql);
+        $query->bindParam(1,$actual); 
+        $query->bindParam(2,$producto); 
+        if($query->execute()){
+          return true;
+        }
       } catch (PDOException $th){
         echo "error";
       }

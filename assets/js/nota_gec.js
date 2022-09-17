@@ -262,10 +262,10 @@ const nota_venta = () => {
     console.log(almacenadorRepetidos);
     const procesarVenta = [];
     const formBusc = new FormData();
-    formBusc.append("action", "buscar");
+    formBusc.append("table", "buscarProducto");
     for (let k = 0; k < unicosElementos.length; k++) {
       formBusc.append("codProducto", unicosElementos[k]);
-      fetch("logic/ventas.php", {
+      fetch("logic/createData.php", {
         method: "POST",
         body: formBusc,
       })
@@ -290,11 +290,11 @@ const nota_venta = () => {
     venderProductos.addEventListener("click", (e) => {
       let form = new FormData();
       form.append("usuario", idVendedor);
-      form.append("action", "vender");
+      form.append("table", "venderProducto");
       for (let k = 0; k < unicosElementos.length; k++) {
         form.append("producto", unicosElementos[k]);
         form.append("cantidad", almacenadorRepetidos[k]);
-        fetch("logic/ventas.php", {
+        fetch("logic/createData.php", {
           method: "POST",
           body: form,
         })

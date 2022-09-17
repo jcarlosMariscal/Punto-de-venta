@@ -11,9 +11,10 @@ generarCodigo.addEventListener("submit", (e) => {
 btnAdd.addEventListener("click", (e) => {
   console.log(generarCodigo.codigo.value);
   let form = new FormData();
+  form.append("table", "generarCodigo");
   form.append("codigo", generarCodigo.codigo.value);
   form.append("producto", generarCodigo.producto.value);
-  fetch("logic/productos.php", {
+  fetch("logic/createData.php", {
     method: "POST",
     body: form,
   })

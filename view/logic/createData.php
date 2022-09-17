@@ -110,6 +110,12 @@ if(!empty($_POST)){
         }
       }
     break;
+    case 'generarCodigo':
+      $codigo = (isset($_POST['codigo']) ? $_POST['codigo'] : NULL);
+      $producto = (isset($_POST['producto']) ? $_POST['producto'] : NULL);
+      $generarCodigo = $query->generarCodigo($codigo, $producto);
+      if($generarCodigo) echo "correcto";
+    break;
     
     default:
       # code...

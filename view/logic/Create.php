@@ -202,4 +202,17 @@
         echo "error";
       }
     }
+    function generarCodigo($codigo, $producto){
+      try {
+        $sql = "UPDATE productos SET codigo = ? WHERE producto = ?";
+        $query = $this->cnx->prepare($sql);
+        $query->bindParam(1,$codigo); 
+        $query->bindParam(2,$producto); 
+        if($query->execute()){
+          return true;
+        }
+      } catch (PDOException $th){
+        echo "error";
+      }
+    }
   }

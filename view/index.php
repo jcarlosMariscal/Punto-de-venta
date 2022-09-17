@@ -138,8 +138,8 @@ $eProv = (isset($_GET['eProv']) ? $_GET['eProv'] : NULL);
 <?php endif; ?>
 <!-- MOSTRAR MODAL DE EDITAR PERSONAL -->
 <?php
-$ePer = (isset($_GET['ePer']) ? $_GET['ePer'] : NULL);
-  if($ePer): 
+$editPer = (isset($_GET['edit']) ? $_GET['edit'] : NULL);
+  if($editPer): 
 ?>
   <script>
     $(function(){

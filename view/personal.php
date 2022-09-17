@@ -1,12 +1,14 @@
 <?php
-  include "../conexion/conexion.php";
-  $dPer = (isset($_GET['dPer']) ? $_GET['dPer'] : NULL);
-  $ePer = (isset($_GET['ePer']) ? $_GET['ePer'] : NULL);
-  $query = "SELECT * FROM usuarios";
-  $resultado = mysqli_query($con, $query);
+  include "config/Connection.php";
+  $cnx = Connection::connectDB();
+  $sql = "SELECT * FROM usuarios";
+  $query = $cnx->prepare($sql);
+  $query->execute();
+  $resultado = $query;
+  $deletePer = (isset($_GET['delete']) ? $_GET['delete'] : NULL);
+  $editPer = (isset($_GET['edit']) ? $_GET['edit'] : NULL);
 
-
-  if($dPer){
+  if($deletePer){
   ?>
   <script>
     Swal.fire({
@@ -20,7 +22,7 @@
         allowOutsideClick: false
     }).then((button)=>{
         if(button.isConfirmed === true){
-          window.location.href="logic/personal.php?dPer=<?php echo $dPer; ?>"
+          window.location.href="logic/deleteData.php?personal=<?php echo $deletePer; ?>"
         }     
         if(button.isDismissed === true) window.location.href="index.php?p=personal";
     });
@@ -85,8 +87,8 @@
                           <td><?php echo ($row['telefono'] == NULL) ? "<b>Sin telefono</b>" : $row['telefono'];; ?></td>
                           <td><?php echo $row['id_rol'] == 1 ? "Administrador": "Vendedor"; ?></td>
                           <td><?php echo ($row['id_caja'] == NULL) ? "<b>Sin Caja</b>" : $row['id_caja'];; ?></td>
-                          <td class="text-center"><a href="index.php?p=personal&dPer=<?php echo $row['id_user']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
-                          <td class="text-center"><a href="index.php?p=personal&ePer=<?php echo $row['id_user']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+                          <td class="text-center"><a href="index.php?p=personal&delete=<?php echo $row['id_user']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                          <td class="text-center"><a href="index.php?p=personal&edit=<?php echo $row['id_user']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
                           <td class="text-center"><a href="" class="btn-tb-info deshabilitar"><i class="fa-solid fa-circle-info"></i></a></td>
                       </tr>
                       <?php
@@ -107,8 +109,9 @@
         </div>
         <div class="modal-body">
             <div class="permisos">
-                <form class="form-user" id="formulario" method="POST" action="logic/personal.php">
-                  <input type="hidden" name="action_per" id="action_per" value="agregar_per">
+                <form class="form-user" id="formulario" method="POST" action="logic/createData.php">
+                  
+                  <input type="hidden" name="table" id="action_per" value="agregarPersonal">
                     <div class="input-user-name input-user" id="group-nombre">                                       
                         <label for="">Nombre: </label>
                         <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce tu nombre">
@@ -164,15 +167,18 @@
 </div>
     <!-- EDITAR -->
         <?php
-    $sql = "SELECT * FROM usuarios WHERE id_user = '$ePer'";
-    $res = mysqli_query($con, $sql);
-    foreach($res as $row){
-      $id_user = $row['id_user'];
-      $nombre = $row['username'];
-      $correo = $row['correo'];
-      $telefono = $row['telefono'];
-      $caja = $row['id_caja'];
-    }
+        $sql = "SELECT * FROM usuarios WHERE id_user = ?";
+        $query = $cnx->prepare($sql);
+        $query->bindParam(1, $editPer);
+        $query->execute();
+        $res = $query;
+        foreach($res as $row){
+          $id_user = $row['id_user'];
+          $nombre = $row['username'];
+          $correo = $row['correo'];
+          $telefono = $row['telefono'];
+          $caja = $row['id_caja'];
+        }
   ?>
 <div class="modal fade bd-example-modal-lg" id="modPer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
@@ -183,8 +189,8 @@
         </div>
         <div class="modal-body">
             <div class="permisos">
-                <form class="form-user" id="formularioEdit" method="POST" action="logic/personal.php">
-                  <input type="hidden" name="action_per" id="action_per" value="editar_per">
+                <form class="form-user" id="formularioEdit" method="POST" action="logic/updateData.php">
+                  <input type="hidden" name="table" id="action_per" value="editarPersonal">
             <input type="hidden" name="id_per" id="id_per" value="<?php echo $id_user; ?>">
                     <div class="input-user-name input-user" id="group-nombre">                                       
                         <label for="">Nombre: </label>

@@ -22,9 +22,9 @@
       try{
         $sql = "UPDATE usuarios SET username = ?, pass = ?, correo = ?, telefono = ?,id_rol = ? WHERE id_user = ?";//Insertamos el registro
         $query = $this-> cnx->prepare($sql);
-        $data = array($id_per,$nombre,$telefono,$correo,$rol,$pass);
+        $data = array($nombre,$pass, $correo,$telefono,$rol, $id_per);
         $insert = $query->execute($data);
-        if($insert) echo "success";
+        if($insert) return true;
       }catch(PDOException $th){
         echo "error";
       }

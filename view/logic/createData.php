@@ -27,8 +27,7 @@ if(!empty($_POST)){
         }
       }      
       break;
-    case 'registrarPersonal':
-    $action_per = (isset($_POST['action_per']) ? $_POST['action_per'] : NULL);
+    case 'agregarPersonal':
 
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
       $pass = (isset($_POST['pass']) ? $_POST['pass'] : NULL);
@@ -38,7 +37,7 @@ if(!empty($_POST)){
       $rol = (isset($_POST['rol']) ? $_POST['rol'] : NULL);
       
       //  LLAMAMOS A UN MÉTODO PARA VALIDAR SI YA EXISTE UN USUARIO CON EL MISMO NOMBRE
-      $validate = $query->validarPersonal($nombre);
+      $validate = $query->validateNameUser($nombre, 'usuarios','username');
       if($validate >= 1){
         echo "Usuario ya registrado";
       }else{

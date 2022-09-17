@@ -5,12 +5,11 @@
     function __construct(){
       $this -> cnx = Connection::connectDB();
     }
-    function validarProveedor($identificador,$nombre){ // MÉTODO QUE VALIDA SI EL NOMBRE DE USUARIO ESTÁ REPETIDO
+    function validateNameUser($nombre, $table, $field){ // MÉTODO QUE VALIDA SI EL NOMBRE DE USUARIO ESTÁ REPETIDO
       try {
-        $sql = "SELECT * FROM proveedor WHERE identificador = ? OR nombre= ?"; // Hacer la consulta. NO MANDAR LOS VALORES DIRECTAMENTE
+        $sql = "SELECT * FROM $table WHERE $field = ? "; // Hacer la consulta. NO MANDAR LOS VALORES DIRECTAMENTE
         $query = $this->cnx->prepare($sql); // Preparamos la consulta
-        $query -> bindParam(1,$identificador); // Mandamos el valor de manera segura (Uno solo)
-        $query -> bindParam(2,$nombre); // Mandamos el valor de manera segura (Uno solo)
+        $query -> bindParam(1,$nombre); // Mandamos el valor de manera segura (Uno solo)
         if($query->execute()){
           echo "success";
           return $query->rowCount();
@@ -61,7 +60,8 @@
           $encrypt = password_hash($pass, PASSWORD_BCRYPT); // Encriptar la contraseña
           $data = array($nombre,$encrypt,$correo,$telefono,$caja,$rol); // Mandar los valores de manera segura en forma de arreglo (Varios)
           $insert = $query -> execute($data);//ejecutamos la consulta
-          if($insert) echo "success";
+          if($insert) return true;
+
         }catch (PDOException $th){
           echo "error";
         }

@@ -19,34 +19,32 @@
         echo "error";
       }
     }
-    function registerAdmin($username, $pass, $id_rol){ // MÉTODO QUE REGISTRA AL ADMINISTRADOR
+    function registerAdmin($nombre, $pass){ // MÉTODO QUE REGISTRA AL ADMINISTRADOR
       try {
-        $sql = "INSERT INTO usuarios(username,pass,id_rol) VALUES (?,?,?)"; // Hacer la consulta. NO MANDAR LOS VALORES DIRECTAMENTE
+        $sql = "INSERT INTO administrador(nombre,pass) VALUES (?,?)"; // Hacer la consulta. NO MANDAR LOS VALORES DIRECTAMENTE
         $query = $this->cnx->prepare($sql); // Preparar la consulta
         $encrypt = password_hash($pass, PASSWORD_BCRYPT); // Encriptar la contraseña
-        $data = array($username,$encrypt,$id_rol); // Mandar los valores de manera segura en forma de arreglo (Varios)
+        $data = array($nombre,$encrypt); // Mandar los valores de manera segura en forma de arreglo (Varios)
         $insert = $query -> execute($data);
         if($insert) echo "success";
       } catch (PDOException $th) {
         echo "error";
       }
     }
-    function loginAdmin($username, $pass){
+    function loginAdmin($nombre, $pass){
       try {
-        $sql = "SELECT * FROM usuarios WHERE username = ?";
+        $sql = "SELECT * FROM administrador WHERE nombre = ?";
         $query = $this->cnx->prepare($sql);
-        $query -> bindParam(1,$username);
+        $query -> bindParam(1,$nombre);
         if($query->execute()){
             foreach($query as $data){
                 if(password_verify($pass,$data['pass'])){
                     // $_SESSION["admin"] = $data; // GUARDA LA SESIÓN PARA USARLO DESPUÉS
                     $_SESSION['active'] = true;
-                    $_SESSION['id'] = $data['id_user'];
-                    $_SESSION['user'] = $data['username'];
+                    $_SESSION['id'] = $data['id_admin'];
+                    $_SESSION['user'] = $data['nombre'];
                     $_SESSION['correo'] = $data['correo'];
                     $_SESSION['telefono'] = $data['telefono'];
-                    $_SESSION['rol'] = $data['id_rol'];
-                    $_SESSION['id_caja'] = $data['id_caja'];
                     return true;
                 }else{
                     return false;

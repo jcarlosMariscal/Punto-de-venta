@@ -2,11 +2,11 @@
 
 include ("../conexion/conexion.php");
 
-$query = "select * from configuracion ORDER BY id DESC LIMIT 1";
+$query = "select * from negocio ORDER BY id_negocio DESC LIMIT 1";
 $resultado = mysqli_query($con, $query);
 foreach ($resultado as $row) { 
-  $imagen = $row['imagen'];
-  $razon_social = $row['razon_social'];
+  $logo = $row['logo'];
+  $nombre = $row['nombre'];
 }
 
 ?>
@@ -15,10 +15,10 @@ foreach ($resultado as $row) {
   <div class="system">
     <div class="system__info">
       <div class="info__logo">
-        <a href="index.php?p=main" class="ul__link"><img style="border-radius: 50px ;" src="../imagenes/<?php echo $imagen; ?>" class="imag img-fluid" alt="..."></a>
+        <a href="index.php?p=main" class="ul__link"><img style="border-radius: 50px ;" src="../imagenes/<?php echo $logo; ?>" class="imag img-fluid" alt="..."></a>
       </div>
       <div class="info__text">
-        <h3 class="info__name"><?php echo $razon_social; ?></h3>
+        <h3 class="info__name"><?php echo $nombre; ?></h3>
         <!-- <h5 class="info__welcome">Bienvenido(a) al sistema</h5> -->
       </div>
     </div>

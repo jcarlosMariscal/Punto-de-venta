@@ -3,7 +3,7 @@
   // VALIDAR SI YA EXISTE UN ADMINISTRADOR PARA YA NO MOSTRAR EL FORMULARIO
   $cnx = Connection::connectDB();
   $admin = 1;
-  $sql = "SELECT * FROM usuarios WHERE id_rol = ?";
+  $sql = "SELECT * FROM personal WHERE id_rol = ?";
   $query = $cnx->prepare($sql);
   $query->bindParam(1, $admin);
   $query->execute();
@@ -42,11 +42,11 @@
         <input type="password" name="pass" id="pass" placeholder="Contraseña">
         <p class="input-error-log">*La contraseña debe tener mínimo 5 caracteres, pueden ser letras, números y no se aceptan caracteres especiales.</p>
       </div>      
-        <div class="select">
+        <!-- <div class="select">
           <select name="id_rol">
             <option value="1">Administrador</option>
           </select>
-        </div>
+        </div> -->
             <br><br>
             <div class="input-btn-adm">
               <button type="submit" id="btn-send" value="ingresar" class="btn-sesion">Registrarse</button>

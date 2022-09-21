@@ -8,6 +8,7 @@ CREATE TABLE negocio(
   tipo VARCHAR(255) NOT NULL,
   telefono VARCHAR(15) NOT NULL,
   correo VARCHAR(255) NOT NULL,
+  logo VARCHAR(255) NOT NULL,
   PRIMARY KEY (id_negocio)
 );
 CREATE TABLE datos_fiscales(
@@ -33,7 +34,7 @@ CREATE TABLE sucursal(
   CONSTRAINT FOREIGN KEY (id_negocio) REFERENCES negocio(id_negocio)
 );
 CREATE TABLE administrador(
-  id_admin INT NOT NULL,
+  id_admin INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(255) NOT NULL,
   pass VARCHAR(255) NOT NULL,
   correo VARCHAR(255) NULL,
@@ -134,4 +135,4 @@ CREATE TABLE compra_producto(
 
 INSERT INTO caja(caja, total) VALUES (01,10000), (02,5000), (03,20000);
 INSERT INTO rol(rol) VALUES ('Gerente'),('Ventas');
--- INSERT INTO configuracion(razon_social, rfc, domicilio, cpostal, telefono, imagen) VALUES ('Tech', 'JUMM420313PA9', 'Av. Lopez Mateos #587 Playa ensenada', '25758', '2582582582', 'icono.png');
+INSERT INTO negocio(nombre, tipo, telefono,correo, logo) VALUES ('Nova Tech', 'Abarrotes', '1234567890', 'prueba@gmail.com','icono.png');

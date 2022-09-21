@@ -7,16 +7,16 @@ if(!empty($_POST)){
   switch ($table) {
     case 'registerAdmin': // REGISTRAR ADMINISTRADOR
       // VALIDAMOS SI SE RECIBEN LOS DATOS, SI NO MANDALOS LOS VALORES COMO NULO.
-      $username = (isset($_POST['username']) ? $_POST['username'] : NULL);
+      $nombre = (isset($_POST['username']) ? $_POST['username'] : NULL);
       $pass = (isset($_POST['pass']) ? $_POST['pass'] : NULL);
-      $rol = (isset($_POST['id_rol']) ? $_POST['id_rol'] : NULL);
+      // $rol = (isset($_POST['id_rol']) ? $_POST['id_rol'] : NULL);
       // LLAMAMOS A UN MÉTODO PARA VALIDAR SI YA EXISTE UN USUARIO CON EL MISMO NOMBRE
-      $validate = $query->validateUser($username);
+      $validate = $query->validateUser($nombre);
       if($validate >= 1){
         echo "User with repeated name";
       }else{
         // SI NO ESTÁ REPETIDO, LLAMAMOS A UN MÉTODO PARA REGISTRARSE Y MANDAMOS LOS PARAMETROS NECESARIOS
-        $query -> registerAdmin($username, $pass, $rol);
+        $query -> registerAdmin($nombre, $pass);
         if($query){
           ?>
             <script>

@@ -1,0 +1,238 @@
+body {
+  background-image: url(../img/fondo.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+.custom-input-file {
+  background-color: #36ae7c;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px;
+  min-height: 15px;
+  overflow: hidden;
+  padding: 5px;
+  position: relative;
+  text-align: center;
+  width: 100px;
+  margin-top: 10px;
+}
+.custom-input-file .input-file {
+  border: 10000px solid transparent;
+  cursor: pointer;
+  font-size: 10000px;
+  margin: 0;
+  opacity: 0;
+  outline: 0 none;
+  padding: 0;
+  position: absolute;
+  right: -1000px;
+  top: -1000px;
+}
+
+.container {
+  width: 420px;
+  background: #ffffff;
+  text-align: center;
+  padding: 30px 35px 0 35px;
+  height: 550px;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+  padding: 50px 30px;
+}
+.container header {
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 30px 0;
+}
+.container .form-princ {
+  width: 100%;
+  overflow: hidden;
+}
+.form-princ form {
+  display: flex;
+  width: 500%;
+}
+.form-princ form .pagina {
+  width: 20%;
+  transition: margin-left 0.3s ease-in-out;
+}
+.form-princ form .pagina .title {
+  text-align: left;
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+}
+
+.form-princ form .pagina .campo {
+  height: 35px;
+  width: 350px;
+  margin: 20px 0;
+  display: flex;
+  position: relative;
+}
+
+.form-princ .pagina .campo .label {
+  position: absolute;
+  top: -30px;
+  font-weight: 500;
+  font-size: 14px;
+  font-style: italic;
+  float: left;
+  text-align: left;
+  width: 100%;
+}
+
+.form-princ .pagina .campo input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-bottom: 2px solid #1a3336;
+  background: transparent;
+  outline: none;
+  color: #1a3336;
+  font-size: 16px;
+}
+.form-princ .pagina .campo button {
+  width: 100%;
+  height: calc(100% + 5px);
+  margin-top: -20px;
+  border: none;
+  background: #1a3336;
+  border-radius: 7px;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.form-princ form .pagina .btns button {
+  margin-top: -20px !important;
+}
+.form-princ .pagina .btns button.cont {
+  margin-right: 3px;
+  font-size: 17px;
+}
+.form-princ .pagina .btns button.sig {
+  margin-left: 3px;
+}
+.container .progress-bar {
+  display: flex;
+  margin: 30px 0;
+}
+
+.container .progress-bar .paso {
+  text-align: center;
+  width: 100%;
+  position: relative;
+}
+
+.progress-bar .paso .num {
+  position: relative;
+  width: 30px;
+  height: 30px;
+  border: 2px solid #1a3336;
+  background: #1a3336;
+  color: #ffffff;
+  display: inline-block;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  transition: 0.2s;
+}
+.progress-bar .paso .num.active {
+  border-color: #36ae7c;
+  background: #36ae7c;
+}
+.progress-bar .paso .num span {
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.progress-bar .paso .num.active span {
+  display: none;
+}
+.progress-bar .paso .check {
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 45%;
+  font-size: 17px;
+  transform: translate(-50%, -50%);
+}
+.progress-bar .paso .check.active {
+  display: block;
+  color: #fff; /*Cambiar a blanco*/
+}
+/* .progress-bar .paso .num:before,
+  .progress-bar .paso .num:after {
+    position: absolute;
+    content: "";
+    width: 35px;
+    height: 3px;
+    bottom: 11px;
+    right: -40px;
+    background: #000;
+  } */
+
+/* .progress-bar .paso:last-child .num:before,
+  .progress-bar .paso:last-child .num::after {
+    display: none;
+  }
+  .progress-bar .paso .num:after {
+    background: #36ae7c;
+    animation: mov_Linea 0.3s linear forwards;
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  
+  @keyframes mov_Linea {
+    100% {
+      transform: scaleX(1);
+    }
+  } */
+
+/*Estilos para mostrar contraseña*/
+/*   
+  .ver {
+    position: absolute;
+    top: 29%;
+    right: 7px;
+    font-size: 20px;
+    color: #1a3336;
+  }
+  
+  #ocultar {
+    display: none;
+  }
+  
+  #mostrar,
+  #ocultar {
+    cursor: pointer;
+  } */
+/* .input-error-log {
+    color: #eb5353;
+    font-size: 13px;
+    font-weight: bold;
+    display: none;
+  }
+  
+.input-error-act {
+    color: #eb5353;
+    font-size: 13px;
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
+  
+  .input-error-log.active {
+    transition: all 0.5s ease-in-out;
+    display: inline-block;
+  } */

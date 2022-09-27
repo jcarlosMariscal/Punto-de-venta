@@ -21,10 +21,11 @@
     }
     function registerAdmin($nombre, $pass){ // MÉTODO QUE REGISTRA AL ADMINISTRADOR
       try {
-        $sql = "INSERT INTO administrador(nombre,pass) VALUES (?,?)"; // Hacer la consulta. NO MANDAR LOS VALORES DIRECTAMENTE
+        $id_negocio=1;
+        $sql = "INSERT INTO administrador(nombre,pass, id_negocio) VALUES (?,?, ?)"; // Hacer la consulta. NO MANDAR LOS VALORES DIRECTAMENTE
         $query = $this->cnx->prepare($sql); // Preparar la consulta
         $encrypt = password_hash($pass, PASSWORD_BCRYPT); // Encriptar la contraseña
-        $data = array($nombre,$encrypt); // Mandar los valores de manera segura en forma de arreglo (Varios)
+        $data = array($nombre,$encrypt, $id_negocio); // Mandar los valores de manera segura en forma de arreglo (Varios)
         $insert = $query -> execute($data);
         if($insert) echo "success";
       } catch (PDOException $th) {

@@ -9,38 +9,24 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="shortcut icon" href="assets/img/favicon.png" type="image/x-icon">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>Inicio de sesión</title>
+    <title>Nova Tech PV</title>
 </head>
 <body>
-    <!-- Creación de Login -->
-    <div class="login-box">
-      <img class="user" src="assets/img/icono1.png" alt="logo">
-        <h1 class="text">Login</h1>
+    <div class="login-box1">
         <h1 class="text">Bienvenido al sistema</h1>
-        <form method="post" action="view/logic/userData.php" id="formulario">
-          <input type="hidden" name="table" value="loginAdmin"> <!-- CAMPO NECESARIO PARA userData.php  -->
-          <div class="input-adm" id="group-username">
-            <input type="text" class="input-admin" name="username" id="username" placeholder="Nombre de Usuario">
-            <p class="input-error-log">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>
-          </div>
-          <div class="input-adm" id="group-pass">
-            <!-- <input type="text" class="input input-config"  name="rfc" id="rfc" > -->
-            <input type="password" name="pass" id="pass" placeholder="Contraseña">
-            <p class="input-error-log">*La contraseña debe tener mínimo 5 caracteres, pueden ser letras, números y no se aceptan caracteres especiales.</p>
-          </div>
-            <br>
-            <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>    <!-- se mostrara la alerta cuando encuentre un error -->
-            <div class="input-btn-adm">
-              <input type="submit" value="Iniciar Sesión" id="btn-send">
-            </div>
-           <br>
-            <!-- <h1><a href="view/" class="btn-sesión">Iniciar Sesión</a></h1>  -->
-           <p>Si usted no tiene una cuenta por favor entra a <a href="registro.php" class="quitar">Registrarse</a></p>
-        </form>
+        <h1 class="text">Nova Tech</h1>
+         <img class="log" src="assets/img/favicon.png" alt="logo">
+         <br>
+         <div class="input-btn-adm">
+          <input onclick="location.href='login.php'"  type="submit" value="Iniciar Sesión" id="btn-send">
+          <input onclick="location.href='add_negocio.php'" type="submit" value="Registrar" id="btn-send">
+         </div>
     </div>
 </body>
 <script src="./assets/js/index.js" type="module"></script>
 </html>
+
+
 
 <script>
     let msj = localStorage.getItem("register");

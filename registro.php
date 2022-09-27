@@ -1,13 +1,13 @@
 <?php
   include "view/config/Connection.php";
   // VALIDAR SI YA EXISTE UN ADMINISTRADOR PARA YA NO MOSTRAR EL FORMULARIO
-  $cnx = Connection::connectDB();
-  $admin = 1;
-  $sql = "SELECT * FROM personal WHERE id_rol = ?";
-  $query = $cnx->prepare($sql);
-  $query->bindParam(1, $admin);
-  $query->execute();
-  if($query->rowCount() >= 1) header("Location: index.php");
+  // $cnx = Connection::connectDB();
+  // $admin = 1;
+  // $sql = "SELECT * FROM personal WHERE id_rol = ?";
+  // $query = $cnx->prepare($sql);
+  // $query->bindParam(1, $admin);
+  // $query->execute();
+  // if($query->rowCount() >= 1) header("Location: index.php");
   // VALIDAR SI YA EXISTE UN ADMINISTRADOR PARA YA NO MOSTRAR EL FORMULARIO
 ?>
 

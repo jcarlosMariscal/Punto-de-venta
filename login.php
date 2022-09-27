@@ -50,11 +50,11 @@
 </html>
 
 <script>
-    let msj = localStorage.getItem("register");
-    if(msj === "true"){
+    let msj = localStorage.getItem("alert");
+    if(msj === "show"){
       Swal.fire({
-            title: "Registro correcto",
-            text: "Inicie sesión en el siguiente formulario",
+            title: "Registro completado",
+            text: "Inicie sesión a continuación",
             icon: "success",//error, 
             timer: 3000,
             toast: true,
@@ -64,9 +64,10 @@
         });
     } 
     setTimeout(function(){
-        localStorage.removeItem("register");
+        localStorage.removeItem("alert");
     }, 1500);
 </script>
+
 
 
 <!-- <!DOCTYPE html>

@@ -116,6 +116,62 @@ if(!empty($_POST)){
       $generarCodigo = $query->generarCodigo($codigo, $producto);
       if($generarCodigo) echo "correcto";
     break;
+    case 'negocio':
+      $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
+      $tipo = (isset($_POST['tipo']) ? $_POST['tipo'] : NULL);
+      $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL);
+      $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL);
+      $imagen = (isset($_FILES['imagen']) ? $_FILES['imagen'] : NULL);
+      // echo $correo;
+      // echo $_FILES['imagen']['name'];
+      $registrarNegocio = $query->registrarNegocio($nombre, $tipo, $telefono, $correo, $imagen['name']);
+      if($registrarNegocio[0]) {
+        echo "negocioRegistrado".$registrarNegocio[1];
+      }else {
+        echo "error";
+      }
+    break;
+    case 'datos_fiscales':
+      $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
+      $rfc = (isset($_POST['rfc']) ? $_POST['rfc'] : NULL);
+      $regimen = (isset($_POST['regimen']) ? $_POST['regimen'] : NULL);
+      $id_negocio = (isset($_POST['id_negocio']) ? $_POST['id_negocio'] : NULL);
+      $registrarDF = $query->registrarDF($nombre, $rfc, $regimen, $id_negocio);
+      if($registrarDF) {
+        echo "dfRegistrado";
+      }else {
+        echo "error";
+      }
+    break;
+    case 'sucursal':
+      $estado = (isset($_POST['estado']) ? $_POST['estado'] : NULL);
+      $ciudad = (isset($_POST['ciudad']) ? $_POST['ciudad'] : NULL);
+      $colonia = (isset($_POST['colonia']) ? $_POST['colonia'] : NULL);
+      $direccion = (isset($_POST['direccion']) ? $_POST['direccion'] : NULL);
+      $codigo_postal = (isset($_POST['codigo_postal']) ? $_POST['codigo_postal'] : NULL);
+      $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL);
+      $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL);
+      $id_negocio = (isset($_POST['id_negocio']) ? $_POST['id_negocio'] : NULL);
+      $registrarSucursal = $query->registrarSucursal($estado, $ciudad, $colonia, $direccion, $codigo_postal, $telefono, $correo, $id_negocio);
+      if($registrarSucursal) {
+        echo "sucursalRegistrado";
+      }else {
+        echo "error";
+      }
+    break;
+    case 'administrador':
+      $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
+      $pass = (isset($_POST['pass']) ? $_POST['pass'] : NULL);
+      $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL);
+      $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL);
+      $id_negocio = (isset($_POST['id_negocio']) ? $_POST['id_negocio'] : NULL);
+      $registrarAdmin = $query->registrarAdmin($nombre, $pass, $correo, $telefono, $id_negocio);
+      if($registrarAdmin) {
+        echo "adminRegistrado";
+      }else {
+        echo "error";
+      }
+    break;
     
     default:
       # code...

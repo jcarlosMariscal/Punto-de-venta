@@ -2,16 +2,6 @@ DROP DATABASE punto_venta;
 CREATE DATABASE punto_venta;
 USE punto_venta;
 
-CREATE TABLE datos_fiscales(
-  id_datos INT NOT NULL AUTO_INCREMENT,
-  nombre VARCHAR(255) NOT NULL,
-  rfc VARCHAR(20) NOT NULL,
-  rFiscal VARCHAR(255) NOT NULL,
-  id_negocio INT NOT NULL,
-  CONSTRAINT FOREIGN KEY (id_negocio) REFERENCES negocio(id_negocio)
-  PRIMARY KEY (id_datos)
-);
-
 CREATE TABLE negocio(
   id_negocio INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(255) NOT NULL,
@@ -19,7 +9,17 @@ CREATE TABLE negocio(
   telefono VARCHAR(15) NOT NULL,
   correo VARCHAR(255) NOT NULL,
   logo VARCHAR(255) NOT NULL,
-  PRIMARY KEY (id_negocio),
+  PRIMARY KEY (id_negocio)
+);
+
+CREATE TABLE datos_fiscales(
+  id_datos INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
+  rfc VARCHAR(20) NOT NULL,
+  rFiscal VARCHAR(255) NOT NULL,
+  id_negocio INT NOT NULL,
+  CONSTRAINT FOREIGN KEY (id_negocio) REFERENCES negocio(id_negocio),
+  PRIMARY KEY (id_datos)
 );
 
 CREATE TABLE sucursal(
@@ -140,4 +140,3 @@ CREATE TABLE compra_producto(
 
 INSERT INTO caja(caja, total) VALUES (01,10000), (02,5000), (03,20000);
 INSERT INTO rol(rol) VALUES ('Gerente'),('Ventas');
-INSERT INTO negocio(nombre, tipo, telefono,correo, logo) VALUES ('Nova Tech', 'Abarrotes', '1234567890', 'prueba@gmail.com','icono.png');

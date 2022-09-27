@@ -5,6 +5,53 @@
     function __construct(){
       $this -> cnx = Connection::connectDB();
     }
+    function registrarNegocio($nombre, $tipo, $telefono, $correo, $imagen){
+      try {
+        $sql = "INSERT INTO negocio(nombre, tipo, telefono, correo, logo) VALUES (?,?,?,?,?)";
+        $query = $this->cnx->prepare($sql);
+        $data = array($nombre,$tipo,$telefono,$correo, $imagen);
+        $insert = $query -> execute($data);
+        $lastId = $this->cnx->lastInsertId();
+        
+        if($insert) return [true, $lastId];
+      } catch (PDOException $th) {
+        return [false, 0];
+      }
+    }
+    function registrarDF($nombre, $rfc, $regimen, $id_negocio){
+      try {
+        $sql = "INSERT INTO datos_fiscales(nombre, rfc, rFiscal, id_negocio) VALUES (?,?,?,?)";
+        $query = $this->cnx->prepare($sql);
+        $data = array($nombre,$rfc,$regimen,$id_negocio);
+        $insert = $query -> execute($data);
+        if($insert) return true;
+      } catch (PDOException $th) {
+        return false;
+      }
+    }
+    function registrarSucursal($estado, $ciudad, $colonia, $direccion, $codigo_postal, $telefono, $correo, $id_negocio){
+      try {
+        $sql = "INSERT INTO sucursal(estado, ciudad, colonia, direccion, codigo_postal, telefono, correo, id_negocio) VALUES (?,?,?,?,?,?,?,?)";
+        $query = $this->cnx->prepare($sql);
+        $data = array($estado,$ciudad,$colonia,$direccion, $codigo_postal, $telefono, $correo, $id_negocio);
+        $insert = $query -> execute($data);
+        if($insert) return true;
+      } catch (PDOException $th) {
+        return false;
+      }
+    }
+    function registrarAdmin($nombre, $pass, $correo, $telefono, $id_negocio){
+      try {
+        $sql = "INSERT INTO administrador(nombre, pass, correo, telefono, id_negocio) VALUES (?,?,?,?,?)";
+        $query = $this->cnx->prepare($sql);
+        $encrypt = password_hash($pass, PASSWORD_BCRYPT);
+        $data = array($nombre,$encrypt,$correo,$telefono, $id_negocio);
+        $insert = $query -> execute($data);
+        if($insert) return true;
+      } catch (PDOException $th) {
+        return false;
+      }
+    }
     function validateNameUser($nombre, $table, $field){ // MÉTODO QUE VALIDA SI EL NOMBRE DE USUARIO ESTÁ REPETIDO
       try {
         $sql = "SELECT * FROM $table WHERE $field = ? "; // Hacer la consulta. NO MANDAR LOS VALORES DIRECTAMENTE
@@ -216,3 +263,4 @@
       }
     }
   }
+  ?>

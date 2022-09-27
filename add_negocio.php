@@ -40,12 +40,12 @@
                 </div>
                 <div class="check fa fa-check"></div>
             </div>
-            <div class="paso">
+            <!-- <div class="paso">
                 <div class="num">
                     <span>5</span>
                 </div>
                 <div class="check fa fa-check"></div>
-            </div>
+            </div> -->
         </div>
         <div class="form-princ">
             <form action="#">
@@ -54,24 +54,27 @@
                 <div class="pagina movPag">
                     <div class="title">Agregar Información del Negocio</div>
                     <div class="campo">
-                        <input type="text" id="nombre" placeholder="Nombre del Negocio">
+                        <input type="text" id="negocio_nombre" placeholder="Nombre del Negocio">
                     </div>
                     <div class="campo">
-                        <input type="text" id="rfc" placeholder="R.F.C.">
+                      <select name="negocio_tipo" id="negocio_tipo">
+                        <option value="1">Papeleria</option>
+                        <option value="2">Abarrotes</option>
+                      </select>
                     </div>
                     <div class="campo">
-                        <input type="number" id="telefono" placeholder="Teléfono">
+                        <input type="number" id="negocio_telefono" placeholder="Teléfono">
                     </div>
                     <div class="campo">
-                        <input type="text" id="correo" placeholder="Correo Electronico">
+                        <input type="email" id="negocio_correo" placeholder="Correo Electronico">
                     </div>
                     <div class="custom-input-file">
-                        <input type="file" name="imagen" id="myFile" class="input-file" value="">
+                        <input type="file" name="negocio_imagen" id="negocio_imagen" class="input-file" value="">
                         Sube tu Logo
                     </div>
                     <br>
-                    <div class="campo sigPag">
-                        <button>Siguiente</button>
+                    <div class="campo">
+                        <button id="nextDatosFiscales">Siguiente</button>
                     </div>
                 </div>
 
@@ -80,16 +83,16 @@
                 <div class="pagina">
                     <div class="title">Datos Fiscales</div>
                     <div class="campo">
-                        <input type="text" id="nombre" placeholder="Nombre fiscal">
+                        <input type="text" id="df_nombre" placeholder="Nombre fiscal">
                     </div>
                     <div class="campo">
-                        <input type="text" id="rfc" placeholder="R.F.C.">
+                        <input type="text" id="df_rfc" placeholder="R.F.C.">
                     </div>
-                    <div class="campo">
+                    <!-- <div class="campo">
                         <input type="number" id="domicilio" placeholder="Domicilio">
-                    </div>
+                    </div> -->
                     <div class="campo">
-                        <input type="text" id="regimen" placeholder="Regimen Fiscal">
+                        <input type="text" id="df_regimen" placeholder="Regimen Fiscal">
                     </div>
                     <br>
                     <div class="campo  btns">
@@ -102,25 +105,34 @@
                 <div class="pagina">
                     <div class="title">Agregar Información de la Sucursal</div>
                     <div class="campo">
-                        <input type="number" id="telefono" placeholder="Teléfono">
+                        <input type="text" id="sucursal_estado" placeholder="Estado">
                     </div>
                     <div class="campo">
-                        <input type="text" id="Direccion" placeholder="Dirección">
+                        <input type="text" id="sucursal_ciudad" placeholder="Ciudad">
                     </div>
                     <div class="campo">
-                        <input type="number" id="CP" placeholder="Codigo Postal">
+                        <input type="text" id="sucursal_colonia" placeholder="Colonia">
                     </div>
                     <div class="campo">
-                        <input type="text" id="correo" placeholder="Correo Electronico">
+                        <input type="text" id="sucursal_direccion" placeholder="Direccion">
+                    </div>
+                    <div class="campo">
+                        <input type="number" id="sucursal_CP" placeholder="Código Postal">
+                    </div>
+                    <div class="campo">
+                        <input type="number" id="sucursal_telefono" placeholder="Teléfono">
+                    </div>
+                    <div class="campo">
+                        <input type="text" id="sucursal_correo" placeholder="Correo Electronico">
                     </div>
                     <br>
                     <div class="campo  btns">
-                        <button class="pag_nsucur cont">Agregar Sucursal</button>
-                        <button class="pag-sucur sig">Siguiente</button>
+                        <button class="pag_nsucur cont">Guardar/Agregar nuevo</button>
+                        <button class="pag-sucur sig">Continuar</button>
                     </div>
                 </div>
                   <!---   PAGINA 4  -->
-                  <div class="pagina">
+                  <!-- <div class="pagina">
                     <div class="alert alert-danger" role="alert">
                        Datos Guardados Correctamente
                       </div>
@@ -142,25 +154,25 @@
                         <button class="pag-agr cont">Agregar nueva</button>
                         <button class="pag-comp sig">Siguiente</button>
                     </div>
-                </div>
+                </div> -->
 
-                <!---   PAGINA 5  -->
+                <!---   PAGINA 4  -->
                 <div class="pagina">
                     <div class="title">Agregar Administrador</div>
                     <div class="campo">
-                        <input type="text" id="Nombre" placeholder="Nombre">
+                        <input type="text" id="admin_nombre" placeholder="Nombre">
                     </div>
                     <div class="campo">
-                        <input type="number" id="Teléfono" placeholder="Teléfono">
+                        <input type="number" id="admin_telefono" placeholder="Teléfono">
                     </div>
                     <div class="campo">
-                        <input type="text" id="correo" placeholder="Correo Electronico">
-                    </div>
-                    <div class="campo">
-                        <input type="password" id="contra" placeholder="Contraseña">
+                        <input type="text" id="admin_correo" placeholder="Correo Electronico">
                     </div>
                     <div class="campo">
                         <input type="password" id="contra" placeholder="Contraseña">
+                    </div>
+                    <div class="campo">
+                        <input type="password" id="admin_contra" placeholder="Contraseña">
                         <!-- <span class="ver" onclick="mostrarContraseña()">
                             <i id="mostrar" class="fa fa-eye" title="Mostrar Contraseña" ></i>
                             <i id="ocultar" class="fa fa-eye-slash" title="Ocultar Contraseña" ></i>

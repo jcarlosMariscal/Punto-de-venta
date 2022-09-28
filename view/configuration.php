@@ -2,18 +2,17 @@
   include "config/Connection.php";
   $cnx = Connection::connectDB();
 
-  $sql = "SELECT * from configuracion ORDER BY id DESC LIMIT 1";
+  $sql = "SELECT * from negocio";
   $query = $cnx->prepare($sql);
   $query->execute();
 
 
   foreach ($query as $row) {
-    $razon_social = $row['razon_social'];
-    $rfc = $row['rfc'];
-    $domicilio = $row['domicilio'];
-    $cpostal = $row['cpostal'];
+    $nombre = $row['nombre'];
+    $tipo = $row['tipo'];
     $telefono = $row['telefono'];
-    $imagen = $row['imagen'];
+    $correo = $row['correo'];
+    $logo = $row['logo'];
   } 
 
 ?>
@@ -27,10 +26,12 @@
             <p class="user__name"><?php echo $_SESSION['user']?></p>
             <p class="user__rol">
                 <?php 
-                    if($_SESSION['rol'] == 1){
+                    if($_SESSION['rol'] == 0){
                         echo "Administrador";
+                    }elseif ($_SESSION['rol'] == 1) {
+                        echo "Gerente";
                     }elseif ($_SESSION['rol'] == 2) {
-                        echo "Vendedor";
+                        echo "Ventas";
                     }
                 ?>
             </p>
@@ -42,48 +43,39 @@
 </section>
 <hr>
 <section class="content">
-  <?php
-    if($razon_social === "Tech"){
-      echo "<p>Agregue información de su negocio para personalizar el sistema.</p>";
-    }else{
-      echo "<p>Puede cambiar la información de su negocio en el momento que desee.</p>";
-      }
-  ?>
     <div class="config">
         <div class="config__form">
-            <h4>Datos del negocio</h4>
+            <h4>Datos generales del negocio</h4>
             <form action="logic/updateData.php" method="POST" class="form" enctype="multipart/form-data" id="formulario">
                 <div class="form-inputs">
-                  <input type="hidden" name="table" value="updateConfi">
-                    <div class="input-nombre input-cfg" id="group-razon_social">
-                        <label for="" class="label">Razón Social:</label>
-                        <input type="text" class="input input-config" value="<?php echo $razon_social; ?>" name="razon_social" id="razon_social" >
+                  <input type="hidden" name="table" value="updateNegocio">
+                    <div class="input-nombre input-cfg" id="group-nombre">
+                        <label for="" class="label">Nombre:</label>
+                        <input type="text" class="input input-config" value="<?php echo $nombre; ?>" name="nombre" id="nombre" >
                         <p class="input-error">*Rellena el este campo correctamente por favor</p>
                     </div>
-                    <div class="input-rfc input-cfg" id="group-rfc">
-                        <label for="" class="label">R. F. C.: </label>
-                        <input type="text" class="input input-config" value="<?php echo $rfc ?>" name="rfc" id="rfc" >
-                        <p class="input-error">*Introduce un RFC con un formato correcto.</p>
-                    </div>
-                    <div class="input-domicilio input-cfg" id="group-domicilio">
-                        <label for="" class="label">Domicilio: </label>
-                        <input type="text" class="input input-config" value="<?php echo $domicilio ?>" name="domicilio" id="domicilio" >
-                        <p class="input-error">*Introduce una dirección correcta</p>
-                    </div>
-                    <div class="input-cPostal input-cfg" id="group-cpostal">
-                        <label for="" class="label">C. Postal: </label>
-                        <input type="text" class="input input-config" value="<?php echo $cpostal ?>" name="cpostal" id="cpostal" >
-                        <p class="input-error">*Este campo debe ser númerico y tener 5 caracteres.</p>
+                    <div class="input-tipo input-cfg" id="group-tipo">
+                        <label for="" class="label">Tipo: </label>
+                        <select name="tipo" id="tipo">
+                          <option value="">Example</option>
+                        </select>
+                        <!-- <input type="text" class="input input-config" value="<?php echo $tipo ?>" name="tipo" id="tipo" > -->
+                        <!-- <p class="input-error">*Selecciona el tipo de negocio.</p> -->
                     </div>
                     <div class="input-telefono input-cfg" id="group-telefono">
                         <label for="" class="label">Teléfono: </label>
                         <input type="text" class="input input-config" value="<?php echo $telefono ?>" name="telefono" id="telefono" >
-                        <p class="input-error">*Este campo debe ser númerico y tener 10 caracteres.</p>
+                        <p class="input-error">*Introduce una dirección correcta</p>
+                    </div>
+                    <div class="input-correo input-cfg" id="group-correo">
+                        <label for="" class="label">Correo: </label>
+                        <input type="text" class="input input-config" value="<?php echo $correo ?>" name="correo" id="correo" >
+                        <p class="input-error">*Este campo debe ser correo.</p>
                     </div>
                 </div>
                 <div class="form-logo">
                     <div class="logo-current">
-                        <img class="currently" id="img-logo" src="<?php echo '../imagenes/'.$imagen; ?>" alt="">
+                        <img class="currently" id="img-logo" src="<?php echo '../assets/img/logo/'.$logo; ?>" alt="">
                     </div>
                     <div class="custom-input-file col-md-6 col-sm-6 col-xs-6">
                         <input type="file" name="imagen" id="myFile" class="input-file" value="">
@@ -98,10 +90,10 @@
         <hr>
         <div class="config__permissions">
             <div class="permissions-admin">
-                <a  href="#" class="btn-prm deshabilitar" data-toggle="modal" data-target=".bd-example-modal-lg">Permisos de Administrador</a>
+                <a  href="#" class="btn-prm deshabilitar" data-toggle="modal" data-target=".bd-example-modal-lg">Revisar Permisos</a>
             </div>
             <div class="permissions-seller">
-                <a href="" class="btn-prm deshabilitar">Permisos del Personal de Ventas</a>
+                <a href="" class="btn-prm deshabilitar">Mis sucursales</a>
             </div>
             <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">

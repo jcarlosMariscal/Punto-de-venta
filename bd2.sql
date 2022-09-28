@@ -2,13 +2,19 @@ DROP DATABASE punto_venta;
 CREATE DATABASE punto_venta;
 USE punto_venta;
 
+CREATE TABLE tipo_negocio(
+  id_tipo INT NOT NULL AUTO_INCREMENT,
+  tipo VARCHAR(255) NOT NULL,
+  PRIMARY KEY (id_tipo)
+);
 CREATE TABLE negocio(
   id_negocio INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(255) NOT NULL,
-  tipo VARCHAR(255) NOT NULL,
   telefono VARCHAR(15) NOT NULL,
   correo VARCHAR(255) NOT NULL,
   logo VARCHAR(255) NOT NULL,
+  id_tipo INT NOT NULL,
+  CONSTRAINT FOREIGN KEY (id_tipo) REFERENCES tipo_negocio(id_tipo),
   PRIMARY KEY (id_negocio)
 );
 
@@ -137,6 +143,6 @@ CREATE TABLE compra_producto(
   PRIMARY KEY (id_compra)
 );
 
-
+INSERT INTO tipo_negocio(tipo) VALUES ('Tienditas'),('Abarrotes'),('Papelerías'), ('Zapaterías');
 INSERT INTO caja(caja, total) VALUES (01,10000), (02,5000), (03,20000);
 INSERT INTO rol(rol) VALUES ('Gerente'),('Ventas');

@@ -44,12 +44,11 @@
       }
     }
 
-    function updateConfiImg($razon_social,$rfc,$domicilio,$cpostal,$telefono,$imagen){
+    function updateNegocioImg($nombre, $tipo, $telefono, $correo, $logoName, $id_negocio){
       try{
-        $id = 1;
-        $sql = "UPDATE configuracion SET razon_social = ? ,rfc = ? ,domicilio = ? ,cpostal = ? ,telefono = ? ,imagen = ? WHERE id = ?";//Insertamos el registro                           
+        $sql = "UPDATE negocio SET nombre = ? ,tipo = ? ,telefono = ? ,correo = ? ,logo = ? WHERE id_negocio = ?";//Insertamos el registro                           
         $query = $this-> cnx->prepare($sql);
-        $data = array($razon_social,$rfc,$domicilio,$cpostal,$telefono,$imagen, $id);
+        $data = array($nombre,$tipo,$telefono,$correo,$logoName, $id_negocio);
         $insert = $query->execute($data);
         return true;
         if($insert) echo "success";
@@ -58,12 +57,11 @@
       }
     }
 
-    function updateConfi($razon_social,$rfc,$domicilio,$cpostal,$telefono){
+    function updateNegocio($nombre, $tipo, $telefono, $correo, $id_negocio){
       try{
-        $id = 1;
-        $sql = "UPDATE configuracion SET razon_social = ? ,rfc = ? ,domicilio = ? ,cpostal = ? ,telefono = ? WHERE id = ?";//Insertamos el registro                           
+        $sql = "UPDATE configuracion SET nombre = ? ,tipo = ? ,telefono = ? ,correo = ? WHERE id_negocio = ?";
         $query = $this-> cnx->prepare($sql);
-        $data = array($razon_social,$rfc,$domicilio,$cpostal,$telefono, $id);
+        $data = array($nombre,$tipo,$telefono,$correo, $id_negocio);
         $insert = $query->execute($data);
         if($insert) echo "success";
         return true;

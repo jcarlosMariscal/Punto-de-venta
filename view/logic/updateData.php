@@ -43,25 +43,23 @@ if(!empty($_POST)){
         $alert = '<p class="msg_error">Error al crear al usuario.</p>';
       }         
     break;
-    case 'updateConfi':
-      $razon_social = (isset($_POST['razon_social']) ? $_POST['razon_social'] : NULL); 
-      $rfc = (isset($_POST['rfc']) ? $_POST['rfc'] : NULL); 
-      $domicilio = (isset($_POST['domicilio']) ? $_POST['domicilio'] : NULL); 
-      $cpostal = (isset($_POST['cpostal']) ? $_POST['cpostal'] : NULL); 
-      $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL);
-      $img = (isset($_FILES['imagen']) ? $_FILES['imagen'] : NULL);
-      if ($img['size'] != 0 && $img['name'] != '') {
-        $imagen = $_FILES['imagen']['name'];
-        $tipo = $_FILES['imagen']['type'];
-        $temp  = $_FILES['imagen']['tmp_name'];
+    case 'updateNegocio':
+      $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL); 
+      $tipo = (isset($_POST['tipo']) ? $_POST['tipo'] : NULL); 
+      $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL); 
+      $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL); 
+      $imagen = (isset($_FILES['logo']) ? $_FILES['logo'] : NULL);
+      if ($imagen['size'] != 0 && $imagen['name'] != '') {
+        $logoName = $_FILES['logo']['name'];
+        $tipo = $_FILES['logo']['type'];
+        $temp  = $_FILES['logo']['tmp_name'];
 
         if (!((strpos($tipo, 'png')))) {
           echo "Solo se permiten archivos con la extensión png";
         } else {
-          $updateConfiImg = $query->updateConfiImg($razon_social, $rfc, $domicilio, $cpostal, $telefono, $imagen);
-
-          if ($updateConfiImg) {
-            move_uploaded_file($temp, '../../imagenes/' . $imagen);
+          $updateNegocioImg = $query->updateNegocioImg($nombre, $tipo, $telefono, $correo, $logoName);
+          if ($updateNegocioImg) {
+            move_uploaded_file($temp, '../../assets/img/logo/' . $logoName);
             echo 'se ha subido correctamente';
           ?>
             <script>
@@ -74,9 +72,8 @@ if(!empty($_POST)){
           }
         }
       } else {
-        $updateConfi = $query->updateConfi($razon_social, $rfc, $domicilio, $cpostal, $telefono);
-          if ($updateConfi) {
-                // echo "bien";
+        $updateNegocio = $query->updateNegocio($nombre, $tipo, $telefono, $correo);
+          if ($updateNegocio) {
             ?>
               <script>
                 localStorage.setItem("confi", "true");

@@ -107,7 +107,7 @@
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Agregar nuevo usuario</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Agregar personal nuevo</h5>
             <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
         </div>
         <div class="modal-body">
@@ -120,35 +120,46 @@
                         <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce tu nombre">
                         <p class="input-error">* Rellena</p>
                     </div>
-                    <!-- <div class="input-user-rfc input-user" id="group-rfc">                                       
-                      <label for="">R.F.C.: </label>
-                        <input type="text" class="input" name="rfc" id="rfc" placeholder="Introduce">
-                    </div> -->
-                    <!-- <div class="input-user-fnac input-user" id="group-fecha_nac">                                       
-                      <label for="">Fecha de Nacimiento</label>
-                        <input type="date" name="fecha_nac" id="fecha_nac" class="input">
-                    </div> -->
-                    <div class="input-user-tel input-user" id="group-telefono">                                       
-                      <label for="">Teléfono</label>
-                      <input type="number_format" name="telefono" id="telefono" class="input" placeholder="Introduce tu telefono">
-                      <p class="input-error">* Rellena</p>
-                    </div>
                     <div class="input-user-email input-user" id="group-correo">                                       
                       <label for="">Correo</label>
                       <input type="text" name="correo" id="correo" class="input" placeholder="Introduce tu correo">
                       <p class="input-error">* Rellena</p>
                     </div>
+                    <div class="input-user-tel input-user" id="group-telefono">                                       
+                      <label for="">Teléfono</label>
+                      <input type="number_format" name="telefono" id="telefono" class="input" placeholder="Introduce tu telefono">
+                      <p class="input-error">* Rellena</p>
+                    </div>
+                    <div class="input-user-tel input-user" id="group-telefono">                                       
+                      <label for="">Ciudad</label>
+                      <input type="number_format" name="telefono" id="telefono" class="input" placeholder="Introduce tu telefono">
+                      <p class="input-error">* Rellena</p>
+                    </div>
+                    <div class="input-user-tel input-user" id="group-telefono">                                       
+                      <label for="">Domicilio</label>
+                      <input type="number_format" name="telefono" id="telefono" class="input" placeholder="Introduce tu telefono">
+                      <p class="input-error">* Rellena</p>
+                    </div>
                     <div class="input-user-rol input-user">                                       
-                      <label for="">Seleccione el Rol:</label>
+                      <label for="">Sucursal:</label>
                       <select name="rol" id="rol" class="select-user-rol">
                         <!-- <option value="1">Administrador</option> -->
                         <option value="2">Vendedor</option>
                       </select>
                     </div>
-                    <div class="input-user-caja input-user" id="group-caja">                                       
-                      <label for="">Caja: </label>
-                        <input type="text" name="caja" id="caja" class="input" placeholder="Introduce la caja del personal">
-                        <p class="input-error">* Rellena</p>
+                    <div class="input-user-rol input-user">                                       
+                      <label for="">Rol:</label>
+                      <select name="rol" id="rol" class="select-user-rol">
+                        <!-- <option value="1">Administrador</option> -->
+                        <option value="2">Vendedor</option>
+                      </select>
+                    </div>
+                    <div class="input-user-rol input-user">                                       
+                      <label for="">Caja:</label>
+                      <select name="rol" id="rol" class="select-user-rol">
+                        <!-- <option value="1">Administrador</option> -->
+                        <option value="2">Vendedor</option>
+                      </select>
                     </div>
                     <div class="input-user-pass input-user" id="group-pass">                                       
                       <label for="">Contraseña</label>

@@ -118,7 +118,7 @@ if(!empty($_POST)){
     break;
     case 'negocio':
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
-      $tipo_negocio = (isset($_POST['tipo']) ? $_POST['tipo'] : NULL);
+      $id_tipo = (isset($_POST['tipo']) ? $_POST['tipo'] : NULL);
       $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL);
       $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL);
       $imagen = (isset($_FILES['imagen']) ? $_FILES['imagen'] : NULL);
@@ -131,7 +131,7 @@ if(!empty($_POST)){
         if (!((strpos($tipo, 'png')))) {
           echo "Solo se permiten archivos con la extensión png";
         } else {
-          $registrarNegocio = $query->registrarNegocio($nombre, $tipo_negocio, $telefono, $correo, $img);
+          $registrarNegocio = $query->registrarNegocio($nombre, $telefono, $correo, $img, $id_tipo);
           if ($registrarNegocio[0]) {
             move_uploaded_file($temp, '../../assets/img/logo/' . $img);
             echo "negocioRegistrado".$registrarNegocio[1];

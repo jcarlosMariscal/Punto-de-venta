@@ -1,3 +1,11 @@
+<?php
+  include "view/config/Connection.php";
+  $cnx = Connection::connectDB();
+
+  $sql = "SELECT * from tipo_negocio";
+  $query = $cnx->prepare($sql);
+  $query->execute();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,9 +65,15 @@
                         <input type="text" id="negocio_nombre" placeholder="Nombre del Negocio">
                     </div>
                     <div class="campo">
+                      <label for="negocio_tipo">Tipo de negocio: </label>
                       <select name="negocio_tipo" id="negocio_tipo">
-                        <option value="1">Papeleria</option>
-                        <option value="2">Abarrotes</option>
+                        <?php
+                          foreach ($query as $row) {
+                            ?>
+                            <option value="<?php echo $row['id_tipo']; ?>"><?php echo $row['tipo']; ?></option>
+                            <?php
+                          } 
+                        ?>
                       </select>
                     </div>
                     <div class="campo">

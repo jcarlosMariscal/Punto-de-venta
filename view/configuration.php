@@ -6,15 +6,21 @@
   $query = $cnx->prepare($sql);
   $query->execute();
 
+  $sqlTipo = "SELECT * from tipo_negocio";
+  $queryTipo = $cnx->prepare($sqlTipo);
+  $queryTipo->execute();
 
   foreach ($query as $row) {
     $nombre = $row['nombre'];
-    $tipo = $row['tipo'];
+    $id_tipo = $row['id_tipo'];
     $telefono = $row['telefono'];
     $correo = $row['correo'];
     $logo = $row['logo'];
   } 
-
+  $sqlNameTipo = "SELECT id_tipo,tipo from tipo_negocio WHERE id_tipo = ?";
+  $queryNameTipo = $cnx->prepare($sqlNameTipo);
+  $queryNameTipo -> bindParam(1, $id_tipo);
+  $queryNameTipo->execute();
 ?>
 
 <section class="above">
@@ -57,7 +63,18 @@
                     <div class="input-tipo input-cfg" id="group-tipo">
                         <label for="" class="label">Tipo: </label>
                         <select name="tipo" id="tipo">
-                          <option value="">Example</option>
+                          <?php
+                          $res = $queryNameTipo->fetch();
+                          ?>
+                          <option value="<?php echo $res['id_tipo']; ?>" selected><?php echo $res['tipo']; ?></option>
+                          <?php
+                            foreach ($queryTipo as $tipo) {
+                              if($tipo['id_tipo'] != $id_tipo){
+                                ?><option value="<?php echo $tipo['id_tipo']; ?>" ><?php echo $tipo['tipo']; ?></option><?php
+                              }
+                            } 
+
+                          ?>
                         </select>
                         <!-- <input type="text" class="input input-config" value="<?php echo $tipo ?>" name="tipo" id="tipo" > -->
                         <!-- <p class="input-error">*Selecciona el tipo de negocio.</p> -->
@@ -171,9 +188,9 @@
 <script>
     let confi = localStorage.getItem("confi");
     if(confi === "true"){
-      if("<?php echo $razon_social; ?>" === "Tech"){
+      if("<?php echo $nombre; ?>" === "Tech"){
         Swal.fire({
-            title: "<b>SISTEMA <?php echo $razon_social; ?></b>",
+            title: "<b>SISTEMA <?php echo $nombre; ?></b>",
             text: "Información recibida correctamente.",
             icon: "success",//error, 
             timer: 3000,
@@ -181,14 +198,14 @@
             position: 'top-end',
             showConfirmButton: false,
             confirmButtonColor: '#47874a',
-            // imageUrl: '../imagenes/<?php echo $imagen; ?>',
+            // imageUrl: '../imagenes/<?php echo $logo; ?>',
             // imageHeight: 100,
             // imageWidth: 100,
             // imageAlt: 'A tall image'
         });
       }else{
         Swal.fire({
-            title: "<b>SISTEMA <?php echo $razon_social; ?></b>",
+            title: "<b>SISTEMA <?php echo $nombre; ?></b>",
             text: "La información de su negocio ha sido actualizada",
             icon: "success",//error, 
             timer: 3000,
@@ -196,7 +213,7 @@
             position: 'top-end',
             showConfirmButton: false,
             confirmButtonColor: '#47874a',
-            // imageUrl: '../imagenes/<?php echo $imagen; ?>',
+            // imageUrl: '../imagenes/<?php echo $logo; ?>',
             // imageHeight: 100,
             // imageAlt: 'A tall image'
         });

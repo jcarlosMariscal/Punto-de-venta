@@ -5,11 +5,11 @@
     function __construct(){
       $this -> cnx = Connection::connectDB();
     }
-    function registrarNegocio($nombre, $tipo, $telefono, $correo, $imagen){
+    function registrarNegocio($nombre, $telefono, $correo, $imagen, $id_tipo){
       try {
-        $sql = "INSERT INTO negocio(nombre, tipo, telefono, correo, logo) VALUES (?,?,?,?,?)";
+        $sql = "INSERT INTO negocio(nombre, telefono, correo, logo, id_tipo) VALUES (?,?,?,?,?)";
         $query = $this->cnx->prepare($sql);
-        $data = array($nombre,$tipo,$telefono,$correo, $imagen);
+        $data = array($nombre,$telefono,$correo, $imagen, $id_tipo);
         $insert = $query -> execute($data);
         $lastId = $this->cnx->lastInsertId();
         

@@ -15,7 +15,7 @@ foreach ($resultado as $row) {
   <div class="system">
     <div class="system__info">
       <div class="info__logo">
-        <a href="index.php?p=main" class="ul__link"><img style="border-radius: 50px ;" src="../imagenes/<?php echo $logo; ?>" class="imag img-fluid" alt="..."></a>
+        <a href="index.php?p=main" class="ul__link"><img style="border-radius: 50px ;" src="../assets/img/logo/<?php echo $logo; ?>" class="imag img-fluid" alt="..."></a>
       </div>
       <div class="info__text">
         <h3 class="info__name"><?php echo $nombre; ?></h3>
@@ -34,7 +34,7 @@ foreach ($resultado as $row) {
       <li class="navbar__li"><a href="index.php?p=ventas" class="ul__link"><i class="nav-icon fa-solid fa-file-invoice-dollar"></i><span class="li__info">Ventas</span></a></li>
       <!-- PERMITIR EL ACCESO A ESTAS SECCIONES A SOLO EL ADMINISTRADOR -->
       <?php
-        if($_SESSION['rol'] == 1){
+        if($_SESSION['rol'] == 0){
       ?>
       <li class="navbar__li"><a href="index.php?p=compras" class="ul__link"><i class="nav-icon fa-solid fa-handshake"></i><span class="li__info">Compras</span></a></li>
       <li class="navbar__li"><a href="index.php?p=personal" class="ul__link"><i class="nav-icon fa-solid fa-user-group"></i><span class="li__info">Mi personal</span></a></li>

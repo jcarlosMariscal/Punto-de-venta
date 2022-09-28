@@ -39,19 +39,19 @@ if(empty($_SESSION['active'])){
                     require_once "user_main.php";
                     break;
                 case 'configuration':
-                    ($_SESSION['rol'] == 1 ) ? require_once "configuration.php" : header('Location: index.php');
+                    ($_SESSION['rol'] == 0 ) ? require_once "configuration.php" : header('Location: index.php');
                     break;
                 case 'information':
                     require_once "system_start.php";
                     break;
                 case 'personal':
-                    ($_SESSION['rol'] == 1 ) ? require_once "personal.php" : header('Location: index.php');
+                    ($_SESSION['rol'] == 0 ) ? require_once "personal.php" : header('Location: index.php');
                     break;
                 case 'ventas':
                     require_once "ventas.php";
                     break;
                 case 'compras':
-                    ($_SESSION['rol'] == 1 ) ? require_once "compras.php" : header('Location: index.php');
+                    ($_SESSION['rol'] == 0 ) ? require_once "compras.php" : header('Location: index.php');
                     break;
                 case 'ver-compras':
                     require_once "verCompras.php";

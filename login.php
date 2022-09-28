@@ -28,13 +28,13 @@
             <input type="password" name="pass" id="pass" placeholder="Contraseña">
             <p class="input-error-log">*La contraseña debe tener mínimo 5 caracteres, pueden ser letras, números y no se aceptan caracteres especiales.</p>
           </div>
-          <div class="select">
+          <!-- <div class="select">
             <select name="id_rol">
               <option value="1">Seleccione una opción</option>
               <option value="1">Administrador</option>
               <option value="1">Vendedor</option>
             </select>
-          </div>
+          </div> -->
             <br>
             <div class="alert"><?php echo isset($alert) ? $alert : ''; ?></div>    <!-- se mostrara la alerta cuando encuentre un error -->
             <div class="input-btn-adm">

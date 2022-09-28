@@ -37,20 +37,42 @@
         $sql = "SELECT * FROM administrador WHERE nombre = ?";
         $query = $this->cnx->prepare($sql);
         $query -> bindParam(1,$nombre);
-        if($query->execute()){
-            foreach($query as $data){
-                if(password_verify($pass,$data['pass'])){
+        $query->execute();
+        $count = $query->rowCount();
+        if($count >= 1){
+          foreach($query as $data){
+            if(password_verify($pass,$data['pass'])){
                     // $_SESSION["admin"] = $data; // GUARDA LA SESIÓN PARA USARLO DESPUÉS
-                    $_SESSION['active'] = true;
-                    $_SESSION['id'] = $data['id_admin'];
-                    $_SESSION['user'] = $data['nombre'];
-                    $_SESSION['correo'] = $data['correo'];
-                    $_SESSION['telefono'] = $data['telefono'];
-                    return true;
-                }else{
-                    return false;
-                }
+              $_SESSION['rol'] = 0;
+              $_SESSION['active'] = true;
+              $_SESSION['id'] = $data['id_admin'];
+              $_SESSION['user'] = $data['nombre'];
+              $_SESSION['correo'] = $data['correo'];
+              $_SESSION['telefono'] = $data['telefono'];
+              return true;
+            }else{
+              return false;
             }
+          }
+        }else {
+          $sql = "SELECT * FROM personal WHERE nombre = ?";
+          $query = $this->cnx->prepare($sql);
+          $query -> bindParam(1,$nombre);
+          $query->execute();
+          foreach($query as $data){
+            if(password_verify($pass,$data['pass'])){
+              // $_SESSION["admin"] = $data; // GUARDA LA SESIÓN PARA USARLO DESPUÉS
+              $_SESSION['rol'] = $data['id_rol'];
+              $_SESSION['active'] = true;
+              $_SESSION['id'] = $data['id_admin'];
+              $_SESSION['user'] = $data['nombre'];
+              $_SESSION['correo'] = $data['correo'];
+              $_SESSION['telefono'] = $data['telefono'];
+              return true;
+            }else{
+              return false;
+            }
+          }
         }
       } catch (PDOException $th) {
         echo "error";

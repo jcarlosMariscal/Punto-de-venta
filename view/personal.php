@@ -1,7 +1,7 @@
 <?php
   include "config/Connection.php";
   $cnx = Connection::connectDB();
-  $sql = "SELECT * FROM usuarios";
+  $sql = "SELECT * FROM personal";
   $query = $cnx->prepare($sql);
   $query->execute();
   $resultado = $query;
@@ -39,10 +39,12 @@
             <p class="user__name"><?php echo $_SESSION['user']?></p>
             <p class="user__rol">
                 <?php 
-                    if($_SESSION['rol'] == 1){
+                    if($_SESSION['rol'] == 0){
                         echo "Administrador";
+                    }elseif ($_SESSION['rol'] == 1) {
+                        echo "Gerente";
                     }elseif ($_SESSION['rol'] == 2) {
-                        echo "Vendedor";
+                        echo "Ventas";
                     }
                 ?>
             </p>
@@ -81,12 +83,13 @@
                     foreach ($resultado as $row) {
                       ?>
                         <tr class="prod">
-                          <td><?php echo $row['id_user']; ?></td>
-                          <td><?php echo $row['username']; ?></td>
+                          <td><?php echo $row['id_personal']; ?></td>
+                          <td><?php echo $row['nombre']; ?></td>
                           <td><?php echo ($row['correo'] == NULL) ? "<b>Sin Correo</b>" : $row['correo']; ?></td>
-                          <td><?php echo ($row['telefono'] == NULL) ? "<b>Sin telefono</b>" : $row['telefono'];; ?></td>
+                          <td><?php echo ($row['telefono'] == NULL) ? "<b>Sin telefono</b>" : $row['telefono']; ?></td>
                           <td><?php echo $row['id_rol'] == 1 ? "Administrador": "Vendedor"; ?></td>
-                          <td><?php echo ($row['id_caja'] == NULL) ? "<b>Sin Caja</b>" : $row['id_caja'];; ?></td>
+                          <td><?php echo ($row['id_caja'] == NULL) ? "<b>Sin Caja</b>" : $row['id_caja']; ?></td>
+                          <td><?php echo ($row['id_caja'] == NULL) ?></td>
                           <td class="text-center"><a href="index.php?p=personal&delete=<?php echo $row['id_user']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
                           <td class="text-center"><a href="index.php?p=personal&edit=<?php echo $row['id_user']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
                           <td class="text-center"><a href="" class="btn-tb-info deshabilitar"><i class="fa-solid fa-circle-info"></i></a></td>
@@ -167,7 +170,7 @@
 </div>
     <!-- EDITAR -->
         <?php
-        $sql = "SELECT * FROM usuarios WHERE id_user = ?";
+        $sql = "SELECT * FROM personal WHERE id_personal = ?";
         $query = $cnx->prepare($sql);
         $query->bindParam(1, $editPer);
         $query->execute();

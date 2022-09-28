@@ -5,10 +5,12 @@
             <p class="user__name"><?php echo $_SESSION['user']?></p>
             <p class="user__rol">
                 <?php 
-                    if($_SESSION['rol'] == 1){
+                    if($_SESSION['rol'] == 0){
                         echo "Administrador";
+                    }elseif ($_SESSION['rol'] == 1) {
+                        echo "Gerente";
                     }elseif ($_SESSION['rol'] == 2) {
-                        echo "Vendedor";
+                        echo "Ventas";
                     }
                 ?>
             </p>
@@ -21,8 +23,10 @@
         <div class="profile__name"><p class="user__name"><?php echo $_SESSION['user']?></p></div>
         <div class="profile__rol"><p class="">
                 <?php 
-                    if($_SESSION['rol'] == 1){
+                    if($_SESSION['rol'] == 0){
                         echo "Administrador";
+                    }elseif ($_SESSION['rol'] == 1) {
+                        echo "Gerente";
                     }elseif ($_SESSION['rol'] == 2) {
                         echo "Vendedor";
                     }

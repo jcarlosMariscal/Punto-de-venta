@@ -3,7 +3,6 @@ const movPag = d.querySelector(".movPag");
 // const btn_adelante2 = document.querySelector(".sigPag");
 
 const btn_adelante5 = d.querySelector(".pag-comp");
-const btn_nsucursal = d.querySelector(".pag_nsucur");
 const btn_agregar = d.querySelector(".pag-agr ");
 
 const progressCheck = d.querySelectorAll(".paso .check");
@@ -13,32 +12,11 @@ const nextDatosFiscales = d.getElementById("nextDatosFiscales");
 const btn_omitir = d.querySelector(".pag-omitir");
 const btn_adelante3 = d.querySelector(".pag-datos");
 const btn_adelante4 = d.querySelector(".pag-sucur");
+const btn_nsucursal = d.querySelector(".pag_nsucur");
 const btn_fin = d.querySelector(".fin");
 
 let max = 4;
 let cont = 1;
-
-// btn_adelante5.addEventListener("click", function (e) {
-//   e.preventDefault();
-//   movPag.style.marginLeft = "-80%";
-//   num[cont - 1].classList.add("active");
-//   progressCheck[cont - 1].classList.add("active");
-//   cont += 1;
-// });
-
-btn_nsucursal.addEventListener("click", function (e) {
-  e.preventDefault();
-  movPag.style.marginLeft = "-60%";
-  num[cont - 1].classList.add("active");
-  progressCheck[cont - 1].classList.add("active");
-});
-btn_nsucursal.addEventListener("click", function (e) {
-  e.preventDefault();
-  movPag.style.marginLeft = "-60%";
-  num[cont - 1].classList.add("active");
-  progressCheck[cont - 1].classList.add("active");
-  cont += 1;
-});
 
 // RECIBIR DATOS
 nextDatosFiscales.addEventListener("click", (e) => {
@@ -138,25 +116,25 @@ btn_adelante3.addEventListener("click", (e) => {
       }
     });
 });
-btn_adelante4.addEventListener("click", function (e) {
-  e.preventDefault();
-  const sucursal_estado = d.getElementById("sucursal_estado").value;
-  const sucursal_ciudad = d.getElementById("sucursal_ciudad").value;
-  const sucursal_colonia = d.getElementById("sucursal_colonia").value;
-  const sucursal_direccion = d.getElementById("sucursal_direccion").value;
-  const sucursal_CP = d.getElementById("sucursal_CP").value;
-  const sucursal_telefono = d.getElementById("sucursal_telefono").value;
-  const sucursal_correo = d.getElementById("sucursal_correo").value;
+const registrarSucursal = (
+  estado,
+  ciudad,
+  colonia,
+  direccion,
+  CP,
+  telefono,
+  correo
+) => {
   const lastId = localStorage.getItem("lastId");
   let form = new FormData();
   form.append("table", "sucursal");
-  form.append("estado", sucursal_estado);
-  form.append("ciudad", sucursal_ciudad);
-  form.append("colonia", sucursal_colonia);
-  form.append("direccion", sucursal_direccion);
-  form.append("codigo_postal", sucursal_CP);
-  form.append("telefono", sucursal_telefono);
-  form.append("correo", sucursal_correo);
+  form.append("estado", estado);
+  form.append("ciudad", ciudad);
+  form.append("colonia", colonia);
+  form.append("direccion", direccion);
+  form.append("codigo_postal", CP);
+  form.append("telefono", telefono);
+  form.append("correo", correo);
   form.append("id_negocio", lastId);
   fetch("view/logic/createData.php", {
     method: "POST",
@@ -176,13 +154,69 @@ btn_adelante4.addEventListener("click", function (e) {
           showConfirmButton: false,
           confirmButtonColor: "#47874a",
         });
-        movPag.style.marginLeft = "-60%";
-        num[cont - 1].classList.add("active");
-        progressCheck[cont - 1].classList.add("active");
-        cont += 1;
       } else if (data === "error") {
       }
     });
+};
+var contador = 0;
+btn_nsucursal.addEventListener("click", (e) => {
+  e.preventDefault();
+  const estado = d.getElementById("sucursal_estado");
+  const ciudad = d.getElementById("sucursal_ciudad");
+  const colonia = d.getElementById("sucursal_colonia");
+  const direccion = d.getElementById("sucursal_direccion");
+  const CP = d.getElementById("sucursal_CP");
+  const telefono = d.getElementById("sucursal_telefono");
+  const correo = d.getElementById("sucursal_correo");
+  const title = d.getElementById("title-sucursal");
+  registrarSucursal(
+    estado.value,
+    ciudad.value,
+    colonia.value,
+    direccion.value,
+    CP.value,
+    telefono.value,
+    correo.value
+  );
+  contador++;
+  // localStorage.setItem("contador", contador);
+  title.innerHTML = `Agregar Información de otra sucursal.`;
+  const msgP = d.createElement("p");
+  msgP.innerHTML = `<b>El límite de sucursales que puede agregar es 3</b>`;
+  title.appendChild(msgP);
+  estado.value = "";
+  ciudad.value = "";
+  colonia.value = "";
+  CP.value = "";
+  direccion.value = "";
+  telefono.value = "";
+  correo.value = "";
+  estado.value = "";
+  // console.log(contador);
+  // localStorage.removeItem("contador");
+  const agregarNuevo = d.getElementById("agregarNuevo");
+  if (contador == 2) {
+    agregarNuevo.style.display = "none";
+    // movPag.style.marginLeft = "-60%";
+    // num[cont - 1].classList.add("active");
+    // progressCheck[cont - 1].classList.add("active");
+    // cont += 1;
+  }
+});
+btn_adelante4.addEventListener("click", (e) => {
+  e.preventDefault();
+  const estado = d.getElementById("sucursal_estado").value;
+  const ciudad = d.getElementById("sucursal_ciudad").value;
+  const colonia = d.getElementById("sucursal_colonia").value;
+  const direccion = d.getElementById("sucursal_direccion").value;
+  const CP = d.getElementById("sucursal_CP").value;
+  const telefono = d.getElementById("sucursal_telefono").value;
+  const correo = d.getElementById("sucursal_correo").value;
+  registrarSucursal(estado, ciudad, colonia, direccion, CP, telefono, correo);
+  movPag.style.marginLeft = "-60%";
+  num[cont - 1].classList.add("active");
+  progressCheck[cont - 1].classList.add("active");
+  cont += 1;
 });
 
 btn_fin.addEventListener("click", function (e) {

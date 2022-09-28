@@ -103,7 +103,7 @@
 
                 <!---   PAGINA 3  -->
                 <div class="pagina">
-                    <div class="title">Agregar Información de la Sucursal</div>
+                    <div class="title" id="title-sucursal">Agregar Información de la Sucursal</div>
                     <div class="campo">
                         <input type="text" id="sucursal_estado" placeholder="Estado">
                     </div>
@@ -127,7 +127,7 @@
                     </div>
                     <br>
                     <div class="campo  btns">
-                        <button class="pag_nsucur cont">Guardar/Agregar nuevo</button>
+                        <button class="pag_nsucur cont" id="agregarNuevo">Agregar nuevo</button>
                         <button class="pag-sucur sig">Continuar</button>
                     </div>
                 </div>

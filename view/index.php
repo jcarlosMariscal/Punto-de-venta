@@ -71,6 +71,9 @@ if(empty($_SESSION['active'])){
                 case 'productos':
                     require_once "productos.php";
                     break;
+                case 'sucursal':
+                    require_once "sucursal.php";
+                    break;
                 default:
                     # code...
                     break;

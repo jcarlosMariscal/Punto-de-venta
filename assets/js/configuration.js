@@ -1,7 +1,5 @@
 import { campos, validarFormulario } from "./validar.js";
 const d = document;
-
-const btn_send = d.getElementById("btn-send");
 let inputs = d.querySelectorAll("#formulario input");
 if (inputs) {
   inputs.forEach((input) => {
@@ -11,23 +9,6 @@ if (inputs) {
   });
 }
 
-// if (btn_send) {
-//   btn_send.addEventListener("click", (e) => {
-//     // e.preventDefault();
-//     if (
-//       (campos.razon_social,
-//       campos.rfc,
-//       campos.domicilio,
-//       campos.cpostal,
-//       campos.telefono)
-//     ) {
-//       alert("Información validada");
-//     } else {
-//       alert("Rellena todos los campos correctamente.");
-//     }
-//   });
-// }
-
 // SECCIÓN TEMPORAL PARA SUBIR LOGO DE EMPRESA EN LA CONFIGURACIÓN
 let myFile = d.getElementById("myFile");
 myFile.addEventListener("change", (e) => {
@@ -36,3 +17,43 @@ myFile.addEventListener("change", (e) => {
   const objectURL = URL.createObjectURL(myFile.files[0]);
   update.src = objectURL;
 });
+
+const registrarDF = d.getElementById("registrarDF");
+if (registrarDF) {
+  registrarDF.addEventListener("click", (e) => {
+    e.preventDefault();
+    const formDF = d.getElementById("formDF");
+    const noDatosFiscales = d.getElementById("noDatosFiscales");
+    const modal_footer = d.getElementById("modal-footerNoDatos");
+    const id_negocio = d.getElementById("id_negocio");
+    registrarDF.style.display = "none";
+    noDatosFiscales.style.display = "none";
+    modal_footer.style.display = "none";
+    formDF.innerHTML = `
+      <form class="form-user" id="formulario" method="POST" action="logic/createData.php">
+      <input type="hidden" name="table" id="table" value="datos_fiscales_sistema">
+      <input type="hidden" name="id_negocio" id="id_negocio" value="${id_negocio.innerText}">
+        <div class="input-nombre input-user" id="group-nombre">                                       
+          <label for="">Nombre: </label>
+          <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce tu nombre">
+          <p class="input-error">* Rellena</p>
+        </div>
+        <div class="input-rfc input-user" id="group-rfc">                                       
+          <label for="">R.F.C: </label>
+          <input type="text" class="input" name="rfc" id="rfc" placeholder="Introduce tu RFC">
+          <p class="input-error">* Rellena</p>
+        </div>
+        <div class="input-regimen input-user" id="group-regimen">                                       
+          <label for="">R. Fiscal: </label>
+          <input type="text" class="input" name="regimen" id="regimen" placeholder="Introduce tu régimen fiscal">
+          <p class="input-error">* Rellena</p>
+        </div>
+        <br>
+        <div class="input-submit modal-footer">
+          <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+          <input type="submit" class="btn-cfg" value="Agregar" id="btn-send">
+        </div>
+      </form>
+    `;
+  });
+}

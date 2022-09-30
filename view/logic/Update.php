@@ -44,11 +44,11 @@
       }
     }
 
-    function updateNegocioImg($nombre, $tipo, $telefono, $correo, $logoName, $id_negocio){
+    function updateNegocioImg($nombre, $telefono, $correo, $logoName, $id_tipo, $id_negocio){
       try{
-        $sql = "UPDATE negocio SET nombre = ? ,tipo = ? ,telefono = ? ,correo = ? ,logo = ? WHERE id_negocio = ?";//Insertamos el registro                           
+        $sql = "UPDATE negocio SET nombre = ? ,telefono = ? ,correo = ? ,logo = ?, id_tipo = ? WHERE id_negocio = ?";//Insertamos el registro                           
         $query = $this-> cnx->prepare($sql);
-        $data = array($nombre,$tipo,$telefono,$correo,$logoName, $id_negocio);
+        $data = array($nombre,$telefono,$correo,$logoName, $id_tipo, $id_negocio);
         $insert = $query->execute($data);
         return true;
         if($insert) echo "success";
@@ -57,16 +57,26 @@
       }
     }
 
-    function updateNegocio($nombre, $tipo, $telefono, $correo, $id_negocio){
+    function updateNegocio($nombre, $telefono, $correo, $id_tipo, $id_negocio){
       try{
-        $sql = "UPDATE configuracion SET nombre = ? ,tipo = ? ,telefono = ? ,correo = ? WHERE id_negocio = ?";
-        $query = $this-> cnx->prepare($sql);
-        $data = array($nombre,$tipo,$telefono,$correo, $id_negocio);
+        $sql = "UPDATE negocio SET nombre = ? ,telefono = ? ,correo = ?, id_tipo = ? WHERE id_negocio = ?";
+        $query = $this->cnx->prepare($sql);
+        $data = array($nombre,$telefono,$correo, $id_tipo, $id_negocio);
         $insert = $query->execute($data);
-        if($insert) echo "success";
-        return true;
+        if($insert) return true;
       }catch(Exception $th) {
-        echo "error - Exception";      
+        return false;      
+      }
+    }
+    function actualizarDF($nombre, $rfc, $regimen, $id_negocio, $id_datos){
+      try{
+        $sql = "UPDATE datos_fiscales SET nombre = ? ,rfc = ? ,rFiscal = ? WHERE id_negocio = ? && id_datos = ?";
+        $query = $this->cnx->prepare($sql);
+        $data = array($nombre,$rfc,$regimen, $id_negocio, $id_datos);
+        $insert = $query->execute($data);
+        if($insert) return true;
+      }catch(Exception $th) {
+        return false;      
       }
     }
 }

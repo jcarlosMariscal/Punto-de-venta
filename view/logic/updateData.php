@@ -45,9 +45,10 @@ if(!empty($_POST)){
     break;
     case 'updateNegocio':
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL); 
-      $tipo = (isset($_POST['tipo']) ? $_POST['tipo'] : NULL); 
+      $id_tipo = (isset($_POST['tipo']) ? $_POST['tipo'] : NULL); 
       $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL); 
       $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL); 
+      $id_negocio = (isset($_POST['id_negocio']) ? $_POST['id_negocio'] : NULL); 
       $imagen = (isset($_FILES['logo']) ? $_FILES['logo'] : NULL);
       if ($imagen['size'] != 0 && $imagen['name'] != '') {
         $logoName = $_FILES['logo']['name'];
@@ -55,34 +56,67 @@ if(!empty($_POST)){
         $temp  = $_FILES['logo']['tmp_name'];
 
         if (!((strpos($tipo, 'png')))) {
-          echo "Solo se permiten archivos con la extensión png";
-        } else {
-          $updateNegocioImg = $query->updateNegocioImg($nombre, $tipo, $telefono, $correo, $logoName);
-          if ($updateNegocioImg) {
-            move_uploaded_file($temp, '../../assets/img/logo/' . $logoName);
-            echo 'se ha subido correctamente';
           ?>
             <script>
-              localStorage.setItem("confi", "true");
+              localStorage.setItem("configuration", "errExtension");
+              window.location.href = "../index.php?p=configuration";
+            </script>
+          <?php
+        } else {
+          $updateNegocioImg = $query->updateNegocioImg($nombre, $telefono, $correo, $logoName, $id_tipo, $id_negocio);
+          if ($updateNegocioImg) {
+            move_uploaded_file($temp, '../../assets/img/logo/' . $logoName);
+          ?>
+            <script>
+              localStorage.setItem("configuration", "actualizado");
               window.location.href = "../index.php?p=configuration";
             </script>
           <?php
           } else {
-            echo'ocurrio un error en el servidor';
+            ?>
+              <script>
+                localStorage.setItem("configuration", "error");
+                window.location.href = "../index.php?p=configuration";
+              </script>
+            <?php 
           }
         }
       } else {
-        $updateNegocio = $query->updateNegocio($nombre, $tipo, $telefono, $correo);
+        echo $imagen['name'];
+        $updateNegocio = $query->updateNegocio($nombre, $telefono, $correo, $id_tipo, $id_negocio);
           if ($updateNegocio) {
             ?>
               <script>
-                localStorage.setItem("confi", "true");
+                localStorage.setItem("configuration", "actualizado");
                 window.location.href = "../index.php?p=configuration";
               </script>
             <?php 
           }else{
-            echo "error - UpdateData";
+            ?>
+              <script>
+                localStorage.setItem("configuration", "error");
+                window.location.href = "../index.php?p=configuration";
+              </script>
+            <?php 
           }
+        }
+      break;
+      case 'datos_fiscales':
+        $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
+        $rfc = (isset($_POST['rfc']) ? $_POST['rfc'] : NULL);
+        $regimen = (isset($_POST['regimen']) ? $_POST['regimen'] : NULL);
+        $id_negocio = (isset($_POST['id_negocio']) ? $_POST['id_negocio'] : NULL);
+        $id_datos = (isset($_POST['id_datos']) ? $_POST['id_datos'] : NULL);
+        $actualizarDF = $query->actualizarDF($nombre, $rfc, $regimen, $id_negocio, $id_datos);
+        if($actualizarDF) {
+          ?>
+              <script>
+                localStorage.setItem("configuration", "DFActualizado");
+                window.location.href = "../index.php?p=configuration";
+              </script>
+            <?php 
+        }else {
+          echo "error";
         }
       break;
 

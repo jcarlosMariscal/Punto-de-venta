@@ -44,6 +44,7 @@
             if(password_verify($pass,$data['pass'])){
                     // $_SESSION["admin"] = $data; // GUARDA LA SESIÓN PARA USARLO DESPUÉS
               $_SESSION['rol'] = 0;
+              $_SESSION['id_negocio'] = $data['id_negocio'];
               $_SESSION['active'] = true;
               $_SESSION['id'] = $data['id_admin'];
               $_SESSION['user'] = $data['nombre'];

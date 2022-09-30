@@ -152,6 +152,22 @@ if(!empty($_POST)){
       }else {
         echo "error";
       }
+    case 'datos_fiscales_sistema':
+      $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
+      $rfc = (isset($_POST['rfc']) ? $_POST['rfc'] : NULL);
+      $regimen = (isset($_POST['regimen']) ? $_POST['regimen'] : NULL);
+      $id_negocio = (isset($_POST['id_negocio']) ? $_POST['id_negocio'] : NULL);
+      $registrarDF = $query->registrarDF($nombre, $rfc, $regimen, $id_negocio);
+      if($registrarDF) {
+        ?>
+              <script>
+                localStorage.setItem("configuration", "DFAgregado");
+                window.location.href = "../index.php?p=configuration";
+              </script>
+            <?php 
+      }else {
+        echo "error";
+      }
     break;
     case 'sucursal':
       $estado = (isset($_POST['estado']) ? $_POST['estado'] : NULL);

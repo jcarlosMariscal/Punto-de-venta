@@ -30,6 +30,7 @@ CREATE TABLE datos_fiscales(
 
 CREATE TABLE sucursal(
   id_sucursal INT NOT NULL AUTO_INCREMENT,
+  nombre VARCHAR(255) NOT NULL,
   estado VARCHAR(255) NOT NULL,
   ciudad VARCHAR(2550) NOT NULL,
   colonia VARCHAR(255) NOT NULL,

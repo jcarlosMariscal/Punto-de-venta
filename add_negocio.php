@@ -60,13 +60,15 @@
 
                 <!---   PAGINA 1  -->
                 <div class="pagina movPag">
+                  <br>
                     <div class="title">Agregar Información del Negocio</div>
                     <div class="campo">
                         <input type="text" id="negocio_nombre" placeholder="Nombre del Negocio">
                     </div>
-                    <div class="campo">
-                      <label for="negocio_tipo">Tipo de negocio: </label>
+                    <div class="campo select">
+                      <!-- <label for="negocio_tipo">Tipo de negocio: </label> -->
                       <select name="negocio_tipo" id="negocio_tipo">
+                        <option disabled required selected>Seleccione tipo de negocio</option>
                         <?php
                           foreach ($query as $row) {
                             ?>
@@ -95,6 +97,7 @@
                 
                 <!---   PAGINA 2  -->
                 <div class="pagina">
+                  <br>
                     <div class="title">Datos Fiscales</div>
                     <div class="campo">
                         <input type="text" id="df_nombre" placeholder="Nombre fiscal">
@@ -117,33 +120,30 @@
 
                 <!---   PAGINA 3  -->
                 <div class="pagina">
-                    <div class="title" id="title-sucursal">Agregar Información de la Sucursal</div>
+                  <br>
+                  <div class="title" id="title-sucursal">Agregar Información de la Sucursal</div>
                     <div class="campo">
+                        <input type="text" id="sucursal_nombre" placeholder="Nombre">
                         <input type="text" id="sucursal_estado" placeholder="Estado">
                     </div>
                     <div class="campo">
                         <input type="text" id="sucursal_ciudad" placeholder="Ciudad">
-                    </div>
-                    <div class="campo">
                         <input type="text" id="sucursal_colonia" placeholder="Colonia">
                     </div>
                     <div class="campo">
-                        <input type="text" id="sucursal_direccion" placeholder="Direccion">
-                    </div>
-                    <div class="campo">
-                        <input type="number" id="sucursal_CP" placeholder="Código Postal">
+                        <input type="text" id="sucursal_direccion" placeholder="Dirección">
+                        <input type="text" id="sucursal_CP" placeholder="Código Postal">
                     </div>
                     <div class="campo">
                         <input type="number" id="sucursal_telefono" placeholder="Teléfono">
-                    </div>
-                    <div class="campo">
-                        <input type="text" id="sucursal_correo" placeholder="Correo Electronico">
+                        <input type="number" id="sucursal_correo" placeholder="Correo Electrónico">
                     </div>
                     <br>
                     <div class="campo  btns">
                         <button class="pag_nsucur cont" id="agregarNuevo">Agregar nuevo</button>
                         <button class="pag-sucur sig">Continuar</button>
                     </div>
+
                 </div>
                   <!---   PAGINA 4  -->
                   <!-- <div class="pagina">
@@ -172,6 +172,7 @@
 
                 <!---   PAGINA 4  -->
                 <div class="pagina">
+                  <br>
                     <div class="title">Agregar Administrador</div>
                     <div class="campo">
                         <input type="text" id="admin_nombre" placeholder="Nombre">

@@ -170,6 +170,7 @@ if(!empty($_POST)){
       }
     break;
     case 'sucursal':
+      $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
       $estado = (isset($_POST['estado']) ? $_POST['estado'] : NULL);
       $ciudad = (isset($_POST['ciudad']) ? $_POST['ciudad'] : NULL);
       $colonia = (isset($_POST['colonia']) ? $_POST['colonia'] : NULL);
@@ -178,7 +179,7 @@ if(!empty($_POST)){
       $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL);
       $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL);
       $id_negocio = (isset($_POST['id_negocio']) ? $_POST['id_negocio'] : NULL);
-      $registrarSucursal = $query->registrarSucursal($estado, $ciudad, $colonia, $direccion, $codigo_postal, $telefono, $correo, $id_negocio);
+      $registrarSucursal = $query->registrarSucursal($nombre,$estado, $ciudad, $colonia, $direccion, $codigo_postal, $telefono, $correo, $id_negocio);
       if($registrarSucursal) {
         echo "sucursalRegistrado";
       }else {

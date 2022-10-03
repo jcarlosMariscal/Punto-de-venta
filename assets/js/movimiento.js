@@ -117,6 +117,7 @@ btn_adelante3.addEventListener("click", (e) => {
     });
 });
 const registrarSucursal = (
+  nombre,
   estado,
   ciudad,
   colonia,
@@ -128,6 +129,7 @@ const registrarSucursal = (
   const lastId = localStorage.getItem("lastId");
   let form = new FormData();
   form.append("table", "sucursal");
+  form.append("nombre", nombre);
   form.append("estado", estado);
   form.append("ciudad", ciudad);
   form.append("colonia", colonia);
@@ -161,6 +163,7 @@ const registrarSucursal = (
 var contador = 0;
 btn_nsucursal.addEventListener("click", (e) => {
   e.preventDefault();
+  const nombre = d.getElementById("sucursal_nombre");
   const estado = d.getElementById("sucursal_estado");
   const ciudad = d.getElementById("sucursal_ciudad");
   const colonia = d.getElementById("sucursal_colonia");
@@ -170,6 +173,7 @@ btn_nsucursal.addEventListener("click", (e) => {
   const correo = d.getElementById("sucursal_correo");
   const title = d.getElementById("title-sucursal");
   registrarSucursal(
+    nombre.value,
     estado.value,
     ciudad.value,
     colonia.value,
@@ -184,6 +188,7 @@ btn_nsucursal.addEventListener("click", (e) => {
   const msgP = d.createElement("p");
   msgP.innerHTML = `<b>El límite de sucursales que puede agregar es 3</b>`;
   title.appendChild(msgP);
+  nombre.value = "";
   estado.value = "";
   ciudad.value = "";
   colonia.value = "";
@@ -205,6 +210,7 @@ btn_nsucursal.addEventListener("click", (e) => {
 });
 btn_adelante4.addEventListener("click", (e) => {
   e.preventDefault();
+  const nombre = d.getElementById("sucursal_nombre").value;
   const estado = d.getElementById("sucursal_estado").value;
   const ciudad = d.getElementById("sucursal_ciudad").value;
   const colonia = d.getElementById("sucursal_colonia").value;
@@ -212,7 +218,16 @@ btn_adelante4.addEventListener("click", (e) => {
   const CP = d.getElementById("sucursal_CP").value;
   const telefono = d.getElementById("sucursal_telefono").value;
   const correo = d.getElementById("sucursal_correo").value;
-  registrarSucursal(estado, ciudad, colonia, direccion, CP, telefono, correo);
+  registrarSucursal(
+    nombre,
+    estado,
+    ciudad,
+    colonia,
+    direccion,
+    CP,
+    telefono,
+    correo
+  );
   movPag.style.marginLeft = "-60%";
   num[cont - 1].classList.add("active");
   progressCheck[cont - 1].classList.add("active");

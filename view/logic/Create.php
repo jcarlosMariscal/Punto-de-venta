@@ -29,11 +29,11 @@
         return false;
       }
     }
-    function registrarSucursal($estado, $ciudad, $colonia, $direccion, $codigo_postal, $telefono, $correo, $id_negocio){
+    function registrarSucursal($nombre,$estado, $ciudad, $colonia, $direccion, $codigo_postal, $telefono, $correo, $id_negocio){
       try {
-        $sql = "INSERT INTO sucursal(estado, ciudad, colonia, direccion, codigo_postal, telefono, correo, id_negocio) VALUES (?,?,?,?,?,?,?,?)";
+        $sql = "INSERT INTO sucursal(nombre, estado, ciudad, colonia, direccion, codigo_postal, telefono, correo, id_negocio) VALUES (?,?,?,?,?,?,?,?,?)";
         $query = $this->cnx->prepare($sql);
-        $data = array($estado,$ciudad,$colonia,$direccion, $codigo_postal, $telefono, $correo, $id_negocio);
+        $data = array($nombre,$estado,$ciudad,$colonia,$direccion, $codigo_postal, $telefono, $correo, $id_negocio);
         $insert = $query -> execute($data);
         if($insert) return true;
       } catch (PDOException $th) {

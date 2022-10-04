@@ -11,33 +11,9 @@
   $buscarDatosFiscales = $query->buscarDatosFiscales($_SESSION['id_negocio']);
   $obtenerDatosFiscales = $query->obtenerDatosFiscales($_SESSION['id_negocio']);
   $resDatosFiscales = $obtenerDatosFiscales->fetch();
+  // require_once "../template/header.php";
 ?>
 
-<section class="above">
-    <div class="above__info">
-      <p>Configuración</p>
-    </div>
-    <div class="above__user">
-    <div class="user__info">
-            <p class="user__name"><?php echo $_SESSION['user']?></p>
-            <p class="user__rol">
-                <?php 
-                    if($_SESSION['rol'] == 0){
-                        echo "Administrador";
-                    }elseif ($_SESSION['rol'] == 1) {
-                        echo "Gerente";
-                    }elseif ($_SESSION['rol'] == 2) {
-                        echo "Ventas";
-                    }
-                ?>
-            </p>
-        </div>
-        <div class="user__icon">
-            <span class="icon-user"><i class="icon-font fa-solid fa-user"></i></span>
-        </div>
-    </div>
-</section>
-<hr>
 <section class="content">
     <div class="config">
         <div class="config__form">

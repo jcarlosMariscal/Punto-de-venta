@@ -28,12 +28,14 @@ if(empty($_SESSION['active'])){
 </head>
 <body>
     <?php 
-        require_once "../template/header.php"; 
+        // require_once "../template/header.php"; 
+        require_once "../template/nav.php"; 
         $p = (isset($_GET['p']) ? $_GET['p'] : "main")
     ?>
 
-    <main class="main">
+    <main class="main" id="main">
         <?php
+        require_once "../template/header.php";
             switch ($p) {
                 case 'main':
                     require_once "user_main.php";
@@ -81,12 +83,13 @@ if(empty($_SESSION['active'])){
         ?>
     </main>
     <!-- <script src="../assets/js/chart.js"></script> -->
-    <!-- <script src="../assets/js/formularios.js" type="module"></script> -->
+    <script src="../assets/js/index.js" type="module"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.js" integrity="sha512-TsDUjQW16/G8fz4gmgTOBW2s2Oi6TPUtQ6/hm+TxZZdkQtQrK5xEFIE0rgDuz5Cl1xQU1u3Yer7K5IuuBeiCqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"></script>
     <!-- <script src="../assets/js/profile.js" type="module"></script> -->
     
 </body>

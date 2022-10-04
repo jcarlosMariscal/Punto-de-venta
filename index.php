@@ -11,7 +11,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Nova Tech PV</title>
 </head>
-<body>
+<body class="body-login">
     <div class="login-box1">
         <h1 class="text">Bienvenido al sistema</h1>
         <h1 class="text">Nova Tech</h1>

@@ -20,7 +20,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Nova Tech PV</title>
 </head>
-<body>
+<body class="body-login">
     <div class="container">
 
         <div class="progress-bar">

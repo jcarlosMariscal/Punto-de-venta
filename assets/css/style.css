@@ -30,16 +30,70 @@ body {
   padding: 0;
   /* overflow: hidden; */
   /* overflow-x: auto; */
+  position: relative;
+}
+.body-login {
+  position: inherit;
 }
 /* Menú del punto de venta */
-.header {
+header {
+  width: 100%;
+  height: 10vh;
+  background-color: var(--color-menu-primary);
+  margin: 0;
+}
+.header-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.header-toggle,
+.close-toggle {
+  color: #fff;
+  font-size: 26px;
+  cursor: pointer;
+}
+.dropdown {
+  display: flex;
+  gap: 15px;
+}
+.header-user {
+  display: flex;
+  gap: 20px;
+}
+.information {
+  font-size: 26px;
+}
+.information a,
+.dropdown-toggle {
+  color: white;
+}
+nav {
   background-color: var(--color-menu-primary);
   color: var(--secondary-color);
-  width: 22vw;
+  width: 20vw;
   min-height: 100vh;
   height: 100vh;
   overflow-y: auto;
   overflow-x: hidden;
+  position: fixed;
+  transition: 0.5s;
+  z-index: 100;
+  top: 0;
+  left: -20%;
+}
+.show-nav {
+  left: 0;
+}
+.info-pv {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+.nav-final {
+  display: flex;
+  flex-direction: column;
 }
 /* Parte superior del menú */
 .header-logo {
@@ -86,7 +140,7 @@ body {
 }
 /* Botón para salir del sistema */
 .system__logout {
-  padding: 0px 0px 10px 20px;
+  padding: 0px 0px 10px 0px;
   display: flex;
   align-items: center;
 }
@@ -119,7 +173,7 @@ body {
   padding: 0;
   width: 100%;
   /* padding: 20px; */
-  padding: 0px 0px 0px 20px;
+  padding: 0px 0px 0px 0px;
 }
 .navbar__li {
   margin: 0;
@@ -137,6 +191,7 @@ body {
   font-size: 30px;
   margin-right: 30px;
 }
+
 .ul__link {
   display: flex;
   align-items: center;
@@ -155,8 +210,15 @@ body {
   background-color: var(--color-one);
   color: var(--secondary-color);
 }
+.ul__link.active .nav-icon {
+  transition: all 0.2s ease-in-out;
+  background-color: var(--color-one);
+  color: var(--secondary-color);
+}
 .imag {
-  width: 70px;
+  width: 50px;
+  border-radius: 50%;
+  margin-right: 10px;
 }
 .separate {
   margin-right: 20px;
@@ -166,10 +228,19 @@ body {
 
 /* Codigo para los diferentes contenidos */
 .main {
+  transition: all 0.5s ease-in-out;
   background-color: var(--secondary-color);
-  width: 78vw;
+  width: 100vw;
   height: 100vh;
-  padding: 20px;
+  padding: 0;
+}
+.nav_fijado {
+  transition: all 0.5s ease-in-out;
+  width: 80vw;
+  margin-left: 20vw;
+}
+.content {
+  padding: 30px;
 }
 .above {
   /* background-color: aqua; */
@@ -1043,3 +1114,5 @@ select {
   border-radius: 5px;
   margin: 38% auto;
 }
+
+/* ---------------- RESETEO CÓDIGO SIDEBAR ------------------- */

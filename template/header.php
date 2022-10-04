@@ -1,49 +1,37 @@
-<?php
+<header class="py-3 mb-3 border-bottom">
+  <div class="container-fluid header-container">
+    <div class="dropdown">
+      <div class="header-toggle" id="header-toggle"><i class="fa-solid fa-bars"></i></div>
+      <!-- <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-white text-white text-decoration-none dropdown-toggle" id="dropdownNavLink" data-bs-toggle="dropdown" aria-expanded="false"> -->
+      <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-white text-white text-decoration-none" id="dropdownNavLink">
+          Configuración
+      </a>
+      <!-- <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink">
+          <li><a class="dropdown-item active" href="#" aria-current="page">Overview</a></li>
+          <li><a class="dropdown-item" href="#">Inventory</a></li>
+          <li><a class="dropdown-item" href="#">Customers</a></li>
+          <li><a class="dropdown-item" href="#">Products</a></li>
+          <li><hr class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Reports</a></li>
+          <li><a class="dropdown-item" href="#">Analytics</a></li>
+      </ul> -->
+    </div>
 
-include ("../conexion/conexion.php");
-
-$query = "select * from negocio ORDER BY id_negocio DESC LIMIT 1";
-$resultado = mysqli_query($con, $query);
-foreach ($resultado as $row) { 
-  $logo = $row['logo'];
-  $nombre = $row['nombre'];
-}
-
-?>
-
-<header class="header">
-  <div class="system">
-    <div class="system__info">
-      <div class="info__logo">
-        <a href="index.php?p=main" class="ul__link"><img style="border-radius: 50px ;" src="../assets/img/logo/<?php echo $logo; ?>" class="imag img-fluid" alt="..."></a>
-      </div>
-      <div class="info__text">
-        <h3 class="info__name"><?php echo $nombre; ?></h3>
-        <!-- <h5 class="info__welcome">Bienvenido(a) al sistema</h5> -->
+    <div class="align-items-center header-user">
+        <div class="information"><a href="index.php?p=information"><i class="fa-solid fa-circle-question"></i></a></div>
+        <div class="flex-shrink-0 dropdown">
+          <a href="#" class="d-block text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
       </div>
     </div>
-    <hr class="separate">
-    <div class="system__logout">
-      <a href="../cerrar_session/cerrar_session.php" class="logout"><i class="nav-icon fa-solid fa-arrow-left"></i><span class="li__info">Salir del Sistema</span></a>
-    </div>
-  </div>
-  <nav class="navbar">
-    <ul class="navbar__ul">
-      <li class="navbar__li"><a href="index.php?p=productos" class="ul__link"><i class="nav-icon fa-solid fa-boxes-stacked"></i><span class="li__info">Productos</span></a></li>
-      <li class="navbar__li"><a href="index.php?p=proveedor" class="ul__link"><i class="nav-icon fa-solid fa-hands-holding-circle"></i><span class="li__info">Proveedor</span></a></li>
-      <li class="navbar__li"><a href="index.php?p=ventas" class="ul__link"><i class="nav-icon fa-solid fa-file-invoice-dollar"></i><span class="li__info">Ventas</span></a></li>
-      <!-- PERMITIR EL ACCESO A ESTAS SECCIONES A SOLO EL ADMINISTRADOR -->
-      <?php
-        if($_SESSION['rol'] == 0){
-      ?>
-      <li class="navbar__li"><a href="index.php?p=compras" class="ul__link"><i class="nav-icon fa-solid fa-handshake"></i><span class="li__info">Compras</span></a></li>
-      <li class="navbar__li"><a href="index.php?p=personal" class="ul__link"><i class="nav-icon fa-solid fa-user-group"></i><span class="li__info">Mi personal</span></a></li>
-      <li class="navbar__li"><a href="index.php?p=sucursal" class="ul__link"><i class="nav-icon fa-solid fa-map-location-dot"></i><span class="li__info">Sucursal</span></a></li>
-      <li class="navbar__li"><a href="index.php?p=configuration" class="ul__link"><i class="nav-icon fa-solid fa-gears"></i><span class="li__info">Configuración</span></a></li>
-      <?php
-        }
-      ?>
-      <li class="navbar__li"><a href="index.php?p=information" class="ul__link"><i class="nav-icon fa-solid fa-circle-info"></i><span class="li__info">Información del Sistema</span></a></li>
-    </ul>
-  </nav>
-</header>
+  </header>
+

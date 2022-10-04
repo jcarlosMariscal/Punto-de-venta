@@ -11,7 +11,7 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Inicio de sesión</title>
 </head>
-<body>
+<body class="body-login">
     <!-- Creación de Login -->
     <div class="login-box">
       <img class="user" src="assets/img/icono1.png" alt="logo">

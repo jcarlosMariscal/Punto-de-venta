@@ -3,7 +3,7 @@
     <div class="dropdown">
       <div class="header-toggle" id="header-toggle"><i class="fa-solid fa-bars"></i></div>
       <!-- <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-white text-white text-decoration-none dropdown-toggle" id="dropdownNavLink" data-bs-toggle="dropdown" aria-expanded="false"> -->
-      <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-white text-white text-decoration-none" id="dropdownNavLink">
+      <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-white text-white text-decoration-none name-section" id="dropdownNavLink">
           Configuración
       </a>
       <!-- <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink">

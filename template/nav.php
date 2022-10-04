@@ -15,7 +15,7 @@ foreach ($resultado as $row) {
     <div class="info-pv">
       <a href="index.php?p=main" class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
         <img src="../assets/img/logo/<?php echo $logo; ?>" class="imag img-fluid" alt="...">
-        <span class="fs-4"><?php echo $nombre; ?></span>
+        <span class="nombre-pv"><?php echo $nombre; ?></span>
       </a>
       <div class="close-toggle" id="close-toggle"><i class="fa-sharp fa-solid fa-xmark"></i></div>
     </div>
@@ -30,31 +30,31 @@ foreach ($resultado as $row) {
       <li class="navbar__li">
         <a href="index.php?p=proveedor" class="nav-link text-white ul__link">
           <i class="nav-icon fa-solid fa-hands-holding-circle"></i>
-          Proveedor
+          <span class="li__info">Proveedor</span>
         </a>
       </li>
       <li class="navbar__li">
         <a href="index.php?p=ventas" class="nav-link text-white ul__link">
           <i class="nav-icon fa-solid fa-file-invoice-dollar"></i>
-          Ventas
+          <span class="li__info">Ventas</span>
         </a>
       </li>
       <li class="navbar__li">
         <a href="index.php?p=compras" class="nav-link text-white ul__link">
           <i class="nav-icon fa-solid fa-handshake"></i>
-          Compras
+          <span class="li__info">Compras</span>
         </a>
       </li>
       <li class="navbar__li">
         <a href="index.php?p=personal" class="nav-link text-white ul__link">
           <i class="nav-icon fa-solid fa-user-group"></i>
-          Personal
+          <span class="li__info">Personal</span>
         </a>
       </li>
       <li class="navbar__li">
         <a href="index.php?p=configuration" class="nav-link text-white ul__link">
           <i class="nav-icon fa-solid fa-gears"></i>
-          Configuración
+          <span class="li__info">Configuración</span>
         </a>
       </li>
     </ul>
@@ -64,7 +64,7 @@ foreach ($resultado as $row) {
         <a href="../cerrar_session/cerrar_session.php" class="logout"><i class="nav-icon fa-solid fa-arrow-left"></i><span class="li__info">Salir del Sistema</span></a>
       </div>
       <div class="fijar-nav">
-        <label for="fijar">Fijar menú</label>
+        <label for="fijar">Fijar <span class="fij-men">menú</span></label>
         <input type="checkbox" name="fijar" id="fijar_nav">
       </div>
       <!-- <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
@@ -77,3 +77,13 @@ foreach ($resultado as $row) {
     </div>
   </div>
 </nav>
+      <!-- <?php
+        // if($_SESSION['rol'] == 0){
+      ?>
+      <li class="navbar__li"><a href="index.php?p=compras" class="ul__link"><i class="nav-icon fa-solid fa-handshake"></i><span class="li__info">Compras</span></a></li>
+      <li class="navbar__li"><a href="index.php?p=personal" class="ul__link"><i class="nav-icon fa-solid fa-user-group"></i><span class="li__info">Mi personal</span></a></li>
+      <li class="navbar__li"><a href="index.php?p=sucursal" class="ul__link"><i class="nav-icon fa-solid fa-map-location-dot"></i><span class="li__info">Sucursal</span></a></li>
+      <li class="navbar__li"><a href="index.php?p=configuration" class="ul__link"><i class="nav-icon fa-solid fa-gears"></i><span class="li__info">Configuración</span></a></li>
+      <?php
+        // }
+      ?> -->

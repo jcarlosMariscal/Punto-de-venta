@@ -6,11 +6,32 @@
   }
 }
 @media screen and (max-width: 1115px) {
+  nav {
+    transition: all 0.5s ease-in-out;
+    width: 23vw;
+  }
+  .nav_fijado {
+    transition: all 0.5s ease-in-out;
+    width: 80vw;
+    margin-left: 23vw;
+  }
+  .info-pv {
+    transition: all 1s ease-in-out;
+    width: 110% !important;
+  }
   .nav-icon {
     height: 20px;
     width: 20px;
     font-size: 25px;
   }
+  /* .close-toggle {
+    padding-right: -5px;
+  } */
+  /* .nombre-pv {
+    font-size: 16px;
+    font-weight: normal;
+  } */
+
   /* CONTENIDO PRINCIPAL: Por defecto información del sistema */
   /* .label {
     width: 20%;
@@ -35,6 +56,9 @@
 }
 
 @media screen and (max-width: 1051px) {
+  .nombre-pv {
+    font-size: 16px;
+  }
   .imag {
     width: 60px;
   }
@@ -96,15 +120,35 @@
 }
 
 @media screen and (max-width: 870px) {
-  .header {
+  nav {
+    transition: all 0.5s ease-in-out;
     width: 15vw;
-    min-height: 100vh;
+  }
+  .nav_fijado {
+    transition: all 0.5s ease-in-out;
+    width: 80vw;
+    margin-left: 15vw;
+  }
+  .info-pv {
+    transition: all 1s ease-in-out;
+    width: 65% !important;
+  }
+  header {
+    width: 100%;
+    height: auto;
+  }
+  .nombre-pv {
+    display: none;
+  }
+  .imag {
+    width: 40px;
+    border-radius: 50%;
   }
   .main {
     background-color: var(--secondary-color);
-    width: 85vw;
+    width: 100vw;
     height: 100vh;
-    padding: 20px;
+    padding: 0;
   }
   .system__info {
     display: flex;
@@ -119,12 +163,12 @@
     display: flex;
     gap: 15px;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: flex-start;
   }
   .system__logout {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
   }
   .nav-icon {
     height: 20px;
@@ -255,6 +299,22 @@
 }
 
 @media screen and (max-width: 725px) {
+  .info-pv {
+    transition: all 1s ease-in-out;
+    width: 35% !important;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .close-toggle {
+    font-size: 30px;
+  }
+  .imag {
+    display: none;
+  }
+  .fij-men {
+    display: none;
+  }
   .input-compra label {
     width: 39%;
   }
@@ -284,6 +344,15 @@
   }
 }
 @media screen and (max-width: 630px) {
+  .nav-icon {
+    height: 10px;
+    width: 10px;
+    font-size: 15px;
+    margin-right: 10px;
+  }
+  .fijar-nav {
+    display: none;
+  }
   .config__permissions {
     display: flex;
     flex-direction: column;
@@ -399,4 +468,9 @@
   /* .main { */
   /* overflow-x: auto; */
   /* } */
+  .information,
+  .name-section {
+    transition: all 1s ease-in-out;
+    display: none !important;
+  }
 }

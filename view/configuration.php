@@ -3,13 +3,13 @@
   require_once "logic/Read.php";
   $query = new Read();
 
-  $readNegocio = $query->readNegocio($_SESSION['id_negocio']); // Hacer una consulta a tabla negocios
+  $readNegocio = $query->readNegocio($_SESSION['user']['id_negocio']); // Hacer una consulta a tabla negocios
   $resNegocio = $readNegocio->fetch(); // Obtener el registro de la consulta
   $readTipo = $query->readTipo(); // Hacer consulta para leer los tipos de negocios.
   $readTipoSelected = $query->readTipoSelected($resNegocio['id_tipo']); // Obtner el tipo de negocio actual
 
-  $buscarDatosFiscales = $query->buscarDatosFiscales($_SESSION['id_negocio']);
-  $obtenerDatosFiscales = $query->obtenerDatosFiscales($_SESSION['id_negocio']);
+  $buscarDatosFiscales = $query->buscarDatosFiscales($_SESSION['user']['id_negocio']);
+  $obtenerDatosFiscales = $query->obtenerDatosFiscales($_SESSION['user']['id_negocio']);
   $resDatosFiscales = $obtenerDatosFiscales->fetch();
   // require_once "../template/header.php";
 ?>
@@ -21,7 +21,7 @@
             <form action="logic/updateData.php" method="POST" class="form" enctype="multipart/form-data" id="formulario">
                 <div class="form-inputs">
                   <input type="hidden" name="table" value="updateNegocio">
-                  <input type="hidden" name="id_negocio" value="<?php echo $_SESSION['id_negocio']; ?>">
+                  <input type="hidden" name="id_negocio" value="<?php echo $_SESSION['user']['id_negocio']; ?>">
                     <div class="input-nombre input-cfg" id="group-nombre">
                         <label for="" class="label">Nombre:</label>
                         <input type="text" class="input input-config" value="<?php echo $resNegocio['nombre']; ?>" name="nombre" id="nombre" >

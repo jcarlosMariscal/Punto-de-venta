@@ -27,12 +27,12 @@ if(!empty($_POST)){
         }
       }
       break;
-    case 'loginAdmin': // INICIAR SESIÓN
+    case 'loginUser': // INICIAR SESIÓN
       // VALIDAMOS SI SE RECIBEN LOS DATOS, SI NO MANDALOS LOS VALORES COMO NULO.
       $username = (isset($_POST['username']) ? $_POST['username'] : NULL);
       $pass = (isset($_POST['pass']) ? $_POST['pass'] : NULL);
       // LLAMAMOS A UN MÉTODO PARA INICIAR SESIÓN Y NANDALOS LOS PARAMETROS NECESARIOS
-      $query -> loginAdmin($username, $pass);
+      $query -> loginUser($username, $pass);
       if($query){
         ?>
           <script>

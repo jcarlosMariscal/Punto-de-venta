@@ -1,10 +1,80 @@
 <?php
-session_start();//iniciamos una sesión
-if(empty($_SESSION['active'])){
-    header('location: ../index.php');
-}
-
+  session_start();//iniciamos una sesión
+  if(empty($_SESSION['user'])){
+      header('location: ../index.php');
+  }
+  $p = (isset($_GET['p']) ? $_GET['p'] : "main");
+  switch ($p) {
+  case 'main':
+    $getPage = "user_main.php";
+    $nombreSeccion = "Inicio";
+    break;
+  case 'configuration':
+    if ($_SESSION['rol'] != 0 ){
+        ?> <script>
+          alert("Acceso no autorizado");
+          window.location.href="index.php";
+          </script> <?php
+      }else{
+        $getPage = "configuration.php";
+        $nombreSeccion = "Configuración";
+      }
+  break;
+  case 'information':
+    $getPage = "system_start.php";
+    $nombreSeccion = "Información";
+      break;
+  case 'personal':
+      if ($_SESSION['rol'] != 0 ){
+        ?> <script>
+          alert("Acceso no autorizado");
+          window.location.href="index.php";
+          </script> <?php
+      }else{
+        $getPage = "personal.php";
+        $nombreSeccion = "Personal";
+      }
+      break;
+  case 'ventas':
+      $getPage = "ventas.php";
+      $nombreSeccion = "Ventas";
+      break;
+  case 'compras':
+    if ($_SESSION['rol'] != 0 ){
+        ?> <script>
+          alert("Acceso no autorizado");
+          window.location.href="index.php";
+          </script> <?php
+      }else{
+        $getPage = "compras.php";
+        $nombreSeccion = "Compras";
+      }
+      break;
+  case 'ver-compras':
+      $getPage = "verCompras.php";
+      $nombreSeccion = "Ver Compras";
+      break;
+  case 'proveedor':
+      $getPage = "supplier.php";
+      $nombreSeccion = "Proveedor";
+      break;
+  case 'reporte':
+      $getPage = "reporte.php";
+      $nombreSeccion = "Reporte";
+      break;            
+  case 'productos':
+      $getPage = "productos.php";
+      $nombreSeccion = "Productos";
+      break;
+  case 'sucursal':
+      $getPage = "sucursal.php";
+      $nombreSeccion = "";
+      break;
+  default:
+      # code...
+      break;}
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -21,68 +91,19 @@ if(empty($_SESSION['active'])){
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@100;200&family=Hind+Siliguri:wght@300&family=Montserrat:ital,wght@1,300&family=Roboto:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js" integrity="sha512-QSkVNOCYLtj73J4hbmVoOV6KVZuMluZlioC+trLpewV8qMjsWqlIQvkn1KGX2StWvPMdWGBqim1xlC8krl1EKQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <title>Sistema Punto de ventas</title>
+    <title>NV | <?php echo $nombreSeccion; ?></title>
     <link rel="shortcut icon" href="../assets/img/favicon.png" type="image/x-icon">
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 </head>
 <body>
-    <?php 
-        // require_once "../template/header.php"; 
-        require_once "../template/nav.php"; 
-        $p = (isset($_GET['p']) ? $_GET['p'] : "main")
-    ?>
-
+    <?php require_once "../template/nav.php"; ?>
     <main class="main" id="main">
         <?php
         require_once "../template/header.php";
-            switch ($p) {
-                case 'main':
-                    require_once "user_main.php";
-                    break;
-                case 'configuration':
-                    ($_SESSION['rol'] == 0 ) ? require_once "configuration.php" : header('Location: index.php');
-                    break;
-                case 'information':
-                    require_once "system_start.php";
-                    break;
-                case 'personal':
-                    ($_SESSION['rol'] == 0 ) ? require_once "personal.php" : header('Location: index.php');
-                    break;
-                case 'ventas':
-                    require_once "ventas.php";
-                    break;
-                case 'compras':
-                    ($_SESSION['rol'] == 0 ) ? require_once "compras.php" : header('Location: index.php');
-                    break;
-                case 'ver-compras':
-                    require_once "verCompras.php";
-                    break;
-                case 'proveedor':
-                    require_once "supplier.php";
-                    break;
-                case 'reporte':
-                    require_once "reporte.php";
-                    break;
-                case 'add_supplier':
-                    require_once "add_supplier.php";
-                    break;               
-                case 'ver-compras':
-                    require_once "verCompras.php";
-                    break;
-                case 'productos':
-                    require_once "productos.php";
-                    break;
-                case 'sucursal':
-                    require_once "sucursal.php";
-                    break;
-                default:
-                    # code...
-                    break;
-            }
+        require_once $getPage;
         ?>
     </main>
-    <!-- <script src="../assets/js/chart.js"></script> -->
     <script src="../assets/js/index.js" type="module"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.js" integrity="sha512-TsDUjQW16/G8fz4gmgTOBW2s2Oi6TPUtQ6/hm+TxZZdkQtQrK5xEFIE0rgDuz5Cl1xQU1u3Yer7K5IuuBeiCqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

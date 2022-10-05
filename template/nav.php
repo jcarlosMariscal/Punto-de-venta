@@ -39,24 +39,30 @@ foreach ($resultado as $row) {
           <span class="li__info">Ventas</span>
         </a>
       </li>
-      <li class="navbar__li">
-        <a href="index.php?p=compras" class="nav-link text-white ul__link">
-          <i class="nav-icon fa-solid fa-handshake"></i>
-          <span class="li__info">Compras</span>
-        </a>
-      </li>
-      <li class="navbar__li">
-        <a href="index.php?p=personal" class="nav-link text-white ul__link">
-          <i class="nav-icon fa-solid fa-user-group"></i>
-          <span class="li__info">Personal</span>
-        </a>
-      </li>
-      <li class="navbar__li">
-        <a href="index.php?p=configuration" class="nav-link text-white ul__link">
-          <i class="nav-icon fa-solid fa-gears"></i>
-          <span class="li__info">Configuración</span>
-        </a>
-      </li>
+      <?php
+      if($_SESSION['rol'] == 0){
+        ?>
+        <li class="navbar__li">
+          <a href="index.php?p=compras" class="nav-link text-white ul__link">
+            <i class="nav-icon fa-solid fa-handshake"></i>
+            <span class="li__info">Compras</span>
+          </a>
+        </li>
+        <li class="navbar__li">
+          <a href="index.php?p=personal" class="nav-link text-white ul__link">
+            <i class="nav-icon fa-solid fa-user-group"></i>
+            <span class="li__info">Personal</span>
+          </a>
+        </li>
+        <li class="navbar__li">
+          <a href="index.php?p=configuration" class="nav-link text-white ul__link">
+            <i class="nav-icon fa-solid fa-gears"></i>
+            <span class="li__info">Configuración</span>
+          </a>
+        </li>
+        <?php
+      }
+      ?>
     </ul>
     <hr>
     <div class="dropdown nav-final">
@@ -77,13 +83,3 @@ foreach ($resultado as $row) {
     </div>
   </div>
 </nav>
-      <!-- <?php
-        // if($_SESSION['rol'] == 0){
-      ?>
-      <li class="navbar__li"><a href="index.php?p=compras" class="ul__link"><i class="nav-icon fa-solid fa-handshake"></i><span class="li__info">Compras</span></a></li>
-      <li class="navbar__li"><a href="index.php?p=personal" class="ul__link"><i class="nav-icon fa-solid fa-user-group"></i><span class="li__info">Mi personal</span></a></li>
-      <li class="navbar__li"><a href="index.php?p=sucursal" class="ul__link"><i class="nav-icon fa-solid fa-map-location-dot"></i><span class="li__info">Sucursal</span></a></li>
-      <li class="navbar__li"><a href="index.php?p=configuration" class="ul__link"><i class="nav-icon fa-solid fa-gears"></i><span class="li__info">Configuración</span></a></li>
-      <?php
-        // }
-      ?> -->

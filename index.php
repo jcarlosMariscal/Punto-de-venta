@@ -1,3 +1,9 @@
+<?php
+  session_start();//iniciamos una sesión
+  if(!empty($_SESSION['user'])){
+      header('location: view/index.php');
+  }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

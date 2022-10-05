@@ -5,13 +5,13 @@ $table = (isset($_POST['table']) ? $_POST['table'] : NULL);
 if(!empty($_POST)){
   switch ($table) {
     case 'editarProveedor';
-      $id_prov = (isset($_POST['id_prov']) ? $_POST['id_prov'] : NULL); 
-      $identificador = (isset($_POST['identificador']) ? $_POST['identificador'] : NULL);
+      $id_prov = (isset($_POST['id_proveedor']) ? $_POST['id_proveedor'] : NULL); 
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
-      $factura = (isset($_POST['factura']) ? $_POST['factura'] : NULL);
       $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL);
-
-      $query->editarProveedor($id_prov, $identificador, $nombre, $factura, $telefono);
+      $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL);
+      $contacto = (isset($_POST['contacto']) ? $_POST['contacto'] : NULL);
+      $cargo = (isset($_POST['cargo']) ? $_POST['cargo'] : NULL);
+      $query->editarProveedor($id_prov,$nombre,$telefono,$correo,$contacto,$cargo);
       if ($query) {
       ?>
         <script>
@@ -24,15 +24,18 @@ if(!empty($_POST)){
       }
       break;
     case 'editarPersonal';
-      $id_per = (isset($_POST['id_per']) ? $_POST['id_per'] : NULL); 
+      $id_per = (isset($_POST['id_personal']) ? $_POST['id_personal'] : NULL); 
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL); 
-      $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL); 
-      $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL); 
-      $rol = (isset($_POST['rol']) ? $_POST['rol'] : NULL);
       $pass = (isset($_POST['pass']) ? $_POST['pass'] : NULL);
-      $query->editarPersonal($id_per, $nombre, $telefono, $correo, $rol, $pass);
-      if ($query) {
-        
+      $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL); 
+      $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL); 
+      $ciudad = (isset($_POST['ciudad']) ? $_POST['ciudad'] : NULL); 
+      $domicilio = (isset($_POST['domicilio']) ? $_POST['domicilio'] : NULL); 
+      $id_sucursal = (isset($_POST['id_sucursal']) ? $_POST['id_sucursal'] : NULL); 
+      $id_caja = (isset($_POST['id_caja']) ? $_POST['id_caja'] : NULL); 
+      $id_rol = (isset($_POST['id_rol']) ? $_POST['id_rol'] : NULL);
+      $query->editarPersonal($id_per, $nombre,$pass,$correo,$telefono,$ciudad,$domicilio,$id_sucursal,$id_caja,$id_rol);
+      if ($query) {       
       ?>
         <script>
           localStorage.setItem("modPer", "true");
@@ -41,7 +44,8 @@ if(!empty($_POST)){
         <?php
       } else {
         $alert = '<p class="msg_error">Error al crear al usuario.</p>';
-      }         
+      }
+        
     break;
     case 'updateNegocio':
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL); 

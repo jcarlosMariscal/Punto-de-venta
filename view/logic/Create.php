@@ -58,25 +58,25 @@
         $query = $this->cnx->prepare($sql); // Preparamos la consulta
         $query -> bindParam(1,$nombre); // Mandamos el valor de manera segura (Uno solo)
         if($query->execute()){
-          echo "success";
+          // echo "success";
           return $query->rowCount();
         }
       } catch (PDOException $th) {
-        echo "error";
+        return 0;
       }
     }
-    function registrarProveedor($identificador,$nombre,$factura,$telefono){
+    function registrarProveedor($nombre,$telefono,$correo,$contacto,$cargo){
       try{
-        $sql = "INSERT INTO proveedor(identificador,nombre,factura,telefono) VALUES(?,?,?,?)"; //Insertamos el registro
+        $sql = "INSERT INTO proveedor(nombre,telefono,correo,contacto,cargo) VALUES(?,?,?,?,?)"; //Insertamos el registro
         $query = $this->cnx->prepare($sql); // Preparar la consulta
-        $data = array($identificador,$nombre,$factura,$telefono); // Mandar los valores de manera segura en forma de arreglo (Varios)
+        $data = array($nombre,$telefono,$correo,$contacto,$cargo); // Mandar los valores de manera segura en forma de arreglo (Varios)
         $insert = $query -> execute($data);//ejecutamos la consulta
         if($insert) return true;
       }catch (PDOException $th){
         echo "error";
       }
-
     }
+
     //Validar personal
     function validarPersonal($nombre){
       try {
@@ -92,18 +92,18 @@
       }
     }
     //Registrar personal
-    function registrarPersonal($nombre,$pass,$correo,$telefono,$caja,$rol){
+    function registrarPersonal($nombre,$pass,$correo,$telefono,$ciudad,$domicilio,$id_sucursal,$id_caja,$id_rol){
       try{
-          $sql = "INSERT INTO usuarios(username,pass,correo,telefono,id_caja, id_rol) VALUES(?,?,?,?,?,?)"; //Insertamos el registro
+          $sql = "INSERT INTO personal(nombre,pass,correo,telefono,ciudad,domicilio,id_sucursal,id_caja,id_rol) VALUES(?,?,?,?,?,?,?,?,?)"; //Insertamos el registro
           $query = $this->cnx->prepare($sql); // Preparar la consulta
           $encrypt = password_hash($pass, PASSWORD_BCRYPT); // Encriptar la contraseña
-          $data = array($nombre,$encrypt,$correo,$telefono,$caja,$rol); // Mandar los valores de manera segura en forma de arreglo (Varios)
+          $data = array($nombre,$encrypt,$correo,$telefono,$ciudad,$domicilio,$id_sucursal,$id_caja,$id_rol);
           $insert = $query -> execute($data);//ejecutamos la consulta
           if($insert) return true;
-
       }catch (PDOException $th){
-        echo "error";
+        return false;
       }
+
     }
     function getNegocio(){
       try {

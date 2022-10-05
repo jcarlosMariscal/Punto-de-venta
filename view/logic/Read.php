@@ -62,5 +62,115 @@
         return false;
       }
     }
+    // ------------------------personal  
+    function selectPersonal()
+    {
+        try {
+            $sql = "SELECT * from personal";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+    function idSucursal()
+    {
+        try {
+            $sql = "SELECT * from sucursal";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+
+    function idCaja()
+    {
+        try {
+            $sql = "SELECT * from caja";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+
+    function idRol()
+    {
+        try {
+            $sql = "SELECT * from rol";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+
+    function editPersonal($id)
+    {
+        try {
+            $sql = "SELECT * FROM personal WHERE id_personal = ?";
+            $query = $this->cnx->prepare($sql);
+            $query->bindParam(1, $id);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+
+    function selectInfoPer()
+    {
+        try {
+            $sql = "SELECT * from personal";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+
+    //---------------- provedor---------------------------------
+    function selectProveedor()
+    {
+        try {
+            $sql = "SELECT * from proveedor";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+
+    function editProveedor($id)
+    {
+        try {
+            $sql = "SELECT * FROM proveedor WHERE id_proveedor = ?";
+            $query = $this->cnx->prepare($sql);
+            $query->bindParam(1, $id);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+    
+    function selectInfo(){
+        try {
+            $sql = "SELECT * from proveedor";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+
   }
   ?>

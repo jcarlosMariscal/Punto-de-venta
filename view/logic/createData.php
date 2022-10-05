@@ -5,16 +5,18 @@ $table = (isset($_POST['table']) ? $_POST['table'] : NULL);
 if(!empty($_POST)){
   switch ($table) {
     case 'agregarProveedor': // REGISTRAR ADMINISTRADOR
-      $identificador = (isset($_POST['identificador']) ? $_POST['identificador'] : NULL);
+      $id_proveedor = (isset($_POST['id_proveedor']) ? $_POST['id_proveedor'] : NULL);
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
-      $factura = (isset($_POST['factura']) ? $_POST['factura'] : NULL);
       $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL);
+      $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL);
+      $contacto = (isset($_POST['contacto']) ? $_POST['contacto'] : NULL);
+      $cargo = (isset($_POST['cargo']) ? $_POST['cargo'] : NULL);
       //  LLAMAMOS A UN MÉTODO PARA VALIDAR SI YA EXISTE UN USUARIO CON EL MISMO NOMBRE
       $validate = $query->validateNameUser($nombre, 'proveedor','nombre');
       if($validate >= 1){
         echo "Proveedor ya registrado";
       }else{
-        $query -> registrarProveedor($identificador, $nombre, $factura,$telefono);
+        $query -> registrarProveedor($nombre,$telefono,$correo,$contacto,$cargo);
         if($query){
           ?>
             <script>
@@ -23,25 +25,28 @@ if(!empty($_POST)){
             </script>
           <?php
         }
-      }    
+      } 
+  
       break;
     case 'agregarPersonal':
-
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
       $pass = (isset($_POST['pass']) ? $_POST['pass'] : NULL);
       $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL);
       $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL);
-      $caja = (isset($_POST['caja']) ? $_POST['caja'] : NULL);
-      $rol = (isset($_POST['rol']) ? $_POST['rol'] : NULL);
-      
+      $ciudad = (isset($_POST['ciudad']) ? $_POST['ciudad'] : NULL);
+      $domicilio = (isset($_POST['domicilio']) ? $_POST['domicilio'] : NULL);
+      $id_sucursal = (isset($_POST['id_sucursal']) ? $_POST['id_sucursal'] : NULL);
+      $id_caja = (isset($_POST['id_caja']) ? $_POST['id_caja'] : NULL);
+      $id_rol = (isset($_POST['id_rol']) ? $_POST['id_rol'] : NULL);      
       //  LLAMAMOS A UN MÉTODO PARA VALIDAR SI YA EXISTE UN USUARIO CON EL MISMO NOMBRE
-      $validate = $query->validateNameUser($nombre, 'usuarios','username');
+      $validate = $query->validateNameUser($nombre, 'personal','nombre');
       if($validate >= 1){
         echo "Usuario ya registrado";
       }else{
         // SI NO ESTÁ REPETIDO, LLAMAMOS A UN MÉTODO PARA REGISTRARSE Y MANDAMOS LOS PARAMETROS NECESARIOS
-        $query -> registrarPersonal($nombre,$pass,$correo,$telefono,$caja,$rol);
+        $query -> registrarPersonal($nombre,$pass,$correo,$telefono,$ciudad,$domicilio,$id_sucursal,$id_caja,$id_rol);
         if($query){
+          // echo "correcto";
            ?>
              <script>
                  localStorage.setItem("addPer", "true");
@@ -49,7 +54,8 @@ if(!empty($_POST)){
              </script>
            <?php
         }
-      }    
+      }   
+
     break;
     case 'registerConfig':
       // PARA CUANDO SE REALICE EL CAMBIO A LA LÓGICA DE INICIO DE SESIÓN

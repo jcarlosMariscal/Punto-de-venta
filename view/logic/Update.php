@@ -5,30 +5,30 @@
     function __construct(){
       $this -> cnx = Connection::connectDB();
     }
-    function editarProveedor($id_prov,$identificador,$nombre,$factura,$telefono){
+    function editarProveedor($id_prov,$nombre,$telefono,$correo,$contacto,$cargo){
       try{
-        $sql = "UPDATE proveedor SET identificador = ?, nombre = ?, factura = ? ,telefono = ? WHERE id = ? ";//Insertamos el registro
+        $sql = "UPDATE proveedor SET nombre = ?, telefono = ?, correo = ? ,contacto = ?, cargo =? WHERE id_proveedor = ? ";//Insertamos el registro
         $query = $this-> cnx->prepare($sql);
-        $data = array($identificador,$nombre,$factura,$telefono, $id_prov);
-        $insert = $query->execute($data);
-        if($insert) return true;
-      }catch(PDOException $th){
-        echo "error";
-      }
-
-    }
-
-    function editarPersonal($id_per,$nombre,$telefono,$correo,$rol,$pass){
-      try{
-        $sql = "UPDATE usuarios SET username = ?, pass = ?, correo = ?, telefono = ?,id_rol = ? WHERE id_user = ?";//Insertamos el registro
-        $query = $this-> cnx->prepare($sql);
-        $data = array($nombre,$pass, $correo,$telefono,$rol, $id_per);
+        $data = array($nombre,$telefono,$correo,$contacto,$cargo, $id_prov);
         $insert = $query->execute($data);
         if($insert) return true;
       }catch(PDOException $th){
         echo "error";
       }
     }
+
+    function editarPersonal($id_per,$nombre,$pass,$correo,$telefono,$ciudad,$domicilio,$id_sucursal,$id_caja,$id_rol){
+      try{
+        $sql = "UPDATE personal SET nombre = ?, pass = ?, correo = ?, telefono = ?, ciudad = ?,domicilio= ?, id_sucursal = ?, id_caja = ?, id_rol = ? WHERE id_personal = ?";//Insertamos el registro
+        $query = $this-> cnx->prepare($sql);
+        $data = array($nombre,$pass, $correo,$telefono,$ciudad,$domicilio,$id_sucursal,$id_caja,$id_rol, $id_per);
+        $insert = $query->execute($data);
+        if($insert) return true;
+      }catch(PDOException $th){
+        echo "error";
+      }
+    }
+
 
     function configError($getNegocio){
       try {

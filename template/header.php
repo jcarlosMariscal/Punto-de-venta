@@ -18,7 +18,12 @@
     </div>
 
     <div class="align-items-center header-user">
-        <div class="information"><a href="index.php?p=information"><i class="fa-solid fa-circle-question"></i></a></div>
+      <div class="info-sucursal">
+        <p class="text-white">Sucursal: <span id="id_sucursal"><?php echo $_SESSION['user']['id_sucursal']; ?></span></p>
+      </div>
+        <div class="information">
+          <a href="index.php?p=information"><i class="fa-solid fa-circle-question"></i></a>
+        </div>
         <!-- <div class="rol-name-user">
           <span></span>
         </div> -->

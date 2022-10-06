@@ -61,7 +61,9 @@ if(!empty($_POST)){
       // PARA CUANDO SE REALICE EL CAMBIO A LA LÓGICA DE INICIO DE SESIÓN
     break;
     case 'getNegocio':
-      $getNegocio = $query->getNegocio();
+      $id_sucursal = (isset($_POST['id_sucursal']) ? $_POST['id_sucursal'] : NULL); 
+      $sucursal = ($id_sucursal == 0) ? 1 : $_POST['id_sucursal']; 
+      $getNegocio = $query->getNegocio($sucursal);
       if($getNegocio[0]){
         echo $getNegocio[1];
       }else{

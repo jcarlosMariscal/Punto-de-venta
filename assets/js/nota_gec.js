@@ -2,7 +2,9 @@ const d = document;
 const nota_compra = () => {
   let table_body = d.getElementById("table-body");
   let comprar = d.getElementById("comprar");
+  let id_sucursal = d.getElementById("id_sucursal");
   comprar.addEventListener("click", (e) => {
+    console.log("comprar");
     e.preventDefault();
     const aComprar = [];
 
@@ -22,6 +24,7 @@ const nota_compra = () => {
     const section_modal = d.createElement("section");
     let myForm = new FormData();
     myForm.append("table", "getNegocio");
+    myForm.append("id_sucursal", id_sucursal.innerText);
     let config;
     fetch("logic/createData.php", {
       method: "POST",
@@ -36,20 +39,20 @@ const nota_compra = () => {
         let get = JSON.parse(data);
         // console.log(get);
         let html = `
-        <div class="modal fade bd-example-modal-lg" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal fade" id="confirmarCompra" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Confirmación de compra</h5>
-                    <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="ticket">
                     <div class="ticket-generado">
-                        <img src="../imagenes/${get.imagen}" class="ticket-logo">
-                        <h3 class="text-center">${get.razon_social}<h3>
+                        <img src="../assets/img/icono1.png" class="ticket-logo">
+                        <h3 class="text-center">${get.nombre}<h3>
                         <p class="text-center">Fecha: 30-06-2022</p>
                         <p class="text-center">Compra No. 85</p>
-                        <p class="text-center">${get.domicilio}, ${get.cpostal}</p>
+                        <p class="text-center">${get.estado}, ${get.ciudad}, ${get.colonia}, ${get.direccion}, ${get.codigo_postal}</p>
                         <p class="text-center">${get.telefono}</p>
 
                         <table table bgcolor= "#FFFFFF"  class="table table-bordered">
@@ -68,8 +71,8 @@ const nota_compra = () => {
                         <p>Total Neto: $<span id="total_neto"></span></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-close-modal" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn-save-modal" id="comprarProductos">Comprar</button>
+                        <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn-save-modal" disabled id="comprarProductos">Comprar</button>
                         <button type="button" class="btn-save-modal" id="save_ticket">Descargar</button>
                     </div>
                 </div>
@@ -95,7 +98,14 @@ const nota_compra = () => {
 
         const total_neto = d.getElementById("total_neto");
         total_neto.innerHTML = total;
-        $("#mymodal").modal("show");
+        // $("#confirmarCompra").modal("show");
+        var confirmarCompra = new bootstrap.Modal(
+          document.getElementById("confirmarCompra"),
+          {
+            keyboard: false,
+          }
+        );
+        confirmarCompra.show();
         const save_ticket = d.getElementById("save_ticket");
         const comprarProductos = d.getElementById("comprarProductos");
         comprarProductos.addEventListener("click", (e) => {

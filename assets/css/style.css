@@ -153,6 +153,7 @@ nav {
 /* Botón para salir del sistema */
 .system__logout {
   padding: 0px 0px 10px 0px;
+  /* background-color: aqua; */
   display: flex;
   align-items: center;
 }
@@ -178,19 +179,19 @@ nav {
   background-color: var(--color-menu-primary);
 }
 .navbar__ul {
+  /* background-color: rosybrown; */
   display: flex;
   gap: 15px;
   flex-direction: column;
   justify-content: center;
-  padding: 0;
+  padding: 0 !important;
+  margin: 0 !important;
   width: 100%;
-  /* padding: 20px; */
-  padding: 0px 0px 0px 0px;
 }
 .navbar__li {
-  margin: 0;
-  padding: 0;
-  margin-bottom: 5px;
+  /* padding-left: -50px !important; */
+  /* background-color: aqua; */
+  /* padding-bottom: px; */
   list-style: none;
 }
 .nav-icon {
@@ -1131,3 +1132,34 @@ select {
 }
 
 /* ---------------- RESETEO CÓDIGO SIDEBAR ------------------- */
+
+/* ---------------- CÓDIGO ESTHER ------------------- */
+
+/* .sidebar {
+  background-color: #0c2a2e;
+  width: 22vw;
+  transition: all 0.3s ease-in-out;
+  transform: translateX(0);
+  z-index: 9999999;
+} */
+/* .table-product .content .table-bordered thead {
+  background-color: #36ae7c;
+} */
+
+/* tbody {
+  height: 100px;
+  overflow-x: auto;
+  margin-top: 0px;
+} */
+
+.formularioxd .content,
+.table-product .content {
+  background-color: #e8f1f2;
+}
+
+/* .navbar {
+  background-color: red !important;
+  border: none !important;
+} */
+
+/* ---------------- CÓDIGO ESTHER ------------------- */

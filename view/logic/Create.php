@@ -105,20 +105,23 @@
       }
 
     }
-    function getNegocio(){
+    function getNegocio($id_sucursal){
       try {
-        $sql = "SELECT * FROM configuracion";
+        $sql = "SELECT * FROM sucursal WHERE id_sucursal = ?";
         $query = $this->cnx->prepare($sql);
+        $query -> bindParam(1, $id_sucursal);
         $query -> execute();
-        $negocio = $query;
-        foreach($negocio as $row){
-          $razon_social = $row['razon_social'];
-          $domicilio = $row['domicilio'];
-          $cpostal = $row['cpostal'];
+        $sucursal = $query;
+        foreach($sucursal as $row){
+          $nombre = $row['nombre'];
+          $estado = $row['estado'];
+          $ciudad = $row['ciudad'];
+          $colonia = $row['colonia'];
+          $direccion = $row['direccion'];
+          $codigo_postal = $row['codigo_postal'];
           $telefono = $row['telefono'];
-          $imagen = $row['imagen'];
         }
-        $json = '{"razon_social":"'.$razon_social.'","domicilio":"'.$domicilio.'","cpostal":"'.$cpostal.'","telefono":"'.$telefono.'", "imagen":"'.$imagen.'"}';
+        $json = '{"nombre":"'.$nombre.'","estado":"'.$estado.'","ciudad":"'.$ciudad.'","colonia":"'.$colonia.'","direccion":"'.$direccion.'","codigo_postal":"'.$codigo_postal.'","telefono":"'.$telefono.'"}';
         return [true, $json];
       } catch (PDOException $th){
         echo "error";

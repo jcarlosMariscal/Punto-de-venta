@@ -1,10 +1,15 @@
 import { calcularTotal } from "./helper.js";
-import { nota_compra, nota_venta } from "./nota_gec.js";
+import { nota_compra } from "./nota_gec.js";
 import { campos, validarFormulario } from "./validar.js";
 
 const d = document;
 const formulario = d.getElementById("formulario");
 let inputs = d.querySelectorAll("#formulario input");
+let table_body = d.getElementById("table-body");
+var comprar = d.getElementById("comprar");
+var cancelar = d.getElementById("cancelar");
+const selecProv = d.getElementById("form-select-prov");
+let add = 1;
 
 const nombre_prov = d.getElementById("nombre_prov"),
   producto_prov = d.getElementById("producto_prov"),
@@ -18,30 +23,19 @@ if (inputs) {
     input.addEventListener("blur", validarFormulario);
   });
 }
-let table_body = d.getElementById("table-body");
-let add = 1;
-var comprar = d.getElementById("comprar"),
-  cancelar = d.getElementById("cancelar"),
-  compra_online = d.getElementById("compra_online");
-(comprar.disabled = true),
-  (cancelar.disabled = true),
-  (compra_online.disabled = true);
-comprar.classList.add("deshabilitar"),
-  cancelar.classList.add("deshabilitar"),
-  compra_online.classList.add("deshabilitar");
+(comprar.disabled = true), (cancelar.disabled = true);
+comprar.classList.add("deshabilitar"), cancelar.classList.add("deshabilitar");
 
-const selecProv = d.getElementById("form-select-prov");
 if (selecProv) {
   selecProv.addEventListener("submit", (e) => {
     e.preventDefault();
     let boxs = d.querySelectorAll("#form-select-prov input");
     boxs.forEach((box) => {
       if (box.checked) {
-        // console.log(box.value);
         nombre_prov.value = box.value;
       }
     });
-    $("#seleccionar-prov").modal("hide");
+    // $("#seleccionar-prov").modal("hide");
   });
 }
 
@@ -49,7 +43,6 @@ if (formulario) {
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
     const regex = /^[a-zA-ZÀ-ÿ\s]{1,60}$/;
-    // console.log(regex.test(formulario.nombre_prov.value));
     if (
       (campos.producto,
       campos.cantidad_prov,
@@ -57,7 +50,6 @@ if (formulario) {
       campos.pventa_prov)
     ) {
       if (!regex.test(formulario.nombre_prov.value)) {
-        // console.log("ho");
         alert("Rellena todos los campos correctamente.");
         return;
       }
@@ -90,19 +82,15 @@ if (formulario) {
         table_body.innerHTML += product;
         add++;
         calcularTotal();
-        // nombre_prov.value = "";
-        // producto_prov.value = "";
-        // cantidad_prov.value = "";
-        // pcompra_prov.value = "";
-        // pventa_prov.value = "";
+        nombre_prov.value = "";
+        producto_prov.value = "";
+        cantidad_prov.value = "";
+        pcompra_prov.value = "";
+        pventa_prov.value = "";
       }
-      (comprar.disabled = false),
-        (cancelar.disabled = false),
-        (compra_online.disabled = false);
+      (comprar.disabled = false), (cancelar.disabled = false);
       comprar.classList.remove("deshabilitar"),
-        cancelar.classList.remove("deshabilitar"),
-        compra_online.classList.remove("deshabilitar");
-      // ----------------
+        cancelar.classList.remove("deshabilitar");
       let product_delete = d.querySelectorAll(".btn-tb-delete");
       product_delete.forEach((el) => {
         el.addEventListener("click", (e) => {

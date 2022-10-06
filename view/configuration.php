@@ -71,12 +71,12 @@
         <hr>
         <div class="config__permissions">
             <div class="permissions-admin">
-                <a  href="#" class="btn-prm" style="display: none" data-toggle="modal" data-target=".bd-example-modal-lg">Revisar Permisos</a>
+                <a  href="#" class="btn-prm" style="display: none" data-bs-toggle="modal" data-bs-target=".permisos">Revisar Permisos</a>
             </div>
             <div class="permissions-seller">
-                <a href="#" class="btn-prm" data-toggle="modal" data-target=".datos_fiscales">Datos Fiscales</a>
+                <a href="#" class="btn-prm"data-bs-toggle="modal" data-bs-target=".datos_fiscales">Datos Fiscales</a>
             </div>
-            <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+            <div class="modal fade permisos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -138,7 +138,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+                            <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
                             <button type="button" class="btn-save-modal">Guardar Cambios</button>
                         </div>
                     </div>
@@ -183,7 +183,7 @@
                       </div>
                       <br>
                       <div class="input-submit modal-footer">
-                        <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+                        <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
                         <input type="submit" class="btn-cfg" value="Actualizar" id="btn-send">
                       </div>
                     </form>
@@ -194,7 +194,7 @@
                   <button type="button" class="btn-cfg" id="registrarDF">Registrar</button>
                   <div id="formDF"></div>
                   <div class="modal-footer" id="modal-footerNoDatos">
-                      <button type="button" class="btn-close-modal" data-dismiss="modal">Cerrar</button>
+                      <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
                       <!-- <input type="submit" class="btn-cfg" value="Agregar" id="btn-send"> -->
                     </div>
                  <?php  

@@ -45,6 +45,8 @@
                     // $_SESSION["admin"] = $data; // GUARDA LA SESIÓN PARA USARLO DESPUÉS
               $_SESSION['rol'] = 0;
               $_SESSION['user'] = $data;
+              $_SESSION['user']['id_sucursal'] = 0;
+
               return true;
             }else{
               return false;

@@ -136,7 +136,7 @@
                     </div>
                     <div class="campo">
                         <input type="number" id="sucursal_telefono" placeholder="Teléfono">
-                        <input type="number" id="sucursal_correo" placeholder="Correo Electrónico">
+                        <input type="email" id="sucursal_correo" placeholder="Correo Electrónico">
                     </div>
                     <br>
                     <div class="campo  btns">

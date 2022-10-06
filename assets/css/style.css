@@ -1131,6 +1131,44 @@ select {
   margin: 38% auto;
 }
 
+/*  -------------------- Album Configuration ------------------ */
+.card-configuracion {
+  border-bottom: 4px solid var(--color-one);
+}
+.bd-placeholder-img {
+  /* font-size: 1rem; */
+  /* text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none; */
+  height: 40px;
+  object-fit: cover;
+}
+.card-title {
+  width: 100%;
+  /* background-color: aqua; */
+  position: absolute;
+}
+.title__text {
+  position: relative;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  color: #fff;
+  bottom: 40px;
+  font-size: 22px;
+  font-weight: 600;
+}
+.card-body {
+  margin-top: 30px;
+}
+@media (min-width: 768px) {
+  .bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+/*  -------------------- Album Configuration ------------------ */
+
 /* ---------------- RESETEO CÓDIGO SIDEBAR ------------------- */
 
 /* ---------------- CÓDIGO ESTHER ------------------- */

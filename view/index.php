@@ -158,9 +158,13 @@ $editProv = (isset($_GET['edit']) ? $_GET['edit'] : NULL);
   if($editProv): 
 ?>
   <script>
-    $(function(){
-      $('#modProv').modal('show');
-    })
+    var modProveedor = new bootstrap.Modal(
+      document.getElementById("modProv"),
+      {
+            keyboard: false,
+          }
+    );
+    modProveedor.show();
   </script>;
 <?php endif; ?>
 <!-- MOSTRAR MODAL DE EDITAR PERSONAL -->
@@ -169,9 +173,13 @@ $editPer = (isset($_GET['edit']) ? $_GET['edit'] : NULL);
   if($editPer): 
 ?>
   <script>
-    $(function(){
-      $('#modPer').modal('show');
-    })
+        let modPersonal = new bootstrap.Modal(
+      document.getElementById("modPer"),
+      {
+            keyboard: false,
+          }
+    );
+    modPersonal.show();
   </script>;
 <?php endif; ?>
 <!-- MOSTRAR MODAL PARA GENERAR CODIGO DE BARRAS -->

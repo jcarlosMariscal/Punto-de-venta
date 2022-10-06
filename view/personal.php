@@ -35,7 +35,7 @@
                 <p>Recuerde que puede modificar los permisos en <a href="index.php?p=configuration">Configuración</a></p>
             </div>
             <div class="product-chart">
-                <a href="" class="btn-prm btn-cancelar" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar</a>
+                <a href="" class="btn-prm btn-cancelar" data-bs-toggle="modal" data-bs-target=".agregarPersonal">Agregar</a>
             </div>
         </div>
         <div class="table-ver">
@@ -76,12 +76,12 @@
     </section>
 
     <!-- AGREGAR -->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade agregarPersonal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Agregar personal nuevo</h5>
-            <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="permisos">
@@ -192,12 +192,12 @@
 
     }
   ?>
-<div class="modal fade bd-example-modal-lg" id="modPer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade" id="modPer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Editar usuario</h5>
-            <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="permisos">

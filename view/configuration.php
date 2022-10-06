@@ -15,9 +15,118 @@
 ?>
 
 <section class="content">
-    <div class="config">
-        <div class="config__form">
-            <h4>Datos generales del negocio</h4>
+    <div class="album bg-light">
+    <div class="container">
+
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col">
+          <div class="card shadow-sm card-configuracion">
+            <div class="card-title">
+              <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
+              <div class="title__text"><p>Negocio</p></div>
+            </div>
+
+            <div class="card-body">
+              <p class="card-text">Aquí puede agregar la información general de su negocio.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target=".editarNegocio">Editar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm card-configuracion">
+            <div class="card-title">
+              <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
+              <div class="title__text"><p>Datos Fiscales</p></div>
+            </div>
+
+            <div class="card-body">
+              <p class="card-text">Aquí puede agregar o actualizar los datos fiscales de su negocio.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target=".datos_fiscales">Editar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm card-configuracion">
+            <div class="card-title">
+              <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
+              
+              <div class="title__text"><p>Sucursal 1 [Nombre]</p></div>
+            </div>
+
+            <div class="card-body">
+              <p class="card-text">Dar funcionalidad por ahora a una sucursal solámente.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm card-configuracion">
+            <div class="card-title">
+              <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
+              
+              <div class="title__text"><p>Sucursal 2 [Nombre]</p></div>
+            </div>
+
+            <div class="card-body">
+              <p class="card-text">La cantidad de sucursales se va a generar dinámicamente.</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col">
+          <div class="card shadow-sm card-configuracion">
+            <div class="card-title">
+              <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
+              
+              <div class="title__text"><p>Sucursal 3 [Nombre]</p></div>
+            </div>
+
+            <div class="card-body">
+              <p class="card-text">A partir de la cantidad que registre el administrador</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                  <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="modales">
+  <div class=" modal fade editarNegocio" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Datos Generales del negocio</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+                  <div class="config__form">
             <form action="logic/updateData.php" method="POST" class="form" enctype="multipart/form-data" id="formulario">
                 <div class="form-inputs">
                   <input type="hidden" name="table" value="updateNegocio">
@@ -68,93 +177,16 @@
                 </div>
             </form>
         </div>
-        <hr>
-        <div class="config__permissions">
-            <div class="permissions-admin">
-                <a  href="#" class="btn-prm" style="display: none" data-bs-toggle="modal" data-bs-target=".permisos">Revisar Permisos</a>
-            </div>
-            <div class="permissions-seller">
-                <a href="#" class="btn-prm"data-bs-toggle="modal" data-bs-target=".datos_fiscales">Datos Fiscales</a>
-            </div>
-            <div class="modal fade permisos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Permisos de Administrador</h5>
-                            <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
-                        </div>
-                        <div class="modal-body">
-                            <div class="permisos">
-                                <form action="" class="form-permisos">
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Ventas</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Compras</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Productos</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Proveedores</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Mi Personal</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Configuración</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Agregar registros</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Modificar registros</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Eliminar Registros</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Configuración</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Notificaciones de inventario</label>
-                                    </div>
-                                    <div class="check">                                       
-                                        <input type="checkbox" name="" id="">
-                                        <label for="">Crear Respaldos</label>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn-save-modal">Guardar Cambios</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+      </div>
     </div>
-</section>
-
-<section class="modales">
+  </div>
   <div class="modal fade datos_fiscales" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
-    <div class="modal-content">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Datos Fiscales</h5>
-            <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="datos_fiscales">
@@ -164,7 +196,7 @@
                   ?>
                   <form class="form-user" id="formulario" method="POST" action="logic/updateData.php">
                     <input type="hidden" name="table" id="table" value="datos_fiscales">
-                    <input type="hidden" name="id_negocio" id="id_negocio" value="<?php echo $_SESSION['id_negocio']; ?>">
+                    <input type="hidden" name="id_negocio" id="id_negocio" value="<?php echo $_SESSION['user']['id_negocio']; ?>">
                     <input type="hidden" name="id_datos" id="id_datos" value="<?php echo $resDatosFiscales['id_datos']; ?>">
                       <div class="input-nombre input-user" id="group-nombre">                                       
                         <label for="">Nombre: </label>
@@ -190,7 +222,7 @@
                   <?php
                 }else {
                   ?>
-                  <h5 id="noDatosFiscales">No hay Datos Fiscales registrados para <?php echo $resNegocio['nombre']; ?> <span hidden id="id_negocio"><?php echo $_SESSION['id_negocio']; ?></span></h5>
+                  <h5 id="noDatosFiscales">No hay Datos Fiscales registrados para <?php echo $resNegocio['nombre']; ?> <span hidden id="id_negocio"><?php echo $_SESSION['user']['id_negocio']; ?></span></h5>
                   <button type="button" class="btn-cfg" id="registrarDF">Registrar</button>
                   <div id="formDF"></div>
                   <div class="modal-footer" id="modal-footerNoDatos">
@@ -203,9 +235,9 @@
             ?>
           </div>
         </div>
+      </div>
     </div>
   </div>
-</div>
 </section>
 
 

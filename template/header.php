@@ -19,14 +19,23 @@
 
     <div class="align-items-center header-user">
       <div class="info-sucursal">
-        <p class="text-white">Sucursal: <span id="id_sucursal"><?php echo $_SESSION['user']['id_sucursal']; ?></span></p>
+        <p class="text-white" hidden><span id="id_sucursal"><?php echo $_SESSION['user']['id_sucursal']; ?></span></p>
       </div>
         <div class="information">
           <a href="index.php?p=information"><i class="fa-solid fa-circle-question"></i></a>
         </div>
-        <!-- <div class="rol-name-user">
-          <span></span>
-        </div> -->
+        <div class="rol-user">
+          <span class="text-white">
+            <?php 
+              if($_SESSION['rol'] == 0){
+                echo "Administrador";
+              }else if($_SESSION['rol'] == 1){
+                echo "Gerente";
+              }else if($_SESSION['rol'] == 2){
+                echo "Vendedor";
+              }?>
+          </span>
+        </div>
         <div class="flex-shrink-0 dropdown">
           <a href="#" class="d-block text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">

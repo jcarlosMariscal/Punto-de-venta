@@ -62,6 +62,7 @@
               // $_SESSION["admin"] = $data; // GUARDA LA SESIÓN PARA USARLO DESPUÉS
               $_SESSION['rol'] = $data['id_rol'];
               $_SESSION['user'] = $data;
+              $_SESSION['user']['id_negocio'] = 1;
               return true;
             }else{
               return false;

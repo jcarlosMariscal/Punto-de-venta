@@ -37,7 +37,7 @@
                 
             </div>
             <div class="product-chart">
-                <a href="" class="btn-prm btn-cancelar" data-toggle="modal" data-target=".bd-example-modal-lg">Agregar</a>
+                <a href="" class="btn-prm btn-cancelar" data-bs-toggle="modal" data-bs-target=".agregarProveedor">Agregar</a>
             </div>
         </div>
         <div class="table-ver">
@@ -78,22 +78,17 @@
     </section>
 
     <!-- AGREGAR -->
-<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<div class="modal fade agregarProveedor" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Agregar proveedor</h5>
-            <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="permisos">
 <form class="form-user" id="formulario" method="POST" action="logic/createData.php">
               <input type="hidden" name="table" id="action_per" value="agregarProveedor">
-              <!-- <div class="input-identificador input-prov" id="group-identificador">                                       
-                        <label for=""></label>
-                        <input type="text" class="input" name="identificador" id="identificador" placeholder="Introduce identificador">
-                        <p class="input-error">*Este campo solo acepta caracteres númericos.</p>
-                    </div> -->
               <div class="input-nombre input-prov" id="group-nombre">
                 <label for="">Nombre: </label>
                 <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce un nombre">
@@ -154,7 +149,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Editar Proveedor <?php echo $nombre; ?></h5>
-        <span data-dismiss="modal" id="cerrarForm" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="permisos">
@@ -191,7 +186,7 @@
               <!-- <hr> -->
               <br>
               <div class="input-submit modal-footer">
-                <button type="button" class="btn-close-modal" id="cerrarForm2" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn-close-modal" id="cerrarForm2" data-bs-dismiss="modal">Cerrar</button>
                 <input type="submit" class="btn-cfg" value="Modificar" id="btn-send">
               </div>
             </form>

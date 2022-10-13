@@ -54,9 +54,7 @@ header {
   font-size: 26px;
   cursor: pointer;
 }
-.close-toggle {
-  /* padding-right: 25px; */
-}
+
 .dropdown {
   display: flex;
   gap: 15px;

@@ -62,6 +62,16 @@
         return false;
       }
     }
+    function obtenerSucursales(){
+      try {
+        $sql = "SELECT * FROM sucursal";
+        $query = $this->cnx->prepare($sql);
+        $insert = $query -> execute();
+        if($insert) return $query;
+      } catch (PDOException $th) {
+        return false;
+      }
+    }
     // ------------------------personal  
     function selectPersonal()
     {

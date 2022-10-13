@@ -12,6 +12,7 @@
   $obtenerDatosFiscales = $query->obtenerDatosFiscales($_SESSION['user']['id_negocio']);
   $resDatosFiscales = $obtenerDatosFiscales->fetch();
   // require_once "../template/header.php";
+  $sucursales = $query->obtenerSucursales();
 ?>
 
 <section class="content">
@@ -55,63 +56,32 @@
             </div>
           </div>
         </div>
-        <div class="col">
-          <div class="card shadow-sm card-configuracion">
-            <div class="card-title">
-              <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
-              
-              <div class="title__text"><p>Sucursal 1 [Nombre]</p></div>
-            </div>
-
-            <div class="card-body">
-              <p class="card-text">Dar funcionalidad por ahora a una sucursal solámente.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
+        <?php
+        foreach($sucursales as $sucursal){
+          ?>
+          <div class="col">
+            <div class="card shadow-sm card-configuracion">
+              <div class="card-title">
+                <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
+                
+                <div class="title__text"><p>Sucursal <?php echo $sucursal['nombre']; ?></p></div>
+              </div>
+  
+              <div class="card-body">
+                <p class="card-text">Teléfono: <?php echo $sucursal['telefono']; ?></p> <br>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#static<?php echo $sucursal['id_sucursal'] ?>">Editar</button>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm card-configuracion">
-            <div class="card-title">
-              <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
-              
-              <div class="title__text"><p>Sucursal 2 [Nombre]</p></div>
-            </div>
-
-            <div class="card-body">
-              <p class="card-text">La cantidad de sucursales se va a generar dinámicamente.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card shadow-sm card-configuracion">
-            <div class="card-title">
-              <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
-              
-              <div class="title__text"><p>Sucursal 3 [Nombre]</p></div>
-            </div>
-
-            <div class="card-body">
-              <p class="card-text">A partir de la cantidad que registre el administrador</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Editar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+          <?php
+        }
+        
+        ?>
       </div>
     </div>
   </div>
@@ -238,6 +208,88 @@
       </div>
     </div>
   </div>
+
+  <?php
+  $result = $query->obtenerSucursales(); //Mostramos los resultados
+
+  foreach ($result as $row) {
+    $id_sucursal = $row['id_sucursal'];
+    $nombre = $row['nombre'];
+    $estado = $row['estado'];
+    $ciudad = $row['ciudad'];
+    $colonia = $row['colonia'];
+    $direccion = $row['direccion'];
+    $codigo_postal = $row['codigo_postal'];
+    $telefono = $row['telefono'];
+    $correo = $row['correo'];
+  ?>
+
+
+  <div class="modal fade modal-dialog-scrollable" id="static<?php echo $row['id_sucursal'] ?>">
+  <div class="modal-dialog">
+    <div class="borde modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Editar Sucursal</h3>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form class="form-user" id="formularioEdit" method="POST" action="logic/updateData.php">
+              <input type="hidden" name="table" id="action_per" value="editarSucursal">
+              <input type="hidden" name="id_sucursl" id="id_sucursal" value="<?php echo $id_sucursal; ?>">
+              <div class="input-user-name input-user" id="group-nombre">
+                <label for="">Nombre: </label>
+                <input type="text" class="input" name="nombre" id="nombre" value="<?php echo $nombre; ?>">
+                <p class="input-error">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>
+              </div>
+              <div class="input-user-email input-user" id="group-correo">
+                <label for="">Estado</label>
+                <input type="text" name="correo" id="correo" class="input" value="<?php echo $estado; ?>">
+                <p class="input-error">*Este campo debe ser un tipo de E-mail valido.</p>
+              </div>
+              <div class="input-user-email input-user" id="group-correo">
+                <label for="">Ciudad</label>
+                <input type="text" name="correo" id="correo" class="input" value="<?php echo $ciudad; ?>">
+                <p class="input-error">*Este campo debe ser un tipo de E-mail valido.</p>
+              </div>
+              <div class="input-user-email input-user" id="group-correo">
+                <label for="">Colonia</label>
+                <input type="text" name="correo" id="correo" class="input" value="<?php echo $colonia; ?>">
+                <p class="input-error">*Este campo debe ser un tipo de E-mail valido.</p>
+              </div>
+              <div class="input-user-email input-user" id="group-correo">
+                <label for="">Direccion</label>
+                <input type="text" name="correo" id="correo" class="input" value="<?php echo $direccion; ?>">
+                <p class="input-error">*Este campo debe ser un tipo de E-mail valido.</p>
+              </div>
+              <div class="input-user-email input-user" id="group-correo">
+                <label for="">CP</label>
+                <input type="text" name="correo" id="correo" class="input" value="<?php echo $codigo_postal; ?>">
+                <p class="input-error">*Este campo debe ser un tipo de E-mail valido.</p>
+              </div>
+              <div class="input-user-email input-user" id="group-correo">
+                <label for="">Correo</label>
+                <input type="email" name="correo" id="correo" class="input" value="<?php echo $correo; ?>">
+                <p class="input-error">*Este campo debe ser un tipo de E-mail valido.</p>
+              </div>
+              <div class="input-user-tel input-user" id="group-telefono">
+                <label for="">Teléfono</label>
+                <input type="number_format" name="telefono" id="telefono" class="input" value="<?php echo $telefono; ?>">
+                <p class="input-error">*Este campo debe ser númerico y tener 10 caracteres.</p>
+              </div>
+              <!-- <hr> -->
+              <br>
+              <div class="input-submit modal-footer">
+                <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
+                <input type="submit" class="btn-cfg" value="Agregar" id="btn-send">
+              </div>
+            </form>
+      </div>
+    </div>
+  </div>
+</div>
+<?php
+}
+  ?>
 </section>
 
 

@@ -33,14 +33,11 @@
 <section class="content">
     <section class="table-ver-product">
         <div class="table-above">
-            <div class="product-filter">
-                
-            </div>
             <div class="product-chart">
-                <a href="" class="btn-prm btn-cancelar" data-bs-toggle="modal" data-bs-target=".agregarProveedor">Agregar</a>
+                <a href="" class="btn-prm btn-cancelar" data-bs-toggle="modal" data-bs-target=".agregarProveedor"><i class="fa-solid fa-plus fa-lg"></i> Agregar</a>
             </div>
         </div>
-        <div class="table-ver">
+        <div class="table-ver content rounded-3 p-3">
             <table table bgcolor= "#FFFFFF"  class="table table-bordered">
                 <thead>
                   <tr>
@@ -83,13 +80,13 @@
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Agregar proveedor</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
             <div class="permisos">
-<form class="form-user" id="formulario" method="POST" action="logic/createData.php">
+              <form class="form-user" id="formulario" method="POST" action="logic/createData.php">
               <input type="hidden" name="table" id="action_per" value="agregarProveedor">
-              <div class="input-nombre input-prov" id="group-nombre">
+              <div class="input-user-name input-prov" id="group-nombre">
                 <label for="">Nombre: </label>
                 <input type="text" class="input" name="nombre" id="nombre" placeholder="Introduce un nombre">
                 <p class="input-error">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>
@@ -99,31 +96,31 @@
                         <input type="text" class="input" name="factura" id="factura" placeholder="Introduce tipo de factura">
                         <p class="input-error">* Este campo no debe quedar vacío y acepta solo texto.</p>
                     </div> -->
-              <div class="input-telefono input-prov" id="group-telefono">
+              <div class="input-user-tel input-prov" id="group-telefono">
                 <label for="">Teléfono</label>
                 <input type="number" name="telefono" id="telefono" class="input" placeholder="Introduce un teléfono">
                 <p class="input-error">*Este campo debe ser númerico y tener 10 caracteres.</p>
               </div>
-              <div class="input-correo input-prov" id="group-correo">
+              <div class="input-user-email input-prov" id="group-correo">
                 <label for="">Correo</label>
                 <input type="email" name="correo" id="correo" class="input" placeholder="Introduce tu correo">
                 <p class="input-error">*Este campo debe ser un tipo de E-mail valido.</p>
               </div>
-              <div class="input-contacto input-prov" id="group-contacto">
+              <div class="input-user-tel input-prov" id="group-contacto">
                 <label for="">Contacto</label>
                 <input type="text" name="contacto" id="contacto" class="input" placeholder="Introduce tu contacto">
                 <p class="input-error">*Este campo debe ser númerico y tener 10 caracteres.</p>
               </div>
-              <div class="input-cargo input-prov" id="group-cargo">
+              <div class="input-user-name input-prov" id="group-cargo">
                 <label for="">Cargo</label>
-                <input type="text" name="cargo" id="cargo" class="input" placeholder="Introduce un teléfono">
+                <input type="text" name="cargo" id="cargo" class="input" placeholder="Introduce el cargo">
                 <p class="input-error">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>
               </div>
               <!-- <hr> -->
               <br>
               <div class="input-submit modal-footer">
-                <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
-                <input type="submit" class="btn-cfg" value="Agregar" id="btn-send">
+                <button type="button" class="btn-close-modal" data-bs-dismiss="modal"><i class="fa-solid fa-xmark fa-lg"></i> Cerrar</button>
+                <button type="submit" class="btn-cfg" id="btn-send"><i class="fa-solid fa-plus fa-lg"></i> Agregar</button>
               </div>
             </form>
             </div>
@@ -149,7 +146,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLongTitle">Editar Proveedor <?php echo $nombre; ?></h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <div class="permisos">
@@ -157,28 +154,28 @@
               <input type="hidden" name="table" id="action_per" value="editarProveedor">
               <input type="hidden" name="id_proveedor" id="id_proveedor" value="<?php echo $id_prov; ?>">
               <input type="hidden" class="input" name="id_proveedor" id="id_proveedor" value="<?php echo $id_prov; ?>">
-              <div class="input-nombre input-prov" id="group-nombre">
-                <label for="">Nombre: </label>
+              <div class="input-user-name input-prov" id="group-nombre">
+                <label for="">Nombre </label>
                 <input type="text" class="input" name="nombre" id="nombre" value="<?php echo $nombre; ?>">
                 <p class="input-error">* Rellena este campo correctamente</p>
               </div>
-              <div class="input-telefono input-prov" id="group-telefono">
-                <label for="">Telefono: </label>
+              <div class="input-user-tel input-prov" id="group-telefono">
+                <label for="">Telefono </label>
                 <input type="number" class="input" name="telefono" id="telefono" value="<?php echo $telefono; ?>">
                 <p class="input-error">* Rellena este campo correctamente</p>
               </div>
-              <div class="input-correo input-prov" id="group-correo">
-                <label for="">Correo: </label>
+              <div class="input-user-email input-prov" id="group-correo">
+                <label for="">Correo </label>
                 <input type="email" class="input" name="correo" id="correo" value="<?php echo $correo; ?>">
                 <p class="input-error">* Rellena este campo correctamente</p>
               </div>
-              <div class="input-contacto input-prov" id="group-contacto">
-                <label for="">Contacto: </label>
+              <div class="input-user-tel input-prov" id="group-contacto">
+                <label for="">Contacto </label>
                 <input type="text" class="input" name="contacto" id="contacto" value="<?php echo $contacto; ?>">
                 <p class="input-error">* Rellena este campo correctamente</p>
               </div>
-              <div class="input-cargo input-prov" id="group-cargo">
-                <label for="">Cargo: </label>
+              <div class="input-user-name input-prov" id="group-cargo">
+                <label for="">Cargo </label>
                 <input type="text" class="input" name="cargo" id="cargo" value="<?php echo $cargo; ?>">
                 <p class="input-error">* Rellena este campo correctamente</p>
               </div>
@@ -186,8 +183,9 @@
               <!-- <hr> -->
               <br>
               <div class="input-submit modal-footer">
-                <button type="button" class="btn-close-modal" id="cerrarForm2" data-bs-dismiss="modal">Cerrar</button>
-                <input type="submit" class="btn-cfg" value="Modificar" id="btn-send">
+                <button type="button" class="btn-close-modal" id="cerrarForm2" data-bs-dismiss="modal"><i class="fa-solid fa-xmark fa-lg"></i> Cerrar</button>
+                <button type="submit" class="btn-cfg" id="btn-send"><i class="fa-solid fa-pencil"></i> Modificar</button>
+                <!-- <input type="submit" class="btn-cfg" value="Modificar" id="btn-send"> -->
               </div>
             </form>
 
@@ -212,51 +210,42 @@
   ?>
 
 
-  <div class="modal fade modal-lg" id="static<?php echo $row['id_proveedor'] ?>">
+<div class="modal fade" id="static<?php echo $row['id_proveedor'] ?>">
   <div class="modal-dialog">
     <div class="borde modal-content">
       <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Información del Provedor🧾</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <h3 class="modal-title" id="exampleModalLabel">Información del Proveedor🧾</h3>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body">
-      <article class="ticket">
-  <header class="ticket__wrapper">
-    <div class="ticket__header">
-    
-    </div>
-  </header>
-  <div class="ticket__divider">
-    <div class="ticket__notch"></div>
-    <div class="ticket__notch ticket__notch--right"></div>
-  </div>
-  <div class="ticket__body">
-    <section class="ticket__section">
-      <h4>Nombre</h4>
-      <?php echo $nombre ?>
-    </section>
-    <section class="ticket__section">
-      <h4>Telefono</h4>
-      <?php echo $telefono ?>
-    </section>
-    <section class="ticket__section">
-      <h4>Correo</h4>
-      <?php echo $correo ?>
-    </section>
-    <section class="ticket__section">
-      <h4>Contacto</h4>
-      <?php echo $contacto ?>
-    </section>
-    <section class="ticket__section">
-    <h4>Cargo</h4>
-    <?php echo $cargo ?>
-    </section>
-  </div>
-</article>
+      <div class="modal-body margen1">
+          <div class="modal-left-content">
+              <img class="centrar-logo" src="../assets/img/favicon.png" alt="Logo">
+              <h3 class="title-name text-center"> Easy </h3>
+              <h3 class="title-name text-center"><span> Sale </span></h3>
+          </div>
+          <div class="modal-main-content1">
+              <div class="form-group ">
+              <section class="ticket__section">
+                <h5>Nombre: <?php echo $nombre ?></h5>
+              </section>
+              <section class="ticket__section">
+                <h5>Telefono: <?php echo $telefono ?></h5>
+              </section>
+              <section class="ticket__section">
+                <h5>Correo: <?php echo $correo ?></h5>
+              </section>
+              <section class="ticket__section">
+                <h5>Contacto: <?php echo $contacto ?></h5>
+              </section>
+              <section class="ticket__section">
+                <h5>Cargo: <?php echo $cargo ?></h5>
+              </section>
+              </div>
+          </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn1" data-bs-dismiss="modal">Cerrar</button>
-        <a href="pdf/prov_pdf.php" target="_blank"><button type="button" class="btn btn2">Imprimir</button></a>
+        <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
+        <a href="pdf/per_pdf.php" target="_blank"><button type="button" class="btn-imprimir">Imprimir</button></a>
       </div>
     </div>
   </div>

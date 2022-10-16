@@ -260,39 +260,36 @@
                 <select name="id_sucursal" id="id_sucursal" class="select-user-rol">
                   <?php
                     $readSucursalSelected = $query->readFieldSelected($id_sucursal, 'sucursal', 'id_sucursal', 'nombre');
-                    $resS = $readRolSelected->fetch();
+                    $resS = $readSucursalSelected->fetch();
 
-                    $sucursales = $query->readFieldNoSelected($id_rol, 'sucursal', 'id_sucursal');
+                    $sucursales = $query->readFieldNoSelected($id_sucursal, 'sucursal', 'id_sucursal');
                   ?>
-                    <option value="<?php echo $resS['id_sucursal']; ?>" selected><?php echo $resR['nombre']; ?></option>
+                    <option value="<?php echo $resS['id_sucursal']; ?>" selected><?php echo $resS['nombre']; ?></option>
                   <?php
-                    foreach ($sucursales as $s) {
-                      ?><option value="<?php echo $s['id_sucursal']; ?>" ><?php echo $s['nombre']; ?></option><?php
-                    } 
+                    if($sucursales->rowCount() > 0){
+                      foreach ($sucursales as $s) {
+                        ?><option value="<?php echo $s['id_sucursal']; ?>" ><?php echo $s['nombre']; ?></option><?php
+                      } 
+                    }
                   ?>
-                  <?php
-                  $sucursal = $query->selectTable('sucursal'); // Hacer consulta para leer los tipos de negocios.
-
-                  foreach ($sucursal as $tipo) {
-                  ?>
-                    <option value="<?php echo $tipo['id_sucursal']; ?>"selected><?php echo $tipo['nombre']; ?></option>
-                  <?php
-                  }
-                  ?>
-
                 </select>
-                <!-- <input type="text" name="id_sucursal" id="id_sucursal" class="input" value="<?php echo $id_sucursal; ?>"> -->
               </div>
               <div class="input-user-rol input-user" id="group-caja">
                 <label for="">Caja</label>
                 <select name="id_caja" id="id_rol" class="select-user-rol">
                   <?php
-                  $caja = $query->selectTable('caja'); // Hacer consulta para leer los tipos de negocios.
-                  foreach ($caja as $tipo) {
+                    $readCajaSelected = $query->readFieldSelected($id_caja, 'caja', 'id_caja', 'caja');
+                    $resC = $readCajaSelected->fetch();
+
+                    $cajas = $query->readFieldNoSelected($id_caja, 'caja', 'id_caja');
                   ?>
-                    <option value="<?php echo $tipo['id_caja']; ?>" selected><?php echo $tipo['caja']; ?></option>
+                    <option value="<?php echo $resC['id_caja']; ?>" selected> Caja <?php echo $resC['caja']; ?></option>
                   <?php
-                  }
+                    if($cajas->rowCount() > 0){
+                      foreach ($cajas as $c) {
+                        ?><option value="<?php echo $c['id_caja']; ?>" >Caja <?php echo $c['caja']; ?></option><?php
+                      } 
+                    }
                   ?>
                 </select>
               </div>
@@ -302,6 +299,7 @@
                   <?php
                     $readRolSelected = $query->readFieldSelected($id_rol, 'rol', 'id_rol', 'rol');
                     $resR = $readRolSelected->fetch();
+
                     $roles = $query->readFieldNoSelected($id_rol, 'rol', 'id_rol');
                   ?>
                     <option value="<?php echo $resR['id_rol']; ?>" selected><?php echo $resR['rol']; ?></option>

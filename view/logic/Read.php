@@ -42,7 +42,18 @@
     }
     function readFieldNoSelected($id, $table, $id_table){
       try {
-            $sql = "SELECT * from $table WHERE id_rol != ?";
+            $sql = "SELECT * from $table WHERE $id_table != ?";
+            $query = $this->cnx->prepare($sql);
+            $query->bindParam(1, $id);
+            $read = $query->execute();
+            if ($read) return $query;
+          } catch (PDOException $th) {
+            return false;
+          }
+        }
+    function readRolesNoSelected($id){
+      try {
+            $sql = "SELECT * from rol WHERE id_rol != ?";
             $query = $this->cnx->prepare($sql);
             $query->bindParam(1, $id);
             $read = $query->execute();

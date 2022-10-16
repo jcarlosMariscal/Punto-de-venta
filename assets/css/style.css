@@ -1158,7 +1158,7 @@ select {
   font-weight: 600;
 }
 .card-body {
-  margin-top: 30px;
+  margin-top: 10px;
 }
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
@@ -1199,3 +1199,215 @@ select {
 } */
 
 /* ---------------- CÓDIGO ESTHER ------------------- */
+
+/* ---------------- CÓDIGO VÍCTOR - PERSONAL 15-10-22 | branch Feature 2 | Commit 9f142e4f ------------------- */
+.formularioxd .content,
+.table-product .content,
+.table-ver-product .content {
+  background-color: #e8f1f2;
+}
+
+/* .navbar {
+  background-color: red !important;
+  border: none !important;
+} */
+
+/* ---------------- CÓDIGO MOSTRAR CONTRASEÑA ------------------- */
+.password-field {
+  position: relative;
+}
+#togg {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+/*------------------- MODAL---------------------*/
+.modal-header {
+  background-color: #1a3336;
+}
+.modal-title {
+  color: #fff;
+}
+/********EJEMPLO DE CARD DE USUARIOS********/
+.user-box {
+  width: 100px;
+  margin: auto;
+  margin-bottom: 20px;
+}
+.card-body1 {
+  background: #36ae7c;
+}
+.margen {
+  width: auto;
+  height: 420px;
+}
+
+.user-box img {
+  width: 100%;
+  border-radius: 50%;
+  padding: 3px;
+  background: #fff;
+}
+
+.profile-card-4 .user-box {
+  width: 110px;
+  margin: auto;
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.profile-card-4 .list-icon {
+  display: table-cell;
+  font-size: 25px;
+  padding-right: 15px;
+  vertical-align: middle;
+  color: #1a3336;
+}
+
+.profile-card-4 .list-details {
+  display: table-cell;
+  vertical-align: middle;
+  font-weight: 600;
+  color: #223035;
+  font-size: 15px;
+  line-height: 15px;
+}
+
+.profile-card-4 .list-details small {
+  display: table-cell;
+  vertical-align: middle;
+  font-size: 12px;
+  font-weight: 400;
+  color: #808080;
+}
+
+.card .tab-content {
+  padding: 1rem 0 0 0;
+}
+
+.z-depth-3 {
+  -webkit-box-shadow: 0 11px 7px 0 rgba(0, 0, 0, 0.19),
+    0 13px 25px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 11px 7px 0 rgba(0, 0, 0, 0.19), 0 13px 25px 0 rgba(0, 0, 0, 0.3);
+  width: 350px;
+}
+
+/*tablaas provedores*/
+/* styling navlist */
+#navlist {
+  background-color: #0074d9;
+  position: absolute;
+  width: 50%;
+}
+
+/* styling navlist anchor element */
+#navlist a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.navlist-right {
+  float: right;
+}
+
+/* hover effect of navlist anchor element */
+#navlist a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+/* styling search bar */
+.search input[type="text"] {
+  width: 300px;
+  height: 30px;
+  border-radius: 25px;
+  border: none;
+}
+
+.search {
+  float: right;
+  margin: 7px;
+}
+
+.search button {
+  background-color: #fff;
+  color: #1a3336;
+  float: right;
+  padding: 5px 10px;
+  margin-right: 16px;
+  font-size: 12px;
+  border: none;
+  cursor: pointer;
+}
+
+/********MODAL DE INFORMACIÓN PERSONAL-------PROVEEDOR*******************/
+.centrar-logo {
+  width: 100px;
+  transform: translate(50%);
+}
+.modal-main-content1 {
+  width: 60%;
+  padding: 28px 20px;
+  display: inline-block;
+}
+
+.margen1 {
+  padding: 0 0 !important;
+}
+.modal-left-content {
+  color: #fff;
+  background-color: #1a3336;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    transparent,
+    transparent 20px,
+    rgba(255, 255, 255, 0.1) 20px,
+    rgba(255, 255, 255, 0.1) 40px
+  );
+  width: 40%;
+  min-height: 330px;
+  padding: 80px 0;
+  float: left;
+}
+.title-name {
+  font-size: 35px;
+  font-weight: 400;
+  line-height: 35px;
+}
+.title-name span {
+  font-size: 40px;
+  font-weight: 900;
+}
+.sub-title1 {
+  color: #1a3336;
+  font-size: 30px;
+  font-weight: 900;
+  text-transform: capitalize;
+  margin: 0 0 5px 0;
+}
+.form-group {
+  margin: 0 0 15px;
+}
+
+@media only screen and (max-width: 576px) {
+  .modal-dialog {
+    width: 98% !important;
+  }
+  .modal-left-content,
+  .modal-main-content1 {
+    width: 100%;
+    display: block;
+    float: none;
+    padding: 40px 20px;
+    min-height: auto;
+  }
+}
+
+/* ---------------- CÓDIGO VÍCTOR - PERSONAL 15-10-22 | branch Feature 2 | Commit 9f142e4f ------------------- */

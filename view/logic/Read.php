@@ -4,6 +4,7 @@
     function __construct(){
       $this -> cnx = Connection::connectDB();
     }
+    // -------------------------- Negocio [tipo negocio, ]
     function readNegocio($id_negocio){
       try {
         $sql = "SELECT nombre,telefono,correo,logo,id_tipo from negocio WHERE id_negocio = ?";
@@ -25,19 +26,35 @@
         return false;
       }
     }
-    function readTipoSelected($id_tipo){
+    // -------------------------- Negocio [tipo negocio, ]
+
+    // --------------- Leer campos seleccionados en formulario [Rol, sucursal, Caja]
+    function readFieldSelected($id, $table, $id_table, $field){
       try {
-        $sql = "SELECT id_tipo,tipo from tipo_negocio WHERE id_tipo = ?";
+        $sql = "SELECT $id_table,$field from $table WHERE $id_table = ?";
         $query = $this->cnx->prepare($sql);
-        $query -> bindParam(1, $id_tipo);
+        $query -> bindParam(1, $id);
         $read = $query->execute();
-        if($read) return $query;
         if($read) return $query;
       } catch (PDOException $th) {
         return false;
       }
     }
-    function buscarDatosFiscales($id_negocio){
+    function readFieldNoSelected($id, $table, $id_table){
+      try {
+            $sql = "SELECT * from $table WHERE id_rol != ?";
+            $query = $this->cnx->prepare($sql);
+            $query->bindParam(1, $id);
+            $read = $query->execute();
+            if ($read) return $query;
+          } catch (PDOException $th) {
+            return false;
+          }
+        }
+    // --------------- Leer campos seleccionados en formulario [Rol, sucursal, Caja]
+
+    // --------------- Datos Fiscales Y sucursal
+    function buscarDatosFiscales($id_negocio){ // Verificar si los datos fiscales del negocio están registrados
       try {
         $sql = "SELECT * FROM datos_fiscales WHERE id_negocio = ?";
         $query = $this->cnx->prepare($sql);
@@ -51,7 +68,7 @@
         return [false, 0];
       }
     }
-    function obtenerDatosFiscales($id_negocio){
+    function obtenerDatosFiscales($id_negocio){ // Obtener datos fiscales
       try {
         $sql = "SELECT id_datos,nombre,rfc,rFiscal FROM datos_fiscales WHERE id_negocio = ?";
         $query = $this->cnx->prepare($sql);
@@ -72,9 +89,20 @@
         return false;
       }
     }
+    // --------------- Datos Fiscales y Sucursal
+
     // ------------------------personal  
-    function selectPersonal()
-    {
+    function selectTable($table){
+        try {
+            $sql = "SELECT * from $table";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+    function selectPersonal(){
         try {
             $sql = "SELECT * from personal";
             $query = $this->cnx->prepare($sql);
@@ -84,8 +112,7 @@
             return false;
         }
     }
-    function idSucursal()
-    {
+    function idSucursal(){
         try {
             $sql = "SELECT * from sucursal";
             $query = $this->cnx->prepare($sql);
@@ -95,30 +122,8 @@
             return false;
         }
     }
-
-    function idCaja()
-    {
-        try {
-            $sql = "SELECT * from caja";
-            $query = $this->cnx->prepare($sql);
-            $read = $query->execute();
-            if ($read) return $query;
-        } catch (PDOException $th) {
-            return false;
-        }
-    }
-
-    function idRol()
-    {
-        try {
-            $sql = "SELECT * from rol";
-            $query = $this->cnx->prepare($sql);
-            $read = $query->execute();
-            if ($read) return $query;
-        } catch (PDOException $th) {
-            return false;
-        }
-    }
+    // ---------------------------------- ROLES
+    // ---------------------------------- ROLES
 
     function editPersonal($id)
     {

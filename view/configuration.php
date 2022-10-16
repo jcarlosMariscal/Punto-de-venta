@@ -6,7 +6,7 @@
   $readNegocio = $query->readNegocio($_SESSION['user']['id_negocio']); // Hacer una consulta a tabla negocios
   $resNegocio = $readNegocio->fetch(); // Obtener el registro de la consulta
   $readTipo = $query->readTipo(); // Hacer consulta para leer los tipos de negocios.
-  $readTipoSelected = $query->readTipoSelected($resNegocio['id_tipo']); // Obtner el tipo de negocio actual
+  $readTipoSelected = $query->readFieldSelected($resNegocio['id_tipo'], 'tipo_negocio', 'id_tipo', 'tipo'); // Obtner el tipo de negocio actual
 
   $buscarDatosFiscales = $query->buscarDatosFiscales($_SESSION['user']['id_negocio']);
   $obtenerDatosFiscales = $query->obtenerDatosFiscales($_SESSION['user']['id_negocio']);
@@ -28,6 +28,7 @@
             </div>
 
             <div class="card-body">
+              <br>
               <p class="card-text">Aquí puede agregar la información general de su negocio.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
@@ -46,6 +47,7 @@
             </div>
 
             <div class="card-body">
+              <br>
               <p class="card-text">Aquí puede agregar o actualizar los datos fiscales de su negocio.</p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
@@ -68,6 +70,7 @@
               </div>
   
               <div class="card-body">
+                <br>
                 <p class="card-text">Teléfono: <?php echo $sucursal['telefono']; ?></p> <br>
                 <div class="d-flex justify-content-between align-items-center">
                   <div class="btn-group">

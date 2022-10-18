@@ -20,6 +20,7 @@
     <div class="container">
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col-12"><h3 class="section__name">Negocio</h3></div>
         <div class="col">
           <div class="card shadow-sm card-configuracion">
             <div class="card-title">
@@ -28,10 +29,9 @@
             </div>
 
             <div class="card-body">
-              <br>
               <p class="card-text">Aquí puede agregar la información general de su negocio.</p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
+              <div class="d-flex justify-content-center align-items-center">
+                <div class="btn-group ">
                   <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target=".editarNegocio">Editar</button>
                 </div>
@@ -47,9 +47,8 @@
             </div>
 
             <div class="card-body">
-              <br>
               <p class="card-text">Aquí puede agregar o actualizar los datos fiscales de su negocio.</p>
-              <div class="d-flex justify-content-between align-items-center">
+              <div class="d-flex justify-content-center align-items-center">
                 <div class="btn-group">
                   <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                   <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target=".datos_fiscales">Editar</button>
@@ -58,6 +57,10 @@
             </div>
           </div>
         </div>
+      </div>
+      <br>
+      <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="col-12"><h3 class="section__name">Sucursales</h3></div>
         <?php
         foreach($sucursales as $sucursal){
           ?>
@@ -65,14 +68,12 @@
             <div class="card shadow-sm card-configuracion">
               <div class="card-title">
                 <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
-                
                 <div class="title__text"><p>Sucursal <?php echo $sucursal['nombre']; ?></p></div>
               </div>
   
               <div class="card-body">
-                <br>
-                <p class="card-text">Teléfono: <?php echo $sucursal['telefono']; ?></p> <br>
-                <div class="d-flex justify-content-between align-items-center">
+                <p class="card-text">Teléfono: <?php echo $sucursal['telefono']; ?></p>
+                <div class="d-flex justify-content-center align-items-center">
                   <div class="btn-group">
                     <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
                     <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#static<?php echo $sucursal['id_sucursal'] ?>">Editar</button>
@@ -92,11 +93,12 @@
 
 <section class="modales">
   <div class=" modal fade editarNegocio" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-lg modal-xl" id="seccion-modal"> <!-- fullscreeen-modal.js| COLOCAR ESTE ID AL MODAL --> 
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Datos Generales del negocio</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-fullscreen fullscreen-no" id="btn-fullscreen"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button> <!-- fullscreeen-modal.js|  COPIAR Y PEGAR ESTE BOTON -->
         </div>
         <div class="modal-body">
                   <div class="config__form">
@@ -159,7 +161,7 @@
       <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Datos Fiscales</h5>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <div class="datos_fiscales">
@@ -233,7 +235,7 @@
     <div class="borde modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="exampleModalLabel">Editar Sucursal</h3>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
         <form class="form-user" id="formularioEdit" method="POST" action="logic/updateData.php">

@@ -1131,34 +1131,29 @@ select {
 
 /*  -------------------- Album Configuration ------------------ */
 .card-configuracion {
+  height: auto;
   border-bottom: 4px solid var(--color-one);
-}
-.bd-placeholder-img {
-  /* font-size: 1rem; */
-  /* text-anchor: middle;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none; */
-  height: 40px;
-  object-fit: cover;
 }
 .card-title {
   width: 100%;
-  /* background-color: aqua; */
-  position: absolute;
+}
+.card-title p {
+  margin: 0 0 5px;
+}
+.title__img {
+  height: 150px;
 }
 .title__text {
-  position: relative;
   text-align: center;
   height: 100%;
   width: 100%;
-  color: #fff;
-  bottom: 40px;
+  color: var(--color-primary);
   font-size: 22px;
   font-weight: 600;
 }
 .card-body {
-  margin-top: 10px;
+  /* margin-top: 10px; */
+  padding-top: 0;
 }
 @media (min-width: 768px) {
   .bd-placeholder-img-lg {
@@ -1411,3 +1406,33 @@ select {
 }
 
 /* ---------------- CÓDIGO VÍCTOR - PERSONAL 15-10-22 | branch Feature 2 | Commit 9f142e4f ------------------- */
+
+.section__name {
+  border-bottom: 1.5px solid var(--color-two);
+  color: var(--color-two);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 28px;
+}
+
+/* -------- */
+.btn-fullscreen {
+  color: #8c999a;
+  background-color: var(--color-primary);
+  border: none;
+  margin-left: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.fullscreen-yes {
+  transition: all 0.5s ease-in-out;
+  color: var(--color-two);
+  border: 1px solid var(--color-two);
+}
+.fullscreen-no {
+  transition: all 0.5s ease-in-out;
+  color: var(--color-one);
+  border: 1px solid var(--color-one);
+}

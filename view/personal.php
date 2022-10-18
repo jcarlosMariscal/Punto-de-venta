@@ -109,11 +109,12 @@
 
     <!-- AGREGAR -->
 <div class="modal fade agregarPersonal " tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog modal-lg modal-xl" id="seccion-modal">
     <div class="modal-content">
         <div class="modal-header">
             <h5 class="modal-title" id="exampleModalLongTitle">Agregar personal nuevo</h5>
             <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            <button type="button" class="btn-fullscreen fullscreen-no" id="btn-fullscreen"><i class="fa-solid fa-up-right-and-down-left-from-center"></i></button> <!-- fullscreeen-modal.js|  COPIAR Y PEGAR ESTE BOTON -->
         </div>
         <div class="modal-body">
             <div class="permisos">

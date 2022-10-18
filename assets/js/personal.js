@@ -1,3 +1,4 @@
+import fullscreenModal from "./helper/fullscreen-modal.js";
 import { campos, expresiones, validarFormulario } from "./validar.js";
 const d = document;
 
@@ -70,3 +71,5 @@ if (inputsEdit) {
 // cerrar2.addEventListener("click", (e) => {
 //   window.location.href = "index.php?p=proveedor";
 // });
+
+fullscreenModal(); // LLAMAMOS AL MÓDULO FULLSCREEN

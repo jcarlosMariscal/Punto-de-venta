@@ -1,3 +1,4 @@
+import fullscreenModal from "./helper/fullscreen-modal.js";
 import { campos, validarFormulario } from "./validar.js";
 const d = document;
 let inputs = d.querySelectorAll("#formulario input");
@@ -57,3 +58,5 @@ if (registrarDF) {
     `;
   });
 }
+
+fullscreenModal();

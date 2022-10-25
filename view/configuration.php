@@ -21,25 +21,7 @@
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col-12"><h3 class="section__name">Negocio</h3></div>
-        <div class="col">
-          <div class="card shadow-sm card-configuracion">
-            <div class="card-title">
-              <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
-              <div class="title__text"><p>Negocio</p></div>
-            </div>
-
-            <div class="card-body">
-              <p class="card-text">Aquí puede agregar la información general de su negocio.</p>
-              <div class="d-flex justify-content-center align-items-center">
-                <div class="btn-group ">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target=".editarNegocio">Editar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col">
+        <!-- <div class="col">
           <div class="card shadow-sm card-configuracion">
             <div class="card-title">
               <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
@@ -56,7 +38,53 @@
               </div>
             </div>
           </div>
+        </div> -->
+        <!-- Prueba Configuración victor -->
+        <div class="col tam-card">
+          <div class="card shadow-sm card-configuracion">
+            <div class="row g-0">
+                <div class="col-md-4 left-column background-left-column">
+                  <h5 class="text-subconf">Negocio</h2>
+                  <i class="fa-solid fa-store fa-4x" style="color: white"></i>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <p class="card-text text-configu">Aquí puede agregar la información general de su negocio. </p>
+                    <div class="d-flex justify-content-center align-items-center space">
+                        <div class="btn-group">
+                          <button type="button" class="btn btn-sm btn-outline-success">Ver</button>
+                          <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target=".editarNegocio">Editar</button>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
         </div>
+        <!-- ///////////////////////////////// -->
+        <!-- Prueba Configuración victor -->
+        <div class="col tam-card">
+          <div class="card shadow-sm card-configuracion">
+            <div class="row g-0">
+                <div class="col-md-4 left-column background-left-column">
+                  <h5 class="text-subconf text-center">Datos Fiscales</h2>
+                  <i class="fa-solid fa-id-card fa-4x" style="color: white"></i>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <p class="card-text text-configu">Aquí puede agregar o actualizar los datos fiscales de su negocio.</p>
+                    <div class="d-flex justify-content-center align-items-center space">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-success">Ver</button>
+                        <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target=".datos_fiscales">Editar</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        </div>
+        <!-- ///////////////////////////////// -->
       </div>
       <br>
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
@@ -64,24 +92,31 @@
         <?php
         foreach($sucursales as $sucursal){
           ?>
-          <div class="col">
-            <div class="card shadow-sm card-configuracion">
-              <div class="card-title">
-                <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
-                <div class="title__text"><p>Sucursal <?php echo $sucursal['nombre']; ?></p></div>
-              </div>
-  
-              <div class="card-body">
-                <p class="card-text">Teléfono: <?php echo $sucursal['telefono']; ?></p>
-                <div class="d-flex justify-content-center align-items-center">
-                  <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#static<?php echo $sucursal['id_sucursal'] ?>">Editar</button>
+          <div class="col tam-card">
+          <div class="card shadow-sm card-configuracion">
+            <div class="row g-0">
+                <div class="col-md-4 left-column background-left-column">
+                  <h5 class="text-subconf text-center">Sucursal <?php echo $sucursal['estado']; ?></h2>
+                  <i class="fa-solid fa-building fa-4x" style="color: white"></i>
+                </div>
+                <div class="col-md-8">
+                  <div class="card-body">
+                    <p class="card-text text-sucursal"><?php echo $sucursal['nombre']; ?></p>
+                    <p class="card-text text-sucursal">Encargado: José Antonio</p>
+                    <p class="card-text text-sucursal">Teléfono: <?php echo $sucursal['telefono']; ?></p>
+                    <!-- <p class="card-text text-sucursal">Correo: <?php echo $sucursal['correo']; ?></p> -->
+                    <div class="d-flex justify-content-center align-items-center space">
+                      <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-success">Ver</button>
+                        <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#static<?php echo $sucursal['id_sucursal'] ?>">Editar</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+        </div>
+        <!-- ///////////////////////////////// -->
           <?php
         }
         
@@ -173,7 +208,7 @@
                     <input type="hidden" name="table" id="table" value="datos_fiscales">
                     <input type="hidden" name="id_negocio" id="id_negocio" value="<?php echo $_SESSION['user']['id_negocio']; ?>">
                     <input type="hidden" name="id_datos" id="id_datos" value="<?php echo $resDatosFiscales['id_datos']; ?>">
-                      <div class="input-nombre input-user" id="group-nombre">                                       
+                      <div class="input-user-name input-user" id="group-nombre">                                       
                         <label for="">Nombre: </label>
                         <input type="text" class="input" name="nombre" id="nombre" value="<?php echo $resDatosFiscales['nombre']; ?>">
                         <p class="input-error">* Rellena</p>
@@ -231,7 +266,7 @@
 
 
   <div class="modal fade modal-dialog-scrollable" id="static<?php echo $row['id_sucursal'] ?>">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-lg">
     <div class="borde modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="exampleModalLabel">Editar Sucursal</h3>
@@ -242,7 +277,7 @@
               <input type="hidden" name="table" id="action_per" value="editarSucursal">
               <input type="hidden" name="id_sucursl" id="id_sucursal" value="<?php echo $id_sucursal; ?>">
               <div class="input-user-name input-user" id="group-nombre">
-                <label for="">Nombre: </label>
+                <label for="">Nombre </label>
                 <input type="text" class="input" name="nombre" id="nombre" value="<?php echo $nombre; ?>">
                 <p class="input-error">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>
               </div>

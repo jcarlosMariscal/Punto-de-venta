@@ -1130,36 +1130,52 @@ select {
 }
 
 /*  -------------------- Album Configuration ------------------ */
-.card-configuracion {
+.background-left-column {
+  background-color: var(--color-one-secondary);
+  color: #fff;
+  display: block;
+  float: none;
   height: auto;
-  border-bottom: 4px solid var(--color-one);
+  width: 135px;
 }
-.card-title {
-  width: 100%;
+.tam-card {
+  width: 470px;
 }
-.card-title p {
-  margin: 0 0 5px;
+.text-configu {
+  padding-top: 50px;
+  font-weight: bold;
+  text-align: justify;
 }
-.title__img {
-  height: 150px;
+.text-sucursal {
+  padding-top: 0px;
+  font-weight: bold;
+  line-height: -20;
+  text-align: justify;
 }
-.title__text {
-  text-align: center;
-  height: 100%;
-  width: 100%;
-  color: var(--color-primary);
+.space {
+  padding-top: 50px;
+}
+.text-conf {
+  color: #fff;
+  padding-top: 30px;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.text-subconf {
+  color: #fff;
   font-size: 22px;
-  font-weight: 600;
 }
-.card-body {
-  /* margin-top: 10px; */
-  padding-top: 0;
+
+.left-column {
+  padding: 3rem;
+  max-width: 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
-@media (min-width: 768px) {
-  .bd-placeholder-img-lg {
-    font-size: 3.5rem;
-  }
-}
+
 /*  -------------------- Album Configuration ------------------ */
 
 /* ---------------- RESETEO CÓDIGO SIDEBAR ------------------- */

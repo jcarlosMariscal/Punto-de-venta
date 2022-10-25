@@ -147,3 +147,10 @@ CREATE TABLE compra_producto(
 INSERT INTO tipo_negocio(tipo) VALUES ('Tienditas'),('Abarrotes'),('Papelerías'), ('Zapaterías');
 INSERT INTO caja(caja, total) VALUES (01,10000), (02,5000), (03,20000);
 INSERT INTO rol(rol) VALUES ('Gerente'),('Ventas');
+INSERT INTO unidad(unidad, descripcion) VALUES ('Kilogramo', "Un kilogramo"),('Tara', "30 Kilogramos");
+
+-- Para agilizar las pruebas xd: La contraseña es 12345
+INSERT INTO negocio(nombre, telefono, correo, logo, id_tipo) VALUES("Nova Tech", "1234567890", "prueba@gmail.com", "logo.png", 1);
+INSERT INTO sucursal(nombre, estado, ciudad, colonia, direccion, codigo_postal, telefono, correo, id_negocio) VALUES("Tienda grande", "Puebla", "Tehuacan", "Centro", "20 Sur", "12345", "9876543210", "gd@gmail.com", 1);
+INSERT INTO sucursal(nombre, estado, ciudad, colonia, direccion, codigo_postal, telefono, correo, id_negocio) VALUES("Tienda mediana", "Veracruz", "Orizaba", "Centro", "10 Sur", "54321", "0123456789", "md@gmail.com", 1);
+INSERT INTO administrador(nombre, pass, correo, telefono, id_negocio) VALUES("User", "$2y$10$gcB4Xy7.7C5L4d0FLHojJeKxVZM2q0ozqgvpB64WJT74l8pdOUFJG", "name@gmail.com", "5461237890", 1);

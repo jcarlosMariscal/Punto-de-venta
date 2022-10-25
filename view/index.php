@@ -188,9 +188,13 @@ $nombre = (isset($_GET['nombre']) ? $_GET['nombre'] : NULL);
   if($nombre): 
 ?>
   <script>
-    $(function(){
-      $('#codigo-barras').modal('show');
-    })
+    let modGenerarCodigo = new bootstrap.Modal(
+      document.getElementById("codigo-barras"),
+      {
+            keyboard: false,
+          }
+    );
+    modGenerarCodigo.show();
   </script>;
 <?php endif; ?>
 <!-- MOSTRAR MODAL con vista previa del codigo -->
@@ -199,8 +203,12 @@ $ver = (isset($_GET['ver']) ? $_GET['ver'] : NULL);
   if($ver): 
 ?>
   <script>
-    $(function(){
-      $('#mostrarCodigo').modal('show');
-    })
+    let modVerCodigo = new bootstrap.Modal(
+      document.getElementById("mostrarCodigo"),
+      {
+            keyboard: false,
+          }
+    );
+    modVerCodigo.show();
   </script>;
 <?php endif; ?>

@@ -98,6 +98,7 @@ if(!empty($_POST)){
           if($actualizar) echo "compraCorrecta";
         }else{
           $comprar = $query->realizarCompra($producto, $cantidad, $p_compra, $p_venta, $id_proveedor);
+          $comprar = $query->realizarCompra($producto, $cantidad, $p_compra, $p_venta, $id_proveedor);
           if($comprar) echo "compraCorrecta";
         }
       }
@@ -120,8 +121,8 @@ if(!empty($_POST)){
     break;
     case 'generarCodigo':
       $codigo = (isset($_POST['codigo']) ? $_POST['codigo'] : NULL);
-      $producto = (isset($_POST['producto']) ? $_POST['producto'] : NULL);
-      $generarCodigo = $query->generarCodigo($codigo, $producto);
+      $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
+      $generarCodigo = $query->generarCodigo($codigo, $nombre);
       if($generarCodigo) echo "correcto";
     break;
     case 'negocio':
@@ -213,5 +214,35 @@ if(!empty($_POST)){
       break;
   }
 
+
+}
+
+include "../../libreriaExcel/SimpleXLSX.php";
+use Shuchkin\SimpleXLSX;
+if (isset($_POST["import"])) {
+  $allowedFileType = ['application/vnd.ms-excel', 'text/xls', 'text/xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+
+    if (in_array($_FILES["file"]["type"], $allowedFileType)) {
+
+        $targetPath = '../../assets/excel/' . $_FILES['file']['name'];
+        move_uploaded_file($_FILES['file']['tmp_name'], $targetPath);
+        $xlsx = new SimpleXLSX($targetPath);  
+        $registerExcel = $query->productoExcel($xlsx); 
+        if($registerExcel){
+          ?>
+          <script>
+            localStorage.setItem("excel", "true");
+            window.location.href = "../index.php?p=productos";
+        </script>
+          <?php
+        }else{
+        ?>
+          <script>
+            localStorage.setItem("excel", "false");
+            window.location.href = "../index.php?p=productos";
+        </script>
+          <?php
+        }
+    }
 
 }

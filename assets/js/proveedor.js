@@ -64,9 +64,13 @@ if (inputsEdit) {
 
 const cerrar = d.getElementById("cerrarForm");
 const cerrar2 = d.getElementById("cerrarForm2");
-cerrar.addEventListener("click", (e) => {
-  window.location.href = "index.php?p=proveedor";
-});
-cerrar2.addEventListener("click", (e) => {
-  window.location.href = "index.php?p=proveedor";
-});
+if (cerrar) {
+  cerrar.addEventListener("click", (e) => {
+    window.location.href = "index.php?p=proveedor";
+  });
+}
+if (cerrar2) {
+  cerrar2.addEventListener("click", (e) => {
+    window.location.href = "index.php?p=proveedor";
+  });
+}

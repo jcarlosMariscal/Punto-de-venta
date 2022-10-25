@@ -197,6 +197,43 @@
             return false;
         }
     }
+       //Productos------------
+    function selectProductos()
+    {
+        try {
+            $sql = "SELECT * from producto";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+        function editProducto($id)
+    {
+        try {
+            $sql = "SELECT * FROM producto WHERE id_producto = ?";
+            $query = $this->cnx->prepare($sql);
+            $query->bindParam(1, $id);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+        function idUnidad(){
+        try {
+            $sql = "SELECT * from unidad";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+
+
+
 
   }
   ?>

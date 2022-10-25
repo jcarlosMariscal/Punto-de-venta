@@ -252,17 +252,43 @@
         echo "error";
       }
     }
-    function generarCodigo($codigo, $producto){
+    function generarCodigo($codigo, $nombre){
       try {
-        $sql = "UPDATE productos SET codigo = ? WHERE producto = ?";
+        $sql = "UPDATE producto SET codigo = ? WHERE nombre = ?";
         $query = $this->cnx->prepare($sql);
         $query->bindParam(1,$codigo); 
-        $query->bindParam(2,$producto); 
+        $query->bindParam(2,$nombre); 
         if($query->execute()){
           return true;
         }
       } catch (PDOException $th){
         echo "error";
+      }
+    }
+    function productoExcel($xlsx){
+      try {
+        $sql = "INSERT INTO producto (codigo, nombre, cantidad, pcompra,pventa,id_unidad) VALUES (?, ?, ?, ?,?,".$_POST['id_unidad'].")";
+
+        $stmt = $this->cnx->prepare($sql);
+        $stmt->bindParam(1, $codigo);
+        $stmt->bindParam(2, $nombre);
+        $stmt->bindParam(3, $cantidad);
+        $stmt->bindParam(4, $pcompra);
+        $stmt->bindParam(5, $pventa);
+        // $stmt->bindParam(6, $id_unidad);
+
+        foreach ($xlsx->rows() as $fields) {
+            $codigo = $fields[0];
+            $nombre = $fields[1];
+            $cantidad = $fields[2];
+            $pcompra = $fields[3];
+            $pventa = $fields[4];
+            // $id_unidad = $fields[5];
+            $stmt->execute();
+        }
+        return true;
+      } catch (PDOException $th){
+        return false;
       }
     }
   }

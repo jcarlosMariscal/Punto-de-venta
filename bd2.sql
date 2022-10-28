@@ -136,11 +136,13 @@ CREATE TABLE compra_producto(
   id_compra INT NOT NULL AUTO_INCREMENT,
   id_sucursal INT NOT NULL,
   id_producto INT NOT NULL,
+  id_proveedor INT NOT NULL,
   cantidad INT NOT NULL,
   total INT NOT NULL,
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT  FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal),
   CONSTRAINT  FOREIGN KEY (id_producto) REFERENCES producto(id_producto),
+  CONSTRAINT  FOREIGN KEY (id_proveedor) REFERENCES proveedor(id_proveedor),
   PRIMARY KEY (id_compra)
 );
 

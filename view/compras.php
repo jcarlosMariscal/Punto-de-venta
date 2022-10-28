@@ -1,10 +1,12 @@
 <?php
-  include('../conexion/conexion.php');
-  $sql = "SELECT * FROM proveedor";
-  $query = mysqli_query($con, $sql);
-  $res = mysqli_fetch_array($query); 
-  
+  require_once "config/Connection.php";
+  require_once "logic/Read.php";
+  $query = new Read();
 
+  $readProveedor = $query->selectTable('proveedor'); // Hacer una consulta a tabla negocios
+  // $resProveedor = $readProveedor->fetch(); // Obtener el registro de la consulta
+  $readProducto = $query->selectTable('producto'); // Hacer una consulta a tabla negocios
+  $readUnidad = $query->selectTable('unidad'); // Hacer una consulta a tabla negocios
 ?>
 <section class="content">
   <div class="px-4">
@@ -17,58 +19,47 @@
           <form action="" class="form-add-product" id="formulario">
             <div class="input-nom-proveedor input-compra" id="group-nombre_prov">
               <label for="">Proveedor: </label>
-              <input type="text" class="input input-cpr" disabled id="nombre_prov" name="nombre_prov" placeholder="Selecciona proveedor">
-              <a href="" class="seleccionar" data-bs-toggle="modal" data-bs-target=".seleccionar-prov"><i class="fa-solid fa-check-to-slot"></i></a>
+              <input type="text" class="input btn-selectProv" disabled id="nombre_prov" name="nombre_prov" placeholder="Seleccionar" data-bs-toggle="modal" data-bs-target=".seleccionar-prov">
             </div>
-            <div class="input-nom-producto input-compra" id="group-producto_prov">
+            <div class="input-nom-producto input-compra" id="group-producto_prod">
               <label for="">Producto: </label>
-              <input type="text" class="input input-cpr" id="producto_prov" name="producto_prov" placeholder="Nombre de producto">
+              <input type="text" class="input input-cpr" id="nombre_prod" name="nombre_prod" placeholder="Nombre de producto">
+              <a href="" class="seleccionar" data-bs-toggle="modal" data-bs-target=".seleccionar-prod"><i class="fa-solid fa-magnifying-glass"></i></a>
+            </div>
+            <div hidden id="db_get_product">
+              <input type="hidden" id="db_get_code" name="db_get_code">
+              <input type="hidden" id="db_get_name" name="db_get_name">
             </div>
             <div class="input-cantidad input-compra" id="group-cantidad_prov">
+              <label for="">Unidad: </label>
+              <select name="unidad_prod" id="selectUnidad">
+                <option selected disabled>Seleccione una unidad</option>
+              <?php
+                if($readUnidad){
+                  foreach ($readUnidad as $row) {
+                    ?><option value="<?php echo $row['id_unidad']; ?>"><?php echo $row['unidad']; ?></option><?php
+                  }
+                }
+              ?>
+              </select>
+              <!-- <a href="" class="seleccionar" data-bs-toggle="modal" data-bs-target=".seleccionar-prov"><i class="fa-solid fa-circle-plus"></i></a> -->
+            </div>
+            <div class="input-cantidad input-compra" id="group-cantidad_prod">
               <label for="">Cantidad: </label>
-              <input type="number" class="input input-cpr" id="cantidad_prov" name="cantidad_prov">
+              <input type="number" class="input input-cpr" id="cantidad_prod" name="cantidad_prod" placeholder="Cantidad a comprar">
             </div>
-            <div class="input-precio-compra input-compra" id="group-pcompra_prov">
+            <div class="input-precio-compra input-compra" id="group-pcompra_prod">
               <label for="">P. Compra: </label>
-              <input type="number" class="input input-cpr" id="pcompra_prov" name="pcompra_prov">
+              <input type="number" class="input input-cpr" id="pcompra_prod" name="pcompra_prod" placeholder="Precio por unidad">
             </div>
-            <div class="input-precio-venta input-compra" id="group-pventa_prov">
+            <div class="input-precio-venta input-compra" id="group-pventa_prod">
               <label for="">P. Venta: </label>
-              <input type="number" class="input input-cpr" id="pventa_prov" name="pventa_prov">
+              <input type="number" class="input input-cpr" id="pventa_prod" name="pventa_prod" placeholder="Precio por unidad">
             </div>
             <div class="input-compra-submit">
-              <input type="submit" class="btn-prm btn-compra" value="Agregar Producto" id="btn-send">
+              <input type="submit" class="btn-prm btn-compra" value="Agregar Producto" id="btn-compraProducto">
             </div>
           </form>
-          <div class="modal fade seleccionar-prov" id="seleccionar-prov" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
-              <div class="modal-content">
-                  <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Seleccione un proveedor</h5>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                  </div>
-                  <div class="modal-body">
-                      <div class="permisos">
-                          <form class="form-user" id="form-select-prov">
-                              <?php
-                              foreach ($query as $row) {
-                                ?>
-                                <label><input type="radio" name="proveedor" id="cbox1" value="<?php echo $row['nombre']; ?>"> <?php echo $row['nombre']; ?></label><br>
-                                <?php
-                              }
-                              ?>
-                              <div class="input-submit modal-footer">
-                                <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
-                                <input type="submit" class="btn-cfg" data-bs-dismiss="modal" value="Seleccionar">
-                              </div>
-                              <!-- </select> -->
-                            </form>
-                      </div>
-                      <br>
-                  </div>
-              </div>
-            </div>
-          </div>
         </div> 
       </div> 
     </section>
@@ -80,6 +71,7 @@
           <thead>
             <tr>
               <th scope="col">PRODUCTO</th>
+              <th scope="col">CÓDIGO</th>
               <th scope="col">CANTIDAD</th>
               <th scope="col">P. COMPRA</th>
               <th scope="col">SUB TOTAL</th>
@@ -103,5 +95,93 @@
     </div>
   </div>
 </section>
+<section class="modales">
+  <div class="modal fade seleccionar-prov" id="seleccionar-prov" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Seleccionar proveedor</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="permisos">
+            <a href="" class="btn-prm btn-cancelar" data-bs-toggle="modal" data-bs-target=".agregarProveedor" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-plus fa-lg"></i> Agregar</a> 
+            <br>
+            <br>
+            <form class="form-select-prov" id="form-select-prov">
+              <?php
+                foreach ($readProveedor as $row) {
+              ?>
+                <label class="rad-label">
+                  <input type="radio" class="rad-input" name="proveedor" value="<?php echo $row['nombre']; ?>">
+                  <div class="rad-design"></div>
+                  <div class="rad-text"> <?php echo $row['nombre']; ?></div>
+                </label>
+              <?php
+              }
+              ?>
+              <br>
+              <div class="input-submit modal-footer">
+                <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
+                <input type="submit" class="btn-cfg" data-bs-dismiss="modal" value="Seleccionar">
+              </div>
+              <!-- </select> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade seleccionar-prod" id="seleccionar-prod" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Productos existentes</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="permisos">
+            <div class="row">
+              <div class="col-6">
+                <a href="" class="btn-prm btn-cancelar" data-bs-toggle="modal" data-bs-target=".agregarProveedor" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-plus fa-lg"></i> Agregar</a> 
+              </div>
+              <div class="col-6 text-right">
+                <label for="">
+                  Filtrar producto por: 
+                  <input type="search" class="input" placeholder=" Código | Nombre">
+                </label>
+              </div>
+            </div>
+            <br>
+            <form class="form-user" id="form-select-prod">
+              <?php
+                foreach ($readProducto as $row) {
+              ?>
+                <label class="rad-label">
+                  <input type="radio" class="rad-input" name="producto" value="<?php echo $row['nombre']; ?>">
+                  <div class="rad-design"></div>
+                  <div class="rad-text"><?php echo $row['codigo']; ?> - <?php echo $row['nombre']; ?></div>
+                </label>
+              <?php
+              }
+              ?>
+              <br>
+              <div class="input-submit modal-footer">
+                <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
+                <input type="submit" class="btn-cfg" data-bs-dismiss="modal" value="Seleccionar">
+              </div>
+              <!-- </select> -->
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<?php
+$addProvCompras = true;
+require_once "modales/agregarProveedor.php";
+?>
 
 <script src="../assets/js/compras.js" type="module"></script>

@@ -127,21 +127,23 @@
         echo "error";
       }
     }
-    function buscarProducto($codigo){
+    function buscarProducto($valor){
       try {
-        $sql = "SELECT * FROM productos WHERE codigo = ?";
+        $sql = "SELECT * FROM producto WHERE codigo = ? OR nombre LIKE '%$valor%'";
         $query = $this->cnx->prepare($sql);
-        $query->bindParam(1, $codigo);
+        $query->bindParam(1, $valor);
         $query -> execute();
         if($query->rowCount() > 0){
           foreach ($query as $row) {
             $codigo = $row['codigo'];
-            $producto = $row['producto'];
-            $pventa = $row['pventa'];
-            $id_proveedor = $row['id_proveedor'];
+            $nombre = $row['nombre'];
             $cantidad = $row['cantidad'];
+            $pcompra = $row['pcompra'];
+            $pventa = $row['pventa'];
+            $unidad = $row['id_unidad'];
+            // $id_proveedor = $row['id_proveedor'];
           } 
-          $json = '{"codigo":"'.$codigo.'","producto":"'.$producto.'","pventa":"'.$pventa.'","id_proveedor":"'.$id_proveedor.'", "cantidad":"'.$cantidad.'"}';
+          $json = '{"codigo":"'.$codigo.'","nombre":"'.$nombre.'","cantidad":"'.$cantidad.'","pcompra":"'.$pcompra.'", "pventa":"'.$pventa.'","unidad":"'.$unidad.'"}';
           return [true, $json];
         }else{
           return [false, 'noEncontrado'];

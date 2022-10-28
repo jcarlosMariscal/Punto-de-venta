@@ -149,29 +149,15 @@
         }
     }
 
-    function selectInfoPer()
-    {
-        try {
-            $sql = "SELECT * from personal";
-            $query = $this->cnx->prepare($sql);
-            $read = $query->execute();
-            if ($read) return $query;
-        } catch (PDOException $th) {
-            return false;
-        }
-    }
-
-    //---------------- provedor---------------------------------
-    function selectProveedor()
-    {
-        try {
-            $sql = "SELECT * from proveedor";
-            $query = $this->cnx->prepare($sql);
-            $read = $query->execute();
-            if ($read) return $query;
-        } catch (PDOException $th) {
-            return false;
-        }
+    function selectInfoPer(){
+      try {
+        $sql = "SELECT * from personal";
+        $query = $this->cnx->prepare($sql);
+        $read = $query->execute();
+        if ($read) return $query;
+      } catch (PDOException $th) {
+        return false;
+      }
     }
 
     function editProveedor($id)

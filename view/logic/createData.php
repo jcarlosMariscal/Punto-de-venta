@@ -11,6 +11,7 @@ if(!empty($_POST)){
       $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL);
       $contacto = (isset($_POST['contacto']) ? $_POST['contacto'] : NULL);
       $cargo = (isset($_POST['cargo']) ? $_POST['cargo'] : NULL);
+      $modalProveedor = (isset($_POST['modalProveedor']) ? $_POST['modalProveedor'] : false);
       //  LLAMAMOS A UN MÉTODO PARA VALIDAR SI YA EXISTE UN USUARIO CON EL MISMO NOMBRE
       $validate = $query->validateNameUser($nombre, 'proveedor','nombre');
       if($validate >= 1){
@@ -18,12 +19,21 @@ if(!empty($_POST)){
       }else{
         $query -> registrarProveedor($nombre,$telefono,$correo,$contacto,$cargo);
         if($query){
-          ?>
+          if(!$modalProveedor){
+            ?>
             <script>
               localStorage.setItem("addProv", "true");
               window.location.href = "../index.php?p=proveedor";
             </script>
           <?php
+          }else{
+            ?>
+            <script>
+              localStorage.setItem("addProv", "desdeCompras");
+              window.location.href = "../index.php?p=compras";
+            </script>
+          <?php
+          }
         }
       } 
   
@@ -71,8 +81,8 @@ if(!empty($_POST)){
       }
     break;
     case 'buscarProducto':
-      $codProducto = (isset($_POST['codProducto']) ? $_POST['codProducto'] : NULL);
-      $buscarProducto = $query->buscarProducto($codProducto);
+      $codNameProducto = (isset($_POST['codNameProducto']) ? $_POST['codNameProducto'] : NULL);
+      $buscarProducto = $query->buscarProducto($codNameProducto);
       if($buscarProducto[0]){
         echo $buscarProducto[1];
       }else{

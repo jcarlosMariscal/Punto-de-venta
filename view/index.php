@@ -212,3 +212,22 @@ $ver = (isset($_GET['ver']) ? $_GET['ver'] : NULL);
     modVerCodigo.show();
   </script>;
 <?php endif; ?>
+
+
+<!-- - Mostrar modal para seleccionar proveedor después de agregar uno en la sección de compras ------ -->
+<script>
+    let addProv = localStorage.getItem("addProv");
+    if(addProv === "desdeCompras"){
+      var seleccionarProv = new bootstrap.Modal(
+      document.getElementById("seleccionar-prov"),
+      {
+            keyboard: false,
+          }
+    );
+    seleccionarProv.show();
+    } 
+    setTimeout(function(){
+        localStorage.removeItem("addProv");
+    }, 1500);
+
+</script>

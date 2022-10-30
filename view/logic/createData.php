@@ -29,7 +29,7 @@ if(!empty($_POST)){
           }else{
             ?>
             <script>
-              localStorage.setItem("addProv", "desdeCompras");
+              localStorage.setItem("nameProv", "<?php echo $nombre; ?>");
               window.location.href = "../index.php?p=compras";
             </script>
           <?php
@@ -90,27 +90,39 @@ if(!empty($_POST)){
       }
     break;
     case 'realizarCompra':
+      $totalCompra = (isset($_POST['totalCompra']) ? $_POST['totalCompra'] : NULL); 
+      $detalles = $_POST['data'];
       $data = json_decode($_POST['data'], true);
+      $productos = [];
       foreach ($data as $row) {
-        $producto = $row['producto'];
+        $nombre = $row['nombre'];
+        $codigo = $row['codigo'];
         $cantidad = $row['cantidad'];
-        $p_compra = $row['p_compra'];
-        $subtotal = $row['subtotal'];
+        $pcompra = $row['pcompra'];
         $proveedor = $row['proveedor'];
-        $p_venta = $row['p_venta'];
+        $pventa = $row['pventa'];
+        $unidad = $row['unidad'];
+        $id_sucursal = $row['id_sucursal'];
+        array_push($productos, $nombre);
 
         $id_proveedor = $query->buscarIdProv($proveedor);
-        $buscarProdExistente = $query->buscarProdExistente($producto);
+        if(!$id_proveedor) $id_proveedor = 1;
+        $buscarProdExistente = $query->buscarProdExistente($nombre);
         if($buscarProdExistente[0] > 0){
-          $cantidad2 = $buscarProdExistente[1];
-          $cantidad = $cantidad + $cantidad2;
-          $actualizar = $query->actualizarCompra($cantidad, $p_compra, $p_venta, $producto);
-          if($actualizar) echo "compraCorrecta";
-        }else{
-          $comprar = $query->realizarCompra($producto, $cantidad, $p_compra, $p_venta, $id_proveedor);
-          $comprar = $query->realizarCompra($producto, $cantidad, $p_compra, $p_venta, $id_proveedor);
-          if($comprar) echo "compraCorrecta";
+          $cantidadBD = $buscarProdExistente[1];
+          $cantidad = $cantidad + $cantidadBD;
+          $id_producto = $buscarProdExistente[2];
+          $actualizar = $query->actualizarCompra($cantidad, $pcompra, $pventa, $nombre);
+          if($actualizar) {
+            echo "compraCorrecta";
+            $cadenaProductos = implode(", ", $productos);
+            $registrarCompraProducto = registrarCompraProducto($id_sucursal,  $id_proveedor, $cadenaProductos, $detalles, $totalCompras);
+          }
         }
+        // }else{
+        //   $comprar = $query->realizarCompra($producto, $cantidad, $p_compra, $p_venta, $id_proveedor);
+        //   if($comprar) echo "compraCorrecta";
+        // }
       }
     break;
     case 'venderProducto':

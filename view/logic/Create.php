@@ -162,7 +162,7 @@
           return $row['id'];
         }
       } catch (PDOException $th){
-        echo "error";
+        return false;
       }
     }
     function buscarIdProd($producto){
@@ -178,26 +178,27 @@
         echo "error";
       }
     }
-    function buscarProdExistente($producto){
+    function buscarProdExistente($nombre){
       try {
-        $sql = "SELECT * FROM productos WHERE producto = ?";
+        $sql = "SELECT * FROM producto WHERE nombre = ?";
         $query = $this->cnx->prepare($sql);
-        $query->bindParam(1, $producto);
+        $query->bindParam(1, $nombre);
         $query->execute();
         $registros = $query->rowCount();
         foreach($query as $row){
           $cantidad = $row['cantidad'];
-          return [$registros, $cantidad];
+          $id_producto = $row['id_producto'];
+          return [$registros, $cantidad, $id_producto];
         }
       } catch (PDOException $th){
-        echo "error";
+        return[false, false, false];
       }
     }
-    function actualizarCompra($cantidad, $p_compra, $p_venta, $producto){
+    function actualizarCompra($cantidad, $pcompra, $pventa, $nombre){
       try {
-        $sql = "UPDATE productos SET cantidad = ?, pcompra = ?, pventa = ? WHERE producto = ?";
+        $sql = "UPDATE producto SET cantidad = ?, pcompra = ?, pventa = ? WHERE nombre = ?";
         $query = $this->cnx->prepare($sql);
-        $data = array($cantidad,$p_compra,$p_venta,$producto);
+        $data = array($cantidad,$pcompra,$pventa,$nombre);
         $update = $query -> execute($data);
         if($update) return true;
       } catch (PDOException $th){
@@ -212,7 +213,18 @@
         $insert = $query -> execute($data);
         if($insert) return true;
       } catch (PDOException $th){
-        echo "error";
+        return false;
+      }
+    }
+    function registrarCompraProducto($id_sucursal,  $id_proveedor, $cadenaProductos, $detalles, $totalCompras){
+      try {
+        $sql = "INSERT INTO compra_producto(id_sucursal, id_proveedor, productos, detalles, total) VALUES(?,?,?,?,?)";
+        $query = $this->cnx->prepare($sql);
+        $data = array($id_sucursal,$id_proveedor,$productos,$detalles,$total);
+        $insert = $query -> execute($data);
+        if($insert) return true;
+      } catch (PDOException $th){
+        return false;
       }
     }
     function realizarVenta($id_producto, $usuario, $cantidad){

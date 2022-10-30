@@ -216,18 +216,15 @@ $ver = (isset($_GET['ver']) ? $_GET['ver'] : NULL);
 
 <!-- - Mostrar modal para seleccionar proveedor después de agregar uno en la sección de compras ------ -->
 <script>
-    let addProv = localStorage.getItem("addProv");
-    if(addProv === "desdeCompras"){
-      var seleccionarProv = new bootstrap.Modal(
-      document.getElementById("seleccionar-prov"),
-      {
-            keyboard: false,
-          }
-    );
-    seleccionarProv.show();
-    } 
+    let nameProv = localStorage.getItem("nameProv");
+    if(nameProv) nombre_prov.value = nameProv;
     setTimeout(function(){
-        localStorage.removeItem("addProv");
+        localStorage.removeItem("nameProv");
+    }, 1500);
+    let addProd = localStorage.getItem("addProd");
+    if(addProd) nombre_prov.value = nameProv;
+    setTimeout(function(){
+        localStorage.removeItem("addProd");
     }, 1500);
 
 </script>

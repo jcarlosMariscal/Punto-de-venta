@@ -9,16 +9,21 @@ const nota_compra = () => {
     const aComprar = [];
 
     for (var i = 0, row; (row = table_body.rows[i]); i++) {
+      console.log(table_body.rows[i]);
       const obj = {
-        producto: row.cells[0].innerText,
-        cantidad: row.cells[1].innerText,
-        p_compra: row.cells[2].innerText,
-        subtotal: row.cells[3].innerText,
-        proveedor: row.cells[4].innerText,
-        p_venta: row.cells[5].innerText,
+        nombre: row.cells[0].innerText,
+        codigo: row.cells[1].innerText,
+        cantidad: row.cells[2].innerText,
+        pcompra: row.cells[3].innerText,
+        subtotal: row.cells[4].innerText,
+        proveedor: row.cells[5].innerText,
+        pventa: row.cells[6].innerText,
+        unidad: row.cells[7].innerText,
+        id_sucursal: row.cells[8].innerText,
       };
       aComprar.push(obj);
     }
+    console.log(aComprar);
 
     const info_compra = d.querySelector(".info-compra");
     const section_modal = d.createElement("section");
@@ -72,7 +77,7 @@ const nota_compra = () => {
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn-save-modal" disabled id="comprarProductos">Comprar</button>
+                        <button type="button" class="btn-save-modal" id="comprarProductos">Comprar</button>
                         <button type="button" class="btn-save-modal" id="save_ticket">Descargar</button>
                     </div>
                 </div>
@@ -86,10 +91,11 @@ const nota_compra = () => {
         let regex = /(\d+)/g;
         let total = 0;
         for (let i = 0; i < aComprar.length; i++) {
+          console.log(aComprar[i].cantidad);
           table_ticket.innerHTML += `
                     <th>${aComprar[i].cantidad}</th>
-                    <th>${aComprar[i].producto}</th>
-                    <th>${aComprar[i].p_compra}</th>
+                    <th>${aComprar[i].nombre}</th>
+                    <th>${aComprar[i].pcompra}</th>
                     <th>${aComprar[i].subtotal}</th>
                 `;
           let getSubTotal = aComprar[i].subtotal.match(regex);
@@ -109,13 +115,16 @@ const nota_compra = () => {
         const save_ticket = d.getElementById("save_ticket");
         const comprarProductos = d.getElementById("comprarProductos");
         comprarProductos.addEventListener("click", (e) => {
+          localStorage.getItem("prodNuevo");
           // console.log(aComprar);
-
           let form = new FormData();
           let data = JSON.stringify(aComprar);
           // console.log(data);
           form.append("table", "realizarCompra");
           form.append("data", data);
+          form.append("totalCompra", total_neto.innerText);
+          form.append("nuevoCodigo", total_neto.innerText);
+          form.append("nuevoNombre", total_neto.innerText);
           // console.log(form.get("data"));
           fetch("logic/createData.php", {
             method: "POST",

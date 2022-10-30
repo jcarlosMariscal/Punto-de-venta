@@ -32,7 +32,7 @@
             </div>
             <div class="input-cantidad input-compra" id="group-cantidad_prov">
               <label for="">Unidad: </label>
-              <select name="unidad_prod" id="selectUnidad">
+              <select name="unidad_prod" id="unidad_prod">
                 <option selected disabled>Seleccione una unidad</option>
               <?php
                 if($readUnidad){
@@ -143,13 +143,29 @@
           <div class="permisos">
             <div class="row">
               <div class="col-6">
-                <a href="" class="btn-prm btn-cancelar" data-bs-toggle="modal" data-bs-target=".agregarProveedor" data-bs-dismiss="modal" aria-label="Close"><i class="fa-solid fa-plus fa-lg"></i> Agregar</a> 
+                <a href="" class="btn-prm" id="nuevoProducto"><i class="fa-solid fa-plus fa-lg"></i> Nuevo producto</a> 
               </div>
               <div class="col-6 text-right">
                 <label for="">
                   Filtrar producto por: 
                   <input type="search" class="input" placeholder=" Código | Nombre">
                 </label>
+              </div>
+            </div>
+            <br>
+            <div class="row agregar-nuevo-form" id="agregarNuevoForm">
+              <div class="col-5">
+                <label for="">Código: 
+                  <input type="text" placeholder="Código" id="nuevoCodigo">
+                </label>
+              </div>
+              <div class="col-5">
+                <label for="">Nombre: 
+                  <input type="text" placeholder="Nombre" id="nuevoNombre">
+                </label>
+              </div>
+              <div class="col-2">
+                <a href="#"class="btn-prm" id="agregarNuevo">Agregar</a>
               </div>
             </div>
             <br>
@@ -168,7 +184,7 @@
               <br>
               <div class="input-submit modal-footer">
                 <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
-                <input type="submit" class="btn-cfg" data-bs-dismiss="modal" value="Seleccionar">
+                <input type="submit" class="btn-cfg" data-bs-dismiss="modal" id="seleccionarProducto" value="Seleccionar">
               </div>
               <!-- </select> -->
             </form>

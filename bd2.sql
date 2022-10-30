@@ -93,10 +93,10 @@ CREATE TABLE personal(
 CREATE TABLE proveedor(
     id_proveedor INT NOT NULL AUTO_INCREMENT,
     nombre VARCHAR(255) NOT NULL,
-    telefono VARCHAR(15) NOT NULL,
-    correo VARCHAR(255) NOT NULL,
-    contacto VARCHAR(255) NOT NULL,
-    cargo VARCHAR(255) NOT NULL,
+    telefono VARCHAR(15) NULL,
+    correo VARCHAR(255) NULL,
+    contacto VARCHAR(255) NULL,
+    cargo VARCHAR(255) NULL,
     PRIMARY KEY (id_proveedor)
 );
 
@@ -114,7 +114,6 @@ CREATE TABLE producto(
     pcompra VARCHAR(255) NOT NULL,
     pventa VARCHAR(255) NOT NULL,
     id_unidad INT NOT NULL,
-    fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     CONSTRAINT  FOREIGN KEY (id_unidad) REFERENCES unidad(id_unidad),
     PRIMARY KEY (id_producto)
 );
@@ -135,13 +134,12 @@ CREATE TABLE venta_producto(
 CREATE TABLE compra_producto(
   id_compra INT NOT NULL AUTO_INCREMENT,
   id_sucursal INT NOT NULL,
-  id_producto INT NOT NULL,
   id_proveedor INT NOT NULL,
-  cantidad INT NOT NULL,
+  productos VARCHAR(500) NOT NULL,
+  detalles TEXT NOT NULL,
   total INT NOT NULL,
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT  FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal),
-  CONSTRAINT  FOREIGN KEY (id_producto) REFERENCES producto(id_producto),
   CONSTRAINT  FOREIGN KEY (id_proveedor) REFERENCES proveedor(id_proveedor),
   PRIMARY KEY (id_compra)
 );
@@ -150,8 +148,9 @@ INSERT INTO tipo_negocio(tipo) VALUES ('Tienditas'),('Abarrotes'),('Papelerías'
 INSERT INTO caja(caja, total) VALUES (01,10000), (02,5000), (03,20000);
 INSERT INTO rol(rol) VALUES ('Gerente'),('Ventas');
 INSERT INTO unidad(unidad, descripcion) VALUES ('Kilogramo', "Un kilogramo"),('Tara', "30 Kilogramos");
+INSERT INTO proveedor(nombre) VALUES ('Proveedor en general');
 
--- Para agilizar las pruebas xd: La contraseña es 12345
+-- Para agilizar el desarrollo xd: La contraseña es 12345
 INSERT INTO negocio(nombre, telefono, correo, logo, id_tipo) VALUES("Nova Tech", "1234567890", "prueba@gmail.com", "logo.png", 1);
 INSERT INTO sucursal(nombre, estado, ciudad, colonia, direccion, codigo_postal, telefono, correo, id_negocio) VALUES("Tienda grande", "Puebla", "Tehuacan", "Centro", "20 Sur", "12345", "9876543210", "gd@gmail.com", 1);
 INSERT INTO sucursal(nombre, estado, ciudad, colonia, direccion, codigo_postal, telefono, correo, id_negocio) VALUES("Tienda mediana", "Veracruz", "Orizaba", "Centro", "10 Sur", "54321", "0123456789", "md@gmail.com", 1);

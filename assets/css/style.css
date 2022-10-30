@@ -1485,16 +1485,17 @@ select {
 
   cursor: pointer;
   transition: 0.3s;
+  background-color: #e8f1f2;
 }
 
 .rad-label:hover,
 .rad-label:focus-within {
-  background: #e8f1f2;
+  background: #99d4bc;
 }
 .rad-label:hover .rad-text,
 .rad-label:focus-within .rad-text {
+  transition: all 0.5s ease-in-out;
   color: var(--color-menu-primary);
-  font-weight: bolder;
 }
 
 .rad-input {
@@ -1528,7 +1529,7 @@ select {
   height: inherit;
   border-radius: inherit;
 
-  background: hsl(0, 0%, 90%);
+  background: #e6e6e6;
   transform: scale(1.1);
   transition: 0.3s;
 }
@@ -1549,7 +1550,8 @@ select {
 }
 
 .rad-input:checked ~ .rad-text {
-  color: var(--color-one);
+  color: var(--color-menu-primary);
+  font-weight: bolder;
 }
 
 /* ABS */
@@ -1561,3 +1563,15 @@ select {
   color: hsla(0, 0%, 0%, 0.5);
   font-size: 16px;
 }
+
+/* -------------------- MOSTRAR/OCULTAR EL FORMULARIO PARA AGREGAR PRODUCTO EN COMPRAS */
+.agregar-nuevo-form {
+  display: none;
+  transition: all 0.5s ease-in-out;
+}
+.agregar-nuevo-form.mostrar-form {
+  transition: all 0.5s ease-in-out;
+  display: flex;
+  flex-direction: row;
+}
+/* -------------------- MOSTRAR/OCULTAR EL FORMULARIO PARA AGREGAR PRODUCTO EN COMPRAS */

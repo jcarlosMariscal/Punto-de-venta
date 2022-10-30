@@ -51,17 +51,25 @@
                 </thead>
                 <tbody>
                   <?php
-                  $result = $query->selectProveedor();
+                  $result = $query->selectTable('proveedor');
                     foreach ($result as $row) {
                       ?>
                       <tr class="prod">
                         <td><?php echo $row['id_proveedor']; ?></td>
                         <td><?php echo $row['nombre']; ?></td>
-                        <td><?php echo $row['telefono']; ?></td>
-                        <td><?php echo $row['correo']; ?></td>
-                        <td><?php echo $row['contacto']; ?></td>
-                        <td><?php echo $row['cargo']; ?></td>
-                        <td class="text-center"><a href="index.php?p=proveedor&delete=<?php echo $row['id_proveedor']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                        <td class="text-center"><?php echo (!$row['telefono'])? '<b>---</b>' : $row['telefono']; ?></td>
+                        <td class="text-center">
+                          <?php echo (!$row['correo'])? '<b>---</b>' : $row['correo'] ?>
+                        </td>
+                        <td class="text-center">
+                          <?php echo (!$row['contacto'])? '<b>---</b>' : $row['contacto'] ?>
+                        </td>
+                        <td class="text-center">
+                          <?php echo (!$row['cargo'])? '<b>---</b>' : $row['cargo'] ?>
+                        </td>
+                        <td class="text-center">
+                          <a href="index.php?p=proveedor&delete=<?php echo $row['id_proveedor']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a>
+                        </td>
                         <td class="text-center"><a href="index.php?p=proveedor&edit=<?php echo $row['id_proveedor']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
                         <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#static<?php echo $row['id_proveedor'] ?>" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
                       </tr>

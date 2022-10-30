@@ -72,7 +72,6 @@ if ($deletProducto) {
             <th scope="col">P. Compra</th>
             <th scope="col">P. Venta</th>
             <th scope="col">unidad</th>
-            <th scope="col">fecha</th>
           </tr>
         </thead>
         <tbody id="table-body">
@@ -87,7 +86,6 @@ if ($deletProducto) {
               <td><?php echo $row['pcompra']; ?></td>
               <td><?php echo $row['pventa']; ?></td>
               <td><?php echo $row['id_unidad']; ?></td>
-              <td><?php echo $row['fecha']; ?></td>
               <td class="text-center"><a href="index.php?p=productos&delete=<?php echo $row['id_producto']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
               <td class="text-center"><a href="index.php?p=productos&edit=<?php echo $row['id_producto']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
               <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#pro<?php echo $row['id_producto'] ?>" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
@@ -201,7 +199,6 @@ if ($deletProducto) {
     $pcompra = $row['pcompra'];
     $pventa = $row['pventa'];
     $id_unidad = $row['id_unidad'];
-    $fecha = $row['fecha'];
   ?>
 
 
@@ -243,10 +240,6 @@ if ($deletProducto) {
                 <section class="ticket__section">
                   <h4>Unidad</h4>
                   <?php echo $id_unidad ?>
-                </section>
-                <section class="ticket__section">
-                  <h4>Fecha</h4>
-                  <?php echo $fecha ?>
                 </section>
               </div>
             </div>

@@ -2,20 +2,17 @@
   <div class="container-fluid header-container">
     <div class="dropdown">
       <div class="header-toggle" id="header-toggle"><i class="fa-solid fa-bars"></i></div>
-      <!-- <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-white text-white text-decoration-none dropdown-toggle" id="dropdownNavLink" data-bs-toggle="dropdown" aria-expanded="false"> -->
-        <span class=" d-flex align-items-center text-white">Sucursal <span id="id_sucursal"><?php echo $_SESSION['user']['id_sucursal']; ?></span></span> 
-      <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-white text-white text-decoration-none name-section" id="dropdownNavLink">
-          <?php echo $nombreSeccion; ?>
-      </a>
-      <!-- <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink">
-          <li><a class="dropdown-item active" href="#" aria-current="page">Overview</a></li>
-          <li><a class="dropdown-item" href="#">Inventory</a></li>
-          <li><a class="dropdown-item" href="#">Customers</a></li>
+      <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-white text-white text-decoration-none dropdown-toggle" id="dropdownNavLink" data-bs-toggle="dropdown" aria-expanded="false"><?php echo $nombreSeccion; ?></a>
+
+      <!-- <a href="ver-compras.php" class="btn btn-prm">Ver Compras</a> -->
+      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink">
+          <li><a class="dropdown-item" href="index.php?p=ver-compras" aria-current="page">Ver compras</a></li>
+          <li><a class="dropdown-item" href="#">Productos</a></li>
+          <li><a class="dropdown-item" href="#">Proveedores</a></li>
           <li><a class="dropdown-item" href="#">Products</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Reports</a></li>
-          <li><a class="dropdown-item" href="#">Analytics</a></li>
-      </ul> -->
+          <li><a class="dropdown-item" href="#">Ayuda</a></li>
+      </ul>
     </div>
 
     <div class="align-items-center header-user">
@@ -42,8 +39,8 @@
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-            <li><span><?php echo $_SESSION['user']['nombre']; ?></span></li>
-            <li><span>
+            <li><a href="#" class="dropdown-item"><span><?php echo $_SESSION['user']['nombre']; ?></span></a></li>
+            <!-- <li><span>
               <?php 
               if($_SESSION['rol'] == 0){
                 echo "Administrador";
@@ -52,7 +49,8 @@
               }else if($_SESSION['rol'] == 2){
                 echo "Vendedor";
               }?>
-            </span></li>
+            </span></li> -->
+            <li><a href="#" class="dropdown-item"><span class=" d-flex align-items-center">Sucursal <span id="id_sucursal"><?php echo $_SESSION['user']['id_sucursal']; ?></span></span> </a></li>
             <li><a class="dropdown-item" href="#">Reportes</a></li>
             <li><a class="dropdown-item" href="#">Mi información</a></li>
             <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->

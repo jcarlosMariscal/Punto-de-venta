@@ -191,7 +191,7 @@
           return [$registros, $cantidad, $id_producto];
         }
       } catch (PDOException $th){
-        return[false, false, false];
+        echo "error";
       }
     }
     function actualizarCompra($cantidad, $pcompra, $pventa, $nombre){
@@ -205,11 +205,11 @@
         echo "error";
       }
     }
-    function realizarCompra($producto, $cantidad, $p_compra, $p_venta, $id_proveedor){
+    function realizarCompraNuevo($codigo, $nombre, $cantidad, $pcompra, $pventa, $id_unidad){
       try {
-        $sql = "INSERT INTO productos(producto, cantidad, pcompra, pventa, id_proveedor) VALUES(?,?,?,?,?)";
+        $sql = "INSERT INTO producto(codigo, nombre, cantidad, pcompra, pventa, id_unidad) VALUES(?,?,?,?,?,?)";
         $query = $this->cnx->prepare($sql);
-        $data = array($producto,$cantidad,$p_compra,$p_venta,$id_proveedor);
+        $data = array($codigo, $nombre,$cantidad,$pcompra,$pventa,$id_unidad);
         $insert = $query -> execute($data);
         if($insert) return true;
       } catch (PDOException $th){
@@ -220,7 +220,7 @@
       try {
         $sql = "INSERT INTO compra_producto(id_sucursal, id_proveedor, productos, detalles, total) VALUES(?,?,?,?,?)";
         $query = $this->cnx->prepare($sql);
-        $data = array($id_sucursal,$id_proveedor,$productos,$detalles,$total);
+        $data = array($id_sucursal,$id_proveedor,$cadenaProductos,$detalles,$totalCompras);
         $insert = $query -> execute($data);
         if($insert) return true;
       } catch (PDOException $th){

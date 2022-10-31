@@ -25,8 +25,10 @@ if (inputs) {
     input.addEventListener("blur", validarFormulario);
   });
 }
-(comprar.disabled = true), (cancelar.disabled = true);
-comprar.classList.add("deshabilitar"), cancelar.classList.add("deshabilitar");
+if (comprar && cancelar) {
+  (comprar.disabled = true), (cancelar.disabled = true);
+  comprar.classList.add("deshabilitar"), cancelar.classList.add("deshabilitar");
+}
 
 if (selecProv) {
   selecProv.addEventListener("submit", (e) => {
@@ -54,7 +56,7 @@ const agregarNuevoForm = d.getElementById("agregarNuevoForm");
 const nuevoProducto = d.getElementById("nuevoProducto");
 if (nuevoProducto) {
   nuevoProducto.addEventListener("click", (e) => {
-    console.log("ho");
+    // console.log("ho");
     e.preventDefault();
     agregarNuevoForm.classList.add("mostrar-form");
     agregarNuevoForm.classList.remove("agregar-nuevo-form");
@@ -68,18 +70,20 @@ if (agregarNuevo) {
     const nuevoNombre = d.getElementById("nuevoNombre").value;
     const nuevoLabel = d.createElement("label");
     nuevoLabel.classList.add("rad-label");
-    nuevoLabel.innerHTML += `<input type="radio" class="rad-input" data-${nuevoNombre} = "${nuevoCodigo}" name="producto" value="${nuevoNombre}">
+    nuevoLabel.innerHTML += `<input type="radio" class="rad-input" name="producto" value="${nuevoNombre}">
                   <div class="rad-design"></div>
                   <div class="rad-text"><span class="text-codigo">${nuevoCodigo}</span> - ${nuevoNombre}</div>`;
     selecProd.insertAdjacentElement("afterbegin", nuevoLabel);
     agregarNuevoForm.classList.remove("mostrar-form");
     agregarNuevoForm.classList.add("agregar-nuevo-form");
+    localStorage.setItem(nuevoNombre, nuevoCodigo);
   });
 }
 
+const db_get_code = d.getElementById("db_get_code");
+const db_get_name = d.getElementById("db_get_name");
 const buscarProd = (e, nombreProd) => {
-  const db_get_code = d.getElementById("db_get_code");
-  const db_get_name = d.getElementById("db_get_name");
+  const alertProduct = d.getElementById("alertProduct");
   nombre_prod.value = nombreProd ? nombreProd : nombre_prod.value;
 
   e.preventDefault();
@@ -93,19 +97,23 @@ const buscarProd = (e, nombreProd) => {
     })
       .then((res) => res.text())
       .then((data) => {
-        // console.log(data);
         if (data == "noEncontrado") {
-          Swal.fire({
-            title: "Producto no encontrado.",
-            text: "Verifique que el código o nombre sean correctos",
-            icon: "error", //error,
-            timer: 2000,
-            toast: true,
-            position: "top-end",
-            showConfirmButton: false,
-            confirmButtonColor: "#47874a",
-          });
+          // Swal.fire({
+          //   title: "Producto no encontrado.",
+          //   text: "Verifique que el código o nombre sean correctos",
+          //   icon: "error", //error,
+          //   timer: 2000,
+          //   toast: true,
+          //   position: "top-end",
+          //   showConfirmButton: false,
+          //   confirmButtonColor: "#47874a",
+          // });
+          alertProduct.innerHTML = `
+            <div class="alert alert-warning" role="alert">
+              El código o nombre del producto no cincide con ninguna registrada en la base de datos. Para agregar una nueva abra el modal para seleccionar productos, seleccione Nuevo producto, llené los campos, seleccione el producto agregado y siga llenando el formulario.
+            </div>`;
         } else {
+          // console.log(nombre_prod.value);
           let get = JSON.parse(data);
           cantidad_prod.value = get.cantidad;
           pcompra_prod.value = get.pcompra;
@@ -127,18 +135,26 @@ if (nombre_prod) {
   });
 }
 const seleccionarProducto = d.getElementById("seleccionarProducto");
-seleccionarProducto.addEventListener("click", (e) => {
-  let boxs = d.querySelectorAll("#form-select-prod input");
-  boxs.forEach((box) => {
-    if (box.checked) buscarProd(e, box.value);
+if (seleccionarProducto) {
+  seleccionarProducto.addEventListener("click", (e) => {
+    let boxs = d.querySelectorAll("#form-select-prod input");
+    boxs.forEach((box) => {
+      if (box.checked) {
+        buscarProd(e, box.value);
+        db_get_code.value = localStorage.getItem(box.value);
+        db_get_name.value = box.value;
+      }
+    });
   });
-});
+}
 
 if (formulario) {
   const btnCompraProducto = d.getElementById("btn-compraProducto");
   const id_sucursal = d.getElementById("id_sucursal");
   formulario.addEventListener("submit", (e) => e.preventDefault());
   btnCompraProducto.addEventListener("click", (e) => {
+    // data-${nuevoNombre}
+    let nombre_producto = d.getElementById("nombre_prod");
     e.preventDefault();
     if (
       nombre_prod.value === "" ||
@@ -182,6 +198,7 @@ if (formulario) {
         cantidad_prod.value = "";
         pcompra_prod.value = "";
         pventa_prod.value = "";
+        alertProduct.innerHTML = "";
       }
       (comprar.disabled = false), (cancelar.disabled = false);
       comprar.classList.remove("deshabilitar"),
@@ -197,6 +214,55 @@ if (formulario) {
       });
     }
   });
+  nota_compra();
 }
 
-nota_compra();
+// ---------------------- SECCIÓN VER COMPRAS ---------------------------------------
+
+const registroCompras = d.querySelectorAll(".registroCompras");
+if (registroCompras) {
+  const detallesCompra = d.getElementById("detallesCompra");
+  registroCompras.forEach((el) => {
+    el.addEventListener("click", (e) => {
+      const id_compra = el.childNodes[1].childNodes[1].childNodes[1].innerText;
+      let form = new FormData();
+      form.append("action", "readCompraProducto");
+      form.append("id_compra", id_compra);
+      fetch("logic/readData.php", {
+        method: "POST",
+        body: form,
+      })
+        .then((res) => res.text())
+        .then((data) => {
+          console.log(data);
+          let arr = data.split("-/");
+          let json1 = JSON.parse(arr[0]);
+          let json2 = JSON.parse(arr[1]);
+          console.log(json2);
+
+          detallesCompra.innerHTML = `
+          <div class="columna-campos">
+            <p>Proveedor(es)</p>
+            <p>Fecha compra</p>
+            <p>Fecha consulta</p>
+            <p>Sucursal</p>
+            <p>Comprador</p>
+            <p>Método de pago</p>
+            <p>Productos</p>
+            <p>Total</p>
+          </div>
+          <div class="columna-registros">
+            <p>Proveedor en general</p>
+            <p>29-09-2022 05:55:02</p>
+            <p>30-10-2022</p>
+            <p>Sucursal Paletería</p>
+            <p>Gerente: Juan Carlos Ramírez Mariscal</p>
+            <p>Efectivo</p>
+            <p>Aceite, Frijol, CocaCola</p>
+            <p>$500.00</p>
+          </div>
+          `;
+        });
+    });
+  });
+}

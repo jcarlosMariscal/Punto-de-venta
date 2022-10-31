@@ -90,39 +90,43 @@ if(!empty($_POST)){
       }
     break;
     case 'realizarCompra':
-      $totalCompra = (isset($_POST['totalCompra']) ? $_POST['totalCompra'] : NULL); 
+      $totalCompras = (isset($_POST['totalCompra']) ? $_POST['totalCompra'] : NULL); 
       $detalles = $_POST['data'];
       $data = json_decode($_POST['data'], true);
+      // echo $data;
       $productos = [];
+      $proveedores = [];
       foreach ($data as $row) {
+        $proveedor = $row['proveedor'];
+        $id_proveedor = $query->buscarIdProv($proveedor);
+        if(!$id_proveedor) $proveedor = "Proveedor en general";
         $nombre = $row['nombre'];
         $codigo = $row['codigo'];
         $cantidad = $row['cantidad'];
         $pcompra = $row['pcompra'];
-        $proveedor = $row['proveedor'];
         $pventa = $row['pventa'];
         $unidad = $row['unidad'];
         $id_sucursal = $row['id_sucursal'];
         array_push($productos, $nombre);
-
-        $id_proveedor = $query->buscarIdProv($proveedor);
-        if(!$id_proveedor) $id_proveedor = 1;
+        array_push($proveedores, $proveedor);
+        // echo $nombre;
         $buscarProdExistente = $query->buscarProdExistente($nombre);
-        if($buscarProdExistente[0] > 0){
-          $cantidadBD = $buscarProdExistente[1];
+        $prodExistente = (isset($buscarProdExistente[0]) ? $buscarProdExistente[0] : false); 
+        if($prodExistente > 0){
+          $cantidadBD = (isset($buscarProdExistente[1]) ? $buscarProdExistente[1] : NULL); 
+          $id_producto = (isset($buscarProdExistente[2]) ? $buscarProdExistente[2] : NULL);
           $cantidad = $cantidad + $cantidadBD;
-          $id_producto = $buscarProdExistente[2];
-          $actualizar = $query->actualizarCompra($cantidad, $pcompra, $pventa, $nombre);
-          if($actualizar) {
-            echo "compraCorrecta";
-            $cadenaProductos = implode(", ", $productos);
-            $registrarCompraProducto = registrarCompraProducto($id_sucursal,  $id_proveedor, $cadenaProductos, $detalles, $totalCompras);
-          }
+          $realizarCompra = $query->actualizarCompra($cantidad, $pcompra, $pventa, $nombre);
+        }else if(!$prodExistente){
+          $realizarCompra = $query->realizarCompraNuevo($codigo, $nombre, $cantidad, $pcompra, $pventa, $unidad);
+          
         }
-        // }else{
-        //   $comprar = $query->realizarCompra($producto, $cantidad, $p_compra, $p_venta, $id_proveedor);
-        //   if($comprar) echo "compraCorrecta";
-        // }
+      }
+      if($realizarCompra){
+        $cadenaProductos = implode(", ", $productos);
+        $cadenaProveedores = implode(", ", $proveedores);
+        $registrarCompraProducto = $query->registrarCompraProducto($id_sucursal,  $cadenaProveedores, $cadenaProductos, $detalles, $totalCompras);
+        if($registrarCompraProducto) echo "compraCorrecta";
       }
     break;
     case 'venderProducto':

@@ -16,6 +16,29 @@
         return false;
       }
     }
+    function getCompraProducto($id_compra){
+      try {
+        $sql = "SELECT * FROM compra_producto WHERE id_compra = ?";
+        $query = $this->cnx->prepare($sql);
+        $query -> bindParam(1, $id_compra);
+        $query -> execute();
+        $compraProducto = $query;
+        foreach($compraProducto as $row){
+          $id_compra = $row['id_compra'];
+          $id_sucursal = $row['id_sucursal'];
+          $id_proveedor = $row['id_proveedor'];
+          $productos = $row['productos'];
+          $detalles = $row['detalles'];
+          $total = $row['total'];
+          $fecha = $row['fecha'];
+        }
+        $json = '{"id_compra":"'.$id_compra.'","id_sucursal":"'.$id_sucursal.'","id_proveedor":"'.$id_proveedor.'","productos":"'.$productos.'","total":"'.$total.'","fecha":"'.$fecha.'"}';
+        $json2 = $detalles;
+        return [true, $json, $json2];
+      } catch (PDOException $th){
+        echo "error";
+      }
+    }
     function readTipo(){
       try {
         $sql = "SELECT * from tipo_negocio";
@@ -112,6 +135,18 @@
         } catch (PDOException $th) {
             return false;
         }
+    }
+    // El primer parametro es la tabla para hacer la consulta, el segundo el campo que vamos a condicionar, el tercer el valor que vamos a comparar y el último el campo que vamos a seleccionar.
+    function selectTableId($table, $campo, $valor, $select){
+      try {
+        $sql = "SELECT $select from $table WHERE $campo = ?";
+        $query = $this->cnx->prepare($sql);
+        $query->bindParam(1, $valor);
+        $read = $query->execute();
+        if ($read) return $query;
+      } catch (PDOException $th) {
+        return false;
+      }
     }
     function selectPersonal(){
         try {

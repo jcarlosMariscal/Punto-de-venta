@@ -8,7 +8,8 @@
   $readProducto = $query->selectTable('producto'); // Hacer una consulta a tabla negocios
   $readUnidad = $query->selectTable('unidad'); // Hacer una consulta a tabla negocios
 ?>
-<section class="content">
+<section class="realizar-compra">
+  <div id="alertProduct"></div>
   <div class="px-4">
     <section class="add-product">
       <div class="formularioxd">

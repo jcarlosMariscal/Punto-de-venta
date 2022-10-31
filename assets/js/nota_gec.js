@@ -123,8 +123,8 @@ const nota_compra = () => {
           form.append("table", "realizarCompra");
           form.append("data", data);
           form.append("totalCompra", total_neto.innerText);
-          form.append("nuevoCodigo", total_neto.innerText);
-          form.append("nuevoNombre", total_neto.innerText);
+          // form.append("nuevoCodigo", total_neto.innerText);
+          // form.append("nuevoNombre", total_neto.innerText);
           // console.log(form.get("data"));
           fetch("logic/createData.php", {
             method: "POST",

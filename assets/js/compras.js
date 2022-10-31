@@ -177,6 +177,8 @@ if (formulario) {
         }
       }
       if (!existe) {
+        // Proveedor en general
+        if (nombre_prov.value == "") nombre_prov.value = "Proveedor en general";
         const product = `<tr id="producto_${add}">
             <td class="prd_name">${db_get_name.value}</td>
             <td >${db_get_code.value}</td>
@@ -222,6 +224,10 @@ if (formulario) {
 const registroCompras = d.querySelectorAll(".registroCompras");
 if (registroCompras) {
   const detallesCompra = d.getElementById("detallesCompra");
+  const masDetallesCompra = d.getElementById("masDetallesCompra");
+  const detallesGeneral = d.getElementById("detallesGeneral");
+  const cargarJson = d.getElementById("cargarJson");
+  const infoUser = d.getElementById("info-user");
   registroCompras.forEach((el) => {
     el.addEventListener("click", (e) => {
       const id_compra = el.childNodes[1].childNodes[1].childNodes[1].innerText;
@@ -234,12 +240,30 @@ if (registroCompras) {
       })
         .then((res) => res.text())
         .then((data) => {
+          if (cargarJson) cargarJson.innerHTML = "";
+          if (detallesCompra) detallesCompra.innerHTML = "";
+          if (masDetallesCompra) masDetallesCompra.innerHTML = "";
+          if (infoUser) infoUser.style.display = "none";
           console.log(data);
+          let hoy = new Date();
+          let fecha =
+            hoy.getDate() +
+            "-" +
+            (hoy.getMonth() + 1) +
+            "-" +
+            hoy.getFullYear();
+          let hora =
+            hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
           let arr = data.split("-/");
           let json1 = JSON.parse(arr[0]);
           let json2 = JSON.parse(arr[1]);
           console.log(json2);
 
+          detallesGeneral.innerHTML = `
+            <p>Compra #${json1.id_compra}</p>
+            <p>Sucursal Paletería</p>
+            <button class="btn btn-success">Descargar</button>
+          `;
           detallesCompra.innerHTML = `
           <div class="columna-campos">
             <p>Proveedor(es)</p>
@@ -252,16 +276,63 @@ if (registroCompras) {
             <p>Total</p>
           </div>
           <div class="columna-registros">
-            <p>Proveedor en general</p>
-            <p>29-09-2022 05:55:02</p>
-            <p>30-10-2022</p>
+            <p>${json1.id_proveedor}</p>
+            <p>${json1.fecha}</p>
+            <p>${fecha + " " + hora}</p>
             <p>Sucursal Paletería</p>
             <p>Gerente: Juan Carlos Ramírez Mariscal</p>
             <p>Efectivo</p>
-            <p>Aceite, Frijol, CocaCola</p>
-            <p>$500.00</p>
+            <p>${json1.productos}</p>
+            <p>${json1.total}</p>
           </div>
           `;
+          masDetallesCompra.innerHTML += `
+          <br />
+          <div class="accordion" id="accordionPanelsStayOpenExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                  Más detalles
+                </button>
+              </h2>
+              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                <div class="accordion-body">
+                  <table class="table">
+                    <thead>
+                      <tr>
+                        <th scope="col">Nombre</th>
+                        <th scope="col">Código</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">P. Compra</th>
+                        <th scope="col">P. Venta</th>
+                        <th scope="col">Unidad</th>
+                        <th scope="col">Subtotal</th>
+                      </tr>
+                    </thead>
+                    <tbody id ="cargarJson">
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+          </div>
+          `;
+
+          const cargarJson2 = d.getElementById("cargarJson");
+          for (let i = 0; i < json2.length; i++) {
+            console.log(json2[i]);
+            cargarJson2.innerHTML += `
+            <tr>
+              <td class="row">${json2[i].nombre}</td>
+              <td>${json2[i].codigo}</td>
+              <td>${json2[i].cantidad}</td>
+              <td>$${json2[i].pcompra}</td>
+              <td>$${json2[i].pventa}</td>
+              <td>${json2[i].unidad}</td>
+              <td>${json2[i].subtotal}.0</td>
+            </tr>          
+            `;
+          }
         });
     });
   });

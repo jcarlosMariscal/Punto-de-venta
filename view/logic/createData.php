@@ -98,8 +98,10 @@ if(!empty($_POST)){
       $proveedores = [];
       foreach ($data as $row) {
         $proveedor = $row['proveedor'];
-        $id_proveedor = $query->buscarIdProv($proveedor);
-        if(!$id_proveedor) $proveedor = "Proveedor en general";
+        // echo $proveedor;
+        // $id_proveedor = $query->buscarIdProv($proveedor);
+        // echo $id_proveedor;
+        // if(!$id_proveedor) $proveedor = "Proveedor en general";
         $nombre = $row['nombre'];
         $codigo = $row['codigo'];
         $cantidad = $row['cantidad'];

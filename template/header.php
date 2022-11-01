@@ -1,3 +1,11 @@
+<?php
+  require_once "config/Connection.php";
+  require_once "logic/Read.php";
+  $query = new Read();
+  $readNameSucursal = $query->selectTableId('sucursal', 'id_sucursal', $_SESSION['user']['id_sucursal'], 'nombre');
+  $readName = $readNameSucursal->fetch(); // Obtener el registro de la consulta
+?>
+
 <header class="py-3 mb-3 border-bottom">
   <div class="container-fluid header-container">
     <div class="dropdown">
@@ -16,9 +24,6 @@
     </div>
 
     <div class="align-items-center header-user">
-      <div class="info-sucursal">
-        <p class="text-white" hidden><span id="id_sucursal"><?php echo $_SESSION['user']['id_sucursal']; ?></span></p>
-      </div>
         <div class="information">
           <a href="index.php?p=information"><i class="fa-solid fa-circle-question"></i></a>
         </div>
@@ -50,7 +55,7 @@
                 echo "Vendedor";
               }?>
             </span></li> -->
-            <li><a href="#" class="dropdown-item"><span class=" d-flex align-items-center">Sucursal <span id="id_sucursal"><?php echo $_SESSION['user']['id_sucursal']; ?></span></span> </a></li>
+            <li><a href="#" class="dropdown-item"><span class=" d-flex align-items-center"><span id="nombre_sucursal"><?php echo $readName['nombre']; ?></span> <span id="id_sucursal" hidden><?php echo $_SESSION['user']['id_sucursal']; ?></span></span> </a></li>
             <li><a class="dropdown-item" href="#">Reportes</a></li>
             <li><a class="dropdown-item" href="#">Mi información</a></li>
             <!-- <li><a class="dropdown-item" href="#">Profile</a></li> -->

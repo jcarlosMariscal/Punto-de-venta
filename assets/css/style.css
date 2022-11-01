@@ -713,14 +713,48 @@ nav {
 }
 
 /* VER COMPRAS */
+#info-user {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  color: var(--color-two);
+}
 .ver-compras {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   /* gap: 15px; */
   height: 80%;
 }
-.filtrarCompraProducto {
+.agregarFiltro {
+  padding-left: 10px;
+  padding-top: 10px;
   display: flex;
+}
+.filtro-text {
+  margin-right: 5px;
+}
+.filtro-input-select select::selection {
+  background-color: var(--secondary-color);
+}
+.filtro-input-select select {
+  margin-right: 5px;
+  width: 135px;
+  background-color: var(--color-one);
+  color: var(--secondary-color);
+}
+.filtro-input-text input {
+  outline: none;
+  width: 100px;
+  margin-right: 10px;
+}
+.filtro-btn-buscar button {
+  outline: none;
+  color: var(--color-one);
+  background-color: transparent;
+  border: none;
+  font-size: 20px;
 }
 .compraProducto-info {
   grid-column: span 2;

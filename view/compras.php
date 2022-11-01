@@ -1,8 +1,4 @@
 <?php
-  require_once "config/Connection.php";
-  require_once "logic/Read.php";
-  $query = new Read();
-
   $readProveedor = $query->selectTable('proveedor'); // Hacer una consulta a tabla negocios
   // $resProveedor = $readProveedor->fetch(); // Obtener el registro de la consulta
   $readProducto = $query->selectTable('producto'); // Hacer una consulta a tabla negocios

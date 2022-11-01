@@ -1,8 +1,4 @@
 <?php
-include "config/Connection.php";
-require_once "logic/Read.php";
-$query = new Read();
-
 // -------------
 $deletProducto = (isset($_GET['delete']) ? $_GET['delete'] : NULL);
 $editProducto = (isset($_GET['edit']) ? $_GET['edit'] : NULL);

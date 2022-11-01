@@ -16,6 +16,40 @@
         return false;
       }
     }
+    function getCompras($filtro, $campo){
+      try {
+        if($filtro == "todo"){
+          $sql = "SELECT id_compra, total, fecha FROM compra_producto";
+          $query = $this->cnx->prepare($sql);
+        }
+        if($campo == "proveedor"){
+          $sql = "SELECT id_compra, total, fecha FROM compra_producto WHERE id_proveedor LIKE '%$filtro%' ";
+          $query = $this->cnx->prepare($sql);
+        }
+        if($campo == "producto"){
+          $sql = "SELECT id_compra, total, fecha FROM compra_producto WHERE productos LIKE '%$filtro%' ";
+          $query = $this->cnx->prepare($sql);
+        }
+        if($campo == "fecha"){
+          $sql = "SELECT id_compra, total, fecha FROM compra_producto WHERE fecha LIKE '%$filtro%' ";
+          $query = $this->cnx->prepare($sql);
+        }
+        $query -> execute();
+        $compraProducto = $query;
+        $arr = [];
+        foreach($compraProducto as $row){
+          $id_compra = $row['id_compra'];
+          $total = $row['total'];
+          $fecha = $row['fecha'];
+          $json = '{"id_compra":"'.$id_compra.'","total":"'.$total.'","fecha":"'.$fecha.'"}';
+          array_push($arr, $json);
+        }
+        $cadenaArr = implode('-/', $arr);
+        return [true, $cadenaArr];
+      } catch (PDOException $th){
+        echo "No hay resultados";
+      }
+    }
     function getCompraProducto($id_compra){
       try {
         $sql = "SELECT * FROM compra_producto WHERE id_compra = ?";

@@ -19,6 +19,7 @@ const nombre_prov = d.getElementById("nombre_prov"),
   unidad_prod = d.getElementById("unidad_prod"),
   pventa_prod = d.getElementById("pventa_prod");
 
+const nombre_sucursal = d.getElementById("nombre_sucursal");
 if (inputs) {
   inputs.forEach((input) => {
     input.addEventListener("keyup", validarFormulario);
@@ -233,121 +234,190 @@ if (formulario) {
 }
 
 // ---------------------- SECCIÓN VER COMPRAS ---------------------------------------
-
-const registroCompras = d.querySelectorAll(".registroCompras");
-if (registroCompras) {
-  const detallesCompra = d.getElementById("detallesCompra");
-  const masDetallesCompra = d.getElementById("masDetallesCompra");
-  const detallesGeneral = d.getElementById("detallesGeneral");
-  const cargarJson = d.getElementById("cargarJson");
-  const infoUser = d.getElementById("info-user");
-  registroCompras.forEach((el) => {
-    el.addEventListener("click", (e) => {
-      const id_compra = el.childNodes[1].childNodes[1].childNodes[1].innerText;
+const filtrarProd = (form) => {
+  const mostrarRegistros = d.getElementById("mostrarRegistros");
+  const cargarRegistros = d.createElement("div");
+  const fragment = d.createDocumentFragment();
+  fetch("logic/readData.php", {
+    method: "POST",
+    body: form,
+  })
+    .then((res) => res.text())
+    .then((data) => {
+      console.log(data);
+      if (data === "No hay resultados") {
+        mostrarRegistros.innerHTML =
+          "No hay registros que coincidan con la búsqueda";
+      }
+      mostrarRegistros.innerHTML = "";
+      let arr = data.split("-/");
+      for (let i = 0; i < arr.length; i++) {
+        let json = JSON.parse(arr[i]);
+        cargarRegistros.innerHTML += `
+              <div class="registroCompras">
+                <div class="registroCompras-text">
+                  <p class="text-id">Compra #<span class="id_sucursal">${json.id_compra}</span> - ${nombre_sucursal.textContent}</p>
+                  <p class="text-fecha">${json.fecha}</p>
+                </div>
+                <div class="registroCompras-total">
+                  <p class="total-text">$${json.total}</p>
+                </div>
+              </div>`;
+        // console.log(json.id_compra);
+        fragment.appendChild(cargarRegistros);
+      }
+      mostrarRegistros.appendChild(fragment);
+    });
+};
+d.addEventListener("DOMContentLoaded", (e) => {
+  const filtrarRegistros = d.getElementById("filtrarRegistros");
+  const agregarFiltro = d.getElementById("agregarFiltro");
+  const selectFiltro = d.getElementById("selectFiltro");
+  if (filtrarRegistros) {
+    if (filtrarRegistros.value === "") {
       let form = new FormData();
-      form.append("action", "readCompraProducto");
-      form.append("id_compra", id_compra);
-      fetch("logic/readData.php", {
-        method: "POST",
-        body: form,
-      })
-        .then((res) => res.text())
-        .then((data) => {
-          if (cargarJson) cargarJson.innerHTML = "";
-          if (detallesCompra) detallesCompra.innerHTML = "";
-          if (masDetallesCompra) masDetallesCompra.innerHTML = "";
-          if (infoUser) infoUser.style.display = "none";
-          console.log(data);
-          let hoy = new Date();
-          let fecha =
-            hoy.getDate() +
-            "-" +
-            (hoy.getMonth() + 1) +
-            "-" +
-            hoy.getFullYear();
-          let hora =
-            hoy.getHours() + ":" + hoy.getMinutes() + ":" + hoy.getSeconds();
-          let arr = data.split("-/");
-          let json1 = JSON.parse(arr[0]);
-          let json2 = JSON.parse(arr[1]);
-          console.log(json1);
-          console.log(json2);
+      form.append("action", "readCompras");
+      form.append("filtro", "todo");
+      form.append("campo", "Sin especificar");
+      filtrarProd(form);
+    }
+  }
+  if (agregarFiltro) {
+    agregarFiltro.addEventListener("submit", (e) => {
+      e.preventDefault();
+      // if (filtrarRegistros.value === "") alert("Indique algo para buscar");
 
-          detallesGeneral.innerHTML = `
-            <p>Compra #${json1.id_compra}</p>
-            <p>Sucursal Paletería</p>
-            <button class="btn btn-success">Descargar</button>
-          `;
-          detallesCompra.innerHTML = `
-          <div class="columna-campos">
-            <p>Proveedor(es)</p>
-            <p>Fecha compra</p>
-            <p>Fecha consulta</p>
-            <p>Sucursal</p>
-            <p>Comprador</p>
-            <p>Método de pago</p>
-            <p>Productos</p>
-            <p>Total</p>
-          </div>
-          <div class="columna-registros">
-            <p>${json1.id_proveedor}</p>
-            <p>${json1.fecha}</p>
-            <p>${fecha + " " + hora}</p>
-            <p>Sucursal Paletería</p>
-            <p>Gerente: Juan Carlos Ramírez Mariscal</p>
-            <p>Efectivo</p>
-            <p>${json1.productos}</p>
-            <p>${json1.total}</p>
-          </div>
-          `;
-          masDetallesCompra.innerHTML += `
-          <br />
-          <div class="accordion" id="accordionPanelsStayOpenExample">
-            <div class="accordion-item">
-              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                  Más detalles
-                </button>
-              </h2>
-              <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                <div class="accordion-body">
-                  <table class="table">
-                    <thead>
-                      <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Código</th>
-                        <th scope="col">Cantidad</th>
-                        <th scope="col">P. Compra</th>
-                        <th scope="col">P. Venta</th>
-                        <th scope="col">Unidad</th>
-                        <th scope="col">Subtotal</th>
-                      </tr>
-                    </thead>
-                    <tbody id ="cargarJson">
-                    </tbody>
-                  </table>
+      let form = new FormData();
+      form.append("action", "readCompras");
+      form.append("filtro", filtrarRegistros.value);
+      form.append("campo", selectFiltro.value);
+      filtrarProd(form);
+    });
+  }
+
+  setInterval(() => {
+    const registroCompras = d.querySelectorAll(".registroCompras");
+    // console.log(registroCompras);
+    if (registroCompras) {
+      const detallesCompra = d.getElementById("detallesCompra");
+      const masDetallesCompra = d.getElementById("masDetallesCompra");
+      const detallesGeneral = d.getElementById("detallesGeneral");
+      const cargarJson = d.getElementById("cargarJson");
+      const infoUser = d.getElementById("info-user");
+      registroCompras.forEach((el) => {
+        el.addEventListener("click", (e) => {
+          const id_compra =
+            el.childNodes[1].childNodes[1].childNodes[1].innerText;
+          let form = new FormData();
+          form.append("action", "readCompraProducto");
+          form.append("id_compra", id_compra);
+          fetch("logic/readData.php", {
+            method: "POST",
+            body: form,
+          })
+            .then((res) => res.text())
+            .then((data) => {
+              if (cargarJson) cargarJson.innerHTML = "";
+              if (detallesCompra) detallesCompra.innerHTML = "";
+              if (masDetallesCompra) masDetallesCompra.innerHTML = "";
+              if (infoUser) infoUser.style.display = "none";
+              console.log(data);
+              let hoy = new Date();
+              let fecha =
+                hoy.getDate() +
+                "-" +
+                (hoy.getMonth() + 1) +
+                "-" +
+                hoy.getFullYear();
+              let hora =
+                hoy.getHours() +
+                ":" +
+                hoy.getMinutes() +
+                ":" +
+                hoy.getSeconds();
+              let arr = data.split("-/");
+              let json1 = JSON.parse(arr[0]);
+              let json2 = JSON.parse(arr[1]);
+              console.log(json1);
+              console.log(json2);
+
+              detallesGeneral.innerHTML = `
+                <p>Compra #${json1.id_compra}</p>
+                <p>${nombre_sucursal.textContent}</p>
+                <button class="btn btn-success">Descargar</button>
+              `;
+              detallesCompra.innerHTML = `
+              <div class="columna-campos">
+                <p>Proveedor(es)</p>
+                <p>Fecha compra</p>
+                <p>Fecha consulta</p>
+                <p>Sucursal</p>
+                <p>Comprador</p>
+                <p>Método de pago</p>
+                <p>Productos</p>
+                <p>Total</p>
+              </div>
+              <div class="columna-registros">
+                <p>${json1.id_proveedor}</p>
+                <p>${json1.fecha}</p>
+                <p>${fecha + " " + hora}</p>
+                <p>${nombre_sucursal.textContent}</p>
+                <p>Gerente: Juan Carlos Ramírez Mariscal</p>
+                <p>Efectivo</p>
+                <p>${json1.productos}</p>
+                <p>${json1.total}</p>
+              </div>
+              `;
+              masDetallesCompra.innerHTML += `
+              <br />
+              <div class="accordion" id="accordionPanelsStayOpenExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                      Más detalles
+                    </button>
+                  </h2>
+                  <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                    <div class="accordion-body">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">Código</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">P. Compra</th>
+                            <th scope="col">P. Venta</th>
+                            <th scope="col">Unidad</th>
+                            <th scope="col">Subtotal</th>
+                          </tr>
+                        </thead>
+                        <tbody id ="cargarJson">
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
                 </div>
               </div>
-            </div>
-          </div>
-          `;
+              `;
 
-          const cargarJson2 = d.getElementById("cargarJson");
-          for (let i = 0; i < json2.length; i++) {
-            console.log(json2[i]);
-            cargarJson2.innerHTML += `
-            <tr>
-              <td class="row">${json2[i].nombre}</td>
-              <td>${json2[i].codigo}</td>
-              <td>${json2[i].cantidad}</td>
-              <td>$${json2[i].pcompra}</td>
-              <td>$${json2[i].pventa}</td>
-              <td>${json2[i].unidad}</td>
-              <td>${json2[i].subtotal}.0</td>
-            </tr>          
-            `;
-          }
+              const cargarJson2 = d.getElementById("cargarJson");
+              for (let i = 0; i < json2.length; i++) {
+                console.log(json2[i]);
+                cargarJson2.innerHTML += `
+                <tr>
+                  <td class="row">${json2[i].nombre}</td>
+                  <td>${json2[i].codigo}</td>
+                  <td>${json2[i].cantidad}</td>
+                  <td>$${json2[i].pcompra}</td>
+                  <td>$${json2[i].pventa}</td>
+                  <td>${json2[i].unidad}</td>
+                  <td>${json2[i].subtotal}.0</td>
+                </tr>          
+                `;
+              }
+            });
         });
-    });
-  });
-}
+      });
+    }
+  }, 1500);
+});

@@ -1,8 +1,4 @@
 <?php
-  require_once "config/Connection.php";
-  require_once "logic/Read.php";
-  $query = new Read();
-
   $readNegocio = $query->readNegocio($_SESSION['user']['id_negocio']); // Hacer una consulta a tabla negocios
   $resNegocio = $readNegocio->fetch(); // Obtener el registro de la consulta
   $readTipo = $query->readTipo(); // Hacer consulta para leer los tipos de negocios.

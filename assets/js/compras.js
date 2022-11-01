@@ -10,6 +10,7 @@ var comprar = d.getElementById("comprar");
 var cancelar = d.getElementById("cancelar");
 const selecProv = d.getElementById("form-select-prov");
 const selecProd = d.getElementById("form-select-prod");
+let alertProduct = d.createElement("p");
 let add = 1;
 
 const nombre_prov = d.getElementById("nombre_prov"),
@@ -84,7 +85,7 @@ if (agregarNuevo) {
 const db_get_code = d.getElementById("db_get_code");
 const db_get_name = d.getElementById("db_get_name");
 const buscarProd = (e, nombreProd) => {
-  const alertProduct = d.getElementById("alertProduct");
+  const header = d.getElementById("header");
   nombre_prod.value = nombreProd ? nombreProd : nombre_prod.value;
 
   e.preventDefault();
@@ -113,6 +114,7 @@ const buscarProd = (e, nombreProd) => {
             <div class="alert alert-warning" role="alert">
               El código o nombre del producto no cincide con ninguna registrada en la base de datos. Para agregar una nueva abra el modal para seleccionar productos, seleccione Nuevo producto, llené los campos, seleccione el producto agregado y siga llenando el formulario.
             </div>`;
+          header.insertAdjacentElement("afterend", alertProduct);
         } else {
           // console.log(nombre_prod.value);
           let get = JSON.parse(data);

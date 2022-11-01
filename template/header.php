@@ -6,7 +6,7 @@
   $readName = $readNameSucursal->fetch(); // Obtener el registro de la consulta
 ?>
 
-<header class="py-3 mb-3 border-bottom">
+<header class="py-3 mb-3 border-bottom" id="header">
   <div class="container-fluid header-container">
     <div class="dropdown">
       <div class="header-toggle" id="header-toggle"><i class="fa-solid fa-bars"></i></div>

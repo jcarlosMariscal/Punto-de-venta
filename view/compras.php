@@ -149,7 +149,7 @@
               <div class="col-6 text-right">
                 <label for="">
                   Filtrar producto por: 
-                  <input type="search" class="input" placeholder=" Código | Nombre">
+                  <input type="search" class="input" id="filtrarProducto" placeholder=" Código | Nombre">
                 </label>
               </div>
             </div>
@@ -174,7 +174,7 @@
               <?php
                 foreach ($readProducto as $row) {
               ?>
-                <label class="rad-label">
+                <label class="rad-label radLabelProduct">
                   <input type="radio" class="rad-input" name="producto" value="<?php echo $row['nombre']; ?>">
                   <div class="rad-design"></div>
                   <div class="rad-text"><?php echo $row['codigo']; ?> - <?php echo $row['nombre']; ?></div>

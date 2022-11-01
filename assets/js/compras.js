@@ -147,6 +147,19 @@ if (seleccionarProducto) {
     });
   });
 }
+// Filtrar producto
+const filtrarProducto = d.getElementById("filtrarProducto");
+// const radLabel = d.querySelectorAll(".rad-label"); // Obtener todos los input radio para seleccinar producto
+if (filtrarProducto) {
+  filtrarProducto.addEventListener("keyup", (e) => {
+    d.querySelectorAll(".radLabelProduct").forEach((el) => {
+      let producto = el.children[2].innerText;
+      producto.toLowerCase().includes(filtrarProducto.value.toLowerCase())
+        ? el.classList.remove("filter")
+        : el.classList.add("filter");
+    });
+  });
+}
 
 if (formulario) {
   const btnCompraProducto = d.getElementById("btn-compraProducto");
@@ -257,6 +270,7 @@ if (registroCompras) {
           let arr = data.split("-/");
           let json1 = JSON.parse(arr[0]);
           let json2 = JSON.parse(arr[1]);
+          console.log(json1);
           console.log(json2);
 
           detallesGeneral.innerHTML = `

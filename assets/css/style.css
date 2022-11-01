@@ -1623,3 +1623,9 @@ select {
   flex-direction: row;
 }
 /* -------------------- MOSTRAR/OCULTAR EL FORMULARIO PARA AGREGAR PRODUCTO EN COMPRAS */
+
+/* --------------- FILTRAR PRODUCTOS ----------------------------------- */
+.filter {
+  display: none;
+}
+/* --------------- FILTRAR PRODUCTOS ----------------------------------- */

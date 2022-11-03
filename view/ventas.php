@@ -1,16 +1,12 @@
 <?php
-  include ("../conexion/conexion.php");
+  $readIdVenta = $query->readIdVenta(); // Hacer una consulta a tabla negocios
+  $readTotalCaja = $query->selectTableId('caja','id_caja',$_SESSION['user']['id_caja'],'total'); 
+  $totalCaja = $readTotalCaja->fetch();
+  // $resNegocio = $readNegocio->fetch(); // Obtener el registro de la consulta
+  // $readTipo = $query->readTipo(); // Hacer consulta para leer los tipos de negocios.
+  // $readTipoSelected = $query->readFieldSelected($resNegocio['id_tipo'], 'tipo_negocio', 'id_tipo', 'tipo'); // Obtner el tipo de negocio actual
 
-  $query2 = "SELECT MAX(id_venta) AS id FROM venta_producto";
-  $res = mysqli_query($con, $query2);
-  $rowcount = mysqli_num_rows($res);
-  if($rowcount == NULL) {
-    $actual = '1';
-  }else{
-    foreach ($res as $r) {
-      $actual = $r['id'] + 1;
-    } 
-  }
+
   date_default_timezone_set('America/Mexico_City');
 ?>
 <section class="realizar-venta">
@@ -28,10 +24,10 @@
       </div>
       <div class="venta__value">
         <div class="text-value"><span id="nameVendedor"><?php echo $_SESSION['user']['nombre']; ?></span></div>
-        <div class="text-value"><span id="nTransaccion"><?php echo $actual; ?></span></div>
-        <div class="text-value"><span id="nCaja"><?php echo "1"; ?></span></div>
+        <div class="text-value"><span id="nTransaccion"><?php echo $readIdVenta; ?></span></div>
+        <div class="text-value"><span id="id_caja"><?php echo $_SESSION['user']['id_caja']; ?></span></div>
         <div class="text-value"><span id="fVenta"><?php echo date('Y-m-d'); ?></span></div>
-        <div class="text-value"><span id="tCaja"><?php echo "120"; ?></span></div>
+        <div class="text-value"><span id="total_caja"><?php echo $totalCaja['total']; ?></span></div>
       </div>
     </div>
     <div class="input__code">
@@ -64,11 +60,14 @@
       <table table bgcolor= "#FFFFFF"  class="table table-bordered" id="table-ventas">
         <thead>
           <tr>
-            <th scope="col">CÓDIGO</th>
+            <!-- <th scope="col">CÓDIGO</th> -->
             <th scope="col">PRODUCTO</th>
             <th scope="col">PRECIO</th>
             <th scope="col">UNIDAD</th>
+            <th scope="col">CATEGORIA</th>
             <th scope="col">STOCK</th>
+            <th scope="col">VENDER</th>
+            <th scope="col">SUBTOTAL</th>
           </tr>
         </thead>
         <tbody id="table-body-ventas">
@@ -77,5 +76,6 @@
     </div>
   </section>
 </section>
+<section class="modales"></section>
 
 <script src="../assets/js/ventas.js" type="module"></script>

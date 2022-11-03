@@ -312,6 +312,22 @@
         echo "error";
       }
     }
+    function readIdVenta(){
+      try {
+        $sql = "SELECT MAX(id_venta) AS id FROM venta_producto";
+        $query = $this->cnx->prepare($sql);
+        $read = $query->execute();
+        $rowcount = $query->rowCount();
+        $res = $query->fetch();
+        if($rowcount == NULL) {
+          return '1';
+        }else{
+          return  $res['id'] + 1;
+        }
+      } catch (PDOException $th){
+        echo "error";
+      }
+    }
 
 
 

@@ -5,74 +5,79 @@
   }
   $p = (isset($_GET['p']) ? $_GET['p'] : "main");
   switch ($p) {
-  case 'main':
-    $getPage = "user_main.php";
-    $nombreSeccion = "Inicio";
-    break;
-  case 'configuration':
-    if ($_SESSION['rol'] != 0 ){
-        ?> <script>
-          alert("Acceso no autorizado");
-          window.location.href="index.php";
-          </script> <?php
-      }else{
-        $getPage = "configuration.php";
-        $nombreSeccion = "Configuración";
-      }
-  break;
-  case 'information':
-    $getPage = "system_start.php";
-    $nombreSeccion = "Información";
+    case 'main':
+      $getPage = "user_main.php";
+      $nombreSeccion = "Inicio";
       break;
-  case 'personal':
+    case 'configuration':
       if ($_SESSION['rol'] != 0 ){
-        ?> <script>
-          alert("Acceso no autorizado");
-          window.location.href="index.php";
-          </script> <?php
-      }else{
-        $getPage = "personal.php";
-        $nombreSeccion = "Personal";
-      }
-      break;
-  case 'ventas':
-      $getPage = "ventas.php";
-      $nombreSeccion = "Ventas";
-      break;
-  case 'compras':
-    if ($_SESSION['rol'] != 0 ){
-        ?> <script>
-          alert("Acceso no autorizado");
-          window.location.href="index.php";
-          </script> <?php
-      }else{
-        $getPage = "compras.php";
-        $nombreSeccion = "Compras";
-      }
-      break;
-  case 'ver-compras':
-      $getPage = "verCompras.php";
-      $nombreSeccion = "Ver Compras";
-      break;
-  case 'proveedor':
-      $getPage = "supplier.php";
-      $nombreSeccion = "Proveedor";
-      break;
-  case 'reporte':
-      $getPage = "reporte.php";
-      $nombreSeccion = "Reporte";
-      break;            
-  case 'productos':
-      $getPage = "productos.php";
-      $nombreSeccion = "Productos";
-      break;
-  case 'sucursal':
-      $getPage = "sucursal.php";
-      $nombreSeccion = "";
-      break;
-  default:
+          ?> <script>
+            alert("Acceso no autorizado");
+            window.location.href="index.php";
+            </script> <?php
+        }else{
+          $getPage = "configuration.php";
+          $nombreSeccion = "Configuración";
+        }
+    break;
+    case 'information':
+      $getPage = "system_start.php";
+      $nombreSeccion = "Información";
+        break;
+    case 'personal':
+        if ($_SESSION['rol'] != 0 ){
+          ?> <script>
+            alert("Acceso no autorizado");
+            window.location.href="index.php";
+            </script> <?php
+        }else{
+          $getPage = "personal.php";
+          $nombreSeccion = "Personal";
+        }
+        break;
+    case 'ventas':
+        $getPage = "ventas.php";
+        $nombreSeccion = "Ventas";
+        break;
+    case 'compras':
+      if ($_SESSION['rol'] != 0 ){
+          ?> <script>
+            alert("Acceso no autorizado");
+            window.location.href="index.php";
+            </script> <?php
+        }else{
+          $getPage = "compras.php";
+          $nombreSeccion = "Compras";
+        }
+        break;
+    case 'ver-compras':
+        $getPage = "verCompras.php";
+        $nombreSeccion = "Ver Compras";
+        break;
+    case 'ver-ventas':
+        $getPage = "verVentas.php";
+        $nombreSeccion = "Ver Ventas";
+        break;
+    case 'proveedor':
+        $getPage = "supplier.php";
+        $nombreSeccion = "Proveedor";
+        break;
+    case 'reporte':
+        $getPage = "reporte.php";
+        $nombreSeccion = "Reporte";
+        break;            
+    case 'productos':
+        $getPage = "productos.php";
+        $nombreSeccion = "Productos";
+        break;
+    case 'sucursal':
+        $getPage = "sucursal.php";
+        $nombreSeccion = "";
+        break;
+    default:
       # code...
-      break;}
+    break;
+  }
 ?>
 
 <!DOCTYPE html>

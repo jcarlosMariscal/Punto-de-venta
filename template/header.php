@@ -14,10 +14,43 @@
 
       <!-- <a href="ver-compras.php" class="btn btn-prm">Ver Compras</a> -->
       <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink">
-          <li><a class="dropdown-item" href="index.php?p=ver-compras" aria-current="page">Ver compras</a></li>
+        <?php
+          switch ($p) {
+            case 'main':
+              break;
+            case 'configuration':
+              break;
+            case 'information':
+              break;
+            case 'personal':
+              break;
+            case 'ventas':
+                echo '<li><a class="dropdown-item" href="index.php?p=ver-ventas" aria-current="page">Ver ventas</a></li>';
+                break;
+            case 'compras':
+              echo '<li><a class="dropdown-item" href="index.php?p=ver-compras" aria-current="page">Ver compras</a></li>';
+                break;
+            case 'ver-compras':
+                echo '<li><a class="dropdown-item" href="index.php?p=compras" aria-current="page">Compras</a></li>';
+                break;
+            case 'ver-ventas':
+                echo '<li><a class="dropdown-item" href="index.php?p=ventas" aria-current="page">Ventas</a></li>';
+                break;
+            case 'proveedor':
+                break;
+            case 'reporte':
+                break;            
+            case 'productos':
+                break;
+            case 'sucursal':
+                break;
+            default:
+              # code...
+            break;
+          }
+        ?>
           <li><a class="dropdown-item" href="#">Productos</a></li>
           <li><a class="dropdown-item" href="#">Proveedores</a></li>
-          <li><a class="dropdown-item" href="#">Products</a></li>
           <li><hr class="dropdown-divider"></li>
           <li><a class="dropdown-item" href="#">Ayuda</a></li>
       </ul>
@@ -44,7 +77,7 @@
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
-            <li><a href="#" class="dropdown-item"><span><?php echo $_SESSION['user']['nombre']; ?></span></a></li>
+            <li><a href="#" class="dropdown-item"><span><?php echo $_SESSION['user']['nombre']; ?><span id="id_user" hidden><?php echo $_SESSION['user']['id_user']; ?></span></span></a></li>
             <!-- <li><span>
               <?php 
               if($_SESSION['rol'] == 0){

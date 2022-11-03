@@ -36,6 +36,7 @@
           echo "noEncontrado";
         }
       break;
+      break;
       default:
         # code...
       break;

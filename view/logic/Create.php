@@ -202,20 +202,31 @@
         return false;
       }
     }
-    function realizarVenta($id_producto, $usuario, $cantidad){
+    function realizarVenta($codigo, $cantidad){
       try {
-        $sql = "INSERT INTO ventas (id_producto, id_user, cantidad) VALUES(?,?,?)";
+        $sql = "UPDATE producto SET cantidad = ? WHERE codigo = ?";
         $query = $this->cnx->prepare($sql);
-        $data = array($id_producto,$usuario,$cantidad);
+        $data = array($cantidad,$codigo);
         $insert = $query -> execute($data);
         if($insert) return true;
       } catch (PDOException $th){
-        echo "error";
+        return false;
+      }
+    }
+    function registrarVentaProducto($id_sucursal,$id_personal,$cadenaProductos,$id_cliente,$total,$efectivo,$cambio,$detalles){
+      try {
+        $sql = "INSERT INTO venta_producto(id_sucursal, id_personal, id_producto, id_cliente, total, efectivo, cambio, detalles) VALUES(?,?,?,?,?,?,?,?)";
+        $query = $this->cnx->prepare($sql);
+        $data = array($id_sucursal,$id_personal,$cadenaProductos,$id_cliente,$total, $efectivo,$cambio,$detalles);
+        $insert = $query -> execute($data);
+        if($insert) return true;
+      } catch (PDOException $th){
+        return false;
       }
     }
     function obtenerCantidadBase($producto){
       try {
-        $sql = "SELECT cantidad FROM productos WHERE codigo = ?";
+        $sql = "SELECT cantidad FROM producto WHERE codigo = ?";
         $query = $this->cnx->prepare($sql);
         $query->bindParam(1,$producto);
         $query->execute(); 
@@ -228,17 +239,20 @@
         echo "error";
       }
     }
-    function reducirCantidad($actual, $producto){
+    function actualizarCaja($totaL_venta,$total_caja,$id_caja){
       try {
-        $sql = "UPDATE productos SET cantidad = ? WHERE codigo = ?";
+        echo "Total venta es: ".$totaL_venta."<br>";
+        echo "Total caja es: ".$total_caja."<br>";
+        $total = intval($total_caja) + intVal($totaL_venta);
+        echo "La suma total de caja es:  ".$total;
+        $sql = "UPDATE caja SET total = ? WHERE id_caja = ?";
         $query = $this->cnx->prepare($sql);
-        $query->bindParam(1,$actual); 
-        $query->bindParam(2,$producto); 
-        if($query->execute()){
-          return true;
-        }
+        $query->bindParam(1,$total);
+        $query->bindParam(2,$id_caja);
+        $insert = $query -> execute();
+        if($insert) return true;
       } catch (PDOException $th){
-        echo "error";
+        return false;
       }
     }
     function generarCodigo($codigo, $nombre){

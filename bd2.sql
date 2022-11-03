@@ -64,6 +64,7 @@ CREATE TABLE cliente(
 CREATE TABLE caja(
   id_caja INT NOT NULL AUTO_INCREMENT,
   caja VARCHAR(255) NOT NULL,
+  base INT NOT NULL
   total INT NOT NULL,
   PRIMARY KEY (id_caja)
 );
@@ -130,11 +131,12 @@ CREATE TABLE venta_producto(
   id_venta INT NOT NULL  AUTO_INCREMENT,
   id_sucursal INT NOT NULL,
   id_personal INT NOT NULL,
-  id_producto INT NOT NULL,
+  id_producto VARCHAR(500) NOT NULL,
   id_cliente INT NOT NULL,
   total INT NOT NULL,
   efectivo INT NOT NULL,
   cambio INT NOT NULL,
+  detalles TEXT NOT NULL,
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   CONSTRAINT FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
   CONSTRAINT FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal),
@@ -154,7 +156,7 @@ CREATE TABLE compra_producto(
 );
 
 INSERT INTO tipo_negocio(tipo) VALUES ('Tienditas'),('Abarrotes'),('Papelerías'), ('Zapaterías');
-INSERT INTO caja(caja, total) VALUES (01,10000), (02,5000), (03,20000);
+INSERT INTO caja(caja, total) VALUES (01,2000, 2000), (02,1000,1000), (03,3000,3000);
 INSERT INTO rol(rol) VALUES ('Gerente'),('Ventas');
 INSERT INTO unidad(unidad, descripcion) VALUES ('Kilogramo', "Un kilogramo"),('Tara', "30 Kilogramos");
 INSERT INTO proveedor(nombre) VALUES ('Proveedor en general');

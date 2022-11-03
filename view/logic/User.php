@@ -46,6 +46,7 @@
               $_SESSION['rol'] = 0;
               $_SESSION['user'] = $data;
               $_SESSION['user']['id_sucursal'] = 1;
+              $_SESSION['user']['id_user'] = $data['id_admin'];
 
               return true;
             }else{
@@ -62,6 +63,7 @@
               // $_SESSION["admin"] = $data; // GUARDA LA SESIÓN PARA USARLO DESPUÉS
               $_SESSION['rol'] = $data['id_rol'];
               $_SESSION['user'] = $data;
+              $_SESSION['user']['id_user'] = $data['id_personal'];
               $_SESSION['user']['id_negocio'] = 1;
               return true;
             }else{

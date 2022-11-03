@@ -26,7 +26,7 @@ const nota_compra = () => {
     }
     console.log(aComprar);
 
-    const info_compra = d.querySelector(".info-compra");
+    const compraModales = d.querySelector(".modales");
     const section_modal = d.createElement("section");
     let myForm = new FormData();
     myForm.append("table", "getNegocio");
@@ -50,7 +50,7 @@ const nota_compra = () => {
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Confirmación de compra</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="ticket">
                     <div class="ticket-generado">
@@ -85,7 +85,7 @@ const nota_compra = () => {
             </div>
         </div>
         </div>`;
-        info_compra.insertAdjacentElement("afterend", section_modal);
+        compraModales.insertAdjacentElement("afterend", section_modal);
         section_modal.innerHTML += html;
 
         let table_ticket = d.getElementById("table-ticket");
@@ -183,16 +183,19 @@ const nota_compra = () => {
 };
 
 const nota_venta = () => {
-  let table_body = d.getElementById("table-body-ventas");
-  let total_pagar = d.getElementById("total-pagar");
   let vender = d.getElementById("vender");
+  let table_body = d.getElementById("table-body-ventas");
   vender.addEventListener("click", (e) => {
     e.preventDefault();
+    let total_pagar = d.getElementById("total-pagar");
+    let efectivo_cliente = d.getElementById("efectivo_cliente");
+    let cambio_cliente = d.getElementById("cambio_cliente");
     const aVender = [];
     const nameVendedor = d.getElementById("nameVendedor").innerText;
-    const idVendedor = d.getElementById("id_user").innerText;
-    const nCaja = d.getElementById("nCaja").innerText;
-    // const tCaja = d.getElementById("tCaja");
+    const id_user = d.getElementById("id_user");
+    const id_caja = d.getElementById("id_caja");
+    let id_sucursal = d.getElementById("id_sucursal");
+    let total_caja = d.getElementById("total_caja");
     const nTransaccion = d.getElementById("nTransaccion").innerText;
     const fVenta = d.getElementById("fVenta").innerText;
     // const vendedor = {
@@ -204,30 +207,33 @@ const nota_venta = () => {
     for (var i = 0, row; (row = table_body.rows[i]); i++) {
       const obj = {
         codigo: row.cells[0].innerText,
-        producto: row.cells[1].innerText,
-        precio: row.cells[2].innerText,
-        proveedor: row.cells[3].innerText,
-        stock: row.cells[4].innerText,
+        nombre: row.cells[1].innerText,
+        pVenta: row.cells[2].innerText,
+        unidad: row.cells[3].innerText,
+        categoria: row.cells[4].innerText,
+        cantidad: row.cells[5].innerText,
+        cantidadVenta: row.cells[6].innerText,
+        subtotal: row.cells[7].innerText,
       };
       aVender.push(obj);
     }
-    console.log(aVender);
-    const info_venta = d.querySelector(".info_venta");
+    // console.log(aVender);
+    const ventaModales = d.querySelector(".modales");
     const section_modal = d.createElement("section");
 
     let html = `
-        <div class="modal fade bd-example-modal-lg" id="mymodal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal fade bd-example-modal-lg" id="confirmarVenta" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">Confirmación de venta</h5>
-                    <span data-dismiss="modal" aria-label="Close" class="close"><i class="fa-solid fa-xmark"></i></span>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body" id="ticket">
                     <div class="ticket-generado">
                         <h3 class="text-center">Mi punto de venta<h3>
                         <p class="text-center">Ticket No. ${nTransaccion}</p>
-                        <p class="text-center">Caja ${nCaja}</p>
+                        <p class="text-center">Caja ${id_caja}</p>
                         <p class="text-center">Vendedor: ${nameVendedor}</p>
                         <p class="text-center">${fVenta}</p>
                         <p>=========================</p>
@@ -247,7 +253,7 @@ const nota_venta = () => {
                         <p>Total Neto: $<span id="total_neto"></span></p>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn-close-modal" data-dismiss="modal">Cancelar</button>
+                        <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cancelar</button>
                         <button type="button" class="btn-save-modal" id="venderProductos">Vender</button>
                         <button type="button" class="btn-save-modal" id="save_ticket">Descargar</button>
                     </div>
@@ -255,91 +261,74 @@ const nota_venta = () => {
             </div>
         </div>
         </div>`;
-    info_venta.insertAdjacentElement("afterend", section_modal);
+    ventaModales.insertAdjacentElement("afterend", section_modal);
     section_modal.innerHTML += html;
 
     let table_ticket = d.getElementById("table-ticket");
     let regex = /(\d+)/g;
     let total = 0;
-    const venta = [];
-
     for (let i = 0; i < aVender.length; i++) {
-      venta.push(aVender[i].codigo);
-    }
-    console.log(venta);
-    let unicosElementos = [];
-    let almacenadorRepetidos = [];
-    let contador = 1;
-    for (let j = 0; j < venta.length; j++) {
-      if (venta[j] === venta[j + 1]) {
-        contador++;
-      } else {
-        unicosElementos.push(venta[j]);
-        almacenadorRepetidos.push(contador);
-        contador = 1;
-      }
-    }
-    console.log(unicosElementos);
-    console.log(almacenadorRepetidos);
-    const procesarVenta = [];
-    const formBusc = new FormData();
-    formBusc.append("table", "buscarProducto");
-    for (let k = 0; k < unicosElementos.length; k++) {
-      formBusc.append("codProducto", unicosElementos[k]);
-      fetch("logic/createData.php", {
-        method: "POST",
-        body: formBusc,
-      })
-        .then((res) => res.text())
-        .then((data) => {
-          data = JSON.parse(data);
-          table_ticket.innerHTML += `
-                    <th>${almacenadorRepetidos[k]}</th>
-                    <th>${data.producto}</th>
-                    <th>${data.pventa * almacenadorRepetidos[k]}</th>
+      // console.log(aComprar[i].cantidad);
+      table_ticket.innerHTML += `
+                    <th>${aVender[i].cantidadVenta}</th>
+                    <th>${aVender[i].nombre}</th>
+                    <th>${aVender[i].pVenta}</th>
                 `;
-        });
+      // let getSubTotal = aComprar[i].subtotal.match(regex);
+      // total += parseFloat(getSubTotal);
     }
-    let getSubTotal = total_pagar.innerText.match(regex);
-    total += parseFloat(getSubTotal);
     const total_neto = d.getElementById("total_neto");
-    total_neto.innerHTML = total;
-    $("#mymodal").modal("show");
+    // total_neto.innerHTML = total;
+    // $("#mymodal").modal("show");
+    var confirmarVenta = new bootstrap.Modal(
+      document.getElementById("confirmarVenta"),
+      {
+        keyboard: false,
+      }
+    );
+    confirmarVenta.show();
     const save_ticket = d.getElementById("save_ticket");
 
     const venderProductos = d.getElementById("venderProductos");
     venderProductos.addEventListener("click", (e) => {
+      // console.log("click");
+      // console.log("Total a pagar: " + total_pagar.innerText);
       let form = new FormData();
-      form.append("usuario", idVendedor);
-      form.append("table", "venderProducto");
-      for (let k = 0; k < unicosElementos.length; k++) {
-        form.append("producto", unicosElementos[k]);
-        form.append("cantidad", almacenadorRepetidos[k]);
-        fetch("logic/createData.php", {
-          method: "POST",
-          body: form,
-        })
-          .then((res) => res.text())
-          .then((data) => {
-            console.log(data);
-            if (data.includes("ventaRealizada")) {
-              // let comprar = localStorage.getItem("comprar");
-              // if (comprar === "true") {
-              Swal.fire({
-                title: "Compra realizada",
-                text: "Los cambios han sido reflejados en la base de datos",
-                icon: "success", //error,
-                showConfirmButton: true,
-                confirmButtonText: "Aceptar",
-                confirmButtonColor: "#47874a",
-              }).then((button) => {
-                if (button.isConfirmed === true) {
-                  window.location.href = "index.php?p=ventas";
-                }
-              });
-            }
-          });
-      }
+      form.append("id_personal", id_user.innerText);
+      form.append("id_cliente", 1);
+      form.append("id_sucursal", id_sucursal.innerText);
+      form.append("id_caja", id_caja.innerText);
+      form.append("total_caja", total_caja.innerText);
+      form.append("total", total_pagar.innerText.match(regex));
+      form.append("efectivo", efectivo_cliente.value);
+      form.append("cambio", cambio_cliente.innerText.match(regex));
+      let data = JSON.stringify(aVender);
+      form.append("data", data);
+      form.append("table", "realizarVenta");
+      fetch("logic/createData.php", {
+        method: "POST",
+        body: form,
+      })
+        .then((res) => res.text())
+        .then((data) => {
+          console.log(data);
+          if (data.includes("ventaRealizada")) {
+            // let comprar = localStorage.getItem("comprar");
+            // if (comprar === "true") {
+            Swal.fire({
+              title: "Venta realizada",
+              text: "Los cambios han sido reflejados en la base de datos",
+              icon: "success", //error,
+              showConfirmButton: true,
+              confirmButtonText: "Aceptar",
+              confirmButtonColor: "#47874a",
+            }).then((button) => {
+              if (button.isConfirmed === true) {
+                window.location.href = "index.php?p=ventas";
+              }
+            });
+          }
+        });
     });
     save_ticket.addEventListener("click", (e) => {
       const element = d.getElementById("ticket");

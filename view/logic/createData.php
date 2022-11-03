@@ -119,18 +119,38 @@ if(!empty($_POST)){
         if($registrarCompraProducto) echo "compraCorrecta";
       }
     break;
-    case 'venderProducto':
-      $usuario = (isset($_POST['usuario']) ? $_POST['usuario'] : NULL);
-      $producto = (isset($_POST['producto']) ? $_POST['producto'] : NULL);
-      $cantidad = (isset($_POST['cantidad']) ? $_POST['cantidad'] : NULL);
-
-      $id_producto = $query->buscarIdProd($producto);
-      $realizarVenta = $query->realizarVenta($id_producto, $usuario, $cantidad); // Vender producto
+    case 'realizarVenta':
+      $detalles = $_POST['data'];
+      $data = json_decode($_POST['data'], true);
+      $id_sucursal = (isset($_POST['id_sucursal']) ? $_POST['id_sucursal'] : NULL);
+      $id_personal = (isset($_POST['id_personal']) ? $_POST['id_personal'] : NULL);
+      $id_cliente = (isset($_POST['id_cliente']) ? $_POST['id_cliente'] : NULL);
+      $id_caja = (isset($_POST['id_caja']) ? $_POST['id_caja'] : NULL);
+      $total_caja = (isset($_POST['total_caja']) ? $_POST['total_caja'] : NULL);
+      $total_venta = (isset($_POST['total']) ? $_POST['total'] : NULL);
+      $efectivo = (isset($_POST['efectivo']) ? $_POST['efectivo'] : NULL);
+      $cambio = (isset($_POST['cambio']) ? $_POST['cambio'] : NULL);
+      $productos = [];
+      echo $detalles;
+      foreach ($data as $row) {
+        $codigo = $row['codigo'];
+        $nombre = $row['nombre'];
+        $pVenta = $row['pVenta'];
+        $unidad = $row['unidad'];
+        $categoria = $row['categoria'];
+        $cantidad = $row['cantidad'];
+        $cantidadVenta = $row['cantidadVenta'];
+        array_push($productos, $nombre);
+        $cantidadBase = $query->obtenerCantidadBase($codigo);
+        $actual = $cantidadBase - $cantidadVenta;
+        $realizarVenta = $query->realizarVenta($codigo, $actual);
+      }
       if($realizarVenta){
-        $cantidadBase = $query->obtenerCantidadBase($producto);
-        $actual = $cantidadBase - $cantidad;
-        $reducirCantidad = $query->reducirCantidad($actual, $producto);
-        if($reducirCantidad){
+        $cadenaProductos = implode(", ", $productos);
+        $registrarVentaProducto = $query->registrarVentaProducto($id_sucursal,$id_personal,$cadenaProductos,$id_cliente,$total_venta,$efectivo,$cambio,$detalles);
+        // echo "Total venta es: ".$total_venta."<br>";
+        $actualizarCaja = $query->actualizarCaja($total_venta,$total_caja,$id_caja);
+        if($registrarVentaProducto && $actualizarCaja){
           echo "ventaRealizada";
         }
       }

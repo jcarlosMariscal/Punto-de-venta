@@ -5,6 +5,7 @@ const d = document;
 var table_ventas = d.getElementById("table-body-ventas");
 let formCodeProduct = d.getElementById("formCodeProduct");
 let efectivo_cliente = d.getElementById("efectivo_cliente");
+let table_body = d.getElementById("table-body-ventas");
 
 formCodeProduct.addEventListener("submit", (e) => {
   let code_product = d.getElementById("code-product");
@@ -30,7 +31,7 @@ formCodeProduct.addEventListener("submit", (e) => {
     })
       .then((res) => res.text())
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (data == "noEncontrado") {
           Swal.fire({
             title: "Producto no encontrado.",
@@ -44,14 +45,66 @@ formCodeProduct.addEventListener("submit", (e) => {
           });
         } else {
           let get = JSON.parse(data);
-          // console.log(get);
-          table_ventas.innerHTML += `
-            <th>${get.codigo}</th>
-            <td>${get.nombre}</td>
-            <td class="precio">${get.pventa}</td>
-            <td>${get.unidad}</td>
-            <td>${get.cantidad}</td>
-          `;
+          // let repetido = false;
+          var vender = 1;
+
+          if (table_body.innerText === "") {
+            table_ventas.innerHTML = `
+              <th hidden>${get.codigo}</th>
+              <td>${get.nombre}</td>
+              <td>${get.pventa}</td>
+              <td>${get.unidad}</td>
+              <td>${get.categoria}</td>
+              <td>${get.cantidad}</td>
+              <td>${vender}</td>
+              <td class="precio">${get.pventa * vender}</td>
+            `;
+            code_product.value = "";
+            calcularTotal();
+            return;
+          }
+          let repetido = false;
+          // console.log(table_body.rows);
+          for (var i = 0, row; (row = table_body.rows[i]); i++) {
+            let venta = parseInt(table_body.rows[i].cells[6].innerText);
+            venta++;
+            let tableCode = table_body.rows[i].cells[0].innerText;
+            let tableName = table_body.rows[i].cells[1].innerText;
+            if (
+              tableCode === code_product.value ||
+              tableName === code_product.value
+            ) {
+              table_body.rows[i].innerHTML = `
+              <th hidden>${get.codigo}</th>
+              <td>${get.nombre}</td>
+              <td>${get.pventa}</td>
+              <td>${get.unidad}</td>
+              <td>${get.categoria}</td>
+              <td>${get.cantidad}</td>
+              <td>${venta}</td>
+              <td class="precio">${get.pventa * venta}</td>
+              `;
+              repetido = true;
+            } else {
+              repetido = false;
+            }
+          }
+          if (!repetido) {
+            // console.log("nuevo");
+            let nuevo = 1;
+            var hilera = document.createElement("tr");
+            hilera.innerHTML = `
+                <th hidden>${get.codigo}</th>
+                <td>${get.nombre}</td>
+                <td>${get.pventa}</td>
+                <td>${get.unidad}</td>
+                <td>${get.categoria}</td>
+                <td>${get.cantidad}</td>
+                <td>${nuevo}</td>
+                <td class="precio">${get.pventa * nuevo}</td>
+              `;
+            table_body.appendChild(hilera);
+          }
           code_product.value = "";
           calcularTotal();
         }
@@ -69,9 +122,10 @@ efectivo_cliente.addEventListener("keyup", (e) => {
         "Introduce una cantidad correcta, debe ser mayor o igual a la suma total de la venta"
       );
     } else {
-      // alert(calcularTotal());
       let cambio_cliente = d.getElementById("cambio_cliente");
-      cambio_cliente.innerText = efectivo_cliente.value - calcularTotal();
+      cambio_cliente.innerHTML = ` $${
+        efectivo_cliente.value - calcularTotal()
+      }`;
     }
   }
 });

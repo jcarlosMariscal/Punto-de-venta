@@ -180,11 +180,11 @@
         echo "error";
       }
     }
-    function realizarCompraNuevo($codigo, $nombre, $cantidad, $pcompra, $pventa, $id_unidad){
+    function realizarCompraNuevo($codigo, $nombre, $cantidad, $pcompra, $pventa, $id_unidad, $id_categoria){
       try {
-        $sql = "INSERT INTO producto(codigo, nombre, cantidad, pcompra, pventa, id_unidad) VALUES(?,?,?,?,?,?)";
+        $sql = "INSERT INTO producto(codigo, nombre, cantidad, pcompra, pventa, id_unidad, id_categoria) VALUES(?,?,?,?,?,?,?)";
         $query = $this->cnx->prepare($sql);
-        $data = array($codigo, $nombre,$cantidad,$pcompra,$pventa,$id_unidad);
+        $data = array($codigo, $nombre,$cantidad,$pcompra,$pventa,$id_unidad, $id_categoria);
         $insert = $query -> execute($data);
         if($insert) return true;
       } catch (PDOException $th){

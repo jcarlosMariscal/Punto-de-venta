@@ -3,6 +3,7 @@
   // $resProveedor = $readProveedor->fetch(); // Obtener el registro de la consulta
   $readProducto = $query->selectTable('producto'); // Hacer una consulta a tabla negocios
   $readUnidad = $query->selectTable('unidad'); // Hacer una consulta a tabla negocios
+  $readCategoria = $query->selectTable('categoria'); // Hacer una consulta a tabla negocios
 ?>
 <section class="realizar-compra">
   <section class="add-product px-2 ms-2 mt-2">
@@ -36,7 +37,19 @@
             }
           ?>
           </select>
-          <!-- <a href="" class="seleccionar" data-bs-toggle="modal" data-bs-target=".seleccionar-prov"><i class="fa-solid fa-circle-plus"></i></a> -->
+        </div>
+        <div class="input-cantidad input-compra" id="group-cantidad_prov">
+          <label for="">Categoria: </label>
+          <select name="categoria_prod" id="categoria_prod">
+            <option selected disabled>Seleccione una categoria</option>
+          <?php
+            if($readCategoria){
+              foreach ($readCategoria as $row) {
+                ?><option value="<?php echo $row['id_categoria']; ?>"><?php echo $row['categoria']; ?></option><?php
+              }
+            }
+          ?>
+          </select>
         </div>
         <div class="input-cantidad input-compra" id="group-cantidad_prod">
           <label for="">Cantidad: </label>

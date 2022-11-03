@@ -300,9 +300,10 @@
             $pcompra = $row['pcompra'];
             $pventa = $row['pventa'];
             $unidad = $row['id_unidad'];
+            $categoria = $row['id_categoria'];
             // $id_proveedor = $row['id_proveedor'];
           } 
-          $json = '{"codigo":"'.$codigo.'","nombre":"'.$nombre.'","cantidad":"'.$cantidad.'","pcompra":"'.$pcompra.'", "pventa":"'.$pventa.'","unidad":"'.$unidad.'"}';
+          $json = '{"codigo":"'.$codigo.'","nombre":"'.$nombre.'","cantidad":"'.$cantidad.'","pcompra":"'.$pcompra.'", "pventa":"'.$pventa.'","unidad":"'.$unidad.'","categoria":"'.$categoria.'"}';
           return [true, $json];
         }else{
           return [false, 'noEncontrado'];

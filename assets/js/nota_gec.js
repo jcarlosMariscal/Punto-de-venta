@@ -20,6 +20,7 @@ const nota_compra = () => {
         pventa: row.cells[6].innerText,
         unidad: row.cells[7].innerText,
         id_sucursal: row.cells[8].innerText,
+        categoria: row.cells[9].innerText,
       };
       aComprar.push(obj);
     }
@@ -118,6 +119,7 @@ const nota_compra = () => {
           localStorage.getItem("prodNuevo");
           // console.log(aComprar);
           let form = new FormData();
+          console.log(aComprar);
           let data = JSON.stringify(aComprar);
           // console.log(data);
           form.append("table", "realizarCompra");

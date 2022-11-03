@@ -18,6 +18,7 @@ const nombre_prov = d.getElementById("nombre_prov"),
   cantidad_prod = d.getElementById("cantidad_prod"),
   pcompra_prod = d.getElementById("pcompra_prod"),
   unidad_prod = d.getElementById("unidad_prod"),
+  categoria_prod = d.getElementById("categoria_prod"),
   pventa_prod = d.getElementById("pventa_prod");
 
 const nombre_sucursal = d.getElementById("nombre_sucursal");
@@ -112,6 +113,7 @@ const buscarProd = (e, nombreProd) => {
           pcompra_prod.value = get.pcompra;
           pventa_prod.value = get.pventa;
           unidad_prod.options.item(get.unidad).selected = "selected";
+          categoria_prod.options.item(get.categoria).selected = "selected";
           db_get_code.value = get.codigo;
           db_get_name.value = get.nombre;
         }
@@ -197,6 +199,7 @@ if (formulario) {
             <td hidden>${pventa_prod.value}</td>
             <td hidden>${unidad_prod.value}</td>
             <td hidden>${id_sucursal.innerText}</td>
+            <td hidden>${categoria_prod.value}</td>
             <td class="text-center"><a href="#" class="btn-tb-delete" data-prd_id='${add}'><i class="fa-solid fa-trash-can"></i></a></td>
                           </tr>`;
         table_body.innerHTML += product;
@@ -375,11 +378,11 @@ d.addEventListener("DOMContentLoaded", (e) => {
                         <thead>
                           <tr>
                             <th scope="col">Nombre</th>
-                            <th scope="col">Código</th>
                             <th scope="col">Cantidad</th>
                             <th scope="col">P. Compra</th>
                             <th scope="col">P. Venta</th>
                             <th scope="col">Unidad</th>
+                            <th scope="col">Categoria</th>
                             <th scope="col">Subtotal</th>
                           </tr>
                         </thead>
@@ -398,11 +401,11 @@ d.addEventListener("DOMContentLoaded", (e) => {
                 cargarJson2.innerHTML += `
                 <tr>
                   <td class="row">${json2[i].nombre}</td>
-                  <td>${json2[i].codigo}</td>
                   <td>${json2[i].cantidad}</td>
                   <td>$${json2[i].pcompra}</td>
                   <td>$${json2[i].pventa}</td>
                   <td>${json2[i].unidad}</td>
+                  <td>${json2[i].categoria}</td>
                   <td>${json2[i].subtotal}.0</td>
                 </tr>          
                 `;

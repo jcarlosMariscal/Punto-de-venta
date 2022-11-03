@@ -89,10 +89,6 @@ if(!empty($_POST)){
       $proveedores = [];
       foreach ($data as $row) {
         $proveedor = $row['proveedor'];
-        // echo $proveedor;
-        // $id_proveedor = $query->buscarIdProv($proveedor);
-        // echo $id_proveedor;
-        // if(!$id_proveedor) $proveedor = "Proveedor en general";
         $nombre = $row['nombre'];
         $codigo = $row['codigo'];
         $cantidad = $row['cantidad'];
@@ -100,6 +96,7 @@ if(!empty($_POST)){
         $pventa = $row['pventa'];
         $unidad = $row['unidad'];
         $id_sucursal = $row['id_sucursal'];
+        $categoria = $row['categoria'];
         array_push($productos, $nombre);
         array_push($proveedores, $proveedor);
         // echo $nombre;
@@ -111,7 +108,7 @@ if(!empty($_POST)){
           $cantidad = $cantidad + $cantidadBD;
           $realizarCompra = $query->actualizarCompra($cantidad, $pcompra, $pventa, $nombre);
         }else if(!$prodExistente){
-          $realizarCompra = $query->realizarCompraNuevo($codigo, $nombre, $cantidad, $pcompra, $pventa, $unidad);
+          $realizarCompra = $query->realizarCompraNuevo($codigo, $nombre, $cantidad, $pcompra, $pventa, $unidad, $categoria);
           
         }
       }

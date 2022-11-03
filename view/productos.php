@@ -68,6 +68,7 @@ if ($deletProducto) {
             <th scope="col">P. Compra</th>
             <th scope="col">P. Venta</th>
             <th scope="col">unidad</th>
+            <th scope="col">Categoria</th>
           </tr>
         </thead>
         <tbody id="table-body">
@@ -82,6 +83,7 @@ if ($deletProducto) {
               <td><?php echo $row['pcompra']; ?></td>
               <td><?php echo $row['pventa']; ?></td>
               <td><?php echo $row['id_unidad']; ?></td>
+              <td><?php echo $row['id_categoria']; ?></td>
               <td class="text-center"><a href="index.php?p=productos&delete=<?php echo $row['id_producto']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
               <td class="text-center"><a href="index.php?p=productos&edit=<?php echo $row['id_producto']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
               <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#pro<?php echo $row['id_producto'] ?>" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>

@@ -55,7 +55,7 @@ CREATE TABLE administrador(
 CREATE TABLE cliente(
   id_cliente INT NOT NULL AUTO_INCREMENT,
   nombre VARCHAR(255) NOT NULL,
-  direccion VARCHAR(255) NOT NULL,
+  direccion VARCHAR(255) NULL,
   telefono VARCHAR(15) NULL,
   id_sucursal INT NULL,
   PRIMARY KEY(id_cliente),
@@ -106,6 +106,12 @@ CREATE TABLE unidad(
     descripcion VARCHAR(255) NOT NULL,
     PRIMARY KEY (id_unidad)
 );
+CREATE TABLE categoria(
+  id_categoria INT NOT NULL AUTO_INCREMENT,
+  categoria VARCHAR(100) NOT NULL,
+  descripcion VARCHAR(255) NULL,
+  PRIMARY KEY (id_categoria)
+);
 CREATE TABLE producto(
     id_producto INT NOT NULL AUTO_INCREMENT,
     codigo VARCHAR(255) NULL,
@@ -114,7 +120,9 @@ CREATE TABLE producto(
     pcompra VARCHAR(255) NOT NULL,
     pventa VARCHAR(255) NOT NULL,
     id_unidad INT NOT NULL,
+    id_categoria INT NOT NULL,
     CONSTRAINT  FOREIGN KEY (id_unidad) REFERENCES unidad(id_unidad),
+    CONSTRAINT  FOREIGN KEY (id_categoria) REFERENCES categoria(id_categoria),
     PRIMARY KEY (id_producto)
 );
 
@@ -123,12 +131,14 @@ CREATE TABLE venta_producto(
   id_sucursal INT NOT NULL,
   id_personal INT NOT NULL,
   id_producto INT NOT NULL,
-  cantidad INT NOT NULL,
+  id_cliente INT NOT NULL,
   total INT NOT NULL,
+  efectivo INT NOT NULL,
+  cambio INT NOT NULL,
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente),
   CONSTRAINT FOREIGN KEY (id_sucursal) REFERENCES sucursal(id_sucursal),
   CONSTRAINT FOREIGN KEY (id_personal) REFERENCES personal(id_personal),
-  CONSTRAINT FOREIGN KEY (id_producto) REFERENCES producto(id_producto),
   PRIMARY KEY (id_venta)
 );
 CREATE TABLE compra_producto(
@@ -148,6 +158,8 @@ INSERT INTO caja(caja, total) VALUES (01,10000), (02,5000), (03,20000);
 INSERT INTO rol(rol) VALUES ('Gerente'),('Ventas');
 INSERT INTO unidad(unidad, descripcion) VALUES ('Kilogramo', "Un kilogramo"),('Tara', "30 Kilogramos");
 INSERT INTO proveedor(nombre) VALUES ('Proveedor en general');
+INSERT INTO cliente(nombre) VALUES ('Cliente en general');
+INSERT INTO categoria(categoria) VALUES ('Productos enlatados'), ('Botanas'), ('Bebidas'), ('Dulces');
 
 -- Para agilizar el desarrollo xd: La contraseña es 12345
 INSERT INTO negocio(nombre, telefono, correo, logo, id_tipo) VALUES("Nova Tech", "1234567890", "prueba@gmail.com", "logo.png", 1);

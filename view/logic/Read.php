@@ -286,6 +286,31 @@
             return false;
         }
     }
+    function buscarProducto($valor){
+      try {
+        $sql = "SELECT * FROM producto WHERE codigo = ? OR nombre LIKE '%$valor%'";
+        $query = $this->cnx->prepare($sql);
+        $query->bindParam(1, $valor);
+        $query -> execute();
+        if($query->rowCount() > 0){
+          foreach ($query as $row) {
+            $codigo = $row['codigo'];
+            $nombre = $row['nombre'];
+            $cantidad = $row['cantidad'];
+            $pcompra = $row['pcompra'];
+            $pventa = $row['pventa'];
+            $unidad = $row['id_unidad'];
+            // $id_proveedor = $row['id_proveedor'];
+          } 
+          $json = '{"codigo":"'.$codigo.'","nombre":"'.$nombre.'","cantidad":"'.$cantidad.'","pcompra":"'.$pcompra.'", "pventa":"'.$pventa.'","unidad":"'.$unidad.'"}';
+          return [true, $json];
+        }else{
+          return [false, 'noEncontrado'];
+        }
+      } catch (PDOException $th){
+        echo "error";
+      }
+    }
 
 
 

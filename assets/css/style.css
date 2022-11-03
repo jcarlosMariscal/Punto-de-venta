@@ -609,8 +609,9 @@ nav {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   height: 82%;
+  max-height: 82%;
   /* background-color: aqua; */
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 .add-product {
   grid-column: 1/2;
@@ -665,16 +666,13 @@ nav {
   margin-top: 10px;
   /* background-color: #36ae7c; */
   height: 100%;
+  max-height: 100%;
 }
-.limit-table {
-  max-height: 80%;
-  min-height: 80%;
-  overflow-x: auto;
-}
-.table-ventas {
+.table-ventas,
+.table-compras {
   margin-top: 10px;
   /* background-color: #36ae7c; */
-  height: 320px;
+  height: 440px;
   overflow-x: auto;
 }
 .table > :not(caption) > * > * {
@@ -685,6 +683,7 @@ nav {
 .info-compra {
   display: flex;
   margin-top: 10px;
+  /* height: 15%; */
 }
 
 .total {
@@ -827,11 +826,123 @@ nav {
 }
 
 /* ---------- VENTAS -  code-product */
+.realizar-venta {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+.add-product {
+  grid-column: 1/2;
+}
+.show-product {
+  grid-column: span 2;
+}
+.above__info,
+.info__venta {
+  padding: 10px;
+}
+.info__venta {
+  display: flex;
+  gap: 10px;
+}
+.venta__text {
+  width: 60%;
+  background-color: var(--color-one);
+  color: var(--secondary-color);
+  padding: 10px;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+.venta__value {
+  /* padding: 10px; */
+  padding-top: 10px;
+  width: 40%;
+}
+.text-desc {
+  font-size: 18px;
+}
+.venta__value .text-value {
+  padding-left: 10px;
+  /* border-bottom: 2px solid red; */
+  font-size: 18px;
+}
+.input__code {
+  padding: 10px;
+}
+.input__code form {
+  display: flex;
+}
 .code-product {
-  width: 50%;
-  padding: 3px;
+  width: 85%;
+  padding: 5px;
   outline: none;
   border: 1px solid var(--color-menu-primary);
+}
+.btn-buscar-producto {
+  text-align: center;
+  margin-left: 10px;
+  width: 10%;
+}
+.btn-buscar-producto button {
+  background-color: transparent;
+  color: var(--color-one);
+  outline: none;
+  border: none;
+  font-size: 24px;
+}
+.code-product:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: #96e2c3;
+  border: none;
+  border-bottom: 1px solid var(--color-one);
+  color: var(--secondary-color);
+  font-weight: bold;
+}
+/* MODIFICAR INFO-VENTA DE ventas.php */
+.venta__detalles {
+  padding: 10px;
+}
+.venta__efectivo,
+.venta__total,
+.venta__cambio {
+  background-color: #fff;
+}
+.btns-venta {
+  padding: 15px;
+  width: 100%;
+}
+
+.btn-venta {
+  transition: all 0.5s ease-in;
+  border: none;
+  background-color: var(--color-one);
+  width: 100px;
+}
+.btn-venta:hover {
+  transition: all 0.5s ease-in;
+  background-color: var(--color-one-secondary);
+  color: var(--secondary-color);
+}
+.total__p,
+.efectivo__p,
+.cambio__p {
+  border-radius: 5px;
+  padding: 5px;
+}
+.venta__efectivo {
+  display: flex;
+}
+.efectivo__input {
+  width: 100%;
+  padding: 5px;
+  outline: none;
+  border: 1px solid #96e2c3;
+}
+.efectivo__input:focus {
+  transition: all 0.5s ease-in-out;
+  background-color: #96e2c3;
+  border: none;
+  border-bottom: 1px solid var(--color-one);
+  color: var(--secondary-color);
 }
 
 /* FORMULARIO AGREGAR USUARIO */
@@ -1051,60 +1162,6 @@ select {
   border: 1px solid var(--color-primary) !important;
   /* border-radius: 0 !important; */
   color: var(--color-primary);
-}
-
-/* MODIFICAR INFO-VENTA DE ventas.php */
-.info_venta {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  grid-template-rows: auto;
-  margin-top: 5px;
-  /* background-color: #ffff; */
-  height: 55px;
-  gap: 10px;
-}
-.venta__total {
-  width: 100%;
-}
-.venta__efectivo {
-  grid-column: span 2;
-  width: 100%;
-  background-color: #fff;
-  height: 54px;
-  row-gap: 0px;
-}
-.venta__cambio {
-  width: 100%;
-}
-.btns-venta {
-  padding: 15px;
-  width: 100%;
-}
-
-.btn-venta {
-  transition: all 0.5s ease-in;
-  border: none;
-  background-color: var(--color-one);
-  width: 100px;
-}
-.btn-venta:hover {
-  transition: all 0.5s ease-in;
-  background-color: var(--color-one-secondary);
-  color: var(--secondary-color);
-}
-
-.total__p,
-.efectivo__p,
-.cambio__p {
-  background-color: #fff;
-  padding: 15px 10px 15px 10px;
-}
-
-.efectivo__input {
-  width: 55%;
-  outline: none;
-  border: 1px solid var(--color-menu-primary);
-  padding: 1px;
 }
 
 /* VALIDACIÓN DE FORMULARIOS DE REGISTRO E INICIO DE SESIÓN */

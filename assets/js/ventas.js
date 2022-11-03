@@ -3,59 +3,59 @@ import { nota_venta } from "./nota_gec.js";
 
 const d = document;
 var table_ventas = d.getElementById("table-body-ventas");
-let code_product = d.getElementById("code-product");
+let formCodeProduct = d.getElementById("formCodeProduct");
 let efectivo_cliente = d.getElementById("efectivo_cliente");
 
-code_product.addEventListener("keyup", (e) => {
-  if (e.which === 13) {
-    if (code_product.value === "") {
-      Swal.fire({
-        title: "Escriba un código de producto",
-        text: "Verifique que el código sea correcto",
-        icon: "error", //error,
-        timer: 2000,
-        toast: true,
-        position: "top-end",
-        showConfirmButton: false,
-        confirmButtonColor: "#47874a",
+formCodeProduct.addEventListener("submit", (e) => {
+  let code_product = d.getElementById("code-product");
+  e.preventDefault();
+  if (code_product.value === "") {
+    Swal.fire({
+      title: "Datos incorrectos",
+      text: "Verifique que el nombre o código del producto sea correcto",
+      icon: "error", //error,
+      timer: 2000,
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      confirmButtonColor: "#47874a",
+    });
+  } else {
+    let consulta = new FormData();
+    consulta.append("action", "buscarProducto");
+    consulta.append("codNameProducto", code_product.value);
+    fetch("logic/readData.php", {
+      method: "POST",
+      body: consulta,
+    })
+      .then((res) => res.text())
+      .then((data) => {
+        console.log(data);
+        if (data == "noEncontrado") {
+          Swal.fire({
+            title: "Producto no encontrado.",
+            text: "Verifique que el código sea correcto",
+            icon: "error", //error,
+            timer: 2000,
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            confirmButtonColor: "#47874a",
+          });
+        } else {
+          let get = JSON.parse(data);
+          // console.log(get);
+          table_ventas.innerHTML += `
+            <th>${get.codigo}</th>
+            <td>${get.nombre}</td>
+            <td class="precio">${get.pventa}</td>
+            <td>${get.unidad}</td>
+            <td>${get.cantidad}</td>
+          `;
+          code_product.value = "";
+          calcularTotal();
+        }
       });
-    } else {
-      let consulta = new FormData();
-      consulta.append("table", "buscarProducto");
-      consulta.append("codProducto", code_product.value);
-      fetch("logic/createData.php", {
-        method: "POST",
-        body: consulta,
-      })
-        .then((res) => res.text())
-        .then((data) => {
-          console.log(data);
-          if (data == "noEncontrado") {
-            Swal.fire({
-              title: "Producto no encontrado.",
-              text: "Verifique que el código sea correcto",
-              icon: "error", //error,
-              timer: 2000,
-              toast: true,
-              position: "top-end",
-              showConfirmButton: false,
-              confirmButtonColor: "#47874a",
-            });
-          } else {
-            let get = JSON.parse(data);
-            // console.log(get);
-            table_ventas.innerHTML += `
-              <th>${get.codigo}</th>
-              <td>${get.producto}</td>
-              <td class="precio">${get.pventa}</td>
-              <td>${get.id_proveedor}</td>
-              <td>${get.cantidad}</td>
-            `;
-            code_product.value = "";
-            calcularTotal();
-          }
-        });
-    }
   }
 });
 

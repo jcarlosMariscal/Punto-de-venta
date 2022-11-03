@@ -27,6 +27,15 @@
           echo "No hay resultados";
         }
       break;
+      case 'buscarProducto':
+        $codNameProducto = (isset($_POST['codNameProducto']) ? $_POST['codNameProducto'] : NULL);
+        $buscarProducto = $query->buscarProducto($codNameProducto);
+        if($buscarProducto[0]){
+          echo $buscarProducto[1];
+        }else{
+          echo "noEncontrado";
+        }
+      break;
       default:
         # code...
       break;

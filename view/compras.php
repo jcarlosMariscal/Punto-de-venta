@@ -57,7 +57,7 @@
     </div> 
   </section>
   <section class="table-product px-2">
-    <div class="content rounded-3 p-3 limit-table">
+    <div class="content rounded-3 p-3 table-compras">
       <table table bgcolor= "#FFFFFF"  class="table table-bordered">
         <thead>
           <tr>

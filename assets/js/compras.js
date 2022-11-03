@@ -91,25 +91,15 @@ const buscarProd = (e, nombreProd) => {
   e.preventDefault();
   if (nombre_prod.value != "") {
     let consulta = new FormData();
-    consulta.append("table", "buscarProducto");
+    consulta.append("action", "buscarProducto");
     consulta.append("codNameProducto", nombre_prod.value);
-    fetch("logic/createData.php", {
+    fetch("logic/readData.php", {
       method: "POST",
       body: consulta,
     })
       .then((res) => res.text())
       .then((data) => {
         if (data == "noEncontrado") {
-          // Swal.fire({
-          //   title: "Producto no encontrado.",
-          //   text: "Verifique que el código o nombre sean correctos",
-          //   icon: "error", //error,
-          //   timer: 2000,
-          //   toast: true,
-          //   position: "top-end",
-          //   showConfirmButton: false,
-          //   confirmButtonColor: "#47874a",
-          // });
           alertProduct.innerHTML = `
             <div class="alert alert-warning" role="alert">
               El código o nombre del producto no cincide con ninguna registrada en la base de datos. Para agregar una nueva abra el modal para seleccionar productos, seleccione Nuevo producto, llené los campos, seleccione el producto agregado y siga llenando el formulario.

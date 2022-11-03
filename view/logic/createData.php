@@ -80,15 +80,6 @@ if(!empty($_POST)){
         echo "Ha ocurrido un error, no se ha podido obtener los datos del negocio.";
       }
     break;
-    case 'buscarProducto':
-      $codNameProducto = (isset($_POST['codNameProducto']) ? $_POST['codNameProducto'] : NULL);
-      $buscarProducto = $query->buscarProducto($codNameProducto);
-      if($buscarProducto[0]){
-        echo $buscarProducto[1];
-      }else{
-        echo "noEncontrado";
-      }
-    break;
     case 'realizarCompra':
       $totalCompras = (isset($_POST['totalCompra']) ? $_POST['totalCompra'] : NULL); 
       $detalles = $_POST['data'];

@@ -1,7 +1,4 @@
 <?php
-  require_once "config/Connection.php";
-  require_once "logic/Read.php";
-  $query = new Read();
   $readNameSucursal = $query->selectTableId('sucursal', 'id_sucursal', $_SESSION['user']['id_sucursal'], 'nombre');
   $readName = $readNameSucursal->fetch(); // Obtener el registro de la consulta
 ?>

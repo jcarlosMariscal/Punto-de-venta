@@ -329,6 +329,113 @@
       }
     }
 
+    // MOSTRAR GRAFICAS ///////
+
+    function productosMax(){
+      try {
+        $sql = "SELECT * FROM producto";
+        $query = $this->cnx->prepare($sql);
+        $query -> execute();
+        $productos = $query;
+        $arreglo = [];
+        foreach($productos as $row){
+          $codigo = $row['codigo'];
+          $nombre = $row['nombre'];
+          $cantidad = $row['cantidad'];
+          $pcompra = $row['pcompra'];
+          $pventa = $row['pventa'];
+          $id_unidad = $row['id_unidad'];
+          $json = '{"codigo":"'.$codigo.'","nombre":"'.$nombre.'","cantidad":"'.$cantidad.'","pcompra":"'.$pcompra.'","pventa":"'.$pventa.'","id_unidad":"'.$id_unidad.'"}';
+          array_push($arreglo, $json);
+        }
+        $cadenaArr = implode(', ', $arreglo);
+        $json1 = '"productos":['.$cadenaArr.']';
+        // $cproducto = $this->compraProducto();
+        $pventas = $this->personalVentas();        
+        $grafProveedor = $this->proveedorNum();        
+        $unir = $json1.','.$pventas.','.$grafProveedor;
+        $jsonValido = '{'.$unir.'}';
+
+        return $jsonValido;
+      } catch (PDOException $th){
+        echo "error";
+    }
+  }
+  function compraProducto(){
+    try {
+        $sql = "SELECT * from compra_producto";
+        $query = $this->cnx->prepare($sql);
+        $query->execute();
+        $compraProducto = $query;
+        $cproductos = [];
+        foreach($compraProducto as $row){
+          $id_compra = $row['id_compra'];
+          $productos = $row['productos'];
+          $total = $row['total'];
+          $fecha = $row['fecha'];
+          $json = '{"productos":"'.$productos.'","total":"'.$total.'","fecha":"'.$fecha.'","id_compra":"'.$id_compra.'"}';
+          array_push($cproductos, $json);
+        }   
+        $compraPro = implode(', ', $cproductos); 
+        $json1 = '"compras":['.$compraPro.']';
+        return $json1;
+      } catch (PDOException $th) {
+        return false;
+    }
+  }
+  function personalVentas(){
+    try {
+        $sql = "SELECT * from personal";
+        $query = $this->cnx->prepare($sql);
+        $query->execute();
+        $ventas = $query;
+        $pVentas = [];
+        foreach($ventas as $row){
+          $nombre = $row['nombre'];
+          $telefono = $row['telefono'];
+          $json = '{"nombre":"'.$nombre.'","telefono":"'.$telefono.'"}';
+          array_push($pVentas, $json);
+        }
+        $personalVentas = implode(', ', $pVentas); 
+        $json1 = '"ventas":['.$personalVentas.']';
+        return $json1;
+    } catch (PDOException $th) {
+        return false;
+    }
+  }
+  function proveedorNum(){
+    try {
+        $sql = "SELECT * from proveedor";
+        $query = $this->cnx->prepare($sql);
+        $query->execute();
+        $proveedor = $query;
+        $numProv = [];
+        foreach($proveedor as $row){
+          $nombre = $row['nombre'];
+          $telefono = $row['telefono'];
+          $json = '{"nombre":"'.$nombre.'","telefono":"'.$telefono.'"}';
+          array_push($numProv, $json);
+        }
+        $proveGraf = implode(', ', $numProv); 
+        $json1 = '"proveedor":['.$proveGraf.']';
+        return $json1;
+    } catch (PDOException $th) {
+        return false;
+    }
+  }
+  // grafica para mostrar las fechas
+  function graficaFechas() {
+      try {
+      $fecha1 = (!empty($_POST['fecha1'])?$_POST['fecha1']:"");
+      $fecha2 = (!empty($_POST['fecha2'])?$_POST['fecha2']:"");          
+        $sql = "SELECT * FROM compra_producto WHERE fecha BETWEEN '$fecha1' AND '$fecha2' ORDER BY fecha ASC";
+        $query = $this->cnx->prepare($sql);
+        $read = $query->execute();
+        if ($read) return $query;
+      } catch (PDOException $th) {
+        
+      }
+  }
 
 
 

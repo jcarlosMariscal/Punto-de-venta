@@ -1,111 +1,111 @@
-const chart1 = document.getElementById('chart1');
-const chart2 = document.getElementById('chart2');
-const chart3 = document.getElementById('chart3');
-if(chart1 || chart2 || chart3){
-    chart1.getContext('2d');
-    chart2.getContext('2d');
-    chart3.getContext('2d');
-    const myChart = new Chart(chart1, {
-        type: 'bar',
-        data: {
-            // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-            datasets: [{
-                label: '# Productos más vendidos',
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(54, 162, 235, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(75, 192, 192, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(54, 162, 235, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(75, 192, 192, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 1
-            }]
+const chart1 = document.getElementById("chart1");
+const chart2 = document.getElementById("chart2");
+const chart3 = document.getElementById("chart3");
+if (chart1 || chart2 || chart3 || chart4) {
+  chart1.getContext("2d");
+  chart2.getContext("2d");
+  chart3.getContext("2d");
+
+  // -----grafica 1------------------
+  const data1 = {
+    datasets: [
+      {
+        label: "My First Dataset",
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(75, 192, 192)",
+          "rgb(255, 205, 86)",
+          "rgb(201, 203, 207)",
+          "rgb(54, 162, 235)",
+        ],
+      },
+    ],
+  };
+  const myChart1 = new Chart(chart1, {
+    type: "polarArea",
+    data: data1,
+    options: {},
+  });
+
+  // -----grafica 2 -----------------
+  const data2 = {
+    datasets: [
+      {
+        label: "My First Dataset",
+        backgroundColor: [
+          "rgb(255, 99, 132)",
+          "rgb(54, 162, 235)",
+          "rgb(255, 205, 86)",
+        ],
+        hoverOffset: 4,
+      },
+    ],
+  };
+  const myChart2 = new Chart(chart2, {
+    type: "doughnut",
+    data: data2,
+  });
+  // -----grafica 3--------
+  const myChart3 = new Chart(chart3, {
+    type: "bar",
+    data: {
+      // labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+      datasets: [
+        {
+          label: "# Productos más vendidos",
+          backgroundColor: [
+            "rgba(255, 99, 132, 0.2)",
+            "rgba(54, 162, 235, 0.2)",
+            "rgba(255, 206, 86, 0.2)",
+            "rgba(75, 192, 192, 0.2)",
+            "rgba(153, 102, 255, 0.2)",
+            "rgba(255, 159, 64, 0.2)",
+          ],
+          borderColor: [
+            "rgba(255, 99, 132, 1)",
+            "rgba(54, 162, 235, 1)",
+            "rgba(255, 206, 86, 1)",
+            "rgba(75, 192, 192, 1)",
+            "rgba(153, 102, 255, 1)",
+            "rgba(255, 159, 64, 1)",
+          ],
+          borderWidth: 1,
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
-    });
-
-    const data2 = {
-      datasets: [{
-        label: 'Ventas de anteriores meses',
-        fill: false,
-        borderColor: 'rgb(75, 192, 192)',
-        tension: 0.1
-      }]
-    };
-    const myChart2 = new Chart(chart2, {
-        type: 'line',
-        data: data2,
-    });
-    const myChart3 = new Chart(chart3, {
-        type: 'bar',
-        data: {
-            datasets: [{
-                label: '#Personal de ventas',
-
-                backgroundColor: [
-                    'rgba(255, 99, 132, 0.2)',
-                    'rgba(28, 116, 85, 0.2)',
-                    'rgba(255, 206, 86, 0.2)',
-                    'rgba(191, 23, 160, 0.2)',
-                    'rgba(153, 102, 255, 0.2)',
-                    'rgba(255, 159, 64, 0.2)'
-                ],
-                borderColor: [
-                    'rgba(255, 99, 132, 1)',
-                    'rgba(28, 116, 85, 1)',
-                    'rgba(255, 206, 86, 1)',
-                    'rgba(121, 23, 160, 1)',
-                    'rgba(153, 102, 255, 1)',
-                    'rgba(255, 159, 64, 1)'
-                ],
-                borderWidth: 2
-            }]
+      ],
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true,
         },
-        options: {
-            scales: {
-                y: {
-                    beginAtZero: true
-                }
-            }
-        }
+      },
+    },
+  });
+  // ---------------------
+
+  let url = "./../view/logic/graficar.php";
+  fetch(url)
+    .then((response) => response.json())
+    .then((datos) => mostrar(datos))
+    .catch((error) => console.log(error));
+
+  const mostrar = (datos) => {
+    console.log(datos);
+    datos.productos.forEach((respuesta1) => {
+      myChart3.data["labels"].push(respuesta1.nombre);
+      myChart3.data["datasets"][0].data.push(respuesta1.cantidad);
+      myChart3.update();
     });
 
-
-    let url = "https://web-api-2022.000webhostapp.com/"
-    fetch(url)
-        .then(response => response.json())
-        .then(datos => mostrar(datos))
-        .catch(error => console.log(error))
-    
-    const mostrar = (productos) => {
-        productos.forEach(element=>{
-            myChart.data['labels'].push(element.nombre)
-            myChart.data['datasets'][0].data.push(element.stok)
-            myChart.update()
-            myChart2.data['labels'].push(element.mes)
-            myChart2.data['datasets'][0].data.push(element.stok)
-            myChart2.update()
-            myChart3.data['labels'].push(element.ventareali)
-            myChart3.data['datasets'][0].data.push(element.totalcaja)
-            myChart3.update()
-        });
-        console.log(myChart.data);
-    }
-
+    datos.ventas.forEach((respuesta2) => {
+      myChart2.data["labels"].push(respuesta2.nombre);
+      myChart2.data["datasets"][0].data.push(respuesta2.telefono);
+      myChart2.update();
+    });
+    datos.proveedor.forEach((respuesta3) => {
+      myChart1.data["labels"].push(respuesta3.nombre);
+      myChart1.data["datasets"][0].data.push(respuesta3.telefono);
+      myChart1.update();
+    });
+  };
 }
-

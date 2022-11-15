@@ -1,14 +1,13 @@
 <?php
-
-include ("../conexion/conexion.php");
-
-$query = "select * from negocio ORDER BY id_negocio DESC LIMIT 1";
-$resultado = mysqli_query($con, $query);
-foreach ($resultado as $row) { 
-  $logo = $row['logo'];
-  $nombre = $row['nombre'];
-}
-
+require_once "config/Connection.php";
+  require_once "logic/Read.php";
+  $query = new Read();
+  $readNegocio = $query->readNegocio($_SESSION['user']['id_negocio']); 
+  
+  foreach($readNegocio as $row){
+    $logo = $row['logo'];
+    $nombre = $row['nombre'];
+  }
 ?>
 <nav id="navbar">
   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-transparent" style="width: 22vw">

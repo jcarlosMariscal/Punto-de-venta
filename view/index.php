@@ -103,10 +103,12 @@
     <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 </head>
 <body>
-    <?php require_once "../template/nav.php"; ?>
+    <?php 
+    require_once "../template/nav.php"; 
+    ?>
     <main class="main" id="main">
-        <?php
-        require_once "../template/header.php";
+      <?php
+      require_once "../template/header.php";
         require_once $getPage;
         ?>
     </main>

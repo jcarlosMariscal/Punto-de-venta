@@ -1,6 +1,10 @@
 <?php
+  if($_SESSION['rol'] == 0){
+    echo "FUNCIONALIDAD EN DESARROLLO EN ADMINISTRADOR, INICIE SESIÓN CON EL ROL DE VENDEDOR PARA  PROBARLO";
+  }
+  $id_caja = (isset($_SESSION['user']['id_caja']) ? $_SESSION['user']['id_caja'] : 1); 
   $readIdVenta = $query->readIdVenta(); // Hacer una consulta a tabla negocios
-  $readTotalCaja = $query->selectTableId('caja','id_caja',$_SESSION['user']['id_caja'],'total'); 
+  $readTotalCaja = $query->selectTableId('caja','id_caja',$id_caja,'total'); 
   $totalCaja = $readTotalCaja->fetch();
   // $resNegocio = $readNegocio->fetch(); // Obtener el registro de la consulta
   // $readTipo = $query->readTipo(); // Hacer consulta para leer los tipos de negocios.
@@ -25,7 +29,7 @@
       <div class="venta__value">
         <div class="text-value"><span id="nameVendedor"><?php echo $_SESSION['user']['nombre']; ?></span></div>
         <div class="text-value"><span id="nTransaccion"><?php echo $readIdVenta; ?></span></div>
-        <div class="text-value"><span id="id_caja"><?php echo $_SESSION['user']['id_caja']; ?></span></div>
+        <div class="text-value"><span id="id_caja"><?php echo $id_caja; ?></span></div>
         <div class="text-value"><span id="fVenta"><?php echo date('Y-m-d'); ?></span></div>
         <div class="text-value"><span id="total_caja"><?php echo $totalCaja['total']; ?></span></div>
       </div>

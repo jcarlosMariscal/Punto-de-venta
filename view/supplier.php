@@ -33,6 +33,7 @@
                 <a href="" class="btn-prm btn-cancelar" data-bs-toggle="modal" data-bs-target=".agregarProveedor"><i class="fa-solid fa-plus fa-lg"></i> Agregar</a>
             </div>
         </div>
+        <br>
         <div class="table-ver content rounded-3 p-3">
             <table table bgcolor= "#FFFFFF"  class="table table-bordered">
                 <thead>
@@ -57,9 +58,15 @@
                         <td><?php echo $row['correo']; ?></td>
                         <td><?php echo $row['contacto']; ?></td>
                         <td><?php echo $row['cargo']; ?></td>
-                        <td class="text-center"><a href="index.php?p=proveedor&delete=<?php echo $row['id_proveedor']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
+                        <?php
+                        if($row['nombre'] != "Proveedor en general"){
+                          ?>
+                          <td class="text-center"><a href="index.php?p=proveedor&delete=<?php echo $row['id_proveedor']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
                         <td class="text-center"><a href="index.php?p=proveedor&edit=<?php echo $row['id_proveedor']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
-                        <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#static<?php echo $row['id_proveedor'] ?>" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                          <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#static<?php echo $row['id_proveedor'] ?>" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
+                          <?php
+                        }
+                        ?>
                       </tr>
                       <?php
                     } 

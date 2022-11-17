@@ -25,12 +25,13 @@
       $nombreSeccion = "Información";
         break;
     case 'personal':
-        if ($_SESSION['rol'] != 0 ){
+        if ($_SESSION['rol'] == 2){
           ?> <script>
             alert("Acceso no autorizado");
             window.location.href="index.php";
             </script> <?php
-        }else{
+        }
+        if($_SESSION['rol'] == 0 || $_SESSION['rol'] == 1){
           $getPage = "personal.php";
           $nombreSeccion = "Personal";
         }

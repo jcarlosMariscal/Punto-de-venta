@@ -42,7 +42,7 @@ if ($deletProducto) {
           <button type="submit" class="searchButton"><i class="fa fa-search fa-lg"></i></button>
           <input type="text" class="searchTerm" placeholder="Buscar Producto">
         </div>
-        <a href="" class="btn-prm btn-prod" data-bs-toggle="modal" data-bs-target=".agregarProducto">
+        <a href="index.php?p=compras" class="btn-prm btn-prod">
           <i class="fa-solid fa-plus fa-lg"></i> Agregar Producto
         </a>
         <div class="cargarP col-md-6 col-sm-6 col-xs-6">

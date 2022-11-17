@@ -41,7 +41,7 @@ require_once "config/Connection.php";
         </a>
       </li>
       <?php
-      if($_SESSION['rol'] == 0){
+      if($_SESSION['rol'] == 0 || $_SESSION['rol'] == 1){
         ?>
         <li class="navbar__li">
           <a href="index.php?p=compras" class="text-white ul__link">
@@ -55,6 +55,12 @@ require_once "config/Connection.php";
             <span class="li__info">Personal</span>
           </a>
         </li>
+        <?php
+      }
+      ?>
+      <?php
+      if($_SESSION['rol'] == 0){
+        ?>
         <li class="navbar__li">
           <a href="index.php?p=configuration" class="text-white ul__link">
             <i class="nav-icon fa-solid fa-gears"></i>

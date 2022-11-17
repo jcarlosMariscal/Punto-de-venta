@@ -20,6 +20,7 @@ const nombre_prov = d.getElementById("nombre_prov"),
   unidad_prod = d.getElementById("unidad_prod"),
   categoria_prod = d.getElementById("categoria_prod"),
   pventa_prod = d.getElementById("pventa_prod");
+const btnCompraProducto = d.getElementById("btn-compraProducto");
 
 const nombre_sucursal = d.getElementById("nombre_sucursal");
 if (inputs) {
@@ -156,8 +157,44 @@ if (filtrarProducto) {
   });
 }
 
+const validarN = (miInput, campo) => {
+  let valor = miInput.value;
+  if (!/^\d*$/.test(valor) || valor == "" || valor <= 0) {
+    Swal.fire({
+      title: "Rellene los campos correctamente.",
+      text: `El valor del campo ${campo} debe ser un valor número y ser mayor a cero`,
+      icon: "error", //error,
+      timer: 2000,
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      confirmButtonColor: "#47874a",
+    });
+    btnCompraProducto.classList.add("deshabilitar");
+  } else btnCompraProducto.classList.remove("deshabilitar");
+};
+if (cantidad_prod && pcompra_prod && pventa_prod) {
+  cantidad_prod.addEventListener("keyup", () =>
+    validarN(cantidad_prod, "cantidad")
+  );
+  cantidad_prod.addEventListener("blur", () =>
+    validarN(cantidad_prod, "cantidad")
+  );
+  pcompra_prod.addEventListener("keyup", () =>
+    validarN(pcompra_prod, "precio compra")
+  );
+  pcompra_prod.addEventListener("blur", () =>
+    validarN(pcompra_prod, "precio compra")
+  );
+  pventa_prod.addEventListener("keyup", () =>
+    validarN(pventa_prod, "precio venta")
+  );
+  pventa_prod.addEventListener("blur", () =>
+    validarN(pventa_prod, "precio venta")
+  );
+}
+
 if (formulario) {
-  const btnCompraProducto = d.getElementById("btn-compraProducto");
   const id_sucursal = d.getElementById("id_sucursal");
   formulario.addEventListener("submit", (e) => e.preventDefault());
   btnCompraProducto.addEventListener("click", (e) => {
@@ -172,7 +209,6 @@ if (formulario) {
     ) {
       alert("Rellena el formulario correctamente");
     } else {
-      // console.log(table_body.rows[i]);
       let existe = false;
       for (var i = 0, row; (row = table_body.rows[i]); i++) {
         // console.log(table_body.rows[i]);

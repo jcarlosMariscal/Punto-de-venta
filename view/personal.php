@@ -34,6 +34,68 @@
         </div>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-1">
           <?php
+          if($_SESSION['rol'] == 0){
+            $getAdmin = $query->selectTable('administrador');
+            foreach ($getAdmin as $get) {
+          ?>
+            <div class="col-lg-4">
+              <div class="profile-card-4 z-depth-3">
+                <div class="card margen">
+                  <div class="card-body1 text-center">
+                    <div class="user-box">
+                      <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar">
+                    </div>
+                    <h5 class="text-white"><?php echo $get['nombre']; ?></h5>
+                  </div>
+                  <div class="card-body">
+                    <ul class="list-group shadow-none">
+                      <li class="list-group-item">
+                        <div class="list-icon">
+                          <i class="fa fa-phone-square">
+                          </i>
+                        </div>
+                        <div class="list-details">
+                          <?php echo ($get['telefono'] == NULL) ? "<b>Sin telefono</b>" : $get['telefono']; ?>
+                          <small>Número de Teléfono</small>
+                        </div>
+                      </li>
+                      <li class="list-group-item">
+                          <div class="list-icon">
+                            <i class="fa fa-envelope"></i>
+                          </div>
+                          <div class="list-details">
+                            <?php echo ($get['correo'] == NULL) ? "<b>Sin Correo</b>" : $get['correo']; ?>
+                            <small>Correo Electronico</small>
+                          </div>
+                        </li>
+                        <li class="list-group-item">
+                          <div class="list-icon">
+                          <i class="fa-sharp fa-solid fa-user-tie"></i>
+                          </div>
+                          <div class="list-details">
+                            <span>Administrador</span>
+                            <small>Rol</small>
+                          </div>
+                        </li>
+                    </ul>
+                    <div style="font-size: 10px; background-color: #D37864; color: #fff; padding: 2px;" >
+                      La funcionalidad de editar y ver información están en desarrollo.
+                    </div>
+                    <div class="row text-center mt-2">
+                      <div class="col p-2">
+                        <a href="index.php?p=personal&edit=<?php echo $get['id_admin']; ?>" class="btn-tb-update deshabilitar"><i class="fa-solid fa-pen"></i></a>
+                      </div>
+                      <div class="col p-2 btn-tb-info">
+                        <a href="" data-bs-toggle="modal" data-bs-target="#static<?php echo $get['id_admin'] ?>" class="btn-tb-info deshabilitar"><i class="fa-solid fa-circle-info"></i></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <?php
+            }
+          }
           $result1 = $query->selectTable('personal');
             foreach ($result1 as $row) {
           ?>

@@ -6,7 +6,9 @@ require_once "config/Connection.php";
   
   foreach($readNegocio as $row){
     $logo = $row['logo'];
-    $nombre = $row['nombre'];
+    $nombreNegocio = $row['nombre'];
+    $telefonoNegocio = $row['telefono'];
+    $correoNegocio = $row['correo'];
   }
 ?>
 <nav id="navbar">
@@ -14,7 +16,7 @@ require_once "config/Connection.php";
     <div class="info-pv">
       <a href="index.php?p=main" class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
         <img src="../assets/img/logo/<?php echo $logo; ?>" class="imag img-fluid" alt="...">
-        <span class="nombre-pv"><?php echo $nombre; ?></span>
+        <span class="nombre-pv"><?php echo $nombreNegocio; ?></span>
       </a>
       <div class="close-toggle" id="close-toggle"><i class="fa-sharp fa-solid fa-xmark"></i></div>
     </div>

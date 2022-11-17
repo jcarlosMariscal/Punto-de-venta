@@ -324,7 +324,14 @@
 
 <!-- Información -->
   <?php
-  $result = $query->selectInfoPer(); //Mostramos los resultados
+  $result = $query->selectTable('personal'); //Mostramos los resultados
+  date_default_timezone_set('America/Mexico_City');
+  $readNegocio = $query->readNegocio($_SESSION['user']['id_negocio']); 
+  
+  foreach($readNegocio as $row){
+    $logoNegocio = $row['logo'];
+    $nombreNegocio = $row['nombre'];
+  }
 
   foreach ($result as $row) {
     $id_user = $row['id_personal'];
@@ -335,7 +342,10 @@
     $domicilio = $row['domicilio'];
     $id_sucursal = $row['id_sucursal'];
     $id_caja = $row['id_caja'];     
-    $id_rol = $row['id_rol'];     
+    $id_rol = $row['id_rol'];   
+    
+    $nameSucursal = $query->selectTableId('sucursal', 'id_sucursal',$id_sucursal, 'nombre');
+    $getName = $nameSucursal->fetch(); // Obtener el registro de la consulta
   ?>
 
 
@@ -349,21 +359,20 @@
       <div class="modal-body">
       <article id="ticket">
       <div class="contenedor-head">
-        <img src="../assets/img/favicon.png" class="ticon" alt="">
+        <img src="../assets/img/logo/<?php echo $logoNegocio; ?>" class="ticon" alt="">
         <p class="title-princ"><span>Nova Tech</span></p>
         <p class="title-subp"><span>Easy Sal</span></p>
-        <p class="fech">Fecha: 23/11/2022</p>
+        <p class="fech">Fecha: <?php echo date("d/m/y"); ?></p>
         <p class="title-subsp">Datos de personal</p>
         <p>
-            El presente documento muestra la infomación del personal <span class="remarc"><?php echo $nombre ?></span>
-            que labora en el negocio <span class="remarc"><?php echo $id_sucursal ?> (nombre del negocio)</span>, desempeñandose bajo el rol de <span class="remarc"><?php echo $id_rol ?>(vendedor)</span>
-            en la sucuursal <span class="remarc"><?php echo $domicilio ?></span> siendo sus principales actividades las siguientes:
+          El presente documento muestra la infomación del personal <span class="remarc"><?php echo $nombre ?></span>
+          que labora en el negocio <span class="remarc"><?php echo $nombreNegocio; ?></span>, desempeñandose bajo el rol de <span class="remarc"><?php echo ($id_rol == 1) ? "Gerente": "Vendedor";?></span>
+          en la sucursal <span class="remarc"><?php echo $getName['nombre']; ?></span> siendo sus principales actividades las siguientes:
         </p>
         <ul>
           <li>Registrar la venta de productos</li>
           <li>Realizar su corte de caja</li>
           <li>Realizar reportes</li>
-          <li>etc.</li>
         </ul>
         <p>
           <span>En caso de requerir la corrección de algún dato dirigirse al gerente/encargado de la
@@ -381,34 +390,41 @@
         </div>
         <div class="contact1">
           <p class="telefinf"><?php echo $telefono ?></p>
-          <p class="direcinf"><?php echo $ciudad ?></p>
+          <p class="direcinf"><?php echo $ciudad.", ".$domicilio; ?></p>
           <p class="telefinf1">Teléfono de Personal</p>
           <p class="direcinf1">Dirección de personal</p>
         </div>
         <p class="infp1">
           <span>Información de lugar de trabajo</span>
         </p>
-        <div class="contactsucur">
-          <p class="nomper">2 Norte</p>
-          <p class="correoper">prueba@gmail.com</p>
-          <p class="nomper1">Dirección Sucursal</p>
-          <p class="correoper1">Correo de sucursal</p>
-        </div>
-        <div class="contactsucur1">
-          <p class="direcinf">Puebla, Tehuacán, Col. Centro</p>
-          <p class="direcinf1">Ubicada en</p>
-          <p class="cpinf">75700</p>
-          <p class="cpinf1">Código Postal</p>
-        </div>
-        <div class="contactsucur2">
-          <p class="telinf">2382480825</p>
-          <p class="telinf1">Teléfono</p>
-        </div>
+        <?php
+        $selectSucursal = $query->selectTableId("sucursal", "id_sucursal", $id_sucursal, "*");
+        foreach($selectSucursal as $s){
+          ?>
+          <div class="contactsucur">
+            <p class="nomper"><?php echo $s['nombre']; ?></p>
+            <p class="correoper"><?php echo $correo; ?></p>
+            <p class="nomper1">Nombre Sucursal</p>
+            <p class="correoper1">Correo de Sucursal</p>
+          </div>
+          <div class="contactsucur1">
+            <p class="direcinf"><?php echo $s['estado']." ".$s['ciudad']." ".$s['colonia']." ".$s['direccion']?></p>
+            <p class="direcinf1">Ubicada en</p>
+            <p class="cpinf"><?php echo $s['codigo_postal']; ?></p>
+            <p class="cpinf1">Código Postal</p>
+          </div>
+          <div class="contactsucur2">
+            <p class="telinf"><?php echo $s['telefono']; ?></p>
+            <p class="telinf1">Teléfono</p>
+          </div>
+          <?php
+        }
+        ?>
       </div>
       <address>
-        <p>Documento Generado por: <span class="remarca">Easy Sal</span></p>
-        <p>Datos de miNegocio: <span class="remarca">2382480825</span></p>
-        <p class="correoinfo"><span class="remarca">micorreo@gmail.com</span></p>
+        <p>Documento Generado por: <span class="remarca">Easy Sale</span></p>
+        <p>Teléfono de <?php echo $nombreNegocio; ?>: <span class="remarca"><?php echo $telefonoNegocio; ?></span></p>
+        <p class="correoinfo"><span class="remarca"><?php echo $correoNegocio; ?></span></p>
       </address>
     </article>
     </div>
@@ -479,30 +495,30 @@
     }, 1500);
     const descargarReporte = document.getElementById("descargarReporte");
     descargarReporte.addEventListener("click", (e) => {
-      alert("m");
+      // alert("m");
       // e.preventDefault();
       console.log("click");
-          // const element = document.getElementById("ticket");
-          // html2pdf()
-          //   .set({
-          //     margin: 1,
-          //     filename: "prueba.pdf",
-          //     image: {
-          //       type: "jpeg",
-          //       quality: 0.98,
-          //     },
-          //     html2canvas: {
-          //       scale: 3,
-          //       letterRendering: true,
-          //     },
-          //     jsPDF: {
-          //       unit: "in",
-          //       format: "a3",
-          //     },
-          //   })
-          //   .from(element)
-          //   .save()
-          //   .catch((err) => console);
+          const element = document.getElementById("ticket");
+          html2pdf()
+            .set({
+              margin: 1,
+              filename: "prueba.pdf",
+              image: {
+                type: "jpeg",
+                quality: 0.98,
+              },
+              html2canvas: {
+                scale: 3,
+                letterRendering: true,
+              },
+              jsPDF: {
+                unit: "in",
+                format: "a3",
+              },
+            })
+            .from(element)
+            .save()
+            .catch((err) => console);
         });
 
 </script>  

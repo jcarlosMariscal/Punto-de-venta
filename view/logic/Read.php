@@ -218,17 +218,6 @@
         }
     }
 
-    function selectInfoPer(){
-      try {
-        $sql = "SELECT * from personal";
-        $query = $this->cnx->prepare($sql);
-        $read = $query->execute();
-        if ($read) return $query;
-      } catch (PDOException $th) {
-        return false;
-      }
-    }
-
     function editProveedor($id)
     {
         try {

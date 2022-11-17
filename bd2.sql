@@ -64,7 +64,7 @@ CREATE TABLE cliente(
 CREATE TABLE caja(
   id_caja INT NOT NULL AUTO_INCREMENT,
   caja VARCHAR(255) NOT NULL,
-  base INT NOT NULL
+  base INT NOT NULL,
   total INT NOT NULL,
   PRIMARY KEY (id_caja)
 );
@@ -156,7 +156,7 @@ CREATE TABLE compra_producto(
 );
 
 INSERT INTO tipo_negocio(tipo) VALUES ('Tienditas'),('Abarrotes'),('Papelerías'), ('Zapaterías');
-INSERT INTO caja(caja, total) VALUES (01,2000, 2000), (02,1000,1000), (03,3000,3000);
+INSERT INTO caja(caja, base, total) VALUES (01,2000, 2000), (02,1000,1000), (03,3000,3000);
 INSERT INTO rol(rol) VALUES ('Gerente'),('Ventas');
 INSERT INTO unidad(unidad, descripcion) VALUES ('Kilogramo', "Un kilogramo"),('Tara', "30 Kilogramos");
 INSERT INTO proveedor(nombre) VALUES ('Proveedor en general');

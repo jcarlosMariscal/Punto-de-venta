@@ -1026,10 +1026,10 @@ nav {
 
 /* Codigo login*/
 .login-box {
-  width: 350px;
-  height: 460px;
-  /* background: #17373b; */
-  color: #fff;
+  width: 400px;
+  height: 520px;
+  background-color: #fff;
+  color: #1a3336;
   top: 50%;
   left: 50%;
   position: absolute;
@@ -1042,15 +1042,22 @@ nav {
   height: 100px;
   border-radius: 50%;
   position: absolute;
-  top: -50px;
+  top: 15px;
   left: calc(50% - 50px);
 }
 .login-box h1 {
   margin: 0;
-  padding: 0 0 20px;
+  padding: 20px 0 20px;
   text-align: center;
   font-size: 22px;
-  top: 10%;
+  margin-top: 50px;
+}
+.bienv {
+  margin: 0;
+  padding: 10px 0 20px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
 }
 .login-box label {
   margin: 0;
@@ -1065,11 +1072,11 @@ nav {
 .login-box input[type="text"],
 .login-box input[type="password"] {
   border: none;
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid #1a3336;
   background: transparent;
   outline: none;
   height: 40px;
-  color: #fff;
+  color: #1a3336;
   font-size: 16px;
 }
 input[type="submit"] {
@@ -1088,8 +1095,8 @@ input[type="submit"] {
   border: #17373b;
   outline: none;
   height: 40px;
-  background-color: #f8f8f8;
-  color: #17373b;
+  background-color: #1a3336;
+  color: #fff;
   font-size: 18px;
   border-radius: 10px;
 }
@@ -1097,6 +1104,17 @@ input[type="submit"] {
   margin: 0;
   text-align: top;
   font-size: 22px;
+}
+.cuent {
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.quitar {
+  text-decoration: none;
+  color: #0c2a2e;
+  font-size: 18px;
+  font-weight: bold;
 }
 select {
   -webkit-appearance: none;
@@ -1712,3 +1730,263 @@ select {
   display: none;
 }
 /* --------------- FILTRAR PRODUCTOS ----------------------------------- */
+.fond {
+  background-image: url(../img/fondo.png);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+/*************************Hoja codigo información de Personal*******************************/
+
+article {
+  width: 210mm;
+  height: 297mm;
+  margin: 20px auto;
+  position: relative;
+}
+/************************/
+.contenedor-head {
+  padding: 8%;
+}
+.title-princ {
+  position: absolute;
+  text-align: center;
+  font-weight: bold;
+  font-size: 30px;
+  margin-left: 255px;
+}
+.title-subp {
+  position: absolute;
+  text-align: center;
+  margin-left: 286px;
+  font-size: 20px;
+  font-weight: bold;
+  padding-top: 45px;
+}
+.title-subsp {
+  margin-left: 250px;
+  font-size: 18px;
+  padding-top: 100px;
+}
+.fech {
+  position: absolute;
+  padding-top: 30px;
+  font-size: 18px;
+  margin-left: 500px;
+}
+
+.infp {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 15px;
+}
+.infp1 {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  padding-top: 150px;
+}
+.nomper {
+  position: absolute;
+  font-weight: bold;
+}
+.nomper1 {
+  position: absolute;
+  padding-top: 20px;
+}
+.correoper {
+  position: absolute;
+  font-weight: bold;
+  margin-left: 380px;
+}
+.correoper1 {
+  position: absolute;
+  margin-left: 380px;
+  padding-top: 20px;
+}
+.telefinf {
+  position: absolute;
+  margin-left: 378px;
+  padding-top: 60px;
+  font-weight: bold;
+}
+.telefinf1 {
+  position: absolute;
+  margin-left: 380px;
+  padding-top: 80px;
+}
+
+.direcinf {
+  position: absolute;
+  padding-top: 60px;
+  font-weight: bold;
+}
+.direcinf1 {
+  position: absolute;
+  padding-top: 80px;
+}
+.cpinf {
+  position: absolute;
+  margin-left: 378px;
+  padding-top: 60px;
+  font-weight: bold;
+}
+.cpinf1 {
+  position: absolute;
+  margin-left: 380px;
+  padding-top: 80px;
+}
+.telinf {
+  position: absolute;
+  padding-top: 120px;
+  font-weight: bold;
+}
+.telinf1 {
+  position: absolute;
+  padding-top: 140px;
+}
+/**********************************************************/
+address {
+  position: absolute;
+  bottom: 8mm;
+  right: 20mm;
+}
+
+.ticon {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+}
+/* Your CSS below here */
+
+article {
+  background: no-repeat top, no-repeat bottom,
+    linear-gradient(
+        rgba(26, 51, 54, 0.4) 0%,
+        rgba(26, 51, 54, 0) 20%,
+        rgba(26, 51, 54, 0) 80%,
+        rgba(26, 51, 54, 0.4) 100%
+      )
+      white;
+  border-top: 3mm solid #1a3336;
+  border-bottom: 3mm solid #1a3336;
+}
+.marc,
+.remarc,
+.remarca,
+.corroempresa {
+  font-weight: bold;
+}
+.correoinfo {
+  margin-left: 150px;
+}
+
+/*------------------------------PRODUCTOS---------------------------------*/
+.searchproduc {
+  width: 100%;
+  position: relative;
+  display: flex;
+  margin-right: 300px;
+}
+.searchTerm {
+  width: 100%;
+  border: 3px solid var(--color-one-secondary);
+  border-left: none;
+  padding: 5px;
+  height: 40px;
+  border-radius: 0 5px 5px 0;
+  outline: none;
+  color: #1a3336;
+}
+
+.search-produc:focus {
+  color: var(--color-one-secondary);
+}
+
+.searchButton {
+  width: 52px;
+  height: 40px;
+  border: 1px solid var(--color-one-secondary);
+  background: var(--color-one-secondary);
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 20px;
+}
+.searchCode {
+  width: 52px;
+  height: 40px;
+  border: 1px solid var(--color-one-secondary);
+  background: var(--color-one-secondary);
+  text-align: center;
+  color: #fff;
+  border-radius: 5px 0 0 5px;
+  cursor: pointer;
+  font-size: 20px;
+}
+.search-p {
+  width: 100%;
+}
+.alinearp {
+  display: flex;
+}
+.btn-prod {
+  background-color: var(--color-one);
+  color: var(--secondary-color);
+  border: none;
+  height: 35px;
+  text-align: center;
+  padding: 5px;
+  width: 35%;
+}
+.cargarP {
+  width: 170px;
+  position: relative;
+}
+.custom1-input-file {
+  background-color: var(--color-menu-primary);
+  color: var(--secondary-color);
+  cursor: pointer;
+  height: 35px;
+  font-size: 16px;
+  overflow: hidden;
+  padding: 5px;
+  position: relative;
+  text-align: center;
+  width: 170px;
+  margin-left: 5px;
+}
+
+.custom1-input-file:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: #2f585c;
+  color: var(--secondary-color);
+}
+.custom1-input-file .input-file {
+  border: 10000px solid transparent;
+  cursor: pointer;
+  font-size: 10000px;
+  margin: 0;
+  opacity: 0;
+  outline: 0 none;
+  padding: 0;
+  position: absolute;
+  right: -1000px;
+  top: -1000px;
+}
+
+.btn-prod:hover {
+  transition: all 0.5s ease-in-out;
+  background-color: var(--color-one-secondary);
+  color: var(--secondary-color);
+}
+.btn-prodsubir {
+  background-color: var(--color-primary);
+  color: var(--secondary-color);
+  border: none;
+  padding: 5px;
+  width: 100%;
+  margin-left: 30px;
+}

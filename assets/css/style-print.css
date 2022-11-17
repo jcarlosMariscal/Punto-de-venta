@@ -1,21 +1,73 @@
 .ticket-generado {
   margin: auto;
-  background: rgb(239, 243, 244);
-  /* border: 3px solid #000; */
-  height: 300px;
-  width: 250px;
-  padding: 10px;
+  border: 2px solid #ebeded;
+  width: 310px;
   text-align: center;
 }
+.ticket-co span {
+  display: block;
+}
+.ticket-header {
+  background: #ebeded;
+  padding: 12px;
+}
 .ticket-generado h3 {
-  font-size: 12px;
+  font-size: 11px;
 }
-.ticket-generado p {
-  font-size: 10px;
+.ticket-name {
+  font-size: 20px;
+  text-align: center;
+  color: #000;
 }
-.mitabla {
-  background-color: aliceblue;
+.ticket-name1 {
+  font-size: 14px;
+  text-align: center;
+  color: #000;
 }
 .ticket-logo {
   width: 40px;
+}
+.ticket-subname {
+  margin-top: 1px;
+  font-size: 11px;
+  display: block;
+  color: #000;
+  text-align: center;
+}
+.bord {
+  border: hidden;
+  color: #fff;
+  font-size: 11px;
+}
+.ticket-total,
+.ticket-efectivo,
+.ticket-cambio {
+  font-size: 11px;
+  margin-left: 165px;
+  font-weight: bold;
+}
+.ticket-total1 {
+  font-size: 11px;
+  margin-left: 28px;
+}
+.ticket-efectivo1 {
+  font-size: 11px;
+  margin-left: 4px;
+}
+.ticket-cambio1 {
+  font-size: 11px;
+  margin-left: 6px;
+}
+.ticket-articulo,
+.ticket-tart,
+.ticket-contac {
+  font-size: 11px;
+}
+.division1 {
+  position: absolute;
+  margin-top: 85px;
+  margin-left: -130px;
+}
+.bordert th {
+  border: #fff;
 }

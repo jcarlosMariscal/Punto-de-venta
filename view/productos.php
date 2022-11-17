@@ -36,26 +36,25 @@ if ($deletProducto) {
 <section class="container">
   <section class="table-productos">
     <div class="product-filter">
-      <div class="row">
-        <div class="col">
-          <form action="">
-            <label for="">Buscar por:</label>
-            <select name="" id="">
-              <option value="">Código</option>
-              <option value="">Nombre del Producto</option>
-              <!-- <option value="">Categoria</option> -->
-            </select>
-            <input type="text" name="" id="" class="input" name="buscar" id="buscar">
-          </form>
+      <div class="search-p alinearp">
+        <div class="searchproduc">
+          <button type="submit" class="searchCode"><i class="fa fa-barcode fa-lg"></i></button>
+          <button type="submit" class="searchButton"><i class="fa fa-search fa-lg"></i></button>
+          <input type="text" class="searchTerm" placeholder="Buscar Producto">
         </div>
-        <br>
-        <div class="col-2">
-          <div class="mb-2">
-            <button type="button" data-bs-toggle="modal" data-bs-target="#excel" class="btn btn-primary subir">Importar Excel</button>
+        <a href="" class="btn-prm btn-prod" data-bs-toggle="modal" data-bs-target=".agregarProducto">
+          <i class="fa-solid fa-plus fa-lg"></i> Agregar Producto
+        </a>
+        <div class="cargarP col-md-6 col-sm-6 col-xs-6">
+          <div class="input-file btn-prodsubir">
+            <a href="#"  data-bs-toggle="modal" data-bs-target="#excel" class="text-white" style="text-decoration:none"><i class="fa-solid fa-arrow-up-from-bracket fa-lg"></i> Cargar productos</a>
           </div>
+            <!-- <input type="file" name="logo" id="myFile" class="input-file btn-prodsubir" value="">
+            <i class="fa-solid fa-arrow-up-from-bracket fa-lg"></i> Cargar Productos -->
         </div>
       </div>
     </div>
+    <br>
     <div class="table-produc">
       <table table bgcolor="#FFFFFF" class="table table-bordered">
         <thead>

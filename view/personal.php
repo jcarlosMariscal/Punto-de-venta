@@ -32,7 +32,7 @@
                 <a href="" class="btn-prm btn-cancelar" data-bs-toggle="modal" data-bs-target=".agregarPersonal"><i class="fa-solid fa-plus fa-lg"></i> Agregar</a>
             </div>
         </div>
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-1">
           <?php
           $result1 = $query->selectTable('personal');
             foreach ($result1 as $row) {
@@ -208,6 +208,7 @@
     $nombre = $row['nombre'];
     $correo = $row['correo'];
     $telefono = $row['telefono'];
+    $telefono = $telefono || 0;
     $ciudad = $row['ciudad'];
     $domicilio = $row['domicilio'];
     $id_sucursal = $row['id_sucursal'];
@@ -338,51 +339,82 @@
   ?>
 
 
-  <div class="modal fade  modal-dialog-scrollable" id="static<?php echo $row['id_personal'] ?>">
-  <div class="modal-dialog">
+  <div class="modal fade" id="static<?php echo $row['id_personal'] ?>">
+  <div class="modal-dialog modal-fullscreen-xxl-down">
     <div class="borde modal-content">
       <div class="modal-header">
         <h3 class="modal-title" id="exampleModalLabel">Información del Personal🧾</h3>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
-      <div class="modal-body margen1">
-          <div class="modal-left-content">
-              <img class="centrar-logo" src="../assets/img/favicon.png" alt="Logo">
-              <h3 class="title-name text-center"> Easy </h3>
-              <h3 class="title-name text-center"><span> Sale </span></h3>
-          </div>
-          <div class="modal-main-content1">
-              <div class="form-group ">
-                  <section class="ticket__section">
-                    <h5>Nombre: <?php echo $nombre ?></h5>
-                  </section>
-                  <section class="ticket__section">
-                      <h5>Correo: <?php echo $correo ?></h5>
-                  </section>
-                  <section class="ticket__section">
-                      <h5>Teléfono: <?php echo $telefono ?></h5>
-                  </section>
-                  <section class="ticket__section">
-                      <h5>Ciudad:   <?php echo $ciudad ?></h5>
-                  </section>
-                  <section class="ticket__section">
-                      <h5>Domicilio:  <?php echo $domicilio ?></h5>
-                  </section>
-                  <section class="ticket__section">
-                      <h5>Sucursal:   <?php echo $id_sucursal ?></h5>
-                  </section>
-                  <section class="ticket__section">
-                      <h5>Caja:   <?php echo $id_caja ?></h5>
-                  </section>
-                  <section class="ticket__section">
-                      <h5>Rol:  <?php echo $id_rol ?></h5>
-                  </section>
-              </div>
-          </div>
+      <div class="modal-body">
+      <article id="ticket">
+      <div class="contenedor-head">
+        <img src="../assets/img/favicon.png" class="ticon" alt="">
+        <p class="title-princ"><span>Nova Tech</span></p>
+        <p class="title-subp"><span>Easy Sal</span></p>
+        <p class="fech">Fecha: 23/11/2022</p>
+        <p class="title-subsp">Datos de personal</p>
+        <p>
+            El presente documento muestra la infomación del personal <span class="remarc"><?php echo $nombre ?></span>
+            que labora en el negocio <span class="remarc"><?php echo $id_sucursal ?> (nombre del negocio)</span>, desempeñandose bajo el rol de <span class="remarc"><?php echo $id_rol ?>(vendedor)</span>
+            en la sucuursal <span class="remarc"><?php echo $domicilio ?></span> siendo sus principales actividades las siguientes:
+        </p>
+        <ul>
+          <li>Registrar la venta de productos</li>
+          <li>Realizar su corte de caja</li>
+          <li>Realizar reportes</li>
+          <li>etc.</li>
+        </ul>
+        <p>
+          <span>En caso de requerir la corrección de algún dato dirigirse al gerente/encargado de la
+            suscursal donde labora o comunicarse a los datos de contacto de la sucursal.
+          </span>
+        </p>
+        <p class="infp">
+          <span>Información de Personal y datos de contacto</span>
+        </p>
+        <div class="contact">
+          <p class="nomper"><?php echo $nombre ?></p>
+          <p class="correoper"><?php echo $correo ?></p>
+          <p class="nomper1">Nombre y apellido</p>
+          <p class="correoper1">Correo de personal</p>
+        </div>
+        <div class="contact1">
+          <p class="telefinf"><?php echo $telefono ?></p>
+          <p class="direcinf"><?php echo $ciudad ?></p>
+          <p class="telefinf1">Teléfono de Personal</p>
+          <p class="direcinf1">Dirección de personal</p>
+        </div>
+        <p class="infp1">
+          <span>Información de lugar de trabajo</span>
+        </p>
+        <div class="contactsucur">
+          <p class="nomper">2 Norte</p>
+          <p class="correoper">prueba@gmail.com</p>
+          <p class="nomper1">Dirección Sucursal</p>
+          <p class="correoper1">Correo de sucursal</p>
+        </div>
+        <div class="contactsucur1">
+          <p class="direcinf">Puebla, Tehuacán, Col. Centro</p>
+          <p class="direcinf1">Ubicada en</p>
+          <p class="cpinf">75700</p>
+          <p class="cpinf1">Código Postal</p>
+        </div>
+        <div class="contactsucur2">
+          <p class="telinf">2382480825</p>
+          <p class="telinf1">Teléfono</p>
+        </div>
       </div>
+      <address>
+        <p>Documento Generado por: <span class="remarca">Easy Sal</span></p>
+        <p>Datos de miNegocio: <span class="remarca">2382480825</span></p>
+        <p class="correoinfo"><span class="remarca">micorreo@gmail.com</span></p>
+      </address>
+    </article>
+    </div>
       <div class="modal-footer">
         <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
-        <a href="pdf/per_pdf.php" target="_blank"><button type="button" class="btn-imprimir">Imprimir</button></a>
+        <button type="button" class="btn-save-modal" id="descargarReporte">Descargar</button>
       </div>
     </div>
   </div>
@@ -445,5 +477,32 @@
     setTimeout(function() {
       localStorage.removeItem("deletPer");
     }, 1500);
+    const descargarReporte = document.getElementById("descargarReporte");
+    descargarReporte.addEventListener("click", (e) => {
+      alert("m");
+      // e.preventDefault();
+      console.log("click");
+          // const element = document.getElementById("ticket");
+          // html2pdf()
+          //   .set({
+          //     margin: 1,
+          //     filename: "prueba.pdf",
+          //     image: {
+          //       type: "jpeg",
+          //       quality: 0.98,
+          //     },
+          //     html2canvas: {
+          //       scale: 3,
+          //       letterRendering: true,
+          //     },
+          //     jsPDF: {
+          //       unit: "in",
+          //       format: "a3",
+          //     },
+          //   })
+          //   .from(element)
+          //   .save()
+          //   .catch((err) => console);
+        });
 
 </script>  

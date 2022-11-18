@@ -54,19 +54,27 @@ const nota_compra = () => {
                 </div>
                 <div class="modal-body" id="ticket">
                     <div class="ticket-generado">
-                        <img src="../assets/img/icono1.png" class="ticket-logo">
-                        <h3 class="text-center">${get.nombre}<h3>
-                        <p class="text-center">Fecha: 30-06-2022</p>
-                        <p class="text-center">Compra No. 85</p>
-                        <p class="text-center">${get.estado}, ${get.ciudad}, ${get.colonia}, ${get.direccion}, ${get.codigo_postal}</p>
-                        <p class="text-center">${get.telefono}</p>
+                    <div class="ticket-header">
+                        <div class="ticket-co">
+                            <img src="../assets/img/icono1.png" class="ticket-logo">
+                            <span class="ticket-name">EASY SAL</span>
+                            <span class="ticket-name1">Punto de venta</span>
+                        </div>
+                      </div>
 
-                        <table table bgcolor= "#FFFFFF"  class="table table-bordered">
+                        <span class="division1">------------------------------------------</span>
+                        <h3 class="ticket-subname">Le atendio: ${get.nombre}<h3>
+                        <span class="ticket-subname">Nombre de la empresa</span>
+                        <span class="ticket-subname">${get.estado}, ${get.ciudad}, ${get.colonia}, ${get.direccion}, ${get.codigo_postal}</span>
+                        <span class="ticket-subname">${get.telefono}</span>
+                        <span class="ticket-subname">empresa@gmail.com</span>
+                        <span class="ticket-subname">Fecha: 30-06-2022 Compra No. 85</span>
+                        <table class="table bordert">
                             <thead>
                             <tr>
-                                <th scope="col">Can.</th>
-                                <th scope="col">Prod.</th>
-                                <th scope="col">P. compra</th>
+                                <th scope="col">Cantidad</th>
+                                <th scope="col">Producto</th>
+                                <th scope="col">Precio</th>
                                 <th scope="col">Subtotal</th>
                             </tr>
                             </thead>
@@ -74,6 +82,7 @@ const nota_compra = () => {
                                 
                             </tbody>
                         </table>
+
                         <p>Total Neto: $<span id="total_neto"></span></p>
                     </div>
                     <div class="modal-footer">

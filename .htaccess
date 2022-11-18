@@ -1,0 +1,4 @@
+RewriteEngine On
+RewriteRule bienvenido index.php [L]
+RewriteRule registro add_negocio.php [L]
+RewriteRule login login.php [L]

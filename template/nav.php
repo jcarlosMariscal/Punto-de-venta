@@ -24,18 +24,18 @@ require_once "config/Connection.php";
     <hr>
     <ul class="navbar__ul">
       <li class="nav-item navbar__li">
-        <a href="index.php?p=productos" class="ul__link" aria-current="page">
+        <a href="productos" class="ul__link" aria-current="page">
           <i class="nav-icon fa-solid fa-boxes-stacked"></i><span class="li__info">Productos</span>
         </a>
       </li>
       <li class="navbar__li">
-        <a href="index.php?p=proveedor" class="text-white ul__link">
+        <a href="proveedor" class="text-white ul__link">
           <i class="nav-icon fa-solid fa-hands-holding-circle"></i>
           <span class="li__info">Proveedor</span>
         </a>
       </li>
       <li class="navbar__li">
-        <a href="index.php?p=ventas" class="text-white ul__link">
+        <a href="ventas" class="text-white ul__link">
           <i class="nav-icon fa-solid fa-file-invoice-dollar"></i>
           <span class="li__info">Ventas</span>
         </a>
@@ -44,13 +44,13 @@ require_once "config/Connection.php";
       if($_SESSION['rol'] == 0 || $_SESSION['rol'] == 1){
         ?>
         <li class="navbar__li">
-          <a href="index.php?p=compras" class="text-white ul__link">
+          <a href="compras" class="text-white ul__link">
             <i class="nav-icon fa-solid fa-handshake"></i>
             <span class="li__info">Compras</span>
           </a>
         </li>
         <li class="navbar__li">
-          <a href="index.php?p=personal" class="text-white ul__link">
+          <a href="personal" class="text-white ul__link">
             <i class="nav-icon fa-solid fa-user-group"></i>
             <span class="li__info">Personal</span>
           </a>
@@ -62,7 +62,7 @@ require_once "config/Connection.php";
       if($_SESSION['rol'] == 0){
         ?>
         <li class="navbar__li">
-          <a href="index.php?p=configuration" class="text-white ul__link">
+          <a href="configuracion" class="text-white ul__link">
             <i class="nav-icon fa-solid fa-gears"></i>
             <span class="li__info">Configuración</span>
           </a>

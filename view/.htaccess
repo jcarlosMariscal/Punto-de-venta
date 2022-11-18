@@ -1,0 +1,10 @@
+RewriteEngine On
+RewriteRule inicio index.php [L]
+RewriteRule configuracion index.php?p=configuration [L]
+RewriteRule personal index.php?p=personal [L]
+RewriteRule compras index.php?p=compras [L]
+RewriteRule ventas index.php?p=ventas [L]
+RewriteRule proveedor index.php?p=proveedor [L]
+RewriteRule productos index.php?p=productos [L]
+RewriteRule ver-ventas index.php?p=ver-ventas [L]
+RewriteRule ver-compras index.php?p=ver-compras [L]

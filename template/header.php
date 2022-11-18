@@ -22,16 +22,16 @@
             case 'personal':
               break;
             case 'ventas':
-                echo '<li><a class="dropdown-item" href="index.php?p=ver-ventas" aria-current="page">Ver ventas</a></li>';
+                echo '<li><a class="dropdown-item" href="ver-ventas" aria-current="page">Ver ventas</a></li>';
                 break;
             case 'compras':
-              echo '<li><a class="dropdown-item" href="index.php?p=ver-compras" aria-current="page">Ver compras</a></li>';
+              echo '<li><a class="dropdown-item" href="ver-compras" aria-current="page">Ver compras</a></li>';
                 break;
             case 'ver-compras':
-                echo '<li><a class="dropdown-item" href="index.php?p=compras" aria-current="page">Compras</a></li>';
+                echo '<li><a class="dropdown-item" href="compras" aria-current="page">Compras</a></li>';
                 break;
             case 'ver-ventas':
-                echo '<li><a class="dropdown-item" href="index.php?p=ventas" aria-current="page">Ventas</a></li>';
+                echo '<li><a class="dropdown-item" href="ventas" aria-current="page">Ventas</a></li>';
                 break;
             case 'proveedor':
                 break;

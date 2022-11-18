@@ -37,14 +37,14 @@ if(!empty($_POST)){
         ?>
           <script>
             localStorage.setItem("login", "true");
-            window.location.href = "../index.php";
+            window.location.href = "../inicio";
           </script>    
         <?php
       }else{
         ?>
           <script>
             alert("Verifique que sus datos sean correctos");
-            window.location.href = "../../index.php";
+            window.location.href = "bienvenido";
           </script>    
         <?php
 

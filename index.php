@@ -24,8 +24,8 @@
          <img class="log" src="assets/img/favicon.png" alt="logo">
          <br>
          <div class="input-btn-adm">
-          <input onclick="location.href='login.php'"  type="submit" value="Iniciar Sesión" id="btn-send">
-          <input onclick="location.href='add_negocio.php'" type="submit" value="Registrar" id="btn-send">
+          <input onclick="location.href='login'"  type="submit" value="Iniciar Sesión" id="btn-send">
+          <input onclick="location.href='registro'" type="submit" value="Registrar" id="btn-send">
          </div>
     </div>
 </body>

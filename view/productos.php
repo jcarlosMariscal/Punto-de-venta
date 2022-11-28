@@ -38,11 +38,11 @@ if ($deletProducto) {
     <div class="product-filter">
       <div class="search-p alinearp">
         <div class="searchproduc">
-          <button type="submit" class="searchCode"><i class="fa fa-barcode fa-lg"></i></button>
+          <!-- <button type="submit" class="searchCode"><i class="fa fa-barcode fa-lg"></i></button>
           <button type="submit" class="searchButton"><i class="fa fa-search fa-lg"></i></button>
-          <input type="text" class="searchTerm" placeholder="Buscar Producto">
+          <input type="text" class="searchTerm" placeholder="Buscar Producto"> -->
         </div>
-        <a href="index.php?p=compras" class="btn-prm btn-prod">
+        <a href="compras" class="btn-prm btn-prod">
           <i class="fa-solid fa-plus fa-lg"></i> Agregar Producto
         </a>
         <div class="cargarP col-md-6 col-sm-6 col-xs-6">
@@ -268,22 +268,7 @@ if ($deletProducto) {
           <div class="modal-main-content1">
             <div class="form-group">
               <form action="logic/createData.php" method="post" name="frmExcelImport" id="frmExcelImport" enctype="multipart/form-data">
-                <label for="">Selecciona la unidad a la que quiere insertar datos</label>
-                <p class="input-error">* Rellena este campo correctamente</p>
-                <select name="id_unidad" id="id_unidad" class="select-user-rol">
-                  <?php
-                  $unidad = $query->idUnidad(); //Hacer consulta para leer los tipos de negocios.
-                  ?>
-                  <?php
-                  foreach ($unidad as $tipo) {
-                  ?>
-                    <option value="<?php echo $tipo['id_unidad']; ?>" selected><?php echo $tipo['id_unidad']; ?></option>
-                  <?php
-                  }
-                  ?>
-                </select>
-                <br>
-                <br>
+                
                 <input required class="form-control" type="file" name="file" id="file" accept=".xls,.xlsx" multiple>
             </div>
           </div>

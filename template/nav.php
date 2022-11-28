@@ -14,7 +14,7 @@ require_once "config/Connection.php";
 <nav id="navbar">
   <div class="d-flex flex-column flex-shrink-0 p-3 text-white bg-transparent" style="width: 22vw">
     <div class="info-pv">
-      <a href="index.php?p=main" class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
+      <a href="inicio" class="d-flex align-items-center mb-3 mb-md-0 text-white text-decoration-none">
         <img src="../assets/img/logo/<?php echo $logo; ?>" class="imag img-fluid" alt="...">
         <span class="nombre-pv"><?php echo $nombreNegocio; ?></span>
       </a>

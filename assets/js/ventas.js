@@ -5,7 +5,34 @@ const d = document;
 var table_ventas = d.getElementById("table-body-ventas");
 let formCodeProduct = d.getElementById("formCodeProduct");
 let efectivo_cliente = d.getElementById("efectivo_cliente");
+let cambio_cliente = d.getElementById("cambio_cliente");
 let table_body = d.getElementById("table-body-ventas");
+let btnVender = d.getElementById("vender");
+
+const validarN = (miInput, campo) => {
+  let valor = miInput.value;
+  if (!/^\d*$/.test(valor) || valor == "" || valor <= 0) {
+    Swal.fire({
+      title: "Rellene los campos correctamente.",
+      text: `El valor del campo ${campo} debe ser un valor número y ser mayor a cero`,
+      icon: "error", //error,
+      timer: 2000,
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      confirmButtonColor: "#47874a",
+    });
+    btnVender.classList.add("deshabilitar");
+  } else btnVender.classList.remove("deshabilitar");
+};
+if (efectivo_cliente) {
+  efectivo_cliente.addEventListener("keyup", () =>
+    validarN(efectivo_cliente, "efectivo")
+  );
+  efectivo_cliente.addEventListener("blur", () =>
+    validarN(efectivo_cliente, "efectivo")
+  );
+}
 
 formCodeProduct.addEventListener("submit", (e) => {
   let code_product = d.getElementById("code-product");
@@ -122,7 +149,6 @@ efectivo_cliente.addEventListener("keyup", (e) => {
         "Introduce una cantidad correcta, debe ser mayor o igual a la suma total de la venta"
       );
     } else {
-      let cambio_cliente = d.getElementById("cambio_cliente");
       cambio_cliente.innerHTML = ` $${
         efectivo_cliente.value - calcularTotal()
       }`;

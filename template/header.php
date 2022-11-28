@@ -49,13 +49,13 @@
           <li><a class="dropdown-item" href="#">Productos</a></li>
           <li><a class="dropdown-item" href="#">Proveedores</a></li>
           <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="#">Ayuda</a></li>
+          <li><a class="dropdown-item" href="ayuda">Ayuda</a></li>
       </ul>
     </div>
 
     <div class="align-items-center header-user">
         <div class="information">
-          <a href="index.php?p=information"><i class="fa-solid fa-circle-question"></i></a>
+          <a href="ayuda"><i class="fa-solid fa-circle-question"></i></a>
         </div>
         <div class="rol-user">
           <span class="text-white">

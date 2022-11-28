@@ -54,10 +54,10 @@
                       <tr class="prod">
                         <td><?php echo $row['id_proveedor']; ?></td>
                         <td><?php echo $row['nombre']; ?></td>
-                        <td><?php echo $row['telefono']; ?></td>
-                        <td><?php echo $row['correo']; ?></td>
-                        <td><?php echo $row['contacto']; ?></td>
-                        <td><?php echo $row['cargo']; ?></td>
+                        <td class="text-center"><?php echo (!$row['telefono']) ? "<b>--</b>" : $row['telefono'] ; ?></td>
+                        <td class="text-center"><?php echo (!$row['correo']) ? "<b>--</b>" : $row['correo'] ; ?></td>
+                        <td class="text-center"><?php echo (!$row['contacto']) ? "<b>--</b>" : $row['contacto'] ; ?></td>
+                        <td class="text-center"><?php echo (!$row['cargo']) ? "<b>--</b>" : $row['cargo'] ; ?></td>
                         <?php
                         if($row['nombre'] != "Proveedor en general"){
                           ?>

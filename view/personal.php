@@ -1,6 +1,12 @@
 <?php
   $deletePer = (isset($_GET['delete']) ? $_GET['delete'] : NULL);
   $editPer = (isset($_GET['edit']) ? $_GET['edit'] : NULL);
+    $readNegocio = $query->readNegocio($_SESSION['user']['id_negocio']); 
+  
+  foreach($readNegocio as $row){
+    $logoNegocio = $row['logo'];
+    $nombreNegocio = $row['nombre'];
+  }
 
   if($deletePer){
   ?>
@@ -78,15 +84,12 @@
                           </div>
                         </li>
                     </ul>
-                    <div style="font-size: 10px; background-color: #D37864; color: #fff; padding: 2px;" >
-                      La funcionalidad de editar y ver información están en desarrollo.
-                    </div>
                     <div class="row text-center mt-2">
                       <div class="col p-2">
-                        <a href="index.php?p=personal&edit=<?php echo $get['id_admin']; ?>" class="btn-tb-update deshabilitar"><i class="fa-solid fa-pen"></i></a>
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#adminEdit" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a>
                       </div>
                       <div class="col p-2 btn-tb-info">
-                        <a href="" data-bs-toggle="modal" data-bs-target="#static<?php echo $get['id_admin'] ?>" class="btn-tb-info deshabilitar"><i class="fa-solid fa-circle-info"></i></a>
+                        <a href="" data-bs-toggle="modal" data-bs-target="#adminInfo" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a>
                       </div>
                     </div>
                   </div>
@@ -270,7 +273,7 @@
     $nombre = $row['nombre'];
     $correo = $row['correo'];
     $telefono = $row['telefono'];
-    $telefono = $telefono || 0;
+    // $telefono = $telefono || 0;
     $ciudad = $row['ciudad'];
     $domicilio = $row['domicilio'];
     $id_sucursal = $row['id_sucursal'];
@@ -383,17 +386,95 @@
     </div>
   </div>
 </div>
+    <!-- EDITAR ADMIN -->
+  <?php
+    $editAdmin = $query->selectTableId("administrador", "id_admin",$_SESSION['user']['id_user'], "nombre, correo, telefono");
+    foreach($editAdmin as $row){
+    $nombre = $row['nombre'];
+    $correo = $row['correo'];
+    $telefono = $row['telefono'];
+    }
+  ?>
+<div class="modal fade" id="adminEdit" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Editar Administrador</h5>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class="permisos">
+                <form class="form-user" id="formularioEdit" method="POST" action="logic/updateData.php">
+              <input type="hidden" name="table" id="action_per" value="editarAdmin">
+              <input type="hidden" name="id_admin" id="id_admin" value="<?php echo $_SESSION['user']['id_user']; ?>">
+              <div class="input-user-name input-user" id="group-nombre">
+                <label for="">Nombre </label>
+                <input type="text" class="input" name="nombre" id="nombre" value="<?php echo $nombre; ?>">
+                <p class="input-error">*El nombre no debe quedar vacío, puede tener letras y acentos.</p>
+              </div>
+              <div class="input-user-email input-user" id="group-correo">
+                <label for="">Correo</label>
+                <input type="email" name="correo" id="correo" class="input" value="<?php echo $correo; ?>">
+                <p class="input-error">*Este campo debe ser un tipo de E-mail valido.</p>
+              </div>
+              <div class="input-user-tel input-user" id="group-telefono">
+                <label for="">Teléfono</label>
+                <input type="number_format" name="telefono" id="telefono" class="input" value="<?php echo $telefono; ?>">
+                <p class="input-error">*Este campo debe ser númerico y tener 10 caracteres.</p>
+              </div>
+              <br>
+              <div class="input-submit modal-footer">
+                <button type="button" class="btn-close-modal" data-bs-dismiss="modal"><i class="fa-solid fa-xmark fa-lg"></i> Cerrar</button>
+                <button type="submit" class="btn-cfg" id="btn-send"><i class="fa-solid fa-plus fa-lg"></i> Actualizar</button>
+                <!-- <input type="submit" class="btn-cfg" value="Agregar" id="btn-send"> -->
+              </div>
+            </form>
+            </div>
+            <br>
+        </div>
+    </div>
+  </div>
+</div>
+
+<!-- INFORMACIÓN ADMIN -->
+  <div class="modal fade" id="adminInfo">
+    <div class="modal-dialog modal-fullscreen-xxl-down">
+      <div class="borde modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Información del Administrador</h3>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <article id="ticket">
+        <div class="contenedor-head">
+          <img src="../assets/img/logo/<?php echo $logoNegocio; ?>" class="ticon" alt="">
+          <p class="title-princ"><span>Nova Tech</span></p>
+          <p class="title-subp"><span>Easy Sal</span></p>
+          <p class="fech">Fecha: <?php echo date("d/m/y"); ?></p>
+          <p class="title-subsp">Datos de Administraodr</p>
+          <p>
+            El presente documento muestra la infomación del administrador <span class="remarc"><?php echo $nombre ?></span> quien se encarga de gestionar el negocio <span class="remarc"><?php echo $nombreNegocio; ?></span>, así como las sucursales de la misma, el número de contacto registrado en la base de datos es <span class="remarc"><?php echo $telefono;?></span> y el correo es <span class="remarc"><?php echo $correo; ?></span>
+          </p>
+        </div>
+        <address>
+          <p>Documento Generado por: <span class="remarca">Easy Sale</span></p>
+          <p>Teléfono de <?php echo $nombreNegocio; ?>: <span class="remarca"><?php echo $telefonoNegocio; ?></span></p>
+          <p class="correoinfo"><span class="remarca"><?php echo $correoNegocio; ?></span></p>
+        </address>
+      </article>
+      </div>
+        <div class="modal-footer">
+          <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn-save-modal" id="descargarReporte">Descargar</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 <!-- Información -->
   <?php
   $result = $query->selectTable('personal'); //Mostramos los resultados
   date_default_timezone_set('America/Mexico_City');
-  $readNegocio = $query->readNegocio($_SESSION['user']['id_negocio']); 
-  
-  foreach($readNegocio as $row){
-    $logoNegocio = $row['logo'];
-    $nombreNegocio = $row['nombre'];
-  }
 
   foreach ($result as $row) {
     $id_user = $row['id_personal'];
@@ -412,91 +493,91 @@
 
 
   <div class="modal fade" id="static<?php echo $row['id_personal'] ?>">
-  <div class="modal-dialog modal-fullscreen-xxl-down">
-    <div class="borde modal-content">
-      <div class="modal-header">
-        <h3 class="modal-title" id="exampleModalLabel">Información del Personal🧾</h3>
-        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-      <article id="ticket">
-      <div class="contenedor-head">
-        <img src="../assets/img/logo/<?php echo $logoNegocio; ?>" class="ticon" alt="">
-        <p class="title-princ"><span>Nova Tech</span></p>
-        <p class="title-subp"><span>Easy Sal</span></p>
-        <p class="fech">Fecha: <?php echo date("d/m/y"); ?></p>
-        <p class="title-subsp">Datos de personal</p>
-        <p>
-          El presente documento muestra la infomación del personal <span class="remarc"><?php echo $nombre ?></span>
-          que labora en el negocio <span class="remarc"><?php echo $nombreNegocio; ?></span>, desempeñandose bajo el rol de <span class="remarc"><?php echo ($id_rol == 1) ? "Gerente": "Vendedor";?></span>
-          en la sucursal <span class="remarc"><?php echo $getName['nombre']; ?></span> siendo sus principales actividades las siguientes:
-        </p>
-        <ul>
-          <li>Registrar la venta de productos</li>
-          <li>Realizar su corte de caja</li>
-          <li>Realizar reportes</li>
-        </ul>
-        <p>
-          <span>En caso de requerir la corrección de algún dato dirigirse al gerente/encargado de la
-            suscursal donde labora o comunicarse a los datos de contacto de la sucursal.
-          </span>
-        </p>
-        <p class="infp">
-          <span>Información de Personal y datos de contacto</span>
-        </p>
-        <div class="contact">
-          <p class="nomper"><?php echo $nombre ?></p>
-          <p class="correoper"><?php echo $correo ?></p>
-          <p class="nomper1">Nombre y apellido</p>
-          <p class="correoper1">Correo de personal</p>
+    <div class="modal-dialog modal-fullscreen-xxl-down">
+      <div class="borde modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Información del Personal🧾</h3>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="contact1">
-          <p class="telefinf"><?php echo $telefono ?></p>
-          <p class="direcinf"><?php echo $ciudad.", ".$domicilio; ?></p>
-          <p class="telefinf1">Teléfono de Personal</p>
-          <p class="direcinf1">Dirección de personal</p>
-        </div>
-        <p class="infp1">
-          <span>Información de lugar de trabajo</span>
-        </p>
-        <?php
-        $selectSucursal = $query->selectTableId("sucursal", "id_sucursal", $id_sucursal, "*");
-        foreach($selectSucursal as $s){
-          ?>
-          <div class="contactsucur">
-            <p class="nomper"><?php echo $s['nombre']; ?></p>
-            <p class="correoper"><?php echo $correo; ?></p>
-            <p class="nomper1">Nombre Sucursal</p>
-            <p class="correoper1">Correo de Sucursal</p>
+        <div class="modal-body">
+        <article id="ticket">
+        <div class="contenedor-head">
+          <img src="../assets/img/logo/<?php echo $logoNegocio; ?>" class="ticon" alt="">
+          <p class="title-princ"><span>Nova Tech</span></p>
+          <p class="title-subp"><span>Easy Sal</span></p>
+          <p class="fech">Fecha: <?php echo date("d/m/y"); ?></p>
+          <p class="title-subsp">Datos de personal</p>
+          <p>
+            El presente documento muestra la infomación del personal <span class="remarc"><?php echo $nombre ?></span>
+            que labora en el negocio <span class="remarc"><?php echo $nombreNegocio; ?></span>, desempeñandose bajo el rol de <span class="remarc"><?php echo ($id_rol == 1) ? "Gerente": "Vendedor";?></span>
+            en la sucursal <span class="remarc"><?php echo $getName['nombre']; ?></span> siendo sus principales actividades las siguientes:
+          </p>
+          <ul>
+            <li>Registrar la venta de productos</li>
+            <li>Realizar su corte de caja</li>
+            <li>Realizar reportes</li>
+          </ul>
+          <p>
+            <span>En caso de requerir la corrección de algún dato dirigirse al gerente/encargado de la
+              suscursal donde labora o comunicarse a los datos de contacto de la sucursal.
+            </span>
+          </p>
+          <p class="infp">
+            <span>Información de Personal y datos de contacto</span>
+          </p>
+          <div class="contact">
+            <p class="nomper"><?php echo $nombre ?></p>
+            <p class="correoper"><?php echo $correo ?></p>
+            <p class="nomper1">Nombre y apellido</p>
+            <p class="correoper1">Correo de personal</p>
           </div>
-          <div class="contactsucur1">
-            <p class="direcinf"><?php echo $s['estado']." ".$s['ciudad']." ".$s['colonia']." ".$s['direccion']?></p>
-            <p class="direcinf1">Ubicada en</p>
-            <p class="cpinf"><?php echo $s['codigo_postal']; ?></p>
-            <p class="cpinf1">Código Postal</p>
+          <div class="contact1">
+            <p class="telefinf"><?php echo $telefono ?></p>
+            <p class="direcinf"><?php echo $ciudad.", ".$domicilio; ?></p>
+            <p class="telefinf1">Teléfono de Personal</p>
+            <p class="direcinf1">Dirección de personal</p>
           </div>
-          <div class="contactsucur2">
-            <p class="telinf"><?php echo $s['telefono']; ?></p>
-            <p class="telinf1">Teléfono</p>
-          </div>
+          <p class="infp1">
+            <span>Información de lugar de trabajo</span>
+          </p>
           <?php
-        }
-        ?>
+          $selectSucursal = $query->selectTableId("sucursal", "id_sucursal", $id_sucursal, "*");
+          foreach($selectSucursal as $s){
+            ?>
+            <div class="contactsucur">
+              <p class="nomper"><?php echo $s['nombre']; ?></p>
+              <p class="correoper"><?php echo $correo; ?></p>
+              <p class="nomper1">Nombre Sucursal</p>
+              <p class="correoper1">Correo de Sucursal</p>
+            </div>
+            <div class="contactsucur1">
+              <p class="direcinf"><?php echo $s['estado']." ".$s['ciudad']." ".$s['colonia']." ".$s['direccion']?></p>
+              <p class="direcinf1">Ubicada en</p>
+              <p class="cpinf"><?php echo $s['codigo_postal']; ?></p>
+              <p class="cpinf1">Código Postal</p>
+            </div>
+            <div class="contactsucur2">
+              <p class="telinf"><?php echo $s['telefono']; ?></p>
+              <p class="telinf1">Teléfono</p>
+            </div>
+            <?php
+          }
+          ?>
+        </div>
+        <address>
+          <p>Documento Generado por: <span class="remarca">Easy Sale</span></p>
+          <p>Teléfono de <?php echo $nombreNegocio; ?>: <span class="remarca"><?php echo $telefonoNegocio; ?></span></p>
+          <p class="correoinfo"><span class="remarca"><?php echo $correoNegocio; ?></span></p>
+        </address>
+      </article>
       </div>
-      <address>
-        <p>Documento Generado por: <span class="remarca">Easy Sale</span></p>
-        <p>Teléfono de <?php echo $nombreNegocio; ?>: <span class="remarca"><?php echo $telefonoNegocio; ?></span></p>
-        <p class="correoinfo"><span class="remarca"><?php echo $correoNegocio; ?></span></p>
-      </address>
-    </article>
-    </div>
-      <div class="modal-footer">
-        <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn-save-modal" id="descargarReporte">Descargar</button>
+        <div class="modal-footer">
+          <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
+          <button type="button" class="btn-save-modal" id="descargarReporte">Descargar</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
 <?php
 }
   ?>
@@ -507,6 +588,7 @@
 <script>
     let addPer = localStorage.getItem("addPer");
     let modPer = localStorage.getItem("modPer");
+    let modAdmin = localStorage.getItem("modAdmin");
     let deletPer = localStorage.getItem("deletPer");
 
     if(addPer === "true"){
@@ -538,6 +620,21 @@
     } 
     setTimeout(function(){
         localStorage.removeItem("modPer");
+    }, 1500);
+    if(modAdmin === "true"){
+      Swal.fire({
+            title: "Administrador moditicado",
+            text: "Los datos del administrador han sido actualizados",
+            icon: "success",//error, 
+            timer: 3000,
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            confirmButtonColor: '#47874a',
+        });
+    } 
+    setTimeout(function(){
+        localStorage.removeItem("modAdmin");
     }, 1500);
 
         if (deletPer === "true") {

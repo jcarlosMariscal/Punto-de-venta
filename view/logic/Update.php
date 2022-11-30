@@ -28,6 +28,17 @@
         echo "error";
       }
     }
+    function editarAdmin($id_admin,$nombre,$correo,$telefono){
+      try{
+        $sql = "UPDATE administrador SET nombre = ?, correo = ?, telefono = ? WHERE id_admin = ?";
+        $query = $this-> cnx->prepare($sql);
+        $data = array($nombre, $correo,$telefono, $id_admin);
+        $insert = $query->execute($data);
+        if($insert) return true;
+      }catch(PDOException $th){
+        echo "error";
+      }
+    }
 
 
     function configError($getNegocio){

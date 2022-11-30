@@ -16,14 +16,14 @@ if(!empty($_POST)){
       ?>
         <script>
           localStorage.setItem("modProv", "true");
-          window.location.href = "../index.php?p=proveedor";
+          window.location.href = "../proveedor";
         </script>
       <?php
       } else {
         $alert = '<p class="msg_error">Error al crear al usuario.</p>';
       }
       break;
-    case 'editarPersonal';
+    case 'editarPersonal':
       $id_per = (isset($_POST['id_personal']) ? $_POST['id_personal'] : NULL); 
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL); 
       $pass = (isset($_POST['pass']) ? $_POST['pass'] : NULL);
@@ -39,13 +39,30 @@ if(!empty($_POST)){
       ?>
         <script>
           localStorage.setItem("modPer", "true");
-          window.location.href = "../index.php?p=personal";
+          window.location.href = "../personal";
         </script>
         <?php
       } else {
         $alert = '<p class="msg_error">Error al crear al usuario.</p>';
       }
         
+    break;
+    case 'editarAdmin':
+      $id_admin = (isset($_POST['id_admin']) ? $_POST['id_admin'] : NULL); 
+      $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL);
+      $correo = (isset($_POST['correo']) ? $_POST['correo'] : NULL); 
+      $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : NULL); 
+      $query->editarAdmin($id_admin, $nombre,$correo,$telefono);
+      if ($query) {       
+      ?>
+        <script>
+          localStorage.setItem("modAdmin", "true");
+          window.location.href = "../personal";
+        </script>
+        <?php
+      } else {
+        $alert = '<p class="msg_error">Error al modificar administrador.</p>';
+      }
     break;
     case 'updateNegocio':
       $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : NULL); 
@@ -63,7 +80,7 @@ if(!empty($_POST)){
           ?>
             <script>
               localStorage.setItem("configuration", "errExtension");
-              window.location.href = "../index.php?p=configuration";
+              window.location.href = "../configuracion";
             </script>
           <?php
         } else {
@@ -73,14 +90,14 @@ if(!empty($_POST)){
           ?>
             <script>
               localStorage.setItem("configuration", "actualizado");
-              window.location.href = "../index.php?p=configuration";
+              window.location.href = "../configuracion";
             </script>
           <?php
           } else {
             ?>
               <script>
                 localStorage.setItem("configuration", "error");
-                window.location.href = "../index.php?p=configuration";
+                window.location.href = "../configuracion";
               </script>
             <?php 
           }
@@ -92,14 +109,14 @@ if(!empty($_POST)){
             ?>
               <script>
                 localStorage.setItem("configuration", "actualizado");
-                window.location.href = "../index.php?p=configuration";
+                window.location.href = "../configuracion";
               </script>
             <?php 
           }else{
             ?>
               <script>
                 localStorage.setItem("configuration", "error");
-                window.location.href = "../index.php?p=configuration";
+                window.location.href = "../configuracion";
               </script>
             <?php 
           }
@@ -116,7 +133,7 @@ if(!empty($_POST)){
           ?>
               <script>
                 localStorage.setItem("configuration", "DFActualizado");
-                window.location.href = "../index.php?p=configuration";
+                window.location.href = "../configuracion";
               </script>
             <?php 
         }else {

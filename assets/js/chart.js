@@ -22,9 +22,11 @@ if (chart1 || chart2 || chart3 || chart4) {
     ],
   };
   const myChart1 = new Chart(chart1, {
-    type: "polarArea",
+    type: "bar",
     data: data1,
-    options: {},
+    options: {
+      radio: 50,
+    },
   });
 
   // -----grafica 2 -----------------
@@ -42,7 +44,7 @@ if (chart1 || chart2 || chart3 || chart4) {
     ],
   };
   const myChart2 = new Chart(chart2, {
-    type: "doughnut",
+    type: "line",
     data: data2,
   });
   // -----grafica 3--------

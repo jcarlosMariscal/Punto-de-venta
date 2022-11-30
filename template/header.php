@@ -7,52 +7,52 @@
   <div class="container-fluid header-container">
     <div class="dropdown">
       <div class="header-toggle" id="header-toggle"><i class="fa-solid fa-bars"></i></div>
-      <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-white text-white text-decoration-none dropdown-toggle" id="dropdownNavLink" data-bs-toggle="dropdown" aria-expanded="false"><?php echo $nombreSeccion; ?></a>
+        <a href="#" class="d-flex align-items-center col-lg-4 mb-2 mb-lg-0 link-white text-white text-decoration-none dropdown-toggle" id="dropdownNavLink" data-bs-toggle="dropdown" aria-expanded="false"><?php echo $nombreSeccion; ?></a>
 
-      <!-- <a href="ver-compras.php" class="btn btn-prm">Ver Compras</a> -->
-      <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink">
-        <?php
-          switch ($p) {
-            case 'main':
+        <!-- <a href="ver-compras.php" class="btn btn-prm">Ver Compras</a> -->
+        <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownNavLink">
+          <?php
+            switch ($p) {
+              case 'main':
+                break;
+              case 'configuration':
+                break;
+              case 'information':
+                break;
+              case 'personal':
+                break;
+              case 'ventas':
+                  echo '<li><a class="dropdown-item" href="ver-ventas" aria-current="page">Ver ventas</a></li>';
+                  break;
+              case 'compras':
+                echo '<li><a class="dropdown-item" href="ver-compras" aria-current="page">Ver compras</a></li>';
+                  break;
+              case 'ver-compras':
+                  echo '<li><a class="dropdown-item" href="compras" aria-current="page">Compras</a></li>';
+                  break;
+              case 'ver-ventas':
+                  echo '<li><a class="dropdown-item" href="ventas" aria-current="page">Ventas</a></li>';
+                  break;
+              case 'proveedor':
+                  break;
+              case 'reporte':
+                  break;            
+              case 'productos':
+                  break;
+              case 'sucursal':
+                  break;
+              default:
+                # code...
               break;
-            case 'configuration':
-              break;
-            case 'information':
-              break;
-            case 'personal':
-              break;
-            case 'ventas':
-                echo '<li><a class="dropdown-item" href="ver-ventas" aria-current="page">Ver ventas</a></li>';
-                break;
-            case 'compras':
-              echo '<li><a class="dropdown-item" href="ver-compras" aria-current="page">Ver compras</a></li>';
-                break;
-            case 'ver-compras':
-                echo '<li><a class="dropdown-item" href="compras" aria-current="page">Compras</a></li>';
-                break;
-            case 'ver-ventas':
-                echo '<li><a class="dropdown-item" href="ventas" aria-current="page">Ventas</a></li>';
-                break;
-            case 'proveedor':
-                break;
-            case 'reporte':
-                break;            
-            case 'productos':
-                break;
-            case 'sucursal':
-                break;
-            default:
-              # code...
-            break;
-          }
-        ?>
-          <li><a class="dropdown-item" href="#">Productos</a></li>
-          <li><a class="dropdown-item" href="#">Proveedores</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <li><a class="dropdown-item" href="ayuda">Ayuda</a></li>
-      </ul>
-    </div>
-
+            }
+          ?>
+            <li><a class="dropdown-item" href="#">Productos</a></li>
+            <li><a class="dropdown-item" href="#">Proveedores</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="ayuda">Ayuda</a></li>
+          </ul>
+      </div>
+      <a href="#" data-bs-toggle="modal" data-bs-target="#graficas" class="btn-chart"><i class="fa-solid fa-chart-simple"></i> Graficar</a>
     <div class="align-items-center header-user">
         <div class="information">
           <a href="ayuda"><i class="fa-solid fa-circle-question"></i></a>
@@ -95,5 +95,6 @@
         </div>
       </div>
     </div>
+  </div>
   </header>
 

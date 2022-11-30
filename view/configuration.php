@@ -17,24 +17,6 @@
 
       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
         <div class="col-12"><h3 class="section__name">Negocio</h3></div>
-        <!-- <div class="col">
-          <div class="card shadow-sm card-configuracion">
-            <div class="card-title">
-              <img src="https://wallpaperaccess.com/full/2886065.jpg" class="title__img bd-placeholder-img card-img-top">
-              <div class="title__text"><p>Datos Fiscales</p></div>
-            </div>
-
-            <div class="card-body">
-              <p class="card-text">Aquí puede agregar o actualizar los datos fiscales de su negocio.</p>
-              <div class="d-flex justify-content-center align-items-center">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-sm btn-outline-secondary">Ver</button>
-                  <button type="button" class="btn btn-sm btn-outline-secondary" data-bs-toggle="modal" data-bs-target=".datos_fiscales">Editar</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> -->
         <!-- Prueba Configuración victor -->
         <div class="col tam-card">
           <div class="card shadow-sm card-configuracion">
@@ -48,7 +30,7 @@
                     <p class="card-text text-configu">Aquí puede agregar la información general de su negocio. </p>
                     <div class="d-flex justify-content-center align-items-center space">
                         <div class="btn-group">
-                          <button type="button" class="btn btn-sm btn-outline-success">Ver</button>
+                          <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#informacion-negocio">Ver</button>
                           <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target=".editarNegocio">Editar</button>
                         </div>
                     </div>
@@ -71,8 +53,21 @@
                     <p class="card-text text-configu">Aquí puede agregar o actualizar los datos fiscales de su negocio.</p>
                     <div class="d-flex justify-content-center align-items-center space">
                       <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-success">Ver</button>
-                        <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target=".datos_fiscales">Editar</button>
+                        <?php
+                        // Verificar datos fiscales
+                        if($buscarDatosFiscales[0]){
+                          if($buscarDatosFiscales[1] == 1){
+                            ?>
+                            <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#informacion-fiscal">Ver</button>
+                            <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target=".datos_fiscales">Editar</button>
+                            <?php
+                          }else{
+                            ?>
+                            <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target=".datos_fiscales">Agregar</button>
+                            <?php
+                          }
+                        }
+                        ?>
                       </div>
                     </div>
                   </div>
@@ -87,6 +82,8 @@
         <div class="col-12"><h3 class="section__name">Sucursales</h3></div>
         <?php
         foreach($sucursales as $sucursal){
+          $selectPersonal = $query->selectTableId("personal","id_sucursal", $sucursal['id_sucursal'],"nombre");
+          $getPersonal = $selectPersonal->fetch();
           ?>
           <div class="col tam-card">
           <div class="card shadow-sm card-configuracion">
@@ -98,12 +95,12 @@
                 <div class="col-md-8">
                   <div class="card-body">
                     <p class="card-text text-sucursal"><?php echo $sucursal['nombre']; ?></p>
-                    <p class="card-text text-sucursal">Encargado: José Antonio</p>
+                    <p class="card-text text-sucursal">Gerente: <?php echo $getPersonal['nombre']; ?></p>
                     <p class="card-text text-sucursal">Teléfono: <?php echo $sucursal['telefono']; ?></p>
                     <!-- <p class="card-text text-sucursal">Correo: <?php echo $sucursal['correo']; ?></p> -->
                     <div class="d-flex justify-content-center align-items-center space">
                       <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-success">Ver</button>
+                        <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#verInfo<?php echo $sucursal['id_sucursal'] ?>">Ver</button>
                         <button type="button" class="btn btn-sm btn-outline-success" data-bs-toggle="modal" data-bs-target="#static<?php echo $sucursal['id_sucursal'] ?>">Editar</button>
                       </div>
                     </div>
@@ -328,7 +325,163 @@
   ?>
 </section>
 
+<!-- Información Negocio -->
+  <?php
+  // $result = $query->selectTable('negocio'); //Mostramos los resultados
+  date_default_timezone_set('America/Mexico_City');
+  $readNegocio = $query->readNegocio($_SESSION['user']['id_negocio']); 
+  
+  foreach($readNegocio as $row){
+    $logoNegocio = $row['logo'];
+    $nombreNegocio = $row['nombre'];
+    $telefono = $row['telefono'];
+    $correo = $row['correo'];
+    $nameTipo = $query->selectTableId('tipo_negocio', 'id_tipo',$row['id_tipo'], 'tipo');
+    $getTipoName = $nameTipo->fetch();
+  }
+  ?>
 
+
+  <div class="modal fade" id="informacion-negocio">
+  <div class="modal-dialog modal-fullscreen-xxl-down">
+    <div class="borde modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Información de <?php echo $nombreNegocio; ?></h3>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <article id="ticket">
+      <div class="contenedor-head">
+        <img src="../assets/img/logo/<?php echo $logoNegocio; ?>" class="ticon" alt="">
+        <p class="title-princ"><span>Nova Tech</span></p>
+        <p class="title-subp"><span>Easy Sal</span></p>
+        <p class="fech">Fecha: <?php echo date("d/m/y"); ?></p>
+        <p class="title-subsp">Datos del negocio</p>
+        <p>
+          El presente documento muestra la infomación del negocio <span class="remarc"><?php echo $nombreNegocio ?></span> con el número de teléfono <span class="remarc"><?php echo $telefono; ?></span> y correo <span class="remarc"><?php echo $correo; ?></span>, siendo de tipo <span class="remarc"><?php echo $getTipoName['tipo']; ?></span>.
+        </p>
+      </div>
+      <address>
+        <p>Documento Generado por: <span class="remarca">Easy Sale</span></p>
+        <p>Teléfono de <?php echo $nombreNegocio; ?>: <span class="remarca"><?php echo $telefonoNegocio; ?></span></p>
+        <p class="correoinfo"><span class="remarca"><?php echo $correoNegocio; ?></span></p>
+      </address>
+    </article>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn-save-modal" id="descargarReporte">Descargar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Información Fiscal -->
+  <?php
+  // $result = $query->selectTable('negocio'); //Mostramos los resultados
+  $obtenerDatosFiscales = $query->obtenerDatosFiscales($_SESSION['user']['id_negocio']); 
+  
+  foreach($obtenerDatosFiscales as $row){
+    $nombreFiscal = $row['nombre'];
+    $rfc = $row['rfc'];
+    $rFiscal = $row['rFiscal'];
+  }
+  ?>
+
+
+  <div class="modal fade" id="informacion-fiscal">
+  <div class="modal-dialog modal-fullscreen-xxl-down">
+    <div class="borde modal-content">
+      <div class="modal-header">
+        <h3 class="modal-title" id="exampleModalLabel">Información de fiscal <?php echo $nombreNegocio; ?></h3>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <article id="ticket">
+      <div class="contenedor-head">
+        <img src="../assets/img/logo/<?php echo $logoNegocio; ?>" class="ticon" alt="">
+        <p class="title-princ"><span>Nova Tech</span></p>
+        <p class="title-subp"><span>Easy Sal</span></p>
+        <p class="fech">Fecha: <?php echo date("d/m/y"); ?></p>
+        <p class="title-subsp">Datos del negocio</p>
+        <p>
+          El presente documento muestra la infomación fiscal del negocio <span class="remarc"><?php echo $nombreNegocio ?></span> con el nombre fiscal <span class="remarc"><?php echo $nombreFiscal; ?></span>, su rfc es <span class="remarc"><?php echo $rfc; ?></span>y su régimen fiscal es <span class="remarc"><?php echo $rFiscal; ?></span>.
+        </p>
+      </div>
+      <address>
+        <p>Documento Generado por: <span class="remarca">Easy Sale</span></p>
+        <p>Teléfono de <?php echo $nombreNegocio; ?>: <span class="remarca"><?php echo $telefonoNegocio; ?></span></p>
+        <p class="correoinfo"><span class="remarca"><?php echo $correoNegocio; ?></span></p>
+      </address>
+    </article>
+    </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
+        <button type="button" class="btn-save-modal" id="descargarReporte">Descargar</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- Información Sucursales -->
+  <?php
+  // $result = $query->selectTable('negocio'); //Mostramos los resultados
+  $resultSucursal = $query->selectTable('sucursal'); 
+
+  foreach($resultSucursal as $s){
+    $selectPersonal = $query->selectTableId("personal","id_sucursal", $s['id_sucursal'],"nombre");
+    $getPersonal = $selectPersonal->fetch();
+    ?>
+      <div class="modal fade" id="verInfo<?php echo $s['id_sucursal']; ?>">
+        <div class="modal-dialog modal-fullscreen-xxl-down">
+          <div class="borde modal-content">
+            <div class="modal-header">
+              <h3 class="modal-title" id="exampleModalLabel">Información de fiscal <?php echo $nombreNegocio; ?></h3>
+              <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <article id="ticket">
+                <div class="contenedor-head">
+                  <img src="../assets/img/logo/<?php echo $logoNegocio; ?>" class="ticon" alt="">
+                  <p class="title-princ"><span>Nova Tech</span></p>
+                  <p class="title-subp"><span>Easy Sal</span></p>
+                  <p class="fech">Fecha: <?php echo date("d/m/y"); ?></p>
+                  <p class="title-subsp">Datos del negocio</p>
+                  <div class="contactsucur">
+                    <p class="nomper"><?php echo $s['nombre']; ?></p>
+                      <p class="correoper"><?php echo $correo; ?></p>
+                      <p class="nomper1">Nombre Sucursal</p>
+                      <p class="correoper1">Correo de Sucursal</p>
+                    </div>
+                    <div class="contactsucur1">
+                      <p class="direcinf"><?php echo $s['estado']." ".$s['ciudad']." ".$s['colonia']." ".$s['direccion']?></p>
+                      <p class="direcinf1">Ubicada en</p>
+                      <p class="cpinf"><?php echo $s['codigo_postal']; ?></p>
+                      <p class="cpinf1">Código Postal</p>
+                    </div>
+                    <div class="contactsucur2">
+                      <p class="telinf"><?php echo $s['telefono']; ?></p>
+                      <p class="telinf1">Teléfono</p> <br> <br>
+                      <p class="telinf"><?php echo $getPersonal['nombre']; ?></p>
+                      <p class="telinf1">Gerente</p>
+                    </div>
+                </div>
+                <address>
+                  <p>Documento Generado por: <span class="remarca">Easy Sale</span></p>
+                  <p>Teléfono de <?php echo $nombreNegocio; ?>: <span class="remarca"><?php echo $telefonoNegocio; ?></span></p>
+                  <p class="correoinfo"><span class="remarca"><?php echo $correoNegocio; ?></span></p>
+                </address>
+              </article>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
+              <button type="button" class="btn-save-modal" id="descargarReporte">Descargar</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php
+  }
+  ?>
+</section>
 
 
 <script src="../assets/js/configuration.js" type="module"></script>

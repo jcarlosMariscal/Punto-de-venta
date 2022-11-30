@@ -41,7 +41,7 @@
             </div>
            <br>
             <!-- <h1><a href="view/" class="btn-sesión">Iniciar Sesión</a></h1>  -->
-           <p class="cuent">¿Nuevo aquí? <a href="add_negocio.php" class="quitar">Crear una cuenta</a></p>
+           <p class="cuent">¿Nuevo aquí? <a href="registro" class="quitar">Crear una cuenta</a></p>
         </form>
     </div>
 </body>

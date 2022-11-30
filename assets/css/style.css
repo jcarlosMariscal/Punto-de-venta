@@ -355,6 +355,7 @@ nav {
 .box {
   background-color: #fff;
   padding: 10px;
+  /* height: 300px; */
 }
 .box-4 {
   /* display: flex; */
@@ -381,15 +382,19 @@ nav {
   background-color: var(--color-one-secondary);
   color: var(--color-primary);
 }
+.enlaces-principales {
+  background-color: red;
+}
 .btn-chart {
   padding: 10px 25px 10px 13px;
+  width: 100%;
   color: var(--secondary-color);
   text-decoration: none;
   font-size: 16px;
 }
 
 .btn-chart:hover {
-  color: var(--color-primary);
+  color: var(--color-one);
 }
 
 /* CONFIGURACIÓN DEL SISTEMA */

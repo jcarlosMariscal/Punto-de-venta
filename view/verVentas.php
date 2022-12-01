@@ -31,7 +31,7 @@
     </div>
   </section>
   <section class="compraProducto-details">
-    <div id="info-user"><p>El código actual es una copia de la funcionalidad de ver compras, falta desarrollarlo y hacer adaptaciones a ventas. </p></div>
+    <div id="info-user"><p>Seleccione una venta para ver su información</p></div>
     <div class="detalles-general" id="detallesGeneral"></div>
     <div class="detallesCompra" id="detallesCompra"></div>
     <div class="masDetallesCompra" id="masDetallesCompra"></div>
@@ -43,4 +43,4 @@
 // require_once "modales/agregarProveedor.php";
 ?>
 
-<script src="../assets/js/compras.js" type="module"></script>
+<script src="../assets/js/ventas.js" type="module"></script>

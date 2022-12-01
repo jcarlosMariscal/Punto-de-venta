@@ -11,11 +11,17 @@
 ?>
 <?php
   if($_SESSION['rol'] == 0){
+    // require_once "verVentas.php";
     ?>
-    <div class="container alert alert-primary" style="font-size: 20px; padding: 10px;">
-      <h3>Bienvenido a la sección de ventas.</h3>
-    <p>Esta sección está en su última fase de desarrollo, para probarlo inicie sesión como Gerente o Vendedor para tener los datos que el sistema necesita para realizar el correcto proceso de venta, al registrarse e iniciar sesión con los roles mencionados anteriormente automáticamente el sistema extrae los datos necesarios que fueron registrados para este proceso. Recuerde que es muy importante que rellene todos los campos correctamente para el buen funcionamiento del sistema.</p>
-    <p>Para el rol de Administrador está sección actualmente está en desarrollo, por lo que le pedimos siga al pie de la letra el punto anterior, esperamos que este mensaje le sea útil.</p>
+    <div class="ms-4 me-4">
+      <div class="box-main">
+        <div class="box box-1">
+          <canvas id="chart1"></canvas>
+        </div>
+        <div class="box box-2">
+          <canvas id="chart2"></canvas>
+        </div>
+      </div>
     </div>
     <?php
   }else{

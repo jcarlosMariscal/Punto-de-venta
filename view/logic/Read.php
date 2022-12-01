@@ -4,6 +4,28 @@
     function __construct(){
       $this -> cnx = Connection::connectDB();
     }
+    function selectTable($table){
+        try {
+            $sql = "SELECT * from $table";
+            $query = $this->cnx->prepare($sql);
+            $read = $query->execute();
+            if ($read) return $query;
+        } catch (PDOException $th) {
+            return false;
+        }
+    }
+    // El primer parametro es la tabla para hacer la consulta, el segundo el campo que vamos a condicionar, el tercer el valor que vamos a comparar y el último el campo que vamos a seleccionar.
+    function selectTableId($table, $campo, $valor, $select){
+      try {
+        $sql = "SELECT $select from $table WHERE $campo = ?";
+        $query = $this->cnx->prepare($sql);
+        $query->bindParam(1, $valor);
+        $read = $query->execute();
+        if ($read) return $query;
+      } catch (PDOException $th) {
+        return false;
+      }
+    }
     // -------------------------- Negocio [tipo negocio, ]
     function readNegocio($id_negocio){
       try {
@@ -50,6 +72,44 @@
         echo "No hay resultados";
       }
     }
+    function getVentas($filtro, $campo){
+      try {
+        if($filtro == "todo"){
+          $sql = "SELECT id_venta, total, fecha FROM venta_producto";
+          $query = $this->cnx->prepare($sql);
+        }
+        if($campo == "sucursal"){
+          $sql = "SELECT id_venta, total, fecha FROM venta_producto WHERE id_sucursal LIKE '%$filtro%' ";
+          $query = $this->cnx->prepare($sql);
+        }
+        if($campo == "producto"){
+          $sql = "SELECT id_venta, total, fecha FROM venta_producto WHERE id_producto LIKE '%$filtro%' ";
+          $query = $this->cnx->prepare($sql);
+        }
+        if($campo == "personal"){
+          $sql = "SELECT id_venta, total, fecha FROM venta_producto WHERE id_personal LIKE '%$filtro%' ";
+          $query = $this->cnx->prepare($sql);
+        }
+        if($campo == "fecha"){
+          $sql = "SELECT id_venta, total, fecha FROM venta_producto WHERE fecha LIKE '%$filtro%' ";
+          $query = $this->cnx->prepare($sql);
+        }
+        $query -> execute();
+        $ventaProducto = $query;
+        $arr = [];
+        foreach($ventaProducto as $row){
+          $id_venta = $row['id_venta'];
+          $total = $row['total'];
+          $fecha = $row['fecha'];
+          $json = '{"id_venta":"'.$id_venta.'","total":"'.$total.'","fecha":"'.$fecha.'"}';
+          array_push($arr, $json);
+        }
+        $cadenaArr = implode('-/', $arr);
+        return [true, $cadenaArr];
+      } catch (PDOException $th){
+        echo "No hay resultados";
+      }
+    }
     function getCompraProducto($id_compra){
       try {
         $sql = "SELECT * FROM compra_producto WHERE id_compra = ?";
@@ -67,6 +127,38 @@
           $fecha = $row['fecha'];
         }
         $json = '{"id_compra":"'.$id_compra.'","id_sucursal":"'.$id_sucursal.'","id_proveedor":"'.$id_proveedor.'","productos":"'.$productos.'","total":"'.$total.'","fecha":"'.$fecha.'"}';
+        $json2 = $detalles;
+        return [true, $json, $json2];
+      } catch (PDOException $th){
+        echo "error";
+      }
+    }
+    function getVentaProducto($id_venta){
+      try {
+        $sql = "SELECT * FROM venta_producto WHERE id_venta = ?";
+        $query = $this->cnx->prepare($sql);
+        $query -> bindParam(1, $id_venta);
+        $query -> execute();
+        $ventaProducto = $query;
+        foreach($ventaProducto as $row){
+          $id_venta = $row['id_venta'];
+          $id_sucursal = $row['id_sucursal'];
+          $id_personal = $row['id_personal'];
+          $productos = $row['id_producto'];
+          $cliente = $row['id_cliente'];
+          $total = $row['total'];
+          $efectivo = $row['efectivo'];
+          $cambio = $row['cambio'];
+          $detalles = $row['detalles'];
+          $fecha = $row['fecha'];
+          $getSucursal = $this->selectTableId("sucursal","id_sucursal", $id_sucursal, "nombre");
+          $getPersonal = $this->selectTableId("personal","id_personal", $id_personal, "nombre");
+          $getCliente = $this->selectTableId("cliente","id_cliente", $cliente, "nombre");
+          $sucNombre = $getSucursal->fetch()['nombre'];
+          $perNombre = $getPersonal->fetch()['nombre'];
+          $cliNombre = $getCliente->fetch()['nombre'];
+        }
+        $json = '{"id_venta":"'.$id_venta.'","sucursal":"'.$sucNombre.'","personal":"'.$perNombre.'","productos":"'.$productos.'","cliente":"'.$cliNombre.'","total":"'.$total.'","efectivo":"'.$efectivo.'","cambio":"'.$cambio.'","fecha":"'.$fecha.'"}';
         $json2 = $detalles;
         return [true, $json, $json2];
       } catch (PDOException $th){
@@ -160,28 +252,7 @@
     // --------------- Datos Fiscales y Sucursal
 
     // ------------------------personal  
-    function selectTable($table){
-        try {
-            $sql = "SELECT * from $table";
-            $query = $this->cnx->prepare($sql);
-            $read = $query->execute();
-            if ($read) return $query;
-        } catch (PDOException $th) {
-            return false;
-        }
-    }
-    // El primer parametro es la tabla para hacer la consulta, el segundo el campo que vamos a condicionar, el tercer el valor que vamos a comparar y el último el campo que vamos a seleccionar.
-    function selectTableId($table, $campo, $valor, $select){
-      try {
-        $sql = "SELECT $select from $table WHERE $campo = ?";
-        $query = $this->cnx->prepare($sql);
-        $query->bindParam(1, $valor);
-        $read = $query->execute();
-        if ($read) return $query;
-      } catch (PDOException $th) {
-        return false;
-      }
-    }
+
     function selectPersonal(){
         try {
             $sql = "SELECT * from personal";

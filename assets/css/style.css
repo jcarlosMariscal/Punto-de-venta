@@ -820,6 +820,10 @@ nav {
   margin: 0;
   padding: 5px;
 }
+.columna-campos > p {
+  /* background-color: aqua; */
+  padding-top: 6.5px;
+}
 .columna-campos {
   padding-left: 15px;
   background-color: #e8f1f2;

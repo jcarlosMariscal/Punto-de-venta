@@ -52,8 +52,10 @@
             <li><a class="dropdown-item" href="ayuda">Ayuda</a></li>
           </ul>
       </div>
-      <a href="#" data-bs-toggle="modal" data-bs-target="#graficas" class="btn-chart"><i class="fa-solid fa-chart-simple"></i> Graficar</a>
     <div class="align-items-center header-user">
+      <div class="grafics">
+        <a href="#" data-bs-toggle="modal" data-bs-target="#graficas" class="btn-chart"><i class="fa-solid fa-chart-simple"></i> Graficar</a>
+      </div>
         <div class="information">
           <a href="ayuda"><i class="fa-solid fa-circle-question"></i></a>
         </div>

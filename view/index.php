@@ -113,38 +113,6 @@
         require_once $getPage;
         ?>
     </main>
-    <div class="modal fade" id="graficas">
-    <div class="modal-dialog modal-lg">
-        <div class="borde modal-content">
-            <div class="modal-header">
-                <h3 class="modal-title" id="exampleModalLabel">Generar graficas📉</h3>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <form method="post" name="frmExcelImport" id="frmExcelImport">
-                        <div class="row">
-                            <div class="col-6">
-                                <label for="">Fecha inicio</label>
-                                <input type="date" name="fecha1" required>
-                            </div>
-                            <div class="col-6">
-                                <label for="">Fecha fin</label>
-                                <input type="date" name="fecha2" required>
-                            </div>
-                        </div>
-                </div>
-            </div>
-            <br><br><br><br><br>
-            <div class="modal-footer">
-                <button type="button" class="btn btn1" data-bs-dismiss="modal">Cerrar</button>
-                <button type="submit"  class="btn btn-primary subir">Visualizar</button>
-                <!-- <input type="submit" id="archivo" name="import" class="btn btn-danger subir" value="Importar"> -->
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
     <script src="../assets/js/index.js" type="module"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/js/all.js" integrity="sha512-TsDUjQW16/G8fz4gmgTOBW2s2Oi6TPUtQ6/hm+TxZZdkQtQrK5xEFIE0rgDuz5Cl1xQU1u3Yer7K5IuuBeiCqw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

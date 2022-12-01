@@ -1,5 +1,5 @@
 RewriteEngine On
-RewriteRule inicio index.php [L]
+RewriteRule inicio index.php?p=main [L]
 RewriteRule configuracion index.php?p=configuration [L]
 RewriteRule personal index.php?p=personal [L]
 RewriteRule ^compras$ index.php?p=compras [L]

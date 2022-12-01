@@ -3,7 +3,12 @@
 $deletProducto = (isset($_GET['delete']) ? $_GET['delete'] : NULL);
 $editProducto = (isset($_GET['edit']) ? $_GET['edit'] : NULL);
 // -------------
-
+    $readNegocio = $query->readNegocio($_SESSION['user']['id_negocio']); 
+  
+  foreach($readNegocio as $row){
+    $logoNegocio = $row['logo'];
+    $nombreNegocio = $row['nombre'];
+  }
 
 $nombre = (isset($_GET['nombre']) ? $_GET['nombre'] : NULL);
 $ver = (isset($_GET['ver']) ? $_GET['ver'] : NULL);
@@ -84,7 +89,7 @@ if ($deletProducto) {
               <td><?php echo $row['id_unidad']; ?></td>
               <td><?php echo $row['id_categoria']; ?></td>
               <td class="text-center"><a href="index.php?p=productos&delete=<?php echo $row['id_producto']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
-              <td class="text-center"><a href="index.php?p=productos&edit=<?php echo $row['id_producto']; ?>" class="btn-tb-update"><i class="fa-solid fa-pen"></i></a></td>
+              <td class="text-center"><a href="#" class="btn-tb-update" data-bs-toggle="modal" data-bs-target="#modProduct<?php echo $row['id_producto'] ?>"><i class="fa-solid fa-pen"></i></a></td>
               <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#pro<?php echo $row['id_producto'] ?>" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
             </tr>
           <?php
@@ -95,9 +100,10 @@ if ($deletProducto) {
     </div>
   </section>
   <!-- EDITAR -->
-  <?php
-  $edit = $query->editProducto($editProducto);
-  foreach ($edit as $row) {
+    <?php
+  $result = $query->selectProductos(); //Mostramos los resultados
+
+  foreach ($result as $row) {
     $id_producto = $row['id_producto'];
     $codigo = $row['codigo'];
     $nombre = $row['nombre'];
@@ -105,10 +111,8 @@ if ($deletProducto) {
     $pcompra = $row['pcompra'];
     $pventa = $row['pventa'];
     $id_unidad = $row['id_unidad'];
-    $fecha = $row['fecha'];
-  }
   ?>
-  <div class="modal fade" id="modProducto" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade" id="modProduct<?php echo $id_producto; ?>" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
@@ -163,11 +167,6 @@ if ($deletProducto) {
 
                 </select>
               </div>
-              <div class="input-cargo input-prov" id="group-cargo">
-                <label for="">fecha: </label>
-                <input type="text" class="input" name="fecha" id="fecha" value="<?php echo $fecha; ?>">
-                <p class="input-error">* Rellena este campo correctamente</p>
-              </div>
 
               <!-- <hr> -->
               <br>
@@ -183,12 +182,14 @@ if ($deletProducto) {
       </div>
     </div>
   </div>
-
+  <?php
+  }
+  ?>
   <!-- Mostrar información -->
   <?php
-  $result = $query->selectProductos(); //Mostramos los resultados
+  $result2 = $query->selectProductos(); //Mostramos los resultados
 
-  foreach ($result as $row) {
+  foreach ($result2 as $row) {
     $id_producto = $row['id_producto'];
     $codigo = $row['codigo'];
     $nombre = $row['nombre'];
@@ -198,56 +199,33 @@ if ($deletProducto) {
     $id_unidad = $row['id_unidad'];
   ?>
 
-
-    <div class="modal fade" id="pro<?php echo $row['id_producto'] ?>">
-      <div class="modal-dialog">
-        <div class="borde modal-content">
-          <div class="modal-header">
-            <h3 class="modal-title" id="exampleModalLabel">Información del Producto🧾</h3>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body margen1">
-            <div class="modal-left-content">
-              <img class="centrar-logo" src="../assets/img/favicon.png" alt="Logo">
-              <h3 class="title-name text-center"> Easy </h3>
-              <h3 class="title-name text-center"><span> Sale </span></h3>
-            </div>
-            <div class="modal-main-content1">
-              <div class="form-group">
-                <section class="ticket__section">
-                  <h4>Codigo</h4>
-                  <?php echo $codigo ?>
-                </section>
-                <section class="ticket__section">
-                  <h4>Nombre</h4>
-                  <?php echo $nombre ?>
-                </section>
-                <section class="ticket__section">
-                  <h4>Cantidad</h4>
-                  <?php echo $cantidad ?>
-                </section>
-                <section class="ticket__section">
-                  <h4>Precio compra</h4>
-                  <?php echo $pcompra ?>
-                </section>
-                <section class="ticket__section">
-                  <h4>Precio venta</h4>
-                  <?php echo $pventa ?>
-                </section>
-                <section class="ticket__section">
-                  <h4>Unidad</h4>
-                  <?php echo $id_unidad ?>
-                </section>
-              </div>
-            </div>
+  <div class="modal fade" id="pro<?php echo $row['id_producto'] ?>">
+    <div class="modal-dialog modal-fullscreen-xxl-down">
+      <div class="borde modal-content">
+        <div class="modal-header">
+          <h3 class="modal-title" id="exampleModalLabel">Información del Administrador</h3>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+       <article id="ticket">
+        <div class="contenedor-head">
+          <img src="../assets/img/logo/<?php echo $logoNegocio; ?>" class="ticon" alt="">
+          <p class="title-princ"><span>Nova Tech</span></p>
+          <p class="title-subp"><span>Easy Sal</span></p>
+          <p class="title-subsp">Datos de producto</p>
+          <p>
+            El presente documento muestra la infomación del producto <span class="remarc"><?php echo $nombre ?></span> con el codigo<span class="remarc"><?php echo $codigo; ?></span>. En el almacén hay una cantidad de <span class="remarc"><?php echo $cantidad;?></span> de este producto, el precio por unidad la cuál se adquirio fue de <span class="remarc"><?php echo $pcompra; ?></span> y el precio de venta es de  <span class="remarc"><?php echo $pventa; ?></span>
+          </p>
+      </article>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn1" data-bs-dismiss="modal">Cerrar</button>
-            <a href="pdf/prod_pdf.php?p=productos&id_producto=<?php echo $row['id_producto'] ?>" target="_blank"><button type="button" class="btn btn2">Imprimir</button></a>
+            <button type="button" class="btn-close-modal" data-bs-dismiss="modal">Cerrar</button>
+          <!-- <button type="button" class="btn-save-modal" id="descargarReporte">Descargar</button> -->
+            <!-- <a href="pdf/prod_pdf.php?p=productos&id_producto=<?php echo $row['id_producto'] ?>" target="_blank"><button type="button" class="btn btn2">Imprimir</button></a> -->
           </div>
-        </div>
       </div>
     </div>
+  </div>
   <?php
   }
   ?>

@@ -73,7 +73,7 @@
         </div>
         <div class="flex-shrink-0 dropdown">
           <a href="#" class="d-block text-decoration-none dropdown-toggle" id="dropdownUser2" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+            <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="mdo" width="32" height="32" class="rounded-circle">
           </a>
           <ul class="dropdown-menu text-small shadow" aria-labelledby="dropdownUser2">
             <li><a href="#" class="dropdown-item"><span><?php echo $_SESSION['user']['nombre']; ?><span id="id_user" hidden><?php echo $_SESSION['user']['id_user']; ?></span></span></a></li>

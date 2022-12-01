@@ -86,8 +86,15 @@ if ($deletProducto) {
               <td><?php echo $row['cantidad']; ?></td>
               <td><?php echo $row['pcompra']; ?></td>
               <td><?php echo $row['pventa']; ?></td>
-              <td><?php echo $row['id_unidad']; ?></td>
-              <td><?php echo $row['id_categoria']; ?></td>
+              <td>
+                <?php  
+                $getUnidad = $query->selectTableId("unidad", "id_unidad", $row['id_unidad'], "unidad");
+                $miUnidad = $getUnidad->fetch()['unidad'];
+                $getCategoria = $query->selectTableId("categoria", "id_categoria", $row['id_categoria'], "categoria");
+                $miCategoria = $getCategoria->fetch()['categoria']
+                ?>
+              <?php echo $miUnidad; ?></td>
+              <td><?php echo $miCategoria; ?></td>
               <td class="text-center"><a href="index.php?p=productos&delete=<?php echo $row['id_producto']; ?>" class="btn-tb-delete"><i class="fa-solid fa-trash-can"></i></a></td>
               <td class="text-center"><a href="#" class="btn-tb-update" data-bs-toggle="modal" data-bs-target="#modProduct<?php echo $row['id_producto'] ?>"><i class="fa-solid fa-pen"></i></a></td>
               <td class="text-center"><a href="" data-bs-toggle="modal" data-bs-target="#pro<?php echo $row['id_producto'] ?>" class="btn-tb-info"><i class="fa-solid fa-circle-info"></i></a></td>
